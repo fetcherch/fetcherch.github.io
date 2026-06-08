@@ -26,7 +26,8 @@
                 type="text"
                 id="loginUsername"
                 maxlength="100"
-                pattern="^[a-zA-Z._-]{1,100}$"
+                pattern="^[a-zA-Z0-9_.-]{1,100}$"
+                oninput="filterUsername(this)"
                 required
             >
 
@@ -37,6 +38,7 @@
                 type="password"
                 id="loginPassword"
                 maxlength="100"
+                oninput="filterPassword(this)"
                 required
             >
 
@@ -59,17 +61,29 @@
 </div>
 
 <script>
+
+/* 🔒 USERNAME: allow only letters, numbers, _ - . */
+function filterUsername(el) {
+    el.value = el.value.replace(/[^a-zA-Z0-9_.-]/g, "");
+}
+
+/* 🔒 PASSWORD: NO SPACES */
+function filterPassword(el) {
+    el.value = el.value.replace(/\s/g, "");
+}
+
+/* LOGIN VALIDATION */
 function validateLogin(event) {
     event.preventDefault();
 
     const username =
-        document.getElementById("loginUsername").value;
+        document.getElementById("loginUsername").value.trim();
 
     const password =
         document.getElementById("loginPassword").value;
 
     const usernamePattern =
-        /^[a-zA-Z._-]{1,100}$/;
+        /^[a-zA-Z0-9_.-]{1,100}$/;
 
     if (!usernamePattern.test(username)) {
         alert("Invalid username");
@@ -87,6 +101,7 @@ function validateLogin(event) {
 
     return false;
 }
+
 </script>
 
 </body>

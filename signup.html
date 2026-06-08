@@ -20,7 +20,7 @@
         <h2>Create Account</h2>
 
         <p class="small-text">
-            Username: letters, _, . and -
+            Username: letters, numbers, _ - and .
         </p>
 
         <br>
@@ -32,7 +32,8 @@
                 type="text"
                 id="signupUsername"
                 maxlength="100"
-                pattern="^[a-zA-Z._-]{1,100}$"
+                pattern="^[a-zA-Z0-9_.-]{1,100}$"
+                oninput="filterUsername(this)"
                 required
             >
 
@@ -43,6 +44,7 @@
                 type="password"
                 id="signupPassword"
                 maxlength="100"
+                oninput="filterPassword(this)"
                 required
             >
 
@@ -52,6 +54,7 @@
             <input
                 type="email"
                 id="inboxMail"
+                oninput="filterEmail(this)"
                 required
             >
 
@@ -87,8 +90,23 @@
 
 <script>
 
-function validatePriceInput(el) {
+/* USERNAME FILTER */
+function filterUsername(el) {
+    el.value = el.value.replace(/[^a-zA-Z0-9_.-]/g, "");
+}
 
+/* 🔒 PASSWORD: NO SPACES */
+function filterPassword(el) {
+    el.value = el.value.replace(/\s/g, "");
+}
+
+/* 🔒 EMAIL: NO SPACES */
+function filterEmail(el) {
+    el.value = el.value.replace(/\s/g, "");
+}
+
+/* PRICE FILTER */
+function validatePriceInput(el) {
     el.value = el.value.replace(/\D/g, "");
     el.value = el.value.replace(/^0+/, "");
 
@@ -97,6 +115,7 @@ function validatePriceInput(el) {
     }
 }
 
+/* FINAL VALIDATION */
 function validateSignup(event) {
 
     event.preventDefault();
@@ -118,7 +137,7 @@ function validateSignup(event) {
     price = Number(price);
 
     const usernamePattern =
-        /^[a-zA-Z._-]{1,100}$/;
+        /^[a-zA-Z0-9_.-]{1,100}$/;
 
     if (!usernamePattern.test(username)) {
         alert("Invalid username");
