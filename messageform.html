@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImportantDM - Message</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo" id="usernameDisplay">
+        Username
+    </div>
+
+    <!-- PRICE INFO (NEW) -->
+    <div class="card center">
+
+        <h3>Message Price</h3>
+
+        <div class="big-number" id="priceDisplay">
+            $0
+        </div>
+
+        <p class="small-text">
+            per message
+        </p>
+
+    </div>
+
+    <!-- FORM -->
+    <div class="card">
+
+        <h2>Send a Message</h2>
+
+        <label>Your Name</label>
+        <input id="senderName">
+
+        <br><br>
+
+        <label>Contact Info</label>
+        <input id="contactInfo">
+
+        <br><br>
+
+        <label>Message</label>
+        <textarea id="messageText"></textarea>
+
+        <br><br>
+
+        <button onclick="payAndSend()">
+            Pay & Send
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const username = "username1";
+
+// load price per message (same key as start page)
+let price =
+    localStorage.getItem("ppm_" + username) || 5;
+
+document.getElementById("usernameDisplay").innerText =
+    "@" + username;
+
+document.getElementById("priceDisplay").innerText =
+    "$" + price;
+
+function payAndSend() {
+
+    const senderName =
+        document.getElementById("senderName").value;
+
+    const contactInfo =
+        document.getElementById("contactInfo").value;
+
+    const messageText =
+        document.getElementById("messageText").value;
+
+    if (!senderName || !contactInfo || !messageText) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    const totalPrice = Number(price);
+
+    alert(`This message costs $${totalPrice}`);
+
+    // simulate payment
+    setTimeout(() => {
+        alert("Payment successful → message sent");
+        window.location.reload();
+    }, 1000);
+}
+
+</script>
+
+</body>
+</html>

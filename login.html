@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImportantDM - Login</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        ImportantDM
+    </div>
+
+    <div class="card">
+
+        <h2>Log In</h2>
+
+        <form onsubmit="return validateLogin(event)">
+
+            <label>Username</label>
+            <input
+                type="text"
+                id="loginUsername"
+                maxlength="100"
+                pattern="^[a-zA-Z._-]{1,100}$"
+                required
+            >
+
+            <br><br>
+
+            <label>Password</label>
+            <input
+                type="password"
+                id="loginPassword"
+                maxlength="100"
+                required
+            >
+
+            <br><br>
+
+            <button type="submit">
+                Log In
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="center">
+        <a href="signup.html" class="link">
+            Create Account
+        </a>
+    </div>
+
+</div>
+
+<script>
+function validateLogin(event) {
+    event.preventDefault();
+
+    const username =
+        document.getElementById("loginUsername").value;
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    const usernamePattern =
+        /^[a-zA-Z._-]{1,100}$/;
+
+    if (!usernamePattern.test(username)) {
+        alert("Invalid username");
+        return false;
+    }
+
+    if (password.length > 100) {
+        alert("Password too long");
+        return false;
+    }
+
+    alert("Login successful");
+
+    window.location.href = "start.html";
+
+    return false;
+}
+</script>
+
+</body>
+</html>

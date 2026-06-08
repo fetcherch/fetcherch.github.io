@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImportantDM - Sign Up</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        ImportantDM
+    </div>
+
+    <div class="card">
+
+        <h2>Create Account</h2>
+
+        <p class="small-text">
+            Username: letters, _, . and -
+        </p>
+
+        <br>
+
+        <form onsubmit="return validateSignup(event)">
+
+            <label>Username</label>
+            <input
+                type="text"
+                id="signupUsername"
+                maxlength="100"
+                pattern="^[a-zA-Z._-]{1,100}$"
+                required
+            >
+
+            <br><br>
+
+            <label>Password</label>
+            <input
+                type="password"
+                id="signupPassword"
+                maxlength="100"
+                required
+            >
+
+            <br><br>
+
+            <label>Inbox Email</label>
+            <input
+                type="email"
+                id="inboxMail"
+                required
+            >
+
+            <br><br>
+
+            <label>Price per Message ($)</label>
+            <input
+                type="text"
+                id="pricePerMessage"
+                inputmode="numeric"
+                maxlength="6"
+                oninput="validatePriceInput(this)"
+                required
+            >
+
+            <br><br>
+
+            <button type="submit">
+                Create Account
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="center">
+        <a href="login.html" class="link">
+            Already have an account?
+        </a>
+    </div>
+
+</div>
+
+<script>
+
+function validatePriceInput(el) {
+
+    el.value = el.value.replace(/\D/g, "");
+    el.value = el.value.replace(/^0+/, "");
+
+    if (el.value.length > 6) {
+        el.value = el.value.slice(0, 6);
+    }
+}
+
+function validateSignup(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("signupUsername").value.trim();
+
+    const password =
+        document.getElementById("signupPassword").value;
+
+    const email =
+        document.getElementById("inboxMail").value.trim();
+
+    let price =
+        document.getElementById("pricePerMessage").value;
+
+    price = price.replace(/\D/g, "");
+    price = price.replace(/^0+/, "");
+    price = Number(price);
+
+    const usernamePattern =
+        /^[a-zA-Z._-]{1,100}$/;
+
+    if (!usernamePattern.test(username)) {
+        alert("Invalid username");
+        return false;
+    }
+
+    if (password.length > 100) {
+        alert("Password too long");
+        return false;
+    }
+
+    if (!email.includes("@")) {
+        alert("Invalid email");
+        return false;
+    }
+
+    if (!price || price < 1 || price > 999999) {
+        alert("Invalid price");
+        return false;
+    }
+
+    localStorage.setItem("user", JSON.stringify({
+        username,
+        password,
+        email,
+        price
+    }));
+
+    localStorage.setItem("loggedIn", "true");
+
+    localStorage.setItem("ppm_" + username, price);
+    localStorage.setItem("mail_" + username, email);
+
+    alert("Account created");
+
+    window.location.href = "start.html";
+
+    return false;
+}
+
+</script>
+
+</body>
+</html>

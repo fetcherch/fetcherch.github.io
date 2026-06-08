@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImportantDM - Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="topbar">
+        <h2>ImportantDM</h2>
+
+        <button class="secondary-btn" onclick="logout()">
+            Logout
+        </button>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="card center">
+
+        <h3>Your Profile URL</h3>
+
+        <div id="profileUrl" class="profile-url"></div>
+
+        <br>
+
+        <button onclick="copyUrl()">Copy Link</button>
+
+    </div>
+
+    <!-- EARNINGS -->
+    <div class="card center">
+
+        <h3>Earnings</h3>
+
+        <div class="big-number" id="earnings">$0</div>
+
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="card">
+
+        <h3>Settings</h3>
+
+        <label>Price per Message ($)</label>
+        <input
+            id="pricePerMessage"
+            type="text"
+            inputmode="numeric"
+            maxlength="6"
+            oninput="validatePriceInput(this)"
+        >
+
+        <br><br>
+
+        <label>Inbox Email</label>
+        <input
+            id="inboxMail"
+            type="email"
+            placeholder="your@email.com"
+        >
+
+        <br><br>
+
+        <button onclick="saveSettings()">
+            Save Settings
+        </button>
+        <br><br>
+        <p class="small-text">
+            Price + inbox email define your message system.
+        </p>
+
+    </div>
+
+    <!-- PAYOUT -->
+    <div class="card">
+
+        <h3>Payout</h3>
+
+        <input id="iban" placeholder="Enter IBAN">
+
+        <br><br>
+
+        <button onclick="requestPayout()">
+            Request Payout
+        </button>
+
+        <br><br>
+
+        <p class="small-text">
+            Arrives within 1–5 business days.
+        </p>
+
+    </div>
+
+    <!-- HISTORY -->
+    <div class="card">
+
+        <h3>Payout History</h3>
+
+        <div id="payoutList"></div>
+
+    </div>
+
+</div>
+
+<div class="center" style="margin-top:20px;">
+    <a href="mailto:support@importantdm.com" class="link">
+        support@importantdm.com
+    </a>
+</div>
+
+<script>
+
+const username = "username";
+let earnings = 120;
+
+// load settings
+let pricePerMessage =
+    localStorage.getItem("ppm_" + username) || "5";
+
+let inboxMail =
+    localStorage.getItem("mail_" + username) || "";
+
+document.getElementById("pricePerMessage").value =
+    pricePerMessage;
+
+document.getElementById("inboxMail").value =
+    inboxMail;
+
+document.getElementById("profileUrl").innerText =
+    `https://importantdm.com/${username}`;
+
+document.getElementById("earnings").innerText =
+    `$${earnings}`;
+
+// PRICE INPUT VALIDATION
+function validatePriceInput(el) {
+
+    el.value = el.value.replace(/\D/g, "");
+    el.value = el.value.replace(/^0+/, "");
+
+    if (el.value.length > 6) {
+        el.value = el.value.slice(0, 6);
+    }
+}
+
+function saveSettings() {
+
+    let price =
+        document.getElementById("pricePerMessage").value;
+
+    const mail =
+        document.getElementById("inboxMail").value.trim();
+
+    price = price.replace(/\D/g, "");
+    price = price.replace(/^0+/, "");
+    price = Number(price);
+
+    if (!price || price < 1 || price > 999999) {
+        alert("Invalid price");
+        return;
+    }
+
+    if (!mail.includes("@")) {
+        alert("Invalid email");
+        return;
+    }
+
+    localStorage.setItem("ppm_" + username, price);
+    localStorage.setItem("mail_" + username, mail);
+
+    alert("Settings saved");
+}
+
+function copyUrl() {
+    navigator.clipboard.writeText(
+        document.getElementById("profileUrl").innerText
+    );
+    alert("Copied");
+}
+
+function logout() {
+    window.location.href = "login.html";
+}
+
+function requestPayout() {
+
+    const iban =
+        document.getElementById("iban").value.trim();
+
+    if (!iban) {
+        alert("Enter IBAN");
+        return;
+    }
+
+    if (earnings <= 0) {
+        alert("No earnings available");
+        return;
+    }
+
+    const payout = document.createElement("div");
+    payout.className = "payout-item";
+
+    payout.innerText =
+        `$${earnings} • Pending • ${new Date().toLocaleDateString()}`;
+
+    document.getElementById("payoutList").appendChild(payout);
+
+    earnings = 0;
+    document.getElementById("earnings").innerText = "$0";
+
+    alert("Payout requested");
+}
+
+</script>
+
+</body>
+</html>
