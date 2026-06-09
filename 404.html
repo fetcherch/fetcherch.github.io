@@ -15,7 +15,7 @@ const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 </script>
 <script>
 
-// get username from /coddd
+// get username from URL
 const path = window.location.pathname;
 const username = path.replace("/", "").split("/")[0];
 
@@ -28,13 +28,12 @@ async function checkUser() {
     const { data, error } = await supabaseClient
         .from("profiles")
         .select("username")
-        .eq("username", username)
-        .single();
+        .eq("username", username);
 
-    if (data) {
-        // exists → redirect
+    if (data && data.length > 0) {
+        // exists → redirect using DB value
         window.location.href =
-            "/messageform.html?user=" + username;
+            "/messageform.html?user=" + data[0].username;
     } else {
         document.body.innerHTML = "User not found";
     }

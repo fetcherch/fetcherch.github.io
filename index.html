@@ -128,8 +128,8 @@ async function validateLogin(event) {
 
     alert("Login successful");
 
-    localStorage.setItem("loggedUser", username);
-    
+    localStorage.setItem("loggedUser", data[0].username);
+
     window.location.href = "edit.html";
 
     return false;
