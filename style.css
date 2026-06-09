@@ -37,6 +37,17 @@ body {
     text-align: center;
 
 }
+.toslabel{
+  display: flex;
+  
+}
+.tos{
+  width: 20px;
+  margin-right: 10px;
+}
+label a{
+  color: #000000;
+}
 
 .card {
   background: white;
