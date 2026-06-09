@@ -87,6 +87,14 @@
     </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const supabaseUrl = "https://pneaxwundeuadwlbaxwh.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZWF4d3VuZGV1YWR3bGJheHdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MTUxMjYsImV4cCI6MjA5NjQ5MTEyNn0.7iSF3B-8AgubRowVOBB9sOwCJKCDVwDr6Yl4LPh8v2E";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
 
 <script>
 
@@ -116,7 +124,7 @@ function validatePriceInput(el) {
 }
 
 /* FINAL VALIDATION */
-function validateSignup(event) {
+async function validateSignup(event) {
 
     event.preventDefault();
 
@@ -159,23 +167,25 @@ function validateSignup(event) {
         return false;
     }
 
-    localStorage.setItem("user", JSON.stringify({
-        username,
-        password,
-        email,
-        price
-    }));
+const { data, error } = await supabaseClient
+  .from("profiles")
+  .insert([
+    {
+      username: username,
+      email: email,
+      password: password,
+      price_per_message: price
+    }
+  ]);
 
-    localStorage.setItem("loggedIn", "true");
+if (error) {
+  alert(error.message);
+  return false;
+}
 
-    localStorage.setItem("ppm_" + username, price);
-    localStorage.setItem("mail_" + username, email);
-
-    alert("Account created");
-
-    window.location.href = "index.html";
-
-    return false;
+alert("Account created!");
+window.location.href = "index.html";
+return false;
 }
 
 </script>

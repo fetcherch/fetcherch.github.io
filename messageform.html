@@ -11,28 +11,15 @@
 
 <div class="container">
 
-    <div class="logo" id="usernameDisplay">
-        Username
-    </div>
+    <div class="logo" id="usernameDisplay">Username</div>
 
-    <!-- PRICE INFO (NEW) -->
     <div class="card center">
-
         <h3>Message Price</h3>
-
-        <div class="big-number" id="priceDisplay">
-            $0
-        </div>
-
-        <p class="small-text">
-            per message
-        </p>
-
+        <div class="big-number" id="priceDisplay">$0</div>
+        <p class="small-text">per message</p>
     </div>
 
-    <!-- FORM -->
     <div class="card">
-
         <h2>Send a Message</h2>
 
         <label>Your Name</label>
@@ -50,53 +37,84 @@
 
         <br><br>
 
-        <button onclick="payAndSend()">
-            Pay & Send
-        </button>
-
+        <button onclick="payAndSend()">Pay & Send</button>
     </div>
 
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 
-const username = "username1";
+const supabaseUrl = "https://pneaxwundeuadwlbaxwh.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZWF4d3VuZGV1YWR3bGJheHdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MTUxMjYsImV4cCI6MjA5NjQ5MTEyNn0.7iSF3B-8AgubRowVOBB9sOwCJKCDVwDr6Yl4LPh8v2E";
 
-// load price per message (same key as start page)
-let price =
-    localStorage.getItem("ppm_" + username) || 5;
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const username = params.get("user");
 
+let price = 0;
+
+// UI init
 document.getElementById("usernameDisplay").innerText =
-    "@" + username;
+    username ? "@" + username : "No user";
 
-document.getElementById("priceDisplay").innerText =
-    "$" + price;
+async function loadUser() {
 
-function payAndSend() {
+    if (!username) return;
 
-    const senderName =
-        document.getElementById("senderName").value;
+    const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("price_per_message")
+        .eq("username", username)
+        .single();
 
-    const contactInfo =
-        document.getElementById("contactInfo").value;
+    if (data) {
+        price = data.price_per_message || 5;
+        document.getElementById("priceDisplay").innerText = "$" + price;
+    } else {
+        document.getElementById("priceDisplay").innerText = "User not found";
+    }
+}
 
-    const messageText =
-        document.getElementById("messageText").value;
+loadUser();
+
+async function payAndSend() {
+
+    const senderName = document.getElementById("senderName").value;
+    const contactInfo = document.getElementById("contactInfo").value;
+    const messageText = document.getElementById("messageText").value;
 
     if (!senderName || !contactInfo || !messageText) {
         alert("Please fill all fields");
         return;
     }
 
-    const totalPrice = Number(price);
+    const res = await fetch(
+        "https://pneaxwundeuadwlbaxwh.supabase.co/functions/v1/create-checkout",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                amount: price,
+                username,
+                sender_name: senderName,
+                contact_info: contactInfo,
+                message_text: messageText
+            })
+        }
+    );
 
-    alert(`This message costs $${totalPrice}`);
+    const data = await res.json();
 
-    // simulate payment
-    setTimeout(() => {
-        alert("Payment successful → message sent");
-        window.location.reload();
-    }, 1000);
+    if (data.url) {
+        window.location.href = data.url;
+    } else {
+        alert("Checkout failed");
+        console.log(data);
+    }
 }
 
 </script>

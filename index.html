@@ -137,30 +137,57 @@
     </a>
 </div>
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const supabaseUrl = "https://pneaxwundeuadwlbaxwh.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZWF4d3VuZGV1YWR3bGJheHdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MTUxMjYsImV4cCI6MjA5NjQ5MTEyNn0.7iSF3B-8AgubRowVOBB9sOwCJKCDVwDr6Yl4LPh8v2E";
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+
 <script>
 
-const username = "username";
-let earnings = 120;
+const username = localStorage.getItem("loggedUser");
 
-// load settings
-let pricePerMessage =
-    localStorage.getItem("ppm_" + username) || "5";
+let earnings = 0;
+let userData = null;
 
-let inboxMail =
-    localStorage.getItem("mail_" + username) || "";
+/* LOAD USER FROM SUPABASE */
+async function loadUser() {
 
-document.getElementById("pricePerMessage").value =
-    pricePerMessage;
+    if (!username) {
+        window.location.href = "login.html";
+        return;
+    }
 
-document.getElementById("inboxMail").value =
-    inboxMail;
+    const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("username", username)
+        .single();
 
-document.getElementById("profileUrl").innerText =
-    `https://importantdm.com/${username}`;
+    if (error || !data) {
+        alert("User not found");
+        window.location.href = "login.html";
+        return;
+    }
 
-document.getElementById("earnings").innerText =
-    `$${earnings}`;
+    userData = data;
 
+    document.getElementById("pricePerMessage").value = data.price_per_message;
+    document.getElementById("inboxMail").value = data.email;
+    document.getElementById("profileUrl").innerText = `https://importantdm.com/${username}`;
+
+    earnings = data.earnings || 0;
+    document.getElementById("earnings").innerText = "$" + earnings;
+
+    await loadPayouts();
+}
+
+loadUser();
+
+/* UI HELPERS */
 function validatePriceInput(el) {
     el.value = el.value.replace(/\D/g, "");
     el.value = el.value.replace(/^0+/, "");
@@ -170,7 +197,20 @@ function validatePriceInput(el) {
     }
 }
 
-function saveSettings() {
+function copyUrl() {
+    navigator.clipboard.writeText(
+        document.getElementById("profileUrl").innerText
+    );
+    alert("Copied");
+}
+
+function logout() {
+    localStorage.removeItem("loggedUser");
+    window.location.href = "login.html";
+}
+
+/* SAVE SETTINGS */
+async function saveSettings() {
 
     let price =
         document.getElementById("pricePerMessage").value;
@@ -192,25 +232,24 @@ function saveSettings() {
         return;
     }
 
-    localStorage.setItem("ppm_" + username, price);
-    localStorage.setItem("mail_" + username, mail);
+    const { error } = await supabaseClient
+        .from("profiles")
+        .update({
+            price_per_message: price,
+            email: mail
+        })
+        .eq("username", username);
 
-    alert("Settings saved");
+    if (error) {
+        alert(error.message);
+        return;
+    }
+
+    alert("Settings saved to database");
 }
 
-function copyUrl() {
-    navigator.clipboard.writeText(
-        document.getElementById("profileUrl").innerText
-    );
-    alert("Copied");
-}
-
-function logout() {
-    window.location.href = "login.html";
-}
-
-/* PAYOUT SYSTEM */
-function requestPayout() {
+/* PAYOUT SYSTEM (instant UI + background DB sync) */
+async function requestPayout() {
 
     const name =
         document.getElementById("accountName").value.trim();
@@ -237,20 +276,83 @@ function requestPayout() {
         return;
     }
 
-    const payout = document.createElement("div");
-    payout.className = "payout-item";
-
-    const date = new Date().toLocaleDateString("de-CH");
-
-    payout.innerText =
-        `${iban} | ${name} | $${earnings} | ${date} • Pending`;
-
-    document.getElementById("payoutList").appendChild(payout);
-
+    // 🔥 instant UI update
+    const previousEarnings = earnings;
     earnings = 0;
     document.getElementById("earnings").innerText = "$0";
 
     alert("Payout requested");
+
+    // 🔥 background DB sync
+    try {
+
+        const { error: payoutError } = await supabaseClient
+            .from("payouts")
+            .insert([
+                {
+                    username: username,
+                    amount: previousEarnings,
+                    iban: iban,
+                    name: name,
+                    bank: bank,
+                    country: country,
+                    reference: reference,
+                    status: "pending"
+                }
+            ]);
+
+        if (payoutError) {
+            console.log("Payout error:", payoutError);
+        }
+
+        const { error: updateError } = await supabaseClient
+            .from("profiles")
+            .update({ earnings: 0 })
+            .eq("username", username);
+
+        if (updateError) {
+            console.log("Earnings update error:", updateError);
+        }
+
+        await loadPayouts();
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+/* LOAD PAYOUT HISTORY */
+async function loadPayouts() {
+
+    const { data, error } = await supabaseClient
+        .from("payouts")
+        .select("*")
+        .eq("username", username)
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+    const list = document.getElementById("payoutList");
+    list.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        list.innerHTML = "<p>No payouts yet</p>";
+        return;
+    }
+
+    data.forEach(p => {
+
+        const div = document.createElement("div");
+        div.className = "payout-item";
+
+        div.innerText =
+            `${p.iban} | ${p.name} | $${p.amount} | ${p.status}`;
+
+        list.appendChild(div);
+    });
 }
 
 </script>
