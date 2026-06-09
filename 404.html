@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Loading...</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+
+const supabaseUrl = "https://pneaxwundeuadwlbaxwh.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZWF4d3VuZGV1YWR3bGJheHdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MTUxMjYsImV4cCI6MjA5NjQ5MTEyNn0.7iSF3B-8AgubRowVOBB9sOwCJKCDVwDr6Yl4LPh8v2E";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+<script>
+
+// get username from /coddd
+const path = window.location.pathname;
+const username = path.replace("/", "").split("/")[0];
+
+async function checkUser() {
+    if (!username) {
+        document.body.innerHTML = "No user";
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("username")
+        .eq("username", username)
+        .single();
+
+    if (data) {
+        // exists → redirect
+        window.location.href =
+            "/messageform.html?user=" + username;
+    } else {
+        document.body.innerHTML = "User not found";
+    }
+}
+
+checkUser();
+</script>
+</body>
+</html>
