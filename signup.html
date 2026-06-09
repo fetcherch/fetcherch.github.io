@@ -195,6 +195,7 @@ if (error) {
 }
 
 alert("Account created!");
+localStorage.setItem("loggedUser", username);
 window.location.href = "edit.html";
 return false;
 }
