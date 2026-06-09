@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ImportantDM - Dashboard</title>
+<title>ImportantDM - Login</title>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,348 +11,116 @@
 
 <div class="container">
 
-    <div class="topbar">
-        <h2>ImportantDM</h2>
-
-        <button class="secondary-btn" onclick="logout()">
-            Logout
-        </button>
+    <div class="logo">
+        ImportantDM
     </div>
 
-    <!-- PROFILE -->
-    <div class="card center">
-
-        <h3>Your Profile URL</h3>
-
-        <div id="profileUrl" class="profile-url"></div>
-
-        <br>
-
-        <button onclick="copyUrl()">Copy Link</button>
-
-    </div>
-
-    <!-- EARNINGS -->
-    <div class="card center">
-
-        <h3>Earnings</h3>
-
-        <div class="big-number" id="earnings">$0</div>
-
-    </div>
-
-    <!-- SETTINGS -->
     <div class="card">
 
-        <h3>Settings</h3>
+        <h2>Log In</h2>
 
-        <label>Price per Message ($)</label>
-        <input
-            id="pricePerMessage"
-            type="text"
-            inputmode="numeric"
-            maxlength="6"
-            oninput="validatePriceInput(this)"
-        >
+        <form onsubmit="return validateLogin(event)">
 
-        <br><br>
+            <label>Username</label>
+            <input
+                type="text"
+                id="loginUsername"
+                maxlength="100"
+                pattern="^[a-zA-Z0-9_.-]{1,100}$"
+                oninput="filterUsername(this)"
+                required
+            >
 
-        <label>Inbox Email</label>
-        <input
-            id="inboxMail"
-            type="email"
-            placeholder="your@email.com"
-        >
+            <br><br>
 
-        <br><br>
+            <label>Password</label>
+            <input
+                type="password"
+                id="loginPassword"
+                maxlength="100"
+                oninput="filterPassword(this)"
+                required
+            >
 
-        <button onclick="saveSettings()">
-            Save Settings
-        </button>
+            <br><br>
 
-        <br><br>
+            <button type="submit">
+                Log In
+            </button>
 
-        <p class="small-text">
-            Price + inbox email define your message system.
-        </p>
-
-    </div>
-
-    <!-- PAYOUT -->
-    <div class="card">
-
-        <h3>Payout</h3>
-
-        <label>Account Holder Name</label>
-        <input id="accountName" placeholder="Full name as on bank account">
-
-        <br><br>
-
-        <label>IBAN</label>
-        <input id="iban" placeholder="Enter IBAN">
-
-        <br><br>
-
-        <label>Bank Name</label>
-        <input id="bankName" placeholder="Your bank name">
-
-        <br><br>
-
-        <label>Country</label>
-        <input id="country" placeholder="e.g. Switzerland">
-
-        <br><br>
-
-        <label>Reference (optional)</label>
-        <input id="reference" placeholder="Invoice or note">
-
-        <br><br>
-
-        <button onclick="requestPayout()">
-            Request Payout
-        </button>
-
-        <br><br>
-
-        <p class="small-text">
-            Arrives within 1–5 business days.
-        </p>
+        </form>
 
     </div>
 
-    <!-- HISTORY -->
-    <div class="card">
-
-        <h3>Payout History</h3>
-
-        <div id="payoutList"></div>
-
+    <div class="center">
+        <a href="signup.html" class="link">
+            Create Account
+        </a>
     </div>
 
 </div>
-
-<div class="center" style="margin-top:20px;">
-    <a href="mailto:support@importantdm.com" class="link">
-        support@importantdm.com
-    </a>
-</div>
-
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const supabaseUrl = "https://pneaxwundeuadwlbaxwh.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZWF4d3VuZGV1YWR3bGJheHdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MTUxMjYsImV4cCI6MjA5NjQ5MTEyNn0.7iSF3B-8AgubRowVOBB9sOwCJKCDVwDr6Yl4LPh8v2E";
+
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 </script>
 
 <script>
 
-const username = localStorage.getItem("loggedUser");
+/* 🔒 USERNAME: allow only letters, numbers, _ - . */
+function filterUsername(el) {
+    el.value = el.value.replace(/[^a-zA-Z0-9_.-]/g, "");
+}
 
-let earnings = 0;
-let userData = null;
+/* 🔒 PASSWORD: NO SPACES */
+function filterPassword(el) {
+    el.value = el.value.replace(/\s/g, "");
+}
 
-/* LOAD USER FROM SUPABASE */
-async function loadUser() {
+/* LOGIN VALIDATION */
+async function validateLogin(event) {
+    event.preventDefault();
 
-    if (!username) {
-        window.location.href = "login.html";
-        return;
+    const username =
+        document.getElementById("loginUsername").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    const usernamePattern =
+        /^[a-zA-Z0-9_.-]{1,100}$/;
+
+    if (!usernamePattern.test(username)) {
+        alert("Invalid username");
+        return false;
+    }
+
+    if (password.length > 100) {
+        alert("Password too long");
+        return false;
     }
 
     const { data, error } = await supabaseClient
         .from("profiles")
         .select("*")
         .eq("username", username)
-        .single();
+        .eq("password", password);
 
-    if (error || !data) {
-        alert("User not found");
-        window.location.href = "login.html";
-        return;
+    if (error || !data || data.length === 0) {
+        alert("Invalid username or password");
+        return false;
     }
 
-    userData = data;
+    alert("Login successful");
 
-    document.getElementById("pricePerMessage").value = data.price_per_message;
-    document.getElementById("inboxMail").value = data.email;
-    document.getElementById("profileUrl").innerText = `https://importantdm.com/${username}`;
+    localStorage.setItem("loggedUser", username);
+    
+    window.location.href = "edit.html";
 
-    earnings = data.earnings || 0;
-    document.getElementById("earnings").innerText = "$" + earnings;
-
-    await loadPayouts();
-}
-
-loadUser();
-
-/* UI HELPERS */
-function validatePriceInput(el) {
-    el.value = el.value.replace(/\D/g, "");
-    el.value = el.value.replace(/^0+/, "");
-
-    if (el.value.length > 6) {
-        el.value = el.value.slice(0, 6);
-    }
-}
-
-function copyUrl() {
-    navigator.clipboard.writeText(
-        document.getElementById("profileUrl").innerText
-    );
-    alert("Copied");
-}
-
-function logout() {
-    localStorage.removeItem("loggedUser");
-    window.location.href = "login.html";
-}
-
-/* SAVE SETTINGS */
-async function saveSettings() {
-
-    let price =
-        document.getElementById("pricePerMessage").value;
-
-    const mail =
-        document.getElementById("inboxMail").value.trim();
-
-    price = price.replace(/\D/g, "");
-    price = price.replace(/^0+/, "");
-    price = Number(price);
-
-    if (!price || price < 1 || price > 999999) {
-        alert("Invalid price");
-        return;
-    }
-
-    if (!mail.includes("@")) {
-        alert("Invalid email");
-        return;
-    }
-
-    const { error } = await supabaseClient
-        .from("profiles")
-        .update({
-            price_per_message: price,
-            email: mail
-        })
-        .eq("username", username);
-
-    if (error) {
-        alert(error.message);
-        return;
-    }
-
-    alert("Settings saved to database");
-}
-
-/* PAYOUT SYSTEM (instant UI + background DB sync) */
-async function requestPayout() {
-
-    const name =
-        document.getElementById("accountName").value.trim();
-
-    const iban =
-        document.getElementById("iban").value.trim();
-
-    const bank =
-        document.getElementById("bankName").value.trim();
-
-    const country =
-        document.getElementById("country").value.trim();
-
-    const reference =
-        document.getElementById("reference").value.trim();
-
-    if (!name || !iban || !bank || !country) {
-        alert("Please fill all required fields");
-        return;
-    }
-
-    if (earnings < 10) {
-        alert("Minimum payout is $10");
-        return;
-    }
-
-    // 🔥 instant UI update
-    const previousEarnings = earnings;
-    earnings = 0;
-    document.getElementById("earnings").innerText = "$0";
-
-    alert("Payout requested");
-
-    // 🔥 background DB sync
-    try {
-
-        const { error: payoutError } = await supabaseClient
-            .from("payouts")
-            .insert([
-                {
-                    username: username,
-                    amount: previousEarnings,
-                    iban: iban,
-                    name: name,
-                    bank: bank,
-                    country: country,
-                    reference: reference,
-                    status: "pending"
-                }
-            ]);
-
-        if (payoutError) {
-            console.log("Payout error:", payoutError);
-        }
-
-        const { error: updateError } = await supabaseClient
-            .from("profiles")
-            .update({ earnings: 0 })
-            .eq("username", username);
-
-        if (updateError) {
-            console.log("Earnings update error:", updateError);
-        }
-
-        await loadPayouts();
-
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-/* LOAD PAYOUT HISTORY */
-async function loadPayouts() {
-
-    const { data, error } = await supabaseClient
-        .from("payouts")
-        .select("*")
-        .eq("username", username)
-        .order("created_at", { ascending: false });
-
-    if (error) {
-        console.log(error);
-        return;
-    }
-
-    const list = document.getElementById("payoutList");
-    list.innerHTML = "";
-
-    if (!data || data.length === 0) {
-        list.innerHTML = "<p>No payouts yet</p>";
-        return;
-    }
-
-    data.forEach(p => {
-
-        const div = document.createElement("div");
-        div.className = "payout-item";
-
-        div.innerText =
-            `${p.iban} | ${p.name} | $${p.amount} | ${p.status}`;
-
-        list.appendChild(div);
-    });
+    return false;
 }
 
 </script>
