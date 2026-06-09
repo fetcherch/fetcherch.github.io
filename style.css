@@ -26,8 +26,16 @@ body {
   text-align: center;
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: white; /*ON DARK*/
+}
+.slogan{
+  display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+
 }
 
 .card {
