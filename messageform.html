@@ -50,18 +50,8 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 </script>
 <script>
-
-// =======================
-// LINKTREE STYLE ROUTING
-// =======================
-let path = window.location.pathname;
-
-// remove "/" and ignore empty routes
-let username = path.replace("/", "").trim();
-
-// block static files
-const blocked = ["", "index.html", "style.css", "messageform.html"];
-if (blocked.includes(username)) username = null;
+const params = new URLSearchParams(window.location.search);
+const username = params.get("user");
 
 let price = 0;
 
