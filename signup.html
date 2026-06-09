@@ -95,7 +95,17 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 </script>
+<script>
+/* AUTO LOGOUT ON INDEX PAGE LOAD */
+window.addEventListener("DOMContentLoaded", () => {
+    localStorage.removeItem("loggedUser");
 
+    // optional: also clear Supabase session if you're using auth elsewhere
+    if (typeof supabaseClient !== "undefined" && supabaseClient.auth) {
+        supabaseClient.auth.signOut().catch(() => {});
+    }
+});
+</script>
 <script>
 
 /* USERNAME FILTER */
