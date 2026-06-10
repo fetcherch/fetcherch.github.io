@@ -175,12 +175,19 @@ async function loadUser() {
 
     userData = data;
 
-    document.getElementById("pricePerMessage").value = data.price_per_message;
-    document.getElementById("inboxMail").value = data.email;
-    document.getElementById("profileUrl").innerText = `https://importantdm.com/${username}`;
+    document.getElementById("pricePerMessage").value =
+        data.price_per_message;
 
-    earnings = data.earnings || 0;
-    document.getElementById("earnings").innerText = "$" + earnings;
+    document.getElementById("inboxMail").value =
+        data.email;
+
+    document.getElementById("profileUrl").innerText =
+        `https://importantdm.com/${username}`;
+
+    earnings = Number(data.earnings || 0);
+
+    document.getElementById("earnings").innerText =
+        "$" + earnings;
 
     await loadPayouts();
 }
@@ -189,6 +196,7 @@ loadUser();
 
 /* UI HELPERS */
 function validatePriceInput(el) {
+
     el.value = el.value.replace(/\D/g, "");
     el.value = el.value.replace(/^0+/, "");
 
@@ -198,14 +206,18 @@ function validatePriceInput(el) {
 }
 
 function copyUrl() {
+
     navigator.clipboard.writeText(
         document.getElementById("profileUrl").innerText
     );
+
     alert("Copied");
 }
 
 function logout() {
+
     localStorage.removeItem("loggedUser");
+
     window.location.href = "index.html";
 }
 
@@ -248,7 +260,7 @@ async function saveSettings() {
     alert("Settings saved to database");
 }
 
-/* PAYOUT SYSTEM (instant UI + background DB sync) */
+/* PAYOUT SYSTEM */
 async function requestPayout() {
 
     const name =
@@ -271,53 +283,92 @@ async function requestPayout() {
         return;
     }
 
-    if (earnings < 100) {
+    // 🔒 ALWAYS VERIFY EARNINGS FROM DATABASE
+    const { data: freshProfile, error: earningsError } =
+        await supabaseClient
+            .from("profiles")
+            .select("earnings")
+            .eq("username", username)
+            .single();
+
+    if (earningsError || !freshProfile) {
+        alert("Failed to verify earnings");
+        return;
+    }
+
+    const dbEarnings =
+        Number(freshProfile.earnings || 0);
+
+    if (dbEarnings < 100) {
         alert("Minimum payout is $100");
         return;
     }
 
+    // 🔥 amount comes from database
+    const previousEarnings = dbEarnings;
+
     // 🔥 instant UI update
-    const previousEarnings = earnings;
     earnings = 0;
-    document.getElementById("earnings").innerText = "$0";
+
+    document.getElementById("earnings").innerText =
+        "$0";
 
     alert("Payout requested");
 
     // 🔥 background DB sync
     try {
 
-        const { error: payoutError } = await supabaseClient
-            .from("payouts")
-            .insert([
-                {
-                    username: username,
-                    amount: previousEarnings,
-                    iban: iban,
-                    name: name,
-                    bank: bank,
-                    country: country,
-                    reference: reference,
-                    status: "pending"
-                }
-            ]);
+        const { error: payoutError } =
+            await supabaseClient
+                .from("payouts")
+                .insert([
+                    {
+                        username: username,
+                        amount: previousEarnings,
+                        iban: iban,
+                        name: name,
+                        bank: bank,
+                        country: country,
+                        reference: reference,
+                        status: "pending"
+                    }
+                ]);
 
         if (payoutError) {
-            console.log("Payout error:", payoutError);
+
+            console.log(
+                "Payout error:",
+                payoutError
+            );
+
+            return;
         }
 
-        const { error: updateError } = await supabaseClient
-            .from("profiles")
-            .update({ earnings: 0 })
-            .eq("username", username);
+        const { error: updateError } =
+            await supabaseClient
+                .from("profiles")
+                .update({
+                    earnings: 0
+                })
+                .eq("username", username);
 
         if (updateError) {
-            console.log("Earnings update error:", updateError);
+
+            console.log(
+                "Earnings update error:",
+                updateError
+            );
+
+            return;
         }
 
         await loadPayouts();
 
     } catch (err) {
+
         console.log(err);
+
+        alert("Something went wrong");
     }
 }
 
@@ -328,24 +379,33 @@ async function loadPayouts() {
         .from("payouts")
         .select("*")
         .eq("username", username)
-        .order("created_at", { ascending: false });
+        .order("created_at", {
+            ascending: false
+        });
 
     if (error) {
         console.log(error);
         return;
     }
 
-    const list = document.getElementById("payoutList");
+    const list =
+        document.getElementById("payoutList");
+
     list.innerHTML = "";
 
     if (!data || data.length === 0) {
-        list.innerHTML = "<p>No payouts yet</p>";
+
+        list.innerHTML =
+            "<p>No payouts yet</p>";
+
         return;
     }
 
     data.forEach(p => {
 
-        const div = document.createElement("div");
+        const div =
+            document.createElement("div");
+
         div.className = "payout-item";
 
         div.innerText =
