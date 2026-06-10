@@ -117,6 +117,7 @@ textarea {
   transition: 0.2s ease;
 }
 
+
 textarea {
   min-height: 180px;
   resize: vertical;
@@ -220,8 +221,20 @@ button:hover {
 }
 
 .tos {
-  width: 18px;
+  height: 19px;
+    width: 19px;
+   
   margin-right: 10px;
+}
+.toslabel p a{
+  font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+.toslabel p{
+  
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
 }
 
 label a {
@@ -247,3 +260,4 @@ label a:hover {
     font-size: 42px;
   }
 }
+
