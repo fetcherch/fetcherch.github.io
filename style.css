@@ -72,6 +72,7 @@ h3 {
 .slogan {
   display: flex;
   margin-top: 16px;
+    font-size: 24px;
 
       color: #3777FF95;
 }
@@ -127,6 +128,8 @@ textarea:focus {
 
 /* ========== BUTTONS ========== */
 button {
+      height: 51px;
+
   width: fit-content;
   border: none;
   border-radius: 999px;
@@ -148,6 +151,7 @@ button:hover {
 .secondary-btn {
   /*background: linear-gradient(90deg, #000000 0%, #ffffff 100%);*/
   color: white;
+  height: 45px;
   /*border: 1px solid rgba(0, 0, 0, 0.08);*/
 }
 
@@ -317,7 +321,5 @@ label a:hover {
   .topbar{
     margin-bottom: 16px;
   }
-  .logo{
-    margin-bottom: 16px;
-  }
+  
 }

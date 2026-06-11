@@ -37,7 +37,7 @@
 
         <h3>Earnings</h3>
 
-        <div class="big-number" id="earnings">CHF0</div>
+        <div class="big-number" id="earnings">CHF 0</div>
 
     </div>
 
@@ -131,7 +131,7 @@
 
 </div>
 
-<div class="center" style="margin-top:20px;">
+<div class="center">
     <a href="mailto:support@importantdm.com" class="link">
         support@importantdm.com
     </a>
@@ -187,7 +187,7 @@ async function loadUser() {
     earnings = Number(data.earnings || 0);
 
     document.getElementById("earnings").innerText =
-        "CHF" + earnings;
+        "CHF " + earnings;
 
     await loadPayouts();
 }
@@ -224,20 +224,20 @@ function logout() {
 /* SAVE SETTINGS */
 async function saveSettings() {
 
-    let price =
-        document.getElementById("pricePerMessage").value;
+    /*let price =
+        document.getElementById("pricePerMessage").value;*/
 
     const mail =
         document.getElementById("inboxMail").value.trim();
 
-    price = price.replace(/\D/g, "");
+    /*price = price.replace(/\D/g, "");
     price = price.replace(/^0+/, "");
-    price = Number(price);
+    price = Number(price);*/
 
-    if (!price || price < 1 || price > 999999) {
+    /*if (!price || price < 1 || price > 999999) {
         alert("Invalid price");
         return;
-    }
+    }*/
 
     if (!mail.includes("@")) {
         alert("Invalid email");
@@ -247,7 +247,7 @@ async function saveSettings() {
     const { error } = await supabaseClient
         .from("profiles")
         .update({
-            price_per_message: price,
+            /*price_per_message: price,*/
             email: mail
         })
         .eq("username", username);
