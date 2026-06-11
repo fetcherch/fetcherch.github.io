@@ -37,7 +37,7 @@
 
         <h3>Earnings</h3>
 
-        <div class="big-number" id="earnings">$0</div>
+        <div class="big-number" id="earnings">CHF0</div>
 
     </div>
 
@@ -46,16 +46,16 @@
 
         <h3>Settings</h3>
 
-        <label>Price per Message ($)</label>
+        <!-- <label>Price per Message ($)</label>
         <input
             id="pricePerMessage"
             type="text"
             inputmode="numeric"
             maxlength="6"
             oninput="validatePriceInput(this)"
-        >
+        > 
 
-        <br><br>
+        <br><br> -->
 
         <label>Inbox Email</label>
         <input
@@ -175,8 +175,8 @@ async function loadUser() {
 
     userData = data;
 
-    document.getElementById("pricePerMessage").value =
-        data.price_per_message;
+    /* document.getElementById("pricePerMessage").value =
+        data.price_per_message; */
 
     document.getElementById("inboxMail").value =
         data.email;
@@ -187,7 +187,7 @@ async function loadUser() {
     earnings = Number(data.earnings || 0);
 
     document.getElementById("earnings").innerText =
-        "$" + earnings;
+        "CHF" + earnings;
 
     await loadPayouts();
 }
@@ -311,7 +311,7 @@ async function requestPayout() {
     earnings = 0;
 
     document.getElementById("earnings").innerText =
-        "$0";
+        "CHF 0";
 
     alert("Payout requested");
 

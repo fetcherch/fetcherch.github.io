@@ -212,6 +212,10 @@ button:hover {
   color:#3777FF;
 }
 
+#payoutList p {
+  color:#3777FF;
+}
+
 /* ========== PROFILE URL ========== */
 .profile-url {
   font-size: 14px;
@@ -232,6 +236,8 @@ button:hover {
   -webkit-appearance: none !important;
   width: 19px !important;
   height: 19px !important;
+  min-width: 19px !important;
+  min-height: 19px !important;
 
   background-color: white !important;
 
@@ -244,8 +250,8 @@ button:hover {
 
 .tos::after {
   content: "" !important;
-  width: 11px !important;
-  height: 11px !important;
+  min-width: 11px !important;
+  min-height: 11px !important;
   transform: scale(0) !important;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%) !important;
 }

@@ -42,7 +42,18 @@
                 type="password"
                 id="signupPassword"
                 maxlength="100"
-                oninput="filterPassword(this)"
+                oninput="validatePasswords()"
+                required
+            >
+
+            <br><br>
+
+            <label>Repeat Password</label>
+            <input
+                type="password"
+                id="repeatPassword"
+                maxlength="100"
+                oninput="validatePasswords()"
                 required
             >
 
@@ -58,7 +69,7 @@
 
             <br><br>
 
-            <label>Price per Message ($)</label>
+            <!--<label>Price per Message ($)</label>
             <input
                 type="text"
                 id="pricePerMessage"
@@ -68,7 +79,7 @@
                 required
             >
 
-            <br><br>
+            <br><br>-->
 
 <div class="toslabel">
   <input class="tos" type="checkbox" id="termsAccepted" required>
@@ -134,14 +145,32 @@ function filterEmail(el) {
 }
 
 /* PRICE FILTER */
-function validatePriceInput(el) {
+/* function validatePriceInput(el) {
     el.value = el.value.replace(/\D/g, "");
     el.value = el.value.replace(/^0+/, "");
 
     if (el.value.length > 6) {
         el.value = el.value.slice(0, 6);
     }
+} */
+
+
+function validatePasswords() {
+    const pass = document.getElementById("signupPassword");
+    const repeat = document.getElementById("repeatPassword");
+
+    if (repeat.value === "") {
+        repeat.setCustomValidity("");
+        return;
+    }
+
+    if (pass.value !== repeat.value) {
+        repeat.setCustomValidity("Passwords do not match");
+    } else {
+        repeat.setCustomValidity("");
+    }
 }
+
 
 /* FINAL VALIDATION */
 async function validateSignup(event) {
@@ -157,12 +186,12 @@ async function validateSignup(event) {
     const email =
         document.getElementById("inboxMail").value.trim();
 
-    let price =
+    /*let price =
         document.getElementById("pricePerMessage").value;
 
     price = price.replace(/\D/g, "");
     price = price.replace(/^0+/, "");
-    price = Number(price);
+    price = Number(price);*/
 
     const usernamePattern =
         /^[a-zA-Z0-9_.-]{1,100}$/;
@@ -182,10 +211,10 @@ async function validateSignup(event) {
         return false;
     }
 
-    if (!price || price < 1 || price > 999999) {
+    /*if (!price || price < 1 || price > 999999) {
         alert("Invalid price");
         return false;
-    }
+    }*/
 
 const { data, error } = await supabaseClient
   .from("profiles")
@@ -193,8 +222,8 @@ const { data, error } = await supabaseClient
     {
       username: username,
       email: email,
-      password: password,
-      price_per_message: price
+      password: password
+      /*price_per_message: price*/
     }
   ]);
 
