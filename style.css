@@ -340,3 +340,7 @@ select:-webkit-autofill {
   -webkit-text-fill-color: #000 !important;
   border: none !important;
 }
+
+.mid{
+  margin: 0 auto;
+}
