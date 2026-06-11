@@ -142,6 +142,12 @@ button {
   background: linear-gradient(90deg, #000000 0%, #000000 100%);
   background: #3777FF;
   color: #ffffff;
+
+  text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 button:hover {
