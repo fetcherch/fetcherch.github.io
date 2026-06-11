@@ -102,7 +102,7 @@ label {
 input,
 textarea {
   width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.0) !important;
+    border: none !important;
     /*background: #3777FF30 !important;*/
     border-radius: 18px !important;
     padding: 16px;
@@ -328,4 +328,15 @@ label a:hover {
     margin-bottom: 16px;
   }
   
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: #000 !important;
+  border: none !important;
 }
