@@ -12,15 +12,15 @@ html, body {
 }
 a{
   text-decoration: none;
-  color: #419301;
+  color: #00A550;
 }
 
 /* ========== BODY ========== */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-background: white;
-  
-  color: #41930110;
+  background: white;
+  background: #00A55010;
+  color: #00000110;
   /*padding: 28px;*/
   min-height: 100vh;
   
@@ -45,27 +45,27 @@ h1 {
   font-size: 34px;
   margin-bottom: 10px;
   letter-spacing: -0.02em;
-  color:#419301;
+  color: #000001;
 }
 
 h2 {
   font-size: 24px;
   margin-bottom: 20px;
   letter-spacing: -0.01em;
-  color:#419301;
+  color: #000001;
 }
 
 h3 {
   font-size: 18px;
   margin-bottom: 12px;
   font-weight: 600;
-  color:#419301;
+  color: #000001;
 }
 
 .small-text {
   color: rgba(20, 20, 20, 0.55);
   font-size: 16px;
-  color:#419301;
+  color: #000001;
 }
 
 /* ========== HEADER ========== */
@@ -73,12 +73,32 @@ h3 {
   font-size: 43.25px;
   font-weight: 700;
   margin-bottom: 28px;
-  color: #419301;
-  /*background: linear-gradient(90deg, #419301, #41930100);
+  
+  
+}
+.logo p{
+  color: #00A550;
+  
+}
+/*.logop{
+  background: linear-gradient(90deg, #00A550, #00A55050);
   
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;*/
+  -webkit-text-fill-color: transparent;
+  width: min-content;
+
 }
+.logop2{
+  background: linear-gradient(90deg, #00A550, #00A55050);
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: min-content;
+
+}
+.logopcontainer{
+  display: flex;
+}*/
 
 
 .slogan {
@@ -86,16 +106,17 @@ h3 {
   margin-top: 16px;
     font-size: 24px;
 
-      color: #41930195;
+      color: #00000195;
 }
 .slogan p{
-color: #41930190;
+    color: #000001;
+
 
 }
 
 /* ========== CARDS (UPDATED: NO SHADOW + SOLID SURFACE) ========== */
 .card {
-  background: #41930120;
+  background: #00A55025;
 
   /*border: 1px solid #00000050;*/
 
@@ -112,23 +133,23 @@ label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: #419301;
+  color: #000001;
 }
 
 input,
 textarea {
   width: 100%;
     border: none !important;
-    /*background: #41930130 !important;*/
+    /*background: #00A55030 !important;*/
     border-radius: 18px !important;
     padding: 16px;
     font-size: 16px;
-    color: #419301 !important;
+    color: #000001 !important;
     outline: none !important;
     min-height: 51px;
 }
 input::placeholder{
-  color: #41930190;
+  color: #00000190;
 }
 
 textarea {
@@ -159,7 +180,7 @@ button {
   transition: 0.2s ease;
 
   background: linear-gradient(90deg, #000000 0%, #000000 100%);
-  background: #419301;
+  background: #00A550;
   color: #ffffff;
 
   text-align: center;
@@ -170,9 +191,9 @@ button {
 }
 .button2{
       
-          color: #419301;
+          color: #00A550 !important;
 
-    border: 2px solid #419301;
+    border: 2px solid #00A550;
     background: none;
     
     /*margin: 0 auto;*/
@@ -186,9 +207,7 @@ button {
   flex-wrap: wrap;
   gap: 16px;
 }
-.button2 h3{
-  margin: 0;
-}
+
 
 button:hover {
   opacity: 75%;
@@ -219,10 +238,10 @@ button:hover {
   font-size: 43.25px;
 
   margin-bottom: 0;
-  color: #419301;
+  color: #000001;
   font-weight: 700;
   
-  /*background: linear-gradient(90deg, #419301, #41930180);
+  /*background: linear-gradient(90deg, #00A550, #00A55080);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;*/
 }
@@ -231,7 +250,7 @@ button:hover {
 .link {
   text-decoration: none;
   font-weight: 600;
-  color: #419301;
+  color: #000001;
   /*transition: 0.2s;*/
 }
 
@@ -248,7 +267,7 @@ button:hover {
   font-size: 54px;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: #419301;
+  color: #000001;
   /*background: linear-gradient(90deg, #111827, #6b7280);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;*/
@@ -256,17 +275,17 @@ button:hover {
 
 /* ========== LIST ITEMS ========== */
 .payout-item {
-  background: #41930130;
+  background: #00A55030;
   /*border: 1px solid rgba(0, 0, 0, 0.08);*/
   border-radius: 18px;
   padding: 16px;
   margin-top: 10px;
   word-break: break-word;
-  color:#419301;
+  color: #000001;
 }
 
 #payoutList p {
-  color:#419301;
+  color: #000001;
 }
 
 /* ========== PROFILE URL ========== */
@@ -274,7 +293,7 @@ button:hover {
   font-size: 16px;
   text-align: center;
   word-break: break-all;
-  color: #419301;
+  color: #000001;
 }
 
 /* ========== TOS ========== */
@@ -310,7 +329,7 @@ button:hover {
 }
 
 .tos:checked {
-  background: #419301 !important;
+  background: #00A550 !important;
 }
 
 .tos:checked::after {
@@ -325,15 +344,15 @@ button:hover {
 }
 
 .toslabel p {
-  color: #419301;
+  color: #000001;
 }
 
 p{
-  color: #419301;
+  color: #000001;
 }
 
 label a {
-  color: #419301;
+  color: #000001;
   text-decoration: none;
 }
 
@@ -342,15 +361,20 @@ label a:hover {
 }
 
 .footer{
-  /*border-top: 2px solid #419301;*/
-  background-color: #41930120;
+  /*border-top: 2px solid #00A550;*/
+  background: #00A55020;
   padding: 20px;
 }
 .footer-links, .footer-copy{
   max-width: 800px;
+  
   margin: auto;
+  
     overflow: hidden;
     text-align: center;
+}
+.footer-links{
+  margin-bottom: 16px;
 }
 
 /* ========== RESPONSIVE ========== */
