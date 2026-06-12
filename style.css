@@ -8,10 +8,11 @@
 html, body {
   overscroll-behavior: none;
   
+  
 }
 a{
   text-decoration: none;
-  color: #3777FF;
+  color: #230603;
 }
 
 /* ========== BODY ========== */
@@ -19,11 +20,16 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   /*background: linear-gradient(0deg, #000000 0%, #00000000 50%);*/
-  background-color: #3777FF00;
-  background-color: white;
-  color: #3777FF10;
+  background-color: #23060300;
+  
+  background: #23062003;
+  color: #23060310;
   /*padding: 28px;*/
   min-height: 100vh;
+  background: black;
+  filter: invert(1);
+  
+  
 }
 
 /* ========== LAYOUT ========== */
@@ -36,61 +42,63 @@ body {
   
 }
 
+
 /* ========== TYPOGRAPHY ========== */
 h1 {
   font-size: 34px;
   margin-bottom: 10px;
   letter-spacing: -0.02em;
-  color:#3777FF;
+  color:#230603;
 }
 
 h2 {
   font-size: 24px;
   margin-bottom: 20px;
   letter-spacing: -0.01em;
-  color:#3777FF;
+  color:#230603;
 }
 
 h3 {
   font-size: 18px;
   margin-bottom: 12px;
   font-weight: 600;
-  color:#3777FF;
+  color:#230603;
 }
 
 .small-text {
   color: rgba(20, 20, 20, 0.55);
   font-size: 16px;
-  color:#3777FF;
+  color:#230603;
 }
 
 /* ========== HEADER ========== */
 .logo {
-  font-size: 34.25px;
+  font-size: 43.25px;
   font-weight: 700;
   margin-bottom: 28px;
-  color: #3777FF;
-  /*background: linear-gradient(90deg, #3777FF, #3777FF00);
+  color: #230603;
+  /*background: linear-gradient(90deg, #230603, #23060300);
   
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;*/
 }
+
 
 .slogan {
   display: flex;
   margin-top: 16px;
     font-size: 24px;
 
-      color: #3777FF95;
+      color: #23060395;
 }
 .slogan p{
-color: #3777FF90;
+color: #23060390;
 
 }
 
 /* ========== CARDS (UPDATED: NO SHADOW + SOLID SURFACE) ========== */
 .card {
-  background: #3777FF20;
+  background: #23060320;
 
   /*border: 1px solid #00000050;*/
 
@@ -107,22 +115,23 @@ label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: #3777FF;
+  color: #230603;
 }
 
 input,
 textarea {
   width: 100%;
     border: none !important;
-    /*background: #3777FF30 !important;*/
+    /*background: #23060330 !important;*/
     border-radius: 18px !important;
     padding: 16px;
     font-size: 16px;
-    color: #3777FF !important;
+    color: #230603 !important;
     outline: none !important;
+    min-height: 51px;
 }
 input::placeholder{
-  color: #3777FF90;
+  color: #23060390;
 }
 
 textarea {
@@ -140,8 +149,10 @@ textarea:focus {
 /* ========== BUTTONS ========== */
 button {
       height: 51px;
+      
 
-  width: fit-content;
+  width: 100%;
+  min-width: 50px;
   border: none;
   border-radius: 18px;
   padding: 14px 18px;
@@ -151,7 +162,7 @@ button {
   transition: 0.2s ease;
 
   background: linear-gradient(90deg, #000000 0%, #000000 100%);
-  background: #3777FF;
+  background: #230603;
   color: #ffffff;
 
   text-align: center;
@@ -161,12 +172,22 @@ button {
     flex-wrap: wrap;
 }
 .button2{
-      display: flex;
-    border: 2px solid #3777FF;
+      
+          color: #230603;
+
+    border: 2px solid #230603;
     background: none;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 0 auto;
+    
+    /*margin: 0 auto;*/
+}
+.button-small{
+  width: min-content;
+}
+.buttons{
+  display: grid;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 .button2 h3{
   margin: 0;
@@ -179,6 +200,7 @@ button:hover {
 .secondary-btn {
   /*background: linear-gradient(90deg, #000000 0%, #ffffff 100%);*/
   color: white;
+  width: min-content;
   height: 45px;
   /*border: 1px solid rgba(0, 0, 0, 0.08);*/
 }
@@ -196,13 +218,14 @@ button:hover {
 
 }
 
-.topbar h2 {
-      font-size: 38.25px;
+.topbar p {
+  font-size: 43.25px;
 
   margin-bottom: 0;
-  color: #3777FF;
+  color: #230603;
+  font-weight: 700;
   
-  /*background: linear-gradient(90deg, #3777FF, #3777FF80);
+  /*background: linear-gradient(90deg, #230603, #23060380);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;*/
 }
@@ -211,7 +234,7 @@ button:hover {
 .link {
   text-decoration: none;
   font-weight: 600;
-  color: #3777FF;
+  color: #230603;
   /*transition: 0.2s;*/
 }
 
@@ -228,7 +251,7 @@ button:hover {
   font-size: 54px;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: #3777FF;
+  color: #230603;
   /*background: linear-gradient(90deg, #111827, #6b7280);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;*/
@@ -236,17 +259,17 @@ button:hover {
 
 /* ========== LIST ITEMS ========== */
 .payout-item {
-  background: #3777FF30;
+  background: #23060330;
   /*border: 1px solid rgba(0, 0, 0, 0.08);*/
   border-radius: 18px;
   padding: 16px;
   margin-top: 10px;
   word-break: break-word;
-  color:#3777FF;
+  color:#230603;
 }
 
 #payoutList p {
-  color:#3777FF;
+  color:#230603;
 }
 
 /* ========== PROFILE URL ========== */
@@ -254,7 +277,7 @@ button:hover {
   font-size: 16px;
   text-align: center;
   word-break: break-all;
-  color: #3777FF;
+  color: #230603;
 }
 
 /* ========== TOS ========== */
@@ -290,7 +313,7 @@ button:hover {
 }
 
 .tos:checked {
-  background: #3777FF !important;
+  background: #230603 !important;
 }
 
 .tos:checked::after {
@@ -305,15 +328,15 @@ button:hover {
 }
 
 .toslabel p {
-  color: #3777FF;
+  color: #230603;
 }
 
 p{
-  color: #3777FF;
+  color: #230603;
 }
 
 label a {
-  color: #3777FF;
+  color: #230603;
   text-decoration: none;
 }
 
@@ -322,8 +345,8 @@ label a:hover {
 }
 
 .footer{
-  /*border-top: 2px solid #3777FF;*/
-  background-color: #3777FF20;
+  /*border-top: 2px solid #230603;*/
+  background-color: #23060320;
   padding: 20px;
 }
 .footer-links, .footer-copy{
@@ -346,11 +369,7 @@ label a:hover {
     margin: 0 16px;
   }*/
 
-  .logo {
-    /*margin: 0px 16px;*/
-    font-size: 22px;
-    font-size: 38.25px;
-  }
+  
 
   .card {
     padding: 20px;
