@@ -9,6 +9,10 @@ html, body {
   overscroll-behavior: none;
   
 }
+a{
+  text-decoration: none;
+  color: #3777FF;
+}
 
 /* ========== BODY ========== */
 body {
@@ -18,15 +22,18 @@ body {
   background-color: #3777FF00;
   background-color: white;
   color: #3777FF10;
-  padding: 28px;
+  /*padding: 28px;*/
   min-height: 100vh;
 }
 
 /* ========== LAYOUT ========== */
 .container {
-  max-width: 640px;
+  max-width: 800px;
   margin: auto;
   overflow: hidden;
+  padding: 28px;
+  
+  
 }
 
 /* ========== TYPOGRAPHY ========== */
@@ -53,13 +60,13 @@ h3 {
 
 .small-text {
   color: rgba(20, 20, 20, 0.55);
-  font-size: 14px;
+  font-size: 16px;
   color:#3777FF;
 }
 
 /* ========== HEADER ========== */
 .logo {
-  font-size: 34px;
+  font-size: 34.25px;
   font-weight: 700;
   margin-bottom: 28px;
   color: #3777FF;
@@ -75,6 +82,10 @@ h3 {
     font-size: 24px;
 
       color: #3777FF95;
+}
+.slogan p{
+color: #3777FF90;
+
 }
 
 /* ========== CARDS (UPDATED: NO SHADOW + SOLID SURFACE) ========== */
@@ -134,7 +145,7 @@ button {
   border: none;
   border-radius: 999px;
   padding: 14px 18px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease;
@@ -148,6 +159,17 @@ button {
     align-content: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+.button2{
+      display: flex;
+    border: 2px solid #3777FF;
+    background: none;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 auto;
+}
+.button2 h3{
+  margin: 0;
 }
 
 button:hover {
@@ -229,7 +251,7 @@ button:hover {
 
 /* ========== PROFILE URL ========== */
 .profile-url {
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   word-break: break-all;
   color: #3777FF;
@@ -283,11 +305,15 @@ button:hover {
 }
 
 .toslabel p {
-  color: rgba(20, 20, 20, 0.75);
+  color: #3777FF;
+}
+
+p{
+  color: #3777FF;
 }
 
 label a {
-  color: #4f46e5;
+  color: #3777FF;
   text-decoration: none;
 }
 
@@ -295,9 +321,24 @@ label a:hover {
   text-decoration: underline;
 }
 
+.footer{
+  /*border-top: 2px solid #3777FF;*/
+  background-color: #3777FF20;
+  padding: 20px;
+}
+.footer-links, .footer-copy{
+  max-width: 800px;
+  margin: auto;
+    overflow: hidden;
+    text-align: center;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 600px) {
-  body {
+  /*body {
+    padding: 16px;
+  }*/
+  .container{
     padding: 16px;
   }
 
