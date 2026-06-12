@@ -29,24 +29,26 @@
 
         <form onsubmit="return validateLogin(event)">
 
-            <label>Username</label>
+        <!--    <label>Username</label>-->
             <input
                 type="text"
                 id="loginUsername"
                 maxlength="100"
                 pattern="^[a-zA-Z0-9_.-]{1,100}$"
                 oninput="filterUsername(this)"
+                placeholder="Username"
                 required
             >
 
             <br><br>
 
-            <label>Password</label>
+        <!--   <label>Password</label>--> 
             <input
                 type="password"
                 id="loginPassword"
                 maxlength="100"
                 oninput="filterPassword(this)"
+                placeholder="Password"
                 required
             >
 
@@ -80,7 +82,7 @@
         simple way for people to support creators, founders, developers, and
         independent work online.
     </p>
-<br>
+<br><br>
     </div>
 
 
@@ -96,7 +98,7 @@
         every interaction becomes more valuable when people choose to give
         intentionally.
     </p>
-<br>
+<br><br>
 </div>
 
 
