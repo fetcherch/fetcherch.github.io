@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="slc.css">
+
+<title>Swiss Local Contact</title>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+Swiss <span>Local Contact</span>
+</div>
+
+
+<div class="burger" onclick="toggleMenu()">
+☰
+</div>
+
+
+<div class="menu" id="menu">
+
+
+<a href="#service"
+data-de="Service"
+data-en="Service">
+Service
+</a>
+
+
+<a href="#how"
+data-de="Ablauf"
+data-en="How it works">
+Ablauf
+</a>
+
+
+<a href="#booking"
+data-de="Buchen"
+data-en="Book">
+Buchen
+</a>
+
+
+<div class="language">
+
+<select id="languageSelect" onchange="changeLanguage()">
+
+<option value="en" selected>
+🇬🇧 English
+</option>
+
+<option value="de">
+🇨🇭 Deutsch
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+</div>
+
+</header>
+
+
+
+
+
+<section class="hero">
+
+
+<div>
+
+
+<h1>
+
+<span 
+data-de="Ein echter Schweizer Mensch"
+data-en="A real Swiss person">
+
+Ein echter Schweizer Mensch
+
+</span>
+
+<br>
+
+<span
+data-de="den Sie kontaktieren können."
+data-en="you can contact anytime.">
+
+den Sie kontaktieren können.
+
+</span>
+
+
+</h1>
+
+
+
+<p
+data-de="Nicht nur Informationen aus dem Internet. Sie haben eine echte Schweizer Kontaktperson, wenn während Ihres Aufenthalts etwas passiert."
+data-en="Not just information from the internet. You have a real Swiss contact person when something happens during your stay.">
+
+Nicht nur Informationen aus dem Internet.
+Sie haben eine echte Schweizer Kontaktperson,
+wenn während Ihres Aufenthalts etwas passiert.
+
+</p>
+
+
+
+<a href="#booking"
+class="btn"
+data-de="Kontakt buchen"
+data-en="Book contact">
+
+Kontakt buchen
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+
+
+
+
+<section id="service">
+
+
+<h2
+data-de="Ihr Schweizer Ansprechpartner"
+data-en="Your Swiss Contact Person">
+
+Ihr Schweizer Ansprechpartner
+
+</h2>
+
+
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h3>
+💬
+
+<span
+data-de="Chat Kontakt"
+data-en="Chat contact">
+
+Chat Kontakt
+
+</span>
+
+</h3>
+
+
+<p
+data-de="Direkter Kontakt zu einer Schweizer Person."
+data-en="Direct contact with a Swiss person.">
+
+Direkter Kontakt zu einer Schweizer Person.
+
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+🇨🇭
+
+<span
+data-de="Lokales Wissen"
+data-en="Local Knowledge">
+
+Lokales Wissen
+
+</span>
+
+</h3>
+
+
+<p
+data-de="Empfehlungen und praktische Hilfe vor Ort."
+data-en="Recommendations and practical local help.">
+
+Empfehlungen und praktische Hilfe vor Ort.
+
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+🆘
+
+<span
+data-de="Wenn etwas passiert"
+data-en="When something happens">
+
+Wenn etwas passiert
+
+</span>
+
+</h3>
+
+
+<p
+data-de="Wir helfen bei unerwarteten Situationen."
+data-en="Help when unexpected situations occur.">
+
+Wir helfen bei unerwarteten Situationen.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section id="how">
+
+
+<h2
+data-de="So funktioniert es"
+data-en="How it works">
+
+So funktioniert es
+
+</h2>
+
+
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h3>1.</h3>
+
+<p
+data-de="Wählen Sie Ihre gewünschte Unterstützungsdauer"
+data-en="Choose your support duration">
+
+
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>2.</h3>
+
+<p
+data-de="Erhalten Sie Ihre persönliche Schweizer Kontaktperson"
+data-en="Receive your personal Swiss contact">
+
+
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>3.</h3>
+
+<p
+data-de="Kontaktieren Sie uns jederzeit, wenn Sie Hilfe benötigen"
+data-en="Contact us whenever you need help">
+
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="booking">
+
+
+<h2
+data-de="Swiss Local Contact buchen"
+data-en="Book Swiss Local Contact">
+
+Swiss Local Contact buchen
+
+</h2>
+
+
+
+<div class="booking-box">
+
+
+<form id="bookingForm">
+
+<h3>Contact Booking Form</h3>
+
+<label
+data-de="Ihr Name"
+data-en="Your name">
+
+Ihr Name
+
+</label>
+
+
+<input id="name" type="text" placeholder="Name" required>
+
+
+
+
+
+<label
+data-de="Telefonnummer"
+data-en="Phone number">
+
+Telefonnummer
+
+</label>
+
+
+<input 
+id="phone" 
+type="tel" 
+placeholder="+41 79 123 45 67"
+required>
+
+
+
+
+
+<label
+data-de="Kontaktmethode"
+data-en="Contact method">
+
+Kontaktmethode
+
+</label>
+
+
+<select id="contactMethod" required>
+
+
+<option 
+value=""
+data-de="Bitte auswählen"
+data-en="Please select">
+
+Bitte auswählen
+
+</option>
+
+
+<option 
+value="WhatsApp">
+
+WhatsApp
+
+</option>
+
+
+<option 
+value="Wechat">
+
+Wechat
+
+</option>
+
+
+<option 
+value="Telegram">
+
+Telegram
+
+</option>
+
+
+</select>
+
+
+
+
+
+<label
+data-de="Ihre Nationalität"
+data-en="Your nationality">
+
+Ihre Nationalität
+
+</label>
+
+
+<input 
+id="nationality"
+type="text"
+placeholder="Swiss, German, Chinese, etc." required>
+
+
+
+
+
+
+<label
+data-de="Dauer auswählen"
+data-en="Choose duration">
+
+Dauer auswählen
+
+</label>
+
+
+<select id="days" onchange="calculatePrice()" required>
+
+
+
+<option value="3"
+data-de="3 Tage"
+data-en="3 Days">
+
+3 Tage
+
+</option>
+
+
+
+<option value="7"
+selected
+data-de="7 Tage"
+data-en="7 Days">
+
+7 Tage
+
+</option>
+
+
+
+<option value="14"
+data-de="14 Tage"
+data-en="14 Days">
+
+14 Tage
+
+</option>
+
+
+
+<option value="30"
+data-de="30 Tage"
+data-en="30 Days">
+
+30 Tage
+
+</option>
+
+
+
+</select>
+
+
+
+
+
+<div class="price-title"
+data-de="Preis:"
+data-en="Price:">
+
+Preis:
+
+</div>
+
+
+<div id="priceValue">
+
+CHF 199
+
+</div>
+<label
+data-de="Wie haben Sie von uns erfahren?"
+data-en="How did you hear about us?">
+
+Wie haben Sie von uns erfahren?
+
+</label>
+
+
+
+<select id="source" required>
+
+
+<option
+data-de="Keine der oben genannten"
+data-en="None of the above">
+
+Keine der oben genannten
+
+</option>
+
+
+</select>
+
+
+
+
+
+<br><br>
+
+
+
+<button 
+class="btn"
+type="submit"
+data-de="Swiss Local Contact buchen"
+data-en="Book Swiss Local Contact">
+
+Swiss Local Contact buchen
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<script>
+
+
+
+let currentLanguage = "en";
+
+
+
+
+function toggleMenu(){
+
+document.getElementById("menu")
+.classList.toggle("active");
+
+}
+
+
+
+
+
+
+function calculatePrice(){
+
+
+let days =
+document.getElementById("days").value;
+
+
+
+let price;
+
+
+
+if(days=="3") price=99;
+
+if(days=="7") price=199;
+
+if(days=="14") price=349;
+
+if(days=="30") price=599;
+
+
+
+document.getElementById("priceValue")
+.innerHTML="CHF "+price;
+
+
+}
+
+
+
+
+
+
+
+
+function changeLanguage(){
+
+let lang =
+document.getElementById("languageSelect").value;
+
+
+currentLanguage = lang;
+
+
+// Sprache speichern
+localStorage.setItem("language", lang);
+
+
+
+document.querySelectorAll("[data-"+lang+"]")
+.forEach(function(element){
+
+element.innerHTML =
+element.getAttribute("data-"+lang);
+
+});
+
+
+
+document.querySelectorAll("#days option")
+.forEach(function(option){
+
+option.text =
+option.getAttribute("data-"+lang);
+
+});
+
+
+
+document.querySelectorAll("#source option")
+.forEach(function(option){
+
+option.text =
+option.getAttribute("data-"+lang);
+
+});
+
+
+document.documentElement.lang = lang;
+
+}
+
+
+
+
+
+document.getElementById("bookingForm")
+.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+sendBooking();
+
+});
+
+
+
+function sendBooking(){
+
+
+
+let name =
+document.getElementById("name").value;
+
+
+
+let phone =
+document.getElementById("phone").value;
+
+let contactMethod =
+document.getElementById("contactMethod").value;
+
+let nationality =
+document.getElementById("nationality").value;
+
+
+
+let days =
+document.getElementById("days").value;
+
+
+
+let price =
+document.getElementById("priceValue").innerHTML;
+
+
+
+let source =
+document.getElementById("source").value;
+
+
+
+
+
+let message;
+
+
+
+let subject;
+
+
+
+if(currentLanguage=="en"){
+
+
+
+subject =
+"New Swiss Local Contact Booking";
+
+
+
+message =
+
+`New Swiss Local Contact Booking
+
+Name: ${name}
+Phone: ${phone}
+Contact method: ${contactMethod}
+Nationality: ${nationality}
+Duration: ${days} days
+Price: ${price}
+How did you hear about us: ${source}
+
+
+Thank you for providing your information.
+
+You can send this email without any changes.
+After that, we will contact you shortly via ${contactMethod}.
+`;
+
+
+
+}else{
+
+
+
+subject =
+"Neue Swiss Local Contact Buchung";
+
+
+
+message =
+
+`Neue Swiss Local Contact Buchung
+
+Name: ${name}
+Telefon: ${phone}
+Kontaktmethode: ${contactMethod}
+Nationalität: ${nationality}
+Dauer: ${days} Tage
+Preis: ${price}
+Wie haben Sie von uns erfahren: ${source}
+
+
+Vielen Dank für die Eingabe Ihrer Daten.
+
+Sie können diese Mail unverändert senden.
+Danach werden wir Sie in Kürze über ${contactMethod} kontaktieren.
+`;
+
+
+
+}
+
+
+
+
+
+
+let mail =
+
+"mailto:deine@email.ch?subject="
++
+encodeURIComponent(subject)
++
+"&body="
++
+encodeURIComponent(message);
+
+
+
+
+window.location.href = mail;
+
+
+
+}
+
+
+window.onload = function(){
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+// Falls keine Sprache gespeichert ist → Englisch
+if(!savedLanguage){
+savedLanguage = "en";
+}
+
+
+currentLanguage = savedLanguage;
+
+
+// Dropdown ändern
+document.getElementById("languageSelect").value = savedLanguage;
+
+
+// Übersetzen
+changeLanguage();
+
+};
+
+
+</script>
+
+
+
+</body>
+<footer>© 2026 Swiss Local Contact</footer>
+</html>

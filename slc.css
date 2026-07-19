@@ -1,0 +1,428 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter", Arial, Helvetica, sans-serif;
+}
+
+html, body {
+    overscroll-behavior: none;
+}
+
+:root{
+    --red:#d00000;
+    --dark:#111827;
+    --text:#374151;
+    --light:#f8fafc;
+    --card:#ffffff;
+    --border:#e5e7eb;
+}
+
+body{
+    color:var(--text);
+    line-height:1.6;
+    background:#fff;
+}
+
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
+}
+
+
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+
+.logo{
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:-1px;
+    color:var(--dark);
+}
+
+
+.logo span{
+    color:var(--red);
+}
+
+
+.menu{
+    display:flex;
+    gap:35px;
+    align-items: center;
+}
+
+
+.menu a{
+    text-decoration:none;
+    color:#374151;
+    font-weight:500;
+    transition:.3s;
+}
+
+
+.menu a:hover{
+    color:var(--red);
+}
+
+
+.language select{
+    padding:9px 14px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:white;
+}
+
+
+.burger{
+    display:none;
+    font-size:30px;
+}
+
+
+
+/* HERO */
+
+
+.hero{
+    max-width: 100%;
+    /*min-height:85vh;*/
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 20px;
+    background:
+    linear-gradient(
+        rgba(255,255,255,.9),
+        rgba(255,255,255,.95)
+    );
+    background-image: url(https://wallpaperaccess.com/full/1455073.jpg);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+
+.hero h1{
+    font-size:58px;
+    line-height:1.15;
+    max-width:950px;
+    color:var(--dark);
+    letter-spacing:-2px;
+}
+
+
+.hero h1 span{
+    color:var(--red);
+}
+
+
+.hero p{
+    font-size:22px;
+    max-width:750px;
+    margin:30px auto;
+    color:white;
+}
+
+
+
+.btn{
+    background:var(--red);
+    color:white;
+    padding:16px 40px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:600;
+    display:inline-block;
+    transition:.3s;
+    /*box-shadow:0 10px 25px rgba(208,0,0,.25);*/
+    border: none;
+}
+
+
+.btn:hover{
+    transform:translateY(-3px);
+    background:#a80000;
+    cursor: pointer;
+}
+
+
+
+/* SECTIONS */
+
+
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:60px 30px;
+}
+
+form h3{
+    color:#d00000;
+    text-align: center;
+}
+
+h2{
+    text-align:center;
+    font-size:42px;
+    color:var(--dark);
+    margin-bottom:50px;
+}
+
+
+
+/* CARDS */
+
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:30px;
+}
+
+
+.card{
+    background:white;
+    padding:35px;
+    border-radius:22px;
+    border:1px solid var(--border);
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.06);
+    transition:.3s;
+}
+
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:
+    0 25px 50px rgba(0,0,0,.1);
+}
+
+
+.card h3{
+    color:var(--dark);
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+
+
+/* BOOKING AREA */
+
+
+.booking-box{
+
+    background:
+    linear-gradient(
+        135deg,
+        #111827,
+        #1f2937
+    );
+
+    color:white;
+    padding:50px;
+    border-radius:30px;
+
+    box-shadow:
+    0 30px 60px rgba(0,0,0,.18);
+
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+.price-title{
+
+    margin-top:30px;
+    font-size:16px;
+    font-weight:600;
+
+}
+#priceValue{
+
+    font-size:32px;
+    font-weight:800;
+    
+
+}
+
+.booking-box label{
+
+    display:block;
+    margin-top:22px;
+    font-weight:600;
+}
+
+
+.booking-box input,
+.booking-box select{
+
+    width:100%;
+    padding:16px;
+    margin-top:8px;
+
+    border-radius:12px;
+    border:none;
+
+    font-size:16px;
+}
+
+
+.booking-box input:focus,
+.booking-box select:focus{
+
+    outline:3px solid rgba(208,0,0,.5);
+
+}
+
+
+
+
+
+
+
+
+
+
+.booking-box .btn{
+    margin-top:20px;
+    font-size: 16px;
+        width: 100%;
+}
+
+
+
+/* FOOTER LOOK */
+
+
+footer{
+
+    background:#111827;
+    color:white;
+    padding:20px;
+    text-align:center;
+
+}
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:750px){
+
+
+.nav{
+    padding:15px 20px;
+}
+
+
+.menu{
+
+    position:absolute;
+    top:70px;
+    left:0;
+
+    width:100%;
+
+    background:white;
+
+    display:none;
+    flex-direction:column;
+
+    padding:25px;
+    
+
+
+    box-shadow:0 15px 30px rgba(0,0,0,.1);
+
+}
+
+
+.menu.active{
+    display:flex;
+    
+}
+
+
+
+.burger{
+    display:block;
+}
+
+
+
+
+
+
+
+.hero{
+    min-height:75vh;
+}
+
+
+
+.hero h1{
+
+    font-size:36px;
+    letter-spacing:-1px;
+
+}
+
+
+
+.hero p{
+
+    font-size:18px;
+
+}
+
+
+
+section{
+
+    padding:60px 20px;
+
+}
+
+
+
+h2{
+
+    font-size:32px;
+
+}
+
+
+
+.booking-box{
+
+    padding:30px 20px;
+
+}
+
+
+
+#priceValue{
+
+    font-size:38px;
+
+}
+
+}
