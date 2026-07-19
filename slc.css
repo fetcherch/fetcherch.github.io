@@ -100,7 +100,7 @@ header{
 
 .hero{
     max-width: 100%;
-    /*min-height:85vh;*/
+  
     max-height: min-content;
     display:flex;
     align-items:center;
@@ -373,9 +373,7 @@ footer{
 
 
 
-.hero{
-    min-height:75vh;
-}
+
 
 
 
