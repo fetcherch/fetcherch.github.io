@@ -272,9 +272,9 @@ h2{
 
 .booking-box input,
 .booking-box select{
-
+    min-height: 50px;
     width:100%;
-    padding:16px;
+    padding:16px !important;
     margin-top:8px;
 
     border-radius:12px;
