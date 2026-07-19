@@ -112,7 +112,7 @@ header{
         rgba(255,255,255,.9),
         rgba(255,255,255,.95)
     );
-    background-image: url(https://wallpaperaccess.com/full/1455073.jpg);
+    /*background-image: url(https://wallpaperaccess.com/full/1455073.jpg);*/
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
@@ -137,7 +137,7 @@ header{
     font-size:22px;
     max-width:750px;
     margin:30px auto;
-    color:white;
+   /* color:white;*/
 }
 
 
