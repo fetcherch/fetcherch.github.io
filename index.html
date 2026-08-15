@@ -86,6 +86,12 @@
       position: sticky;
       top: 0;
       overflow: hidden;
+
+      /* Sidebar stays pinned and never joins the page overscroll bounce. */
+      overscroll-behavior: none;
+      touch-action: pan-y;
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
 
     .brand {
@@ -153,6 +159,9 @@
       overscroll-behavior: contain;
       scrollbar-width: none;
       -ms-overflow-style: none;
+
+      /* Prevent collection-list overscroll from moving the sidebar/page. */
+      -webkit-overflow-scrolling: touch;
     }
 
     .folder-list::-webkit-scrollbar {
@@ -402,6 +411,34 @@
     /* ========================================
        WORD FORM
     ======================================== */
+
+
+    .field-wrap {
+      position: relative;
+      min-width: 0;
+    }
+
+    .field-wrap input {
+      padding-right: 68px;
+    }
+
+    .char-counter {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(2px);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .field-wrap:focus-within .char-counter {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .add-card {
       background: var(--panel);
@@ -809,6 +846,29 @@
       display: none;
     }
 
+
+    .collection-action-modal {
+      max-width: 430px;
+    }
+
+    .collection-action-modal input {
+      width: 100%;
+    }
+
+    .delete-collection-confirm {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      background: var(--danger);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .delete-collection-confirm:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
     /* ========================================
        MOBILE
     ======================================== */
@@ -985,6 +1045,155 @@
 
 
 
+
+
+
+
+    /* ========================================
+       DESKTOP SCROLLBAR AT WINDOW EDGE
+       Scroll the whole right column; keep content centered inside it.
+    ======================================== */
+    @media (min-width: 761px) {
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .app {
+        width: 100%;
+        height: 100vh;
+        min-height: 0;
+        overflow: hidden;
+        grid-template-columns: 290px minmax(0, 1fr);
+      }
+
+      aside {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: 290px;
+        height: 100vh;
+        max-height: 100vh;
+      }
+
+      /* The grid's right column itself becomes the scroll area. */
+      .app::after {
+        content: "";
+        display: none;
+      }
+
+      main {
+        grid-column: 2;
+        max-width: none;
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+        overscroll-behavior-y: auto;
+      }
+
+      main > * {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      main > .topbar,
+      main > .add-card,
+      main > .toolbar,
+      main > .word-list,
+      main > .empty-state {
+        width: calc(100% - (2 * clamp(24px, 5vw, 72px)));
+      }
+
+      main > .topbar {
+        margin-top: 48px;
+      }
+
+      main > .empty-state {
+        min-height: 100vh;
+      }
+
+      main > .word-list {
+        padding-bottom: 48px;
+      }
+    }
+
+
+    /* ========================================
+       NORMAL + SHARED DESKTOP ALIGNMENT FIXES
+    ======================================== */
+    @media (min-width: 761px) {
+
+      /* Keep every normal-page section on the same centered content rail. */
+      main > .topbar,
+      main > .add-card,
+      main > .toolbar,
+      main > .word-list,
+      main > .empty-state {
+        width: min(
+          calc(100% - (2 * clamp(24px, 5vw, 72px))),
+          1200px
+        );
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      main > .toolbar {
+        justify-content: flex-start;
+      }
+
+      main > .toolbar input {
+        width: min(330px, 100%);
+        max-width: 330px;
+      }
+
+      /* Shared links remove the sidebar, so let the app/main span the viewport.
+         The main element remains the scroll container, putting its scrollbar
+         flush against the far-right edge. */
+      .app.shared-app {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .app.shared-app main {
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .app.shared-app main > .topbar,
+      .app.shared-app main > .toolbar,
+      .app.shared-app main > .word-list,
+      .app.shared-app main > .empty-state {
+        width: min(
+          calc(100% - (2 * clamp(24px, 5vw, 72px))),
+          1200px
+        );
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .app.shared-app main > .topbar {
+        margin-top: 48px;
+      }
+
+      .app.shared-app main > .word-list {
+        padding-bottom: 48px;
+      }
+    }
+
 </style>
 </head>
 
@@ -1127,6 +1336,32 @@
 
     </form>
 
+  </div>
+
+
+  <!-- Edit title -->
+  <div class="modal-backdrop" id="editTitleBackdrop">
+    <form class="modal collection-action-modal" id="editTitleForm">
+      <h3>Edit title</h3>
+      <p>Choose a new title for this collection.</p>
+      <input id="editTitleInput" maxlength="60" required autocomplete="off" />
+      <div class="modal-actions">
+        <button type="button" class="secondary" id="cancelEditTitle">Cancel</button>
+        <button type="submit" class="primary" id="saveEditTitle">Save changes</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Delete collection -->
+  <div class="modal-backdrop" id="deleteCollectionBackdrop">
+    <div class="modal collection-action-modal">
+      <h3>Delete collection?</h3>
+      <p id="deleteCollectionText">This permanently deletes this collection and all of its words.</p>
+      <div class="modal-actions">
+        <button type="button" class="secondary" id="cancelDeleteCollection">Cancel</button>
+        <button type="button" class="delete-collection-confirm" id="confirmDeleteCollection">Delete collection</button>
+      </div>
+    </div>
   </div>
 
 
@@ -1324,6 +1559,8 @@
 
     let purchaseProcessing = false;
 
+    let appHydrated = false;
+
 
     /* ========================================
        ELEMENTS
@@ -1372,6 +1609,19 @@
       document.getElementById(
         "cancelCollection"
       );
+
+
+    /* Edit / Delete collection overlays */
+    const editTitleBackdrop = document.getElementById("editTitleBackdrop");
+    const editTitleForm = document.getElementById("editTitleForm");
+    const editTitleInput = document.getElementById("editTitleInput");
+    const cancelEditTitle = document.getElementById("cancelEditTitle");
+    const saveEditTitle = document.getElementById("saveEditTitle");
+    const deleteCollectionBackdrop = document.getElementById("deleteCollectionBackdrop");
+    const deleteCollectionText = document.getElementById("deleteCollectionText");
+    const cancelDeleteCollection = document.getElementById("cancelDeleteCollection");
+    const confirmDeleteCollection = document.getElementById("confirmDeleteCollection");
+    let actionCollectionId = null;
 
 
     /* Upgrade Modal */
@@ -1859,31 +2109,118 @@
       }
 
 
+      /*
+        Supabase RPCs can arrive as:
+        - { collection, words }
+        - [{ collection, words }]
+        - a JSON string containing either shape
+
+        Normalize those shapes before rendering the shared dictionary.
+      */
+      let payload = data;
+
+      if (typeof payload === "string") {
+        try {
+          payload = JSON.parse(payload);
+        }
+        catch (_) {
+          /* Keep the original value; validation below will handle it. */
+        }
+      }
+
       if (
-        !data ||
-        !data.collection
+        Array.isArray(payload) &&
+        payload.length === 1
       ) {
+        payload = payload[0];
+      }
+
+
+      const collection =
+        payload?.collection ||
+        payload?.dictionary ||
+        null;
+
+
+      if (!collection) {
         throw new Error(
           "This shared dictionary does not exist or sharing has been disabled."
         );
       }
 
 
+      let words =
+        payload?.words ??
+        collection?.words ??
+        [];
+
+
+      if (typeof words === "string") {
+        try {
+          words = JSON.parse(words);
+        }
+        catch (_) {
+          words = [];
+        }
+      }
+
+
+      /*
+        Fallback for RPCs that return only collection metadata.
+        If your Supabase RLS policy allows reading words belonging to
+        a shared collection, this retrieves them directly.
+      */
+      if (!Array.isArray(words) || words.length === 0) {
+
+        const {
+          data: sharedWords,
+          error: sharedWordsError
+        } =
+          await supabaseClient
+            .from("words")
+            .select(`
+              id,
+              word,
+              translation,
+              created_at
+            `)
+            .eq(
+              "collection_id",
+              collection.id
+            )
+            .order(
+              "created_at",
+              {
+                ascending: false
+              }
+            );
+
+
+        if (
+          !sharedWordsError &&
+          Array.isArray(sharedWords)
+        ) {
+          words = sharedWords;
+        }
+
+      }
+
+
       sharedView = true;
 
       sharedCollection =
-        data.collection;
+        collection;
 
       sharedAuthorName =
-        data.collection
+        collection
           .shared_author_name || "";
 
       activeCollectionId =
-        data.collection.id;
+        collection.id;
 
       activeWords =
-        Array.isArray(data.words)
-          ? data.words
+        Array.isArray(words)
+          ? words
           : [];
 
     }
@@ -2882,23 +3219,29 @@
           id="wordForm"
         >
 
-          <input
-            id="wordInput"
-            placeholder="${activeWords.length >= 1000 ? "1000 word limit reached" : "New word"}"
-            maxlength="100"
-            autocomplete="off"
-            ${activeWords.length >= 1000 ? "disabled" : ""}
-            required
-          />
+          <div class="field-wrap">
+            <input
+              id="wordInput"
+              placeholder="${activeWords.length >= 1000 ? "1000 word limit reached" : "New word"}"
+              maxlength="160"
+              autocomplete="off"
+              ${activeWords.length >= 1000 ? "disabled" : ""}
+              required
+            />
+            <span class="char-counter" id="wordCounter">0/160</span>
+          </div>
 
-          <input
-            id="translationInput"
-            placeholder="Translation"
-            maxlength="160"
-            autocomplete="off"
-            ${activeWords.length >= 1000 ? "disabled" : ""}
-            required
-          />
+          <div class="field-wrap">
+            <input
+              id="translationInput"
+              placeholder="Meaning"
+              maxlength="160"
+              autocomplete="off"
+              ${activeWords.length >= 1000 ? "disabled" : ""}
+              required
+            />
+            <span class="char-counter" id="meaningCounter">0/160</span>
+          </div>
 
           <button
             class="primary"
@@ -2979,6 +3322,47 @@
       `;
 
 
+      /* Live character counters */
+
+      const liveWordInput =
+        document.getElementById("wordInput");
+
+      const liveMeaningInput =
+        document.getElementById("translationInput");
+
+      const wordCounter =
+        document.getElementById("wordCounter");
+
+      const meaningCounter =
+        document.getElementById("meaningCounter");
+
+      const updateCharacterCounters = () => {
+
+        if (liveWordInput && wordCounter) {
+          wordCounter.textContent =
+            `${liveWordInput.value.length}/160`;
+        }
+
+        if (liveMeaningInput && meaningCounter) {
+          meaningCounter.textContent =
+            `${liveMeaningInput.value.length}/160`;
+        }
+
+      };
+
+      liveWordInput?.addEventListener(
+        "input",
+        updateCharacterCounters
+      );
+
+      liveMeaningInput?.addEventListener(
+        "input",
+        updateCharacterCounters
+      );
+
+      updateCharacterCounters();
+
+
       /* Add Word */
 
       document
@@ -3009,7 +3393,6 @@
               document.getElementById(
                 "translationInput"
               );
-
 
             const word =
               wordInput
@@ -3281,37 +3664,17 @@
       /* Edit Collection Title */
 
       document
-        .getElementById("editCollectionTitleBtn")?.addEventListener(
+        .getElementById("editCollectionTitleBtn")
+        ?.addEventListener(
           "click",
-          async () => {
-            const newName = prompt(
-              "Edit collection title",
-              collection.name
-            );
-
-            if (newName === null) return;
-
-            const name = newName.trim();
-
-            if (!name || name === collection.name) return;
-
-            if (name.length > 60) {
-              alert("Collection titles can be up to 60 characters.");
-              return;
-            }
-
-            try {
-              const updated = await updateCollectionName(
-                collection.id,
-                name
-              );
-
-              collection.name = updated.name;
-              renderSidebar();
-              renderMain();
-            } catch (error) {
-              alert(error.message || "Could not update the collection title.");
-            }
+          () => {
+            actionCollectionId = collection.id;
+            editTitleInput.value = collection.name || "";
+            editTitleBackdrop.classList.add("open");
+            setTimeout(() => {
+              editTitleInput.focus();
+              editTitleInput.select();
+            }, 30);
           }
         );
 
@@ -3319,81 +3682,17 @@
       /* Delete Collection */
 
       document
-        .getElementById(
-          "deleteCollectionBtn"
-        )?.addEventListener(
+        .getElementById("deleteCollectionBtn")
+        ?.addEventListener(
           "click",
-
-          async () => {
-
-            const confirmed =
-              confirm(
-                `Delete "${collection.name}" and all its words?`
-              );
-
-
-            if (!confirmed) {
-
-              return;
-
-            }
-
-
-            try {
-
-              await deleteCollection(
-                collection.id
-              );
-
-
-              collections =
-                collections.filter(
-
-                  item =>
-                    item.id !==
-                    collection.id
-
-                );
-
-
-              activeCollectionId =
-                collections[0]
-                  ?.id || null;
-
-
-              activeWords = [];
-
-              searchQuery = "";
-
-
-              if (
-                activeCollectionId
-              ) {
-
-                await loadWords(
-                  activeCollectionId
-                );
-
-              }
-
-
-              renderSidebar();
-
-              renderMain();
-
-            }
-
-            catch (error) {
-
-              alert(
-                error.message
-              );
-
-            }
-
+          () => {
+            actionCollectionId = collection.id;
+            deleteCollectionText.textContent =
+              `Delete "${collection.name}" and all of its words? This cannot be undone.`;
+            deleteCollectionBackdrop.classList.add("open");
           }
-
         );
+
 
     }
 
@@ -3684,6 +3983,96 @@
       );
 
 
+    /* Edit / Delete collection overlay events */
+
+    cancelEditTitle.addEventListener("click", () => {
+      editTitleBackdrop.classList.remove("open");
+      actionCollectionId = null;
+    });
+
+    editTitleBackdrop.addEventListener("click", event => {
+      if (event.target === editTitleBackdrop) {
+        editTitleBackdrop.classList.remove("open");
+        actionCollectionId = null;
+      }
+    });
+
+    editTitleForm.addEventListener("submit", async event => {
+      event.preventDefault();
+
+      const collection = collections.find(
+        item => item.id === actionCollectionId
+      );
+      if (!collection) return;
+
+      const name = editTitleInput.value.trim();
+      if (!name || name === collection.name) {
+        editTitleBackdrop.classList.remove("open");
+        actionCollectionId = null;
+        return;
+      }
+
+      saveEditTitle.disabled = true;
+      try {
+        const updated = await updateCollectionName(collection.id, name);
+        collection.name = updated.name;
+        editTitleBackdrop.classList.remove("open");
+        actionCollectionId = null;
+        renderSidebar();
+        renderMain();
+      } catch (error) {
+        alert(error.message || "Could not update the collection title.");
+      } finally {
+        saveEditTitle.disabled = false;
+      }
+    });
+
+    cancelDeleteCollection.addEventListener("click", () => {
+      deleteCollectionBackdrop.classList.remove("open");
+      actionCollectionId = null;
+    });
+
+    deleteCollectionBackdrop.addEventListener("click", event => {
+      if (event.target === deleteCollectionBackdrop) {
+        deleteCollectionBackdrop.classList.remove("open");
+        actionCollectionId = null;
+      }
+    });
+
+    confirmDeleteCollection.addEventListener("click", async () => {
+      const collection = collections.find(
+        item => item.id === actionCollectionId
+      );
+      if (!collection) return;
+
+      confirmDeleteCollection.disabled = true;
+      try {
+        await deleteCollection(collection.id);
+
+        collections = collections.filter(
+          item => item.id !== collection.id
+        );
+
+        activeCollectionId = collections[0]?.id || null;
+        activeWords = [];
+        searchQuery = "";
+
+        if (activeCollectionId) {
+          await loadWords(activeCollectionId);
+        }
+
+        deleteCollectionBackdrop.classList.remove("open");
+        actionCollectionId = null;
+        renderSidebar();
+        renderMain();
+      } catch (error) {
+        alert(error.message || "Could not delete the collection.");
+      } finally {
+        confirmDeleteCollection.disabled = false;
+      }
+    });
+
+
     /* ========================================
        AUTH EVENTS
     ======================================== */
@@ -3883,9 +4272,46 @@
           session
         ) => {
 
+          /*
+            Shared links manage their own read-only state in initializeApp().
+            Ignore auth events on a ?share= route so SIGNED_OUT / token refresh
+            cannot wipe the already-loaded shared words back to an empty array.
+          */
+          if (
+            sharedView ||
+            new URLSearchParams(
+              window.location.search
+            ).has("share")
+          ) {
+            return;
+          }
+
+          const previousUserId =
+            currentUser?.id || null;
+
+          const nextUser =
+            session?.user || null;
+
+          const sameLoadedUser =
+            appHydrated &&
+            previousUserId &&
+            nextUser?.id === previousUserId;
+
           currentUser =
-            session?.user ||
-            null;
+            nextUser;
+
+
+          /*
+            Supabase may emit SIGNED_IN again when an existing signed-in
+            browser tab regains focus. Do not reload or flash Loading...
+            when it is the same session we have already rendered.
+          */
+          if (
+            event === "SIGNED_IN" &&
+            sameLoadedUser
+          ) {
+            return;
+          }
 
 
           if (
@@ -3927,6 +4353,8 @@
 
               renderMain();
 
+              appHydrated = true;
+
             }
 
             catch (error) {
@@ -3952,6 +4380,8 @@
             activeWords = [];
 
             activeCollectionId = null;
+
+            appHydrated = false;
 
 
             renderAccount();
@@ -3986,6 +4416,14 @@
 
         if (shareToken) {
 
+          /*
+            Let Supabase finish restoring any existing auth/session state
+            before the shared RPC / fallback query runs. Without this,
+            the first shared-word query can race auth initialization and
+            only visually settle after a later browser focus/reflow.
+          */
+          await supabaseClient.auth.getSession();
+
           await loadSharedDictionary(
             shareToken
           );
@@ -4008,13 +4446,35 @@
             )
             ?.remove();
 
-          document
-            .querySelector(".app")
-            ?.classList.add(
-              "shared-app"
-            );
+          const sharedApp =
+            document.querySelector(".app");
+
+          sharedApp?.classList.add(
+            "shared-app"
+          );
 
           renderMain();
+
+          /*
+            The sidebar/grid is removed at runtime for shared links.
+            Force layout once that DOM change has landed so the word
+            rows are painted immediately on the first page load.
+          */
+          requestAnimationFrame(() => {
+
+            if (sharedApp) {
+              void sharedApp.offsetHeight;
+            }
+
+            renderMain();
+
+            requestAnimationFrame(() => {
+              window.dispatchEvent(
+                new Event("resize")
+              );
+            });
+
+          });
 
           return;
 
@@ -4072,6 +4532,8 @@
         renderSidebar();
 
         renderMain();
+
+        appHydrated = true;
 
       }
 
