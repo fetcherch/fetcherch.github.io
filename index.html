@@ -1,0 +1,4340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Your Dictionary</title>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --bg: #f7f8f5;
+      --sidebar: #eef1ec;
+      --panel: #ffffff;
+      --ink: #20231f;
+      --muted: #747a70;
+      --line: #e3e7df;
+      --accent: #55705b;
+      --accent-soft: #e7eee7;
+      --danger: #a04a4a;
+      --shadow: 0 12px 32px rgba(30, 40, 30, 0.07);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overscroll-behavior: none;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      height: 100vh;
+      min-height: 0;
+      overflow: hidden;
+
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+    }
+
+    /* ========================================
+       SIDEBAR
+    ======================================== */
+
+    aside {
+      padding: 32px 22px;
+
+      background: var(--sidebar);
+
+      border-right: 1px solid var(--line);
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 24px;
+
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow: hidden;
+    }
+
+    .brand {
+      padding: 0 8px;
+    }
+
+    .brand h1 {
+      margin: 0;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 29px;
+      font-weight: 500;
+
+      letter-spacing: -0.04em;
+    }
+
+    .brand p {
+      margin: 7px 0 0;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .new-folder {
+      width: 100%;
+
+      border: 1px solid var(--line);
+
+      background: var(--panel);
+
+      border-radius: 12px;
+
+      padding: 11px 14px;
+
+      color: var(--ink);
+
+      text-align: left;
+
+      transition: 0.18s ease;
+    }
+
+    .new-folder:hover {
+      transform: translateY(-1px);
+
+      box-shadow: 0 5px 18px rgba(20, 30, 20, 0.06);
+    }
+
+    .new-folder:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .folder-list {
+      display: grid;
+      gap: 0;
+
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .folder-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .folder-item {
+      width: 100%;
+      min-height: 40px;
+      height: 40px;
+
+      border: 0;
+
+      background: transparent;
+
+      border-radius: 12px;
+
+      padding: 0 12px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: var(--ink);
+
+      text-align: left;
+      flex: 0 0 auto;
+    }
+
+    .folder-item:hover {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .folder-item.active {
+      background: var(--panel);
+
+      box-shadow: 0 4px 14px rgba(20, 30, 20, 0.05);
+    }
+
+    .folder-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      padding-right: 12px;
+    }
+
+    .folder-count {
+      min-width: 25px;
+      height: 25px;
+
+      padding: 0 7px;
+
+      border-radius: 99px;
+
+      background: var(--accent-soft);
+
+      display: grid;
+      place-items: center;
+
+      color: var(--accent);
+
+      font-size: 12px;
+    }
+
+    /* ========================================
+       ACCOUNT AREA
+    ======================================== */
+
+    .account-area {
+      margin-top: auto;
+
+      padding-top: 12px;
+
+      flex: 0 0 auto;
+    }
+
+    .login-btn {
+      width: 100%;
+
+      border: 1px solid var(--line);
+
+      background: transparent;
+
+      border-radius: 12px;
+
+      padding: 11px 14px;
+
+      color: var(--ink);
+
+      text-align: left;
+
+      transition: 0.18s ease;
+    }
+
+    .login-btn:hover {
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    .account-card {
+      background: rgba(255, 255, 255, 0.6);
+
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
+      padding: 12px;
+    }
+
+    .account-email {
+      font-size: 13px;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      margin-bottom: 9px;
+    }
+
+    .logout-btn {
+      width: 100%;
+
+      border: 0;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      text-align: left;
+
+      padding: 7px 0 0;
+    }
+
+    .logout-btn:hover {
+      color: var(--danger);
+    }
+
+    /* ========================================
+       MAIN
+    ======================================== */
+
+    main {
+      padding: 48px clamp(24px, 5vw, 72px) 0;
+
+      max-width: 1200px;
+      width: 100%;
+      height: 100vh;
+      min-height: 0;
+
+      margin: 0 auto;
+
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .empty-state {
+      min-height: 70vh;
+
+      display: grid;
+      place-items: center;
+
+      text-align: center;
+
+      color: var(--muted);
+    }
+
+    .empty-state-inner {
+      max-width: 440px;
+    }
+
+    .empty-state h2 {
+      color: var(--ink);
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-weight: 500;
+
+      font-size: 36px;
+
+      margin: 0 0 10px;
+    }
+
+    .empty-state p {
+      line-height: 1.6;
+    }
+
+    .empty-action {
+      margin-top: 18px;
+
+      border: 0;
+
+      border-radius: 11px;
+
+      padding: 11px 18px;
+
+      background: var(--accent);
+
+      color: white;
+
+      font-weight: 600;
+    }
+
+    .topbar {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 24px;
+
+      align-items: flex-start;
+
+      margin-bottom: 28px;
+    }
+
+    .title-wrap h2 {
+      margin: 0;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: clamp(34px, 5vw, 54px);
+
+      font-weight: 500;
+
+      letter-spacing: -0.04em;
+    }
+
+    .title-wrap p {
+      color: var(--muted);
+
+      margin: 8px 0 0;
+
+      font-size: 14px;
+    }
+
+    .danger-btn {
+      border: 0;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      padding: 9px 4px;
+
+      font-size: 13px;
+    }
+
+    .danger-btn:hover {
+      color: var(--danger);
+    }
+
+    /* ========================================
+       WORD FORM
+    ======================================== */
+
+    .add-card {
+      background: var(--panel);
+
+      border: 1px solid var(--line);
+
+      border-radius: var(--radius);
+
+      box-shadow: var(--shadow);
+
+      padding: 18px;
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr auto;
+
+      gap: 10px;
+
+      margin-bottom: 22px;
+    }
+
+    input {
+      width: 100%;
+
+      border: 1px solid var(--line);
+
+      background: #fbfcfa;
+
+      border-radius: 11px;
+
+      padding: 13px 14px;
+
+      outline: none;
+
+      color: var(--ink);
+    }
+
+    input:focus {
+      border-color: #9aae9c;
+
+      box-shadow:
+        0 0 0 3px rgba(85, 112, 91, 0.09);
+    }
+
+    .primary {
+      border: 0;
+
+      border-radius: 11px;
+
+      background: var(--accent);
+
+      color: white;
+
+      padding: 0 20px;
+
+      font-weight: 600;
+    }
+
+    .primary:hover {
+      filter: brightness(0.96);
+    }
+
+    .primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .inline-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: -2px;
+      margin-right: 7px;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .title-heading-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .edit-title-btn {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 9px;
+      padding: 6px 9px;
+      font-size: 12px;
+    }
+
+    .edit-title-btn:hover {
+      background: var(--panel);
+      color: var(--ink);
+    }
+
+    /* ========================================
+       SEARCH
+    ======================================== */
+
+    .toolbar {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      margin: 0 0 14px;
+    }
+
+    .toolbar input {
+      max-width: 330px;
+
+      background: transparent;
+    }
+
+    /* ========================================
+       WORD LIST
+    ======================================== */
+
+    .word-list {
+      display: grid;
+      gap: 9px;
+
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-top: 6px;
+      padding-bottom: 28px;
+      scroll-padding-bottom: 28px;
+      align-content: start;
+    }
+
+    .word-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .word-row {
+      background: var(--panel);
+
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
+      padding: 16px 17px;
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr)
+        auto;
+
+      align-items: center;
+
+      gap: 18px;
+    }
+
+    .word {
+      font-weight: 650;
+
+      font-size: 17px;
+
+      overflow-wrap: anywhere;
+    }
+
+    .translation {
+      color: var(--muted);
+
+      overflow-wrap: anywhere;
+    }
+
+    .delete-word {
+      border: 0;
+
+      background: transparent;
+
+      color: #a5aaa1;
+
+      font-size: 20px;
+
+      width: 34px;
+      height: 34px;
+
+      border-radius: 50%;
+    }
+
+    .delete-word:hover {
+      color: var(--danger);
+
+      background: #fff2f2;
+    }
+
+    .no-words {
+      border: 1px dashed #d5dad1;
+
+      border-radius: 16px;
+
+      padding: 42px 24px;
+
+      text-align: center;
+
+      color: var(--muted);
+    }
+
+    /* ========================================
+       MODALS
+    ======================================== */
+
+    .modal-backdrop {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(31, 35, 30, 0.28);
+
+      backdrop-filter: blur(4px);
+
+      display: none;
+
+      place-items: center;
+
+      padding: 20px;
+
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .modal {
+      width: min(430px, 100%);
+
+      background: var(--panel);
+
+      border: 1px solid var(--line);
+
+      border-radius: 20px;
+
+      padding: 24px;
+
+      box-shadow:
+        0 24px 60px rgba(20, 30, 20, 0.17);
+    }
+
+    .modal h3 {
+      margin: 0 0 7px;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 26px;
+
+      font-weight: 500;
+    }
+
+    .modal p {
+      margin: 0 0 18px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+
+      justify-content: flex-end;
+
+      gap: 9px;
+
+      margin-top: 14px;
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+
+      background: white;
+
+      border-radius: 10px;
+
+      padding: 10px 15px;
+    }
+
+    .modal .primary {
+      padding: 10px 16px;
+    }
+
+    /* ========================================
+       AUTH
+    ======================================== */
+
+    .auth-tabs {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 6px;
+
+      background: #f2f4f0;
+
+      border-radius: 11px;
+
+      padding: 4px;
+
+      margin-bottom: 16px;
+    }
+
+    .auth-tab {
+      border: 0;
+
+      background: transparent;
+
+      border-radius: 8px;
+
+      padding: 9px;
+
+      color: var(--muted);
+    }
+
+    .auth-tab.active {
+      background: white;
+
+      color: var(--ink);
+
+      box-shadow:
+        0 2px 8px rgba(20, 30, 20, 0.06);
+    }
+
+    .auth-fields {
+      display: grid;
+
+      gap: 10px;
+    }
+
+    .message {
+      margin-top: 12px;
+
+      padding: 10px 12px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+
+      background: #fff0f0;
+
+      color: #8f3d3d;
+    }
+
+    .message.success {
+      display: block;
+
+      background: #edf5ed;
+
+      color: #49654e;
+    }
+
+    /* ========================================
+       LOADING
+    ======================================== */
+
+    .loading {
+      min-height: 65vh;
+
+      display: grid;
+
+      place-items: center;
+
+      color: var(--muted);
+    }
+
+
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 220;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 9px 12px;
+      box-shadow: 0 4px 14px rgba(20, 30, 20, 0.08);
+    }
+
+    .sidebar-scrim {
+      display: none;
+    }
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 760px) {
+
+      .app {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+      }
+
+      aside {
+        padding: 18px;
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--line);
+
+        gap: 14px;
+
+        height: auto;
+        position: static;
+        overflow: visible;
+      }
+
+      .brand p {
+        display: none;
+      }
+
+      .folder-list {
+        display: flex;
+
+        overflow-x: auto;
+
+        padding-bottom: 2px;
+      }
+
+      .folder-item {
+        min-width: max-content;
+
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      .account-area {
+        margin-top: 0;
+      }
+
+      main {
+        padding: 28px 18px;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        display: block;
+      }
+
+      .word-list {
+        overflow: visible;
+        padding-bottom: 0;
+      }
+
+      .add-card {
+        grid-template-columns: 1fr;
+      }
+
+      .primary {
+        min-height: 45px;
+      }
+
+      .word-row {
+        grid-template-columns: 1fr auto;
+
+        gap: 5px 12px;
+      }
+
+      .translation {
+        grid-column: 1;
+      }
+
+      .delete-word {
+        grid-column: 2;
+
+        grid-row: 1 / span 2;
+      }
+    }
+  
+    @media (min-width: 761px) {
+      .word-list::after {
+        content: "";
+        display: block;
+        height: 16px;
+        flex: 0 0 16px;
+        grid-column: 1 / -1;
+      }
+    }
+
+
+    @media (min-width: 761px) {
+      .word-list {
+        position: relative;
+        will-change: transform;
+      }
+
+      .word-list.elastic-bounce {
+        transition: transform 180ms cubic-bezier(.2,.8,.2,1);
+      }
+    }
+
+</style>
+</head>
+
+<body>
+
+  <button
+    type="button"
+    class="sidebar-toggle"
+    id="sidebarToggle"
+    aria-label="Open collections menu"
+    aria-expanded="false"
+  >
+    ☰
+  </button>
+
+  <div
+    class="sidebar-scrim"
+    id="sidebarScrim"
+  ></div>
+
+  <div class="app">
+
+    <!-- ========================================
+         SIDEBAR
+    ======================================== -->
+
+    <aside>
+
+      <div class="brand">
+        <h1>AllOfMyWords</h1>
+
+        <p>
+          A quiet place for the words
+          you want to keep.
+        </p>
+      </div>
+
+      <button
+        class="new-folder"
+        id="newFolderBtn"
+        disabled
+      >
+        ＋ Add language or title
+      </button>
+
+      <div
+        class="folder-list"
+        id="folderList"
+      ></div>
+
+      <div
+        class="account-area"
+        id="accountArea"
+      >
+
+        <button
+          class="login-btn"
+          id="loginBtn"
+        >
+          Log in / Sign up
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- ========================================
+         MAIN
+    ======================================== -->
+
+    <main id="main">
+
+      <div class="loading">
+        Loading...
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- ========================================
+       NEW COLLECTION MODAL
+  ======================================== -->
+
+  <div
+    class="modal-backdrop"
+    id="collectionBackdrop"
+  >
+
+    <form
+      class="modal"
+      id="collectionForm"
+    >
+
+      <h3>New collection</h3>
+
+      <p>
+        Add a language, topic, course,
+        book title, or anything else.
+      </p>
+
+      <input
+        id="collectionNameInput"
+        placeholder="e.g. Italian"
+        maxlength="60"
+        autocomplete="off"
+        required
+      />
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="secondary"
+          id="cancelCollection"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="primary"
+        >
+          Create
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <!-- ========================================
+       COLLECTION LIMIT / UPGRADE MODAL
+  ======================================== -->
+
+  <div
+    class="modal-backdrop"
+    id="upgradeBackdrop"
+  >
+
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="upgradeTitle"
+    >
+
+      <h3 id="upgradeTitle">Unlock a new collection</h3>
+
+      <p>
+        Unlock one additional collection for a one-time $5 payment.
+      </p>
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="secondary"
+          id="cancelUpgrade"
+        >
+          Not now
+        </button>
+
+        <button
+          type="button"
+          class="primary"
+          id="upgradeBtn"
+        >
+          Unlock for $5
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       AUTH MODAL
+  ======================================== -->
+
+  <div
+    class="modal-backdrop"
+    id="authBackdrop"
+  >
+
+    <form
+      class="modal"
+      id="authForm"
+    >
+
+      <h3 id="authTitle">
+        Welcome back
+      </h3>
+
+      <p id="authSubtitle">
+        Log in to continue to Your Dictionary.
+      </p>
+
+      <div class="auth-tabs">
+
+        <button
+          type="button"
+          class="auth-tab active"
+          id="loginTab"
+        >
+          Log in
+        </button>
+
+        <button
+          type="button"
+          class="auth-tab"
+          id="signupTab"
+        >
+          Sign up
+        </button>
+
+      </div>
+
+      <div class="auth-fields">
+
+        <input
+          id="authName"
+          placeholder="Name"
+          autocomplete="name"
+          maxlength="80"
+          style="display:none"
+        />
+
+        <input
+          id="authEmail"
+          type="email"
+          placeholder="Email"
+          autocomplete="email"
+          required
+        />
+
+        <input
+          id="authPassword"
+          type="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          minlength="6"
+          required
+        />
+
+      </div>
+
+      <div
+        id="authMessage"
+        class="message"
+      ></div>
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="secondary"
+          id="cancelAuth"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="primary"
+          id="authSubmit"
+        >
+          Log in
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <script>
+
+    /* ========================================
+       SUPABASE CONFIG
+    ======================================== */
+
+    const SUPABASE_URL =
+      "https://oldbiwlbeezbkbwfrtum.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_NE7OmybWSCeOcb3NsC-Lxw_lqWA_ZuN";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    /* ========================================
+       APP STATE
+    ======================================== */
+
+    let currentUser = null;
+
+    let collections = [];
+
+    let activeCollectionId = null;
+
+    let activeWords = [];
+
+    let sharedView = false;
+
+    let sharedCollection = null;
+
+    let sharedAuthorName = "";
+
+    let searchQuery = "";
+
+    let authMode = "login";
+
+    let extraCollections = 0;
+
+    let purchaseProcessing = false;
+
+
+    /* ========================================
+       ELEMENTS
+    ======================================== */
+
+    const main =
+      document.getElementById("main");
+
+    const folderList =
+      document.getElementById("folderList");
+
+    const newFolderBtn =
+      document.getElementById("newFolderBtn");
+
+    const accountArea =
+      document.getElementById("accountArea");
+
+    const sidebar =
+      document.querySelector("aside");
+
+    const sidebarToggle =
+      document.getElementById("sidebarToggle");
+
+    const sidebarScrim =
+      document.getElementById("sidebarScrim");
+
+
+    /* Collection Modal */
+
+    const collectionBackdrop =
+      document.getElementById(
+        "collectionBackdrop"
+      );
+
+    const collectionForm =
+      document.getElementById(
+        "collectionForm"
+      );
+
+    const collectionNameInput =
+      document.getElementById(
+        "collectionNameInput"
+      );
+
+    const cancelCollection =
+      document.getElementById(
+        "cancelCollection"
+      );
+
+
+    /* Upgrade Modal */
+
+    const upgradeBackdrop =
+      document.getElementById(
+        "upgradeBackdrop"
+      );
+
+    const cancelUpgrade =
+      document.getElementById(
+        "cancelUpgrade"
+      );
+
+    const upgradeBtn =
+      document.getElementById(
+        "upgradeBtn"
+      );
+
+
+    /* Auth Modal */
+
+    const authBackdrop =
+      document.getElementById(
+        "authBackdrop"
+      );
+
+    const authForm =
+      document.getElementById(
+        "authForm"
+      );
+
+    const loginTab =
+      document.getElementById(
+        "loginTab"
+      );
+
+    const signupTab =
+      document.getElementById(
+        "signupTab"
+      );
+
+    const authName =
+      document.getElementById(
+        "authName"
+      );
+
+    const authEmail =
+      document.getElementById(
+        "authEmail"
+      );
+
+    const authPassword =
+      document.getElementById(
+        "authPassword"
+      );
+
+    const authTitle =
+      document.getElementById(
+        "authTitle"
+      );
+
+    const authSubtitle =
+      document.getElementById(
+        "authSubtitle"
+      );
+
+    const authSubmit =
+      document.getElementById(
+        "authSubmit"
+      );
+
+    const authMessage =
+      document.getElementById(
+        "authMessage"
+      );
+
+    const cancelAuth =
+      document.getElementById(
+        "cancelAuth"
+      );
+
+
+
+    function setSidebarOpen(open) {
+      if (!sidebar) return;
+
+      sidebar.classList.toggle(
+        "open",
+        open
+      );
+
+      sidebarScrim?.classList.toggle(
+        "open",
+        open
+      );
+
+      sidebarToggle?.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+      if (sidebarToggle) {
+        sidebarToggle.textContent =
+          open ? "×" : "☰";
+
+        sidebarToggle.setAttribute(
+          "aria-label",
+          open
+            ? "Close collections menu"
+            : "Open collections menu"
+        );
+      }
+    }
+
+
+    sidebarToggle?.addEventListener(
+      "click",
+      () => {
+        setSidebarOpen(
+          !sidebar.classList.contains("open")
+        );
+      }
+    );
+
+
+    sidebarScrim?.addEventListener(
+      "click",
+      () => {
+        setSidebarOpen(false);
+      }
+    );
+
+
+    /* ========================================
+       HELPERS
+    ======================================== */
+
+    function escapeHtml(value) {
+
+      return String(value)
+
+        .replaceAll("&", "&amp;")
+
+        .replaceAll("<", "&lt;")
+
+        .replaceAll(">", "&gt;")
+
+        .replaceAll('"', "&quot;")
+
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    function showLoading() {
+
+      main.innerHTML = `
+        <div class="loading">
+          Loading...
+        </div>
+      `;
+
+    }
+
+
+    function showError(message) {
+
+      main.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-inner">
+
+            <h2>Something went wrong.</h2>
+
+            <p>
+              ${escapeHtml(message)}
+            </p>
+
+          </div>
+        </div>
+      `;
+
+    }
+
+
+    function setPurchaseProcessing(isProcessing) {
+      purchaseProcessing = isProcessing;
+
+      if (!currentUser) return;
+
+      newFolderBtn.disabled = isProcessing;
+
+      if (isProcessing) {
+        newFolderBtn.innerHTML =
+          '<span class="inline-spinner" aria-hidden="true"></span>Completing purchase...';
+      } else {
+        newFolderBtn.textContent = "＋ Add language or title";
+        newFolderBtn.disabled = false;
+      }
+    }
+
+
+    /* ========================================
+       AUTH UI
+    ======================================== */
+
+    function setAuthMode(mode) {
+
+      authMode = mode;
+
+      const signingUp =
+        mode === "signup";
+
+
+      loginTab.classList.toggle(
+        "active",
+        !signingUp
+      );
+
+      signupTab.classList.toggle(
+        "active",
+        signingUp
+      );
+
+
+      authName.style.display =
+        signingUp
+          ? "block"
+          : "none";
+
+
+      authName.required =
+        signingUp;
+
+
+      authPassword.autocomplete =
+        signingUp
+          ? "new-password"
+          : "current-password";
+
+
+      authTitle.textContent =
+        signingUp
+          ? "Create your account"
+          : "Welcome back";
+
+
+      authSubtitle.textContent =
+        signingUp
+
+          ? "Sign up to start building Your Dictionary."
+
+          : "Log in to continue to Your Dictionary.";
+
+
+      authSubmit.textContent =
+        signingUp
+          ? "Sign up"
+          : "Log in";
+
+
+      clearAuthMessage();
+
+    }
+
+
+    function openAuthModal() {
+
+      authForm.reset();
+
+      setAuthMode("login");
+
+      authBackdrop.classList.add(
+        "open"
+      );
+
+      setTimeout(
+        () => authEmail.focus(),
+        50
+      );
+
+    }
+
+
+    function closeAuthModal() {
+
+      authBackdrop.classList.remove(
+        "open"
+      );
+
+      clearAuthMessage();
+
+    }
+
+
+    function clearAuthMessage() {
+
+      authMessage.className =
+        "message";
+
+      authMessage.textContent =
+        "";
+
+    }
+
+
+    function setAuthMessage(
+      message,
+      type
+    ) {
+
+      authMessage.className =
+        `message ${type}`;
+
+      authMessage.textContent =
+        message;
+
+    }
+
+
+    /* ========================================
+       AUTH FUNCTIONS
+    ======================================== */
+
+    async function signUp(
+      email,
+      password,
+      name
+    ) {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth.signUp({
+
+          email,
+
+          password,
+
+          options: {
+
+            data: {
+              name
+            }
+
+          }
+
+        });
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      return data;
+
+    }
+
+
+    async function logIn(
+      email,
+      password
+    ) {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth
+          .signInWithPassword({
+
+            email,
+
+            password
+
+          });
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      return data;
+
+    }
+
+
+    async function logOut() {
+
+      const {
+        error
+      } =
+        await supabaseClient.auth
+          .signOut();
+
+
+      if (error) {
+
+        alert(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      currentUser = null;
+
+      collections = [];
+
+      activeWords = [];
+
+      activeCollectionId = null;
+
+      searchQuery = "";
+
+
+      renderAccount();
+
+      renderSidebar();
+
+      renderMain();
+
+    }
+
+
+    async function loadEntitlements() {
+
+      if (!currentUser) {
+        extraCollections = 0;
+        return;
+      }
+
+      const { data, error } = await supabaseClient
+        .from("user_entitlements")
+        .select("extra_collections")
+        .eq("user_id", currentUser.id)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      extraCollections = data?.extra_collections || 0;
+    }
+
+
+
+    async function loadSharedDictionary(
+      shareToken
+    ) {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .rpc(
+            "get_shared_dictionary",
+            {
+              p_share_token:
+                shareToken
+            }
+          );
+
+
+      if (error) {
+        throw error;
+      }
+
+
+      if (
+        !data ||
+        !data.collection
+      ) {
+        throw new Error(
+          "This shared dictionary does not exist or sharing has been disabled."
+        );
+      }
+
+
+      sharedView = true;
+
+      sharedCollection =
+        data.collection;
+
+      sharedAuthorName =
+        data.collection
+          .shared_author_name || "";
+
+      activeCollectionId =
+        data.collection.id;
+
+      activeWords =
+        Array.isArray(data.words)
+          ? data.words
+          : [];
+
+    }
+
+
+    async function enableCollectionSharing(
+      collectionId
+    ) {
+
+      const collection =
+        collections.find(
+          item => item.id === collectionId
+        );
+
+
+      if (!collection) {
+        throw new Error(
+          "Collection not found."
+        );
+      }
+
+
+      let shareToken =
+        collection.share_token;
+
+
+      const currentDisplayName =
+        currentUser
+          ?.user_metadata
+          ?.name
+          ?.trim() || "Anonymous";
+
+
+      if (
+        collection.is_shared &&
+        shareToken &&
+        collection.shared_author_name !== currentDisplayName
+      ) {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .from("collections")
+            .update({
+              shared_author_name:
+                currentDisplayName
+            })
+            .eq("id", collectionId)
+            .select(`
+              shared_author_name
+            `)
+            .single();
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        collection.shared_author_name =
+          data.shared_author_name;
+
+      }
+
+
+      if (
+        !shareToken ||
+        !collection.is_shared
+      ) {
+
+        shareToken =
+          shareToken ||
+          crypto.randomUUID();
+
+
+        const displayName =
+          currentUser
+            ?.user_metadata
+            ?.name
+            ?.trim() || "Anonymous";
+
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .from("collections")
+            .update({
+              is_shared: true,
+              share_token: shareToken,
+              shared_author_name: displayName
+            })
+            .eq("id", collectionId)
+            .select(`
+              id,
+              is_shared,
+              share_token,
+              shared_author_name
+            `)
+            .single();
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        collection.is_shared =
+          data.is_shared;
+
+        collection.share_token =
+          data.share_token;
+
+        collection.shared_author_name =
+          data.shared_author_name;
+
+        shareToken =
+          data.share_token;
+
+      }
+
+
+      const url =
+        new URL(window.location.href);
+
+      url.search = "";
+
+      url.hash = "";
+
+      url.searchParams.set(
+        "share",
+        shareToken
+      );
+
+
+      return url.toString();
+
+    }
+
+
+    /* ========================================
+       DATABASE - COLLECTIONS
+    ======================================== */
+
+    async function loadCollections() {
+
+      if (!currentUser) {
+
+        collections = [];
+
+        return;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from("collections")
+
+          .select(`
+            id,
+            name,
+            created_at,
+            user_id,
+            is_shared,
+            share_token,
+            shared_author_name
+          `)
+
+          .order(
+            "created_at",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      collections =
+        data || [];
+
+    }
+
+
+    async function createCollection(
+      name
+    ) {
+
+      if (!currentUser) {
+
+        openAuthModal();
+
+        return null;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from("collections")
+
+          .insert({
+
+            user_id:
+              currentUser.id,
+
+            name
+
+          })
+
+          .select()
+
+          .single();
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      return data;
+
+    }
+
+
+    async function updateCollectionName(
+      collectionId,
+      name
+    ) {
+
+      const { data, error } =
+        await supabaseClient
+          .from("collections")
+          .update({ name })
+          .eq("id", collectionId)
+          .select()
+          .single();
+
+      if (error) throw error;
+
+      return data;
+
+    }
+
+
+    async function deleteCollection(
+      collectionId
+    ) {
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from("collections")
+
+          .delete()
+
+          .eq(
+            "id",
+            collectionId
+          );
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+    }
+
+
+    /* ========================================
+       DATABASE - WORDS
+    ======================================== */
+
+    async function loadWords(
+      collectionId
+    ) {
+
+      if (!currentUser) {
+
+        activeWords = [];
+
+        return;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from("words")
+
+          .select(`
+            id,
+            word,
+            translation,
+            created_at
+          `)
+
+          .eq(
+            "collection_id",
+            collectionId
+          )
+
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      activeWords =
+        data || [];
+
+    }
+
+
+    async function addWord(
+      collectionId,
+      word,
+      translation
+    ) {
+
+      if (!currentUser) {
+
+        openAuthModal();
+
+        return null;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from("words")
+
+          .insert({
+
+            user_id:
+              currentUser.id,
+
+            collection_id:
+              collectionId,
+
+            word,
+
+            translation
+
+          })
+
+          .select()
+
+          .single();
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      return data;
+
+    }
+
+
+    async function deleteWord(
+      wordId
+    ) {
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from("words")
+
+          .delete()
+
+          .eq(
+            "id",
+            wordId
+          );
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+    }
+
+
+    /* ========================================
+       RENDER ACCOUNT
+    ======================================== */
+
+    function renderAccount() {
+
+      if (!currentUser) {
+
+        if (!accountArea) return;
+
+        accountArea.innerHTML = `
+          <button
+            class="login-btn"
+            id="loginBtn"
+          >
+            Log in / Sign up
+          </button>
+        `;
+
+
+        document
+          .getElementById("loginBtn")?.addEventListener(
+            "click",
+            openAuthModal
+          );
+
+
+        newFolderBtn.disabled =
+          true;
+
+
+        return;
+
+      }
+
+
+      const displayName =
+        currentUser
+          .user_metadata
+          ?.name;
+
+
+      accountArea.innerHTML = `
+        <div class="account-card">
+
+          <div class="account-email">
+            ${
+              displayName
+                ? `${escapeHtml(displayName)} · `
+                : ""
+            }
+
+            ${escapeHtml(currentUser.email || "")}
+          </div>
+
+          <button
+            class="logout-btn"
+            id="logoutBtn"
+          >
+            Log out
+          </button>
+
+        </div>
+      `;
+
+
+      document
+        .getElementById("logoutBtn")?.addEventListener(
+          "click",
+          logOut
+        );
+
+
+      if (purchaseProcessing) {
+        setPurchaseProcessing(true);
+      } else {
+        newFolderBtn.disabled = false;
+        newFolderBtn.textContent = "＋ Add language or title";
+      }
+
+    }
+
+
+    /* ========================================
+       RENDER SIDEBAR
+    ======================================== */
+
+    function renderSidebar() {
+
+      if (!currentUser) {
+
+        folderList.innerHTML =
+          "";
+
+        return;
+
+      }
+
+
+      folderList.innerHTML =
+        collections
+
+          .map(collection => {
+
+            const count =
+
+              collection.id ===
+              activeCollectionId
+
+                ? activeWords.length
+
+                : "";
+
+
+            return `
+              <button
+                class="
+                  folder-item
+                  ${
+                    collection.id ===
+                    activeCollectionId
+                      ? "active"
+                      : ""
+                  }
+                "
+                data-id="${collection.id}"
+              >
+
+                <span class="folder-name">
+                  ${escapeHtml(collection.name)}
+                </span>
+
+                ${
+                  count !== ""
+                    ? `
+                      <span class="folder-count">
+                        ${count}
+                      </span>
+                    `
+                    : ""
+                }
+
+              </button>
+            `;
+
+          })
+
+          .join("");
+
+
+      folderList
+        .querySelectorAll(
+          ".folder-item"
+        )
+
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+
+            async () => {
+
+              activeCollectionId =
+                button.dataset.id;
+
+              searchQuery = "";
+
+              showLoading();
+
+
+              try {
+
+                await loadWords(
+                  activeCollectionId
+                );
+
+
+                renderSidebar();
+
+                renderMain();
+
+                if (
+                  window.matchMedia("(max-width: 760px)").matches
+                ) {
+                  setSidebarOpen(false);
+                }
+
+              }
+
+              catch (error) {
+
+                showError(
+                  error.message
+                );
+
+              }
+
+            }
+
+          );
+
+        });
+
+    }
+
+
+    /* ========================================
+       MAIN RENDER
+    ======================================== */
+
+    function renderMain() {
+
+      if (sharedView && sharedCollection) {
+
+        const query =
+          searchQuery
+            .trim()
+            .toLowerCase();
+
+
+        const filteredWords =
+          activeWords.filter(item => {
+
+            return (
+              item.word
+                .toLowerCase()
+                .includes(query)
+              ||
+              item.translation
+                .toLowerCase()
+                .includes(query)
+            );
+
+          });
+
+
+        main.innerHTML = `
+
+          <div class="topbar">
+
+            <div class="title-wrap">
+
+              <div class="title-heading-row">
+                <h2>
+                  ${escapeHtml(sharedCollection.name)}
+                </h2>
+              </div>
+
+              <p>
+                ${
+                  sharedAuthorName
+                    ? `By ${escapeHtml(sharedAuthorName)} · `
+                    : ""
+                }
+                Shared dictionary ·
+                ${activeWords.length}
+                ${
+                  activeWords.length === 1
+                    ? "word"
+                    : "words"
+                }
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="toolbar">
+
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search this dictionary..."
+              value="${escapeHtml(searchQuery)}"
+            />
+
+          </div>
+
+
+          <div class="word-list">
+
+            ${
+              filteredWords.length
+
+                ? filteredWords
+                    .map(item => `
+
+                      <div class="word-row">
+
+                        <div class="word">
+                          ${escapeHtml(item.word)}
+                        </div>
+
+                        <div class="translation">
+                          ${escapeHtml(item.translation)}
+                        </div>
+
+                      </div>
+
+                    `)
+                    .join("")
+
+                : `
+                  <div class="no-words">
+                    ${
+                      query
+                        ? "No matching words found."
+                        : "This dictionary has no words yet."
+                    }
+                  </div>
+                `
+            }
+
+          </div>
+
+        `;
+
+
+        document
+          .getElementById("searchInput")
+          ?.addEventListener(
+            "input",
+            event => {
+
+              searchQuery =
+                event.target.value;
+
+              renderMain();
+
+              const input =
+                document.getElementById(
+                  "searchInput"
+                );
+
+              input?.focus();
+
+              input?.setSelectionRange(
+                input.value.length,
+                input.value.length
+              );
+
+            }
+          );
+
+
+        return;
+
+      }
+
+
+      if (!currentUser) {
+
+        main.innerHTML = `
+          <div class="empty-state">
+
+            <div class="empty-state-inner">
+
+              <h2>
+                Build your own dictionary.
+              </h2>
+
+              <p>
+                Create an account to save
+                languages, newly learned
+                words, and translations.
+              </p>
+
+              <button
+                class="empty-action"
+                id="mainLoginBtn"
+              >
+                Log in / Sign up
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+
+        document
+          .getElementById(
+            "mainLoginBtn"
+          )?.addEventListener(
+            "click",
+            openAuthModal
+          );
+
+
+        return;
+
+      }
+
+
+      if (!collections.length) {
+
+        main.innerHTML = `
+          <div class="empty-state">
+
+            <div class="empty-state-inner">
+
+              <h2>
+                Your dictionary is empty.
+              </h2>
+
+              <p>
+                Create your first language
+                or title, then start adding
+                words.
+              </p>
+
+              <button
+                class="empty-action"
+                id="mainNewCollection"
+              >
+                Add language or title
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+
+        document
+          .getElementById(
+            "mainNewCollection"
+          )?.addEventListener(
+            "click",
+            openCollectionModal
+          );
+
+
+        return;
+
+      }
+
+
+      const collection =
+        collections.find(
+
+          item =>
+            item.id ===
+            activeCollectionId
+
+        );
+
+
+      if (!collection) {
+
+        main.innerHTML = `
+          <div class="empty-state">
+
+            <div class="empty-state-inner">
+
+              <h2>
+                Choose a collection.
+              </h2>
+
+              <p>
+                Select one of your
+                languages from the sidebar.
+              </p>
+
+            </div>
+
+          </div>
+        `;
+
+
+        return;
+
+      }
+
+
+      const query =
+        searchQuery
+          .trim()
+          .toLowerCase();
+
+
+      const filteredWords =
+        activeWords.filter(item => {
+
+          return (
+
+            item.word
+              .toLowerCase()
+              .includes(query)
+
+            ||
+
+            item.translation
+              .toLowerCase()
+              .includes(query)
+
+          );
+
+        });
+
+
+      main.innerHTML = `
+
+        <div class="topbar">
+
+          <div class="title-wrap">
+
+            <div class="title-heading-row">
+              <h2>
+                ${escapeHtml(collection.name)}
+              </h2>
+
+              <button
+                type="button"
+                class="edit-title-btn"
+                id="editCollectionTitleBtn"
+              >
+                Edit title
+              </button>
+            </div>
+
+            <p>
+              ${activeWords.length} / 1000
+              ${
+                activeWords.length === 1
+                  ? "word"
+                  : "words"
+              }
+            </p>
+
+          </div>
+
+
+          <div class="topbar-actions">
+
+            <button
+              class="share-btn"
+              id="shareCollectionBtn"
+              type="button"
+            >
+              Share
+            </button>
+
+            <button
+              class="danger-btn"
+              id="deleteCollectionBtn"
+            >
+              Delete collection
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <form
+          class="add-card"
+          id="wordForm"
+        >
+
+          <input
+            id="wordInput"
+            placeholder="${activeWords.length >= 1000 ? "1000 word limit reached" : "New word"}"
+            maxlength="100"
+            autocomplete="off"
+            ${activeWords.length >= 1000 ? "disabled" : ""}
+            required
+          />
+
+          <input
+            id="translationInput"
+            placeholder="Translation"
+            maxlength="160"
+            autocomplete="off"
+            ${activeWords.length >= 1000 ? "disabled" : ""}
+            required
+          />
+
+          <button
+            class="primary"
+            type="submit"
+            ${activeWords.length >= 1000 ? "disabled" : ""}
+          >
+            ${activeWords.length >= 1000 ? "Limit reached" : "Add word"}
+          </button>
+
+        </form>
+
+
+        <div class="toolbar">
+
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search words..."
+            value="${escapeHtml(searchQuery)}"
+          />
+
+        </div>
+
+
+        <div class="word-list">
+
+          ${
+            filteredWords.length
+
+              ? filteredWords
+
+                  .map(item => `
+
+                    <div class="word-row">
+
+                      <div class="word">
+                        ${escapeHtml(item.word)}
+                      </div>
+
+                      <div class="translation">
+                        ${escapeHtml(item.translation)}
+                      </div>
+
+                      <button
+                        class="delete-word"
+                        data-word-id="${item.id}"
+                        title="Delete word"
+                        aria-label="Delete word"
+                      >
+                        ×
+                      </button>
+
+                    </div>
+
+                  `)
+
+                  .join("")
+
+              : `
+
+                <div class="no-words">
+
+                  ${
+                    query
+
+                      ? "No matching words found."
+
+                      : "No words yet. Add the first one above."
+                  }
+
+                </div>
+
+              `
+          }
+
+        </div>
+
+      `;
+
+
+      /* Add Word */
+
+      document
+        .getElementById(
+          "wordForm"
+        )?.addEventListener(
+          "submit",
+
+          async event => {
+
+            event.preventDefault();
+
+
+            if (activeWords.length >= 1000) {
+              alert(
+                "This collection has reached the 1000 word limit."
+              );
+              return;
+            }
+
+
+            const wordInput =
+              document.getElementById(
+                "wordInput"
+              );
+
+            const translationInput =
+              document.getElementById(
+                "translationInput"
+              );
+
+
+            const word =
+              wordInput
+                .value
+                .trim();
+
+            const translation =
+              translationInput
+                .value
+                .trim();
+
+
+            if (
+              !word ||
+              !translation
+            ) {
+
+              return;
+
+            }
+
+
+            const submitButton =
+              event.currentTarget
+                .querySelector(
+                  "button[type='submit']"
+                );
+
+
+            submitButton.disabled =
+              true;
+
+
+            try {
+
+              const newWord =
+                await addWord(
+
+                  activeCollectionId,
+
+                  word,
+
+                  translation
+
+                );
+
+
+              if (newWord) {
+
+                activeWords.unshift(
+                  newWord
+                );
+
+
+                renderSidebar();
+
+                renderMain();
+
+
+                setTimeout(
+                  () => {
+
+                    document
+                      .getElementById(
+                        "wordInput"
+                      )
+                      ?.focus();
+
+                  },
+
+                  0
+                );
+
+              }
+
+            }
+
+            catch (error) {
+
+              alert(
+                error.message
+              );
+
+              submitButton.disabled =
+                false;
+
+            }
+
+          }
+
+        );
+
+
+      /* Search */
+
+      document
+        .getElementById(
+          "searchInput"
+        )?.addEventListener(
+          "input",
+
+          event => {
+
+            searchQuery =
+              event.target.value;
+
+
+            renderMain();
+
+
+            const input =
+              document.getElementById(
+                "searchInput"
+              );
+
+
+            input.focus();
+
+
+            input.setSelectionRange(
+
+              input.value.length,
+
+              input.value.length
+
+            );
+
+          }
+
+        );
+
+
+      /* Delete Word */
+
+      document
+        .querySelectorAll(
+          ".delete-word"
+        )
+
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+
+            async () => {
+
+              const wordId =
+                button.dataset.wordId;
+
+
+              try {
+
+                await deleteWord(
+                  wordId
+                );
+
+
+                activeWords =
+                  activeWords.filter(
+
+                    item =>
+                      item.id !==
+                      wordId
+
+                  );
+
+
+                renderSidebar();
+
+                renderMain();
+
+              }
+
+              catch (error) {
+
+                alert(
+                  error.message
+                );
+
+              }
+
+            }
+
+          );
+
+        });
+
+
+
+      /* Share Collection */
+
+      document
+        .getElementById(
+          "shareCollectionBtn"
+        )
+        ?.addEventListener(
+          "click",
+
+          async event => {
+
+            const button =
+              event.currentTarget;
+
+            const oldText =
+              button.textContent;
+
+            button.disabled = true;
+            button.textContent =
+              "Creating link...";
+
+
+            try {
+
+              const shareUrl =
+                await enableCollectionSharing(
+                  activeCollectionId
+                );
+
+
+              try {
+
+                await navigator.clipboard
+                  .writeText(shareUrl);
+
+                button.textContent =
+                  "Link copied ✓";
+
+              }
+
+              catch {
+
+                window.prompt(
+                  "Copy this share link:",
+                  shareUrl
+                );
+
+                button.textContent =
+                  "Share";
+
+              }
+
+
+              setTimeout(() => {
+                button.disabled = false;
+                button.textContent =
+                  oldText;
+              }, 1800);
+
+            }
+
+            catch (error) {
+
+              button.disabled = false;
+              button.textContent =
+                oldText;
+
+              alert(
+                error.message ||
+                "Could not create share link."
+              );
+
+            }
+
+          }
+
+        );
+
+
+      /* Edit Collection Title */
+
+      document
+        .getElementById("editCollectionTitleBtn")?.addEventListener(
+          "click",
+          async () => {
+            const newName = prompt(
+              "Edit collection title",
+              collection.name
+            );
+
+            if (newName === null) return;
+
+            const name = newName.trim();
+
+            if (!name || name === collection.name) return;
+
+            if (name.length > 60) {
+              alert("Collection titles can be up to 60 characters.");
+              return;
+            }
+
+            try {
+              const updated = await updateCollectionName(
+                collection.id,
+                name
+              );
+
+              collection.name = updated.name;
+              renderSidebar();
+              renderMain();
+            } catch (error) {
+              alert(error.message || "Could not update the collection title.");
+            }
+          }
+        );
+
+
+      /* Delete Collection */
+
+      document
+        .getElementById(
+          "deleteCollectionBtn"
+        )?.addEventListener(
+          "click",
+
+          async () => {
+
+            const confirmed =
+              confirm(
+                `Delete "${collection.name}" and all its words?`
+              );
+
+
+            if (!confirmed) {
+
+              return;
+
+            }
+
+
+            try {
+
+              await deleteCollection(
+                collection.id
+              );
+
+
+              collections =
+                collections.filter(
+
+                  item =>
+                    item.id !==
+                    collection.id
+
+                );
+
+
+              activeCollectionId =
+                collections[0]
+                  ?.id || null;
+
+
+              activeWords = [];
+
+              searchQuery = "";
+
+
+              if (
+                activeCollectionId
+              ) {
+
+                await loadWords(
+                  activeCollectionId
+                );
+
+              }
+
+
+              renderSidebar();
+
+              renderMain();
+
+            }
+
+            catch (error) {
+
+              alert(
+                error.message
+              );
+
+            }
+
+          }
+
+        );
+
+    }
+
+
+    /* ========================================
+       COLLECTION MODAL
+    ======================================== */
+
+    function openUpgradeModal() {
+
+      upgradeBackdrop
+        .classList.add(
+          "open"
+        );
+
+      setTimeout(
+        () => upgradeBtn.focus(),
+        50
+      );
+
+    }
+
+
+    function closeUpgradeModal() {
+
+      upgradeBackdrop
+        .classList.remove(
+          "open"
+        );
+
+    }
+
+
+    function openCollectionModal() {
+
+      if (purchaseProcessing) {
+        return;
+      }
+
+      if (!currentUser) {
+
+        openAuthModal();
+
+        return;
+
+      }
+
+
+      const collectionLimit = 3 + extraCollections;
+
+      if (collections.length >= collectionLimit) {
+
+        openUpgradeModal();
+
+        return;
+
+      }
+
+
+      collectionForm.reset();
+
+
+      collectionBackdrop
+        .classList.add(
+          "open"
+        );
+
+
+      setTimeout(
+        () =>
+          collectionNameInput
+            .focus(),
+
+        50
+      );
+
+    }
+
+
+    function closeCollectionModal() {
+
+      collectionBackdrop
+        .classList.remove(
+          "open"
+        );
+
+    }
+
+
+    newFolderBtn?.addEventListener(
+      "click",
+      openCollectionModal
+    );
+
+
+    cancelCollection
+      .addEventListener(
+        "click",
+        closeCollectionModal
+      );
+
+
+    collectionBackdrop
+      .addEventListener(
+        "click",
+
+        event => {
+
+          if (
+            event.target ===
+            collectionBackdrop
+          ) {
+
+            closeCollectionModal();
+
+          }
+
+        }
+
+      );
+
+
+    cancelUpgrade
+      .addEventListener(
+        "click",
+        closeUpgradeModal
+      );
+
+
+    upgradeBackdrop
+      .addEventListener(
+        "click",
+
+        event => {
+
+          if (
+            event.target ===
+            upgradeBackdrop
+          ) {
+
+            closeUpgradeModal();
+
+          setSidebarOpen(false);
+
+          }
+
+        }
+
+      );
+
+
+    upgradeBtn
+      .addEventListener(
+        "click",
+        async () => {
+
+          if (!currentUser) {
+            closeUpgradeModal();
+            openAuthModal();
+            return;
+          }
+
+          upgradeBtn.disabled = true;
+          const originalText = upgradeBtn.textContent;
+          upgradeBtn.textContent = "Opening PayPal...";
+
+          try {
+            const { data, error } = await supabaseClient.functions.invoke(
+              "create-paypal-order",
+              { body: {} }
+            );
+
+            if (error) throw error;
+            if (!data?.approvalUrl) {
+              throw new Error("PayPal approval URL was not returned.");
+            }
+
+            window.location.href = data.approvalUrl;
+          } catch (error) {
+            alert(error.message || "Could not start PayPal checkout.");
+            upgradeBtn.disabled = false;
+            upgradeBtn.textContent = originalText;
+          }
+        }
+      );
+
+
+    collectionForm
+      .addEventListener(
+        "submit",
+
+        async event => {
+
+          event.preventDefault();
+
+
+          const name =
+            collectionNameInput
+              .value
+              .trim();
+
+
+          if (!name) {
+
+            return;
+
+          }
+
+
+          const submitButton =
+            event.currentTarget
+              .querySelector(
+                "button[type='submit']"
+              );
+
+
+          submitButton.disabled =
+            true;
+
+
+          try {
+
+            const collection =
+              await createCollection(
+                name
+              );
+
+
+            if (!collection) {
+
+              return;
+
+            }
+
+
+            collections.push(
+              collection
+            );
+
+
+            activeCollectionId =
+              collection.id;
+
+
+            activeWords = [];
+
+            searchQuery = "";
+
+
+            closeCollectionModal();
+
+
+            renderSidebar();
+
+            renderMain();
+
+
+            setTimeout(
+              () =>
+                document
+                  .getElementById(
+                    "wordInput"
+                  )
+                  ?.focus(),
+
+              0
+            );
+
+          }
+
+          catch (error) {
+
+            alert(
+              error.message
+            );
+
+          }
+
+          finally {
+
+            submitButton.disabled =
+              false;
+
+          }
+
+        }
+
+      );
+
+
+    /* ========================================
+       AUTH EVENTS
+    ======================================== */
+
+    loginTab?.addEventListener(
+      "click",
+
+      () =>
+        setAuthMode(
+          "login"
+        )
+    );
+
+
+    signupTab?.addEventListener(
+      "click",
+
+      () =>
+        setAuthMode(
+          "signup"
+        )
+    );
+
+
+    cancelAuth?.addEventListener(
+      "click",
+      closeAuthModal
+    );
+
+
+    authBackdrop?.addEventListener(
+      "click",
+
+      event => {
+
+        if (
+          event.target ===
+          authBackdrop
+        ) {
+
+          closeAuthModal();
+
+        }
+
+      }
+
+    );
+
+
+    authForm?.addEventListener(
+      "submit",
+
+      async event => {
+
+        event.preventDefault();
+
+
+        clearAuthMessage();
+
+
+        const email =
+          authEmail
+            .value
+            .trim();
+
+
+        const password =
+          authPassword
+            .value;
+
+
+        const name =
+          authName
+            .value
+            .trim();
+
+
+        authSubmit.disabled =
+          true;
+
+
+        try {
+
+          if (
+            authMode ===
+            "signup"
+          ) {
+
+            const data =
+              await signUp(
+
+                email,
+
+                password,
+
+                name
+
+              );
+
+
+            if (
+              data.session
+            ) {
+
+              closeAuthModal();
+
+            }
+
+            else {
+
+              setAuthMessage(
+
+                "Account created. Check your email to confirm your account, then log in.",
+
+                "success"
+
+              );
+
+            }
+
+          }
+
+          else {
+
+            await logIn(
+              email,
+              password
+            );
+
+
+            closeAuthModal();
+
+          }
+
+        }
+
+        catch (error) {
+
+          setAuthMessage(
+
+            error.message,
+
+            "error"
+
+          );
+
+        }
+
+        finally {
+
+          authSubmit.disabled =
+            false;
+
+        }
+
+      }
+
+    );
+
+
+    /* ========================================
+       ESCAPE KEY
+    ======================================== */
+
+    document.addEventListener(
+      "keydown",
+
+      event => {
+
+        if (
+          event.key ===
+          "Escape"
+        ) {
+
+          closeAuthModal();
+
+          closeCollectionModal();
+
+          closeUpgradeModal();
+
+        }
+
+      }
+
+    );
+
+
+    /* ========================================
+       AUTH STATE
+    ======================================== */
+
+    supabaseClient.auth
+      .onAuthStateChange(
+
+        async (
+          event,
+          session
+        ) => {
+
+          currentUser =
+            session?.user ||
+            null;
+
+
+          if (
+            event ===
+            "SIGNED_IN"
+          ) {
+
+            try {
+
+              showLoading();
+
+
+              await loadCollections();
+              await loadEntitlements();
+
+
+              activeCollectionId =
+                collections[0]
+                  ?.id || null;
+
+
+              activeWords = [];
+
+
+              if (
+                activeCollectionId
+              ) {
+
+                await loadWords(
+                  activeCollectionId
+                );
+
+              }
+
+
+              renderAccount();
+
+              renderSidebar();
+
+              renderMain();
+
+            }
+
+            catch (error) {
+
+              showError(
+                error.message
+              );
+
+            }
+
+          }
+
+
+          if (
+            event ===
+            "SIGNED_OUT"
+          ) {
+
+            currentUser = null;
+
+            collections = [];
+
+            activeWords = [];
+
+            activeCollectionId = null;
+
+
+            renderAccount();
+
+            renderSidebar();
+
+            renderMain();
+
+          }
+
+        }
+
+      );
+
+
+    /* ========================================
+       INITIALIZE APP
+    ======================================== */
+
+    async function initializeApp() {
+
+      showLoading();
+
+
+      try {
+
+        const shareToken =
+          new URLSearchParams(
+            window.location.search
+          ).get("share");
+
+
+        if (shareToken) {
+
+          await loadSharedDictionary(
+            shareToken
+          );
+
+          currentUser = null;
+
+          document
+            .querySelector("aside")
+            ?.remove();
+
+          document
+            .getElementById(
+              "sidebarToggle"
+            )
+            ?.remove();
+
+          document
+            .getElementById(
+              "sidebarScrim"
+            )
+            ?.remove();
+
+          document
+            .querySelector(".app")
+            ?.classList.add(
+              "shared-app"
+            );
+
+          renderMain();
+
+          return;
+
+        }
+
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth
+            .getSession();
+
+
+        if (error) {
+
+          throw error;
+
+        }
+
+
+        currentUser =
+          data.session
+            ?.user || null;
+
+
+        if (
+          currentUser
+        ) {
+
+          await loadCollections();
+          await loadEntitlements();
+
+
+          activeCollectionId =
+            collections[0]
+              ?.id || null;
+
+
+          if (
+            activeCollectionId
+          ) {
+
+            await loadWords(
+              activeCollectionId
+            );
+
+          }
+
+        }
+
+
+        renderAccount();
+
+        renderSidebar();
+
+        renderMain();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        showError(
+          error.message
+        );
+
+      }
+
+    }
+
+
+    async function waitForPurchasedCollection(previousExtraCollections) {
+      const maxAttempts = 20;
+      const delayMs = 750;
+
+      for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        await new Promise(resolve => setTimeout(resolve, delayMs));
+
+        try {
+          await loadEntitlements();
+
+          if (extraCollections > previousExtraCollections) {
+            return true;
+          }
+        } catch (error) {
+          console.error("Could not refresh collection entitlement:", error);
+        }
+      }
+
+      return false;
+    }
+
+
+    async function handlePayPalReturn() {
+      const params = new URLSearchParams(window.location.search);
+      const paymentStatus = params.get("payment");
+      const orderId = params.get("token");
+
+      if (paymentStatus === "cancelled") {
+        history.replaceState({}, "", window.location.pathname);
+        return;
+      }
+
+      if (paymentStatus !== "success" || !orderId) return;
+
+      const { data: sessionData } = await supabaseClient.auth.getSession();
+      if (!sessionData.session) return;
+
+      const previousExtraCollections = extraCollections;
+
+      setPurchaseProcessing(true);
+      closeUpgradeModal();
+
+      try {
+        const { data, error } = await supabaseClient.functions.invoke(
+          "capture-paypal-order",
+          { body: { orderId } }
+        );
+
+        if (error) throw error;
+        if (!data?.success) throw new Error(data?.error || "Payment capture failed.");
+
+        history.replaceState({}, "", window.location.pathname);
+
+        const unlocked = await waitForPurchasedCollection(
+          previousExtraCollections
+        );
+
+        if (unlocked) {
+          setPurchaseProcessing(false);
+          openCollectionModal();
+          return;
+        }
+
+        setPurchaseProcessing(false);
+        alert(
+          "Payment completed, but PayPal confirmation is still processing. Please try Add language or title again shortly."
+        );
+      } catch (error) {
+        setPurchaseProcessing(false);
+        console.error("PayPal capture failed:", error);
+        alert(error.message || "Could not complete the PayPal payment.");
+        history.replaceState({}, "", window.location.pathname);
+      }
+    }
+
+
+    initializeApp().then(() => {
+      if (!sharedView) {
+        handlePayPalReturn();
+      }
+    });
+
+  </script>
+
+
+<style>
+  @media (max-width: 760px) {
+    aside {
+      overflow: hidden !important;
+      touch-action: pan-y;
+    }
+
+    .folder-list {
+      flex: 1 1 0 !important;
+      min-height: 0 !important;
+      max-height: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+      touch-action: pan-y;
+    }
+
+    .folder-item {
+      touch-action: pan-y;
+      flex-shrink: 0 !important;
+    }
+
+    .brand,
+    .account-area {
+      flex-shrink: 0 !important;
+    }
+  }
+</style>
+
+
+<style>
+  @media (max-width: 760px) {
+    aside {
+      overflow: hidden !important;
+    }
+
+    .folder-list {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+      touch-action: auto !important;
+    }
+
+    .folder-item {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      touch-action: manipulation !important;
+      user-select: none;
+      -webkit-user-select: none;
+      flex: 0 0 40px !important;
+      min-height: 40px !important;
+      height: 40px !important;
+      width: 100% !important;
+    }
+
+    .folder-name,
+    .folder-count {
+      pointer-events: none;
+    }
+
+    .brand,
+    .account-area {
+      flex: 0 0 auto !important;
+    }
+  }
+</style>
+
+
+<style>
+  @media (max-width: 760px) {
+    aside {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+    }
+
+    .brand,
+    .account-area,
+    .new-folder {
+      flex: 0 0 auto !important;
+    }
+
+    .folder-list {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+
+      flex: 1 1 0 !important;
+      min-height: 0 !important;
+
+      overflow-y: scroll !important;
+      overflow-x: hidden !important;
+
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior-y: contain !important;
+
+      touch-action: pan-y !important;
+
+      gap: 9px !important;
+      padding: 0 0 8px 0 !important;
+    }
+
+    .folder-item {
+      flex: 0 0 40px !important;
+      min-height: 40px !important;
+      height: 40px !important;
+
+      width: 100% !important;
+
+      pointer-events: auto !important;
+      touch-action: pan-y !important;
+
+      -webkit-user-select: none !important;
+      user-select: none !important;
+    }
+
+    .folder-name,
+    .folder-count {
+      pointer-events: none !important;
+    }
+  }
+</style>
+
+
+<style>
+  @media (max-width: 760px) {
+    .folder-list {
+      overscroll-behavior-y: auto !important;
+      touch-action: pan-y !important;
+    }
+
+    aside {
+      overscroll-behavior-y: auto !important;
+    }
+
+    html,
+    body {
+      overscroll-behavior-y: auto !important;
+      overflow-y: auto !important;
+    }
+  }
+</style>
+
+
+<style>
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-left: auto;
+  }
+
+  .share-btn {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 9px 14px;
+    cursor: pointer;
+  }
+
+  .share-btn:hover {
+    background: var(--soft);
+  }
+
+  .share-btn:disabled {
+    opacity: 0.65;
+    cursor: default;
+  }
+
+  .app.shared-app {
+    display: block !important;
+    min-height: 100vh;
+  }
+
+  .shared-app main {
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  @media (max-width: 760px) {
+    .topbar {
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .topbar-actions {
+      flex-shrink: 0;
+    }
+
+    .share-btn,
+    .danger-btn {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .shared-app main {
+      padding-top: 28px !important;
+    }
+  }
+</style>
+
+</body>
+</html>
+<style>
+  /* Final override: collections are a normal top-aligned list */
+  .folder-list {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    align-content: initial !important;
+    gap: 9px !important;
+  }
+
+  .folder-list .folder-item {
+    flex: 0 0 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    margin: 0 !important;
+  }
+
+  @media (max-width: 760px) {
+    .folder-list {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      gap: 9px !important;
+    }
+  }
+</style>
