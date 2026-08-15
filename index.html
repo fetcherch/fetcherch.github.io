@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Your Dictionary</title>
+  <title>AllOfMyWords</title>
 
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -30,8 +30,7 @@
 
     html,
     body {
-      height: 100%;
-      overscroll-behavior: none;
+      min-height: 100%;
     }
 
     body {
@@ -61,9 +60,7 @@
     }
 
     .app {
-      height: 100vh;
-      min-height: 0;
-      overflow: hidden;
+      min-height: 100vh;
 
       display: grid;
       grid-template-columns: 290px minmax(0, 1fr);
@@ -298,18 +295,13 @@
     ======================================== */
 
     main {
-      padding: 48px clamp(24px, 5vw, 72px) 0;
+      padding: 48px clamp(24px, 5vw, 72px) 48px;
 
       max-width: 1200px;
       width: 100%;
-      height: 100vh;
-      min-height: 0;
+      min-height: 100vh;
 
       margin: 0 auto;
-
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
     }
 
     .empty-state {
@@ -541,18 +533,9 @@
     .word-list {
       display: grid;
       gap: 9px;
-
-      flex: 1 1 auto;
-      min-height: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-      overscroll-behavior-y: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      overflow: visible;
       padding-top: 6px;
       padding-bottom: 28px;
-      scroll-padding-bottom: 28px;
       align-content: start;
     }
 
@@ -647,7 +630,8 @@
 
       padding: 20px;
 
-      z-index: 100;
+      /* Keep all modals above the mobile sidebar / landing screen. */
+      z-index: 320;
     }
 
     .modal-backdrop.open {
@@ -821,11 +805,20 @@
       display: none;
     }
 
+    .mobile-auth-intro {
+      display: none;
+    }
+
     /* ========================================
        MOBILE
     ======================================== */
 
     @media (max-width: 760px) {
+
+      .sidebar-toggle {
+        display: block;
+      }
+
 
       .app {
         grid-template-columns: 1fr;
@@ -835,43 +828,124 @@
       }
 
       aside {
-        padding: 18px;
-
-        border-right: 0;
-
-        border-bottom: 1px solid var(--line);
-
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(86vw, 320px);
+        height: 100vh;
+        max-height: 100vh;
+        padding: 72px 18px 18px;
+        border-right: 1px solid var(--line);
+        border-bottom: 0;
         gap: 14px;
-
-        height: auto;
-        position: static;
-        overflow: visible;
+        overflow: hidden;
+        z-index: 210;
+        transform: translateX(-100%);
+        transition: transform 0.22s ease;
+        box-shadow: 16px 0 40px rgba(20, 30, 20, 0.10);
       }
 
-      .brand p {
+      aside.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(31, 35, 30, 0.24);
+        backdrop-filter: blur(2px);
+      }
+
+      .sidebar-scrim.open {
+        display: block;
+      }
+
+      /* Logged-out mobile: sidebar becomes the entire landing screen. */
+      aside.logged-out {
+        width: 100%;
+        transform: none;
+        padding: 32px 22px;
+        border: 0;
+        box-shadow: none;
+        z-index: 210;
+      }
+
+      aside.logged-out .new-folder,
+      aside.logged-out .folder-list {
         display: none;
       }
 
+      aside.logged-out .mobile-auth-intro {
+        display: grid;
+        flex: 1 1 auto;
+        min-height: 0;
+        place-items: center;
+        padding: 28px 12px;
+        text-align: center;
+      }
+
+      .mobile-auth-intro-inner {
+        max-width: 430px;
+      }
+
+      .mobile-auth-intro h2 {
+        margin: 0 0 10px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(34px, 10vw, 48px);
+        line-height: 1.05;
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+      }
+
+      .mobile-auth-intro p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      aside.logged-out .account-area {
+        margin-top: 0;
+      }
+
+      body:has(aside.logged-out) .sidebar-toggle,
+      body:has(aside.logged-out) .sidebar-scrim,
+      body:has(aside.logged-out) main {
+        display: none !important;
+      }
+
+      body:has(aside.logged-out) .modal-backdrop.open {
+        display: grid !important;
+        z-index: 320;
+      }
+
+      .brand p {
+        display: block;
+      }
+
       .folder-list {
-        display: flex;
-
-        overflow-x: auto;
-
+        display: grid;
+        gap: 0;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
         padding-bottom: 2px;
       }
 
       .folder-item {
-        min-width: max-content;
-
+        min-width: 0;
+        width: 100%;
         background: rgba(255, 255, 255, 0.45);
       }
 
       .account-area {
-        margin-top: 0;
+        margin-top: auto;
       }
 
       main {
-        padding: 28px 18px;
+        padding: 76px 18px 28px;
         height: auto;
         min-height: 0;
         overflow: visible;
@@ -908,27 +982,8 @@
       }
     }
   
-    @media (min-width: 761px) {
-      .word-list::after {
-        content: "";
-        display: block;
-        height: 16px;
-        flex: 0 0 16px;
-        grid-column: 1 / -1;
-      }
-    }
 
 
-    @media (min-width: 761px) {
-      .word-list {
-        position: relative;
-        will-change: transform;
-      }
-
-      .word-list.elastic-bounce {
-        transition: transform 180ms cubic-bezier(.2,.8,.2,1);
-      }
-    }
 
 </style>
 </head>
@@ -974,6 +1029,16 @@
       >
         ＋ Add language or title
       </button>
+
+      <div class="mobile-auth-intro">
+        <div class="mobile-auth-intro-inner">
+          <h2>Build your own dictionary.</h2>
+          <p>
+            Create an account to save languages, newly learned
+            words, and translations.
+          </p>
+        </div>
+      </div>
 
       <div
         class="folder-list"
@@ -1131,7 +1196,7 @@
       </h3>
 
       <p id="authSubtitle">
-        Log in to continue to Your Dictionary.
+        Log in to continue to AllOfMyWords.
       </p>
 
       <div class="auth-tabs">
@@ -1441,6 +1506,16 @@
     );
 
 
+    window.addEventListener(
+      "resize",
+      () => {
+        if (window.innerWidth > 760) {
+          setSidebarOpen(false);
+        }
+      }
+    );
+
+
     /* ========================================
        HELPERS
     ======================================== */
@@ -1557,9 +1632,9 @@
       authSubtitle.textContent =
         signingUp
 
-          ? "Sign up to start building Your Dictionary."
+          ? "Sign up to start building AllOfMyWords."
 
-          : "Log in to continue to Your Dictionary.";
+          : "Log in to continue to AllOfMyWords.";
 
 
       authSubmit.textContent =
@@ -2246,6 +2321,11 @@
     ======================================== */
 
     function renderAccount() {
+
+      sidebar?.classList.toggle(
+        "logged-out",
+        !currentUser && !sharedView
+      );
 
       if (!currentUser) {
 
