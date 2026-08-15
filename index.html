@@ -419,16 +419,23 @@
     }
 
     .field-wrap input {
-      padding-right: 68px;
+      padding-right: 14px;
     }
 
     .char-counter {
+      display: none !important;
       position: absolute;
       right: 12px;
       bottom: 10px;
+      width: max-content;
+      max-width: max-content;
+      display: inline-block;
+      padding: 0 3px;
+      background: var(--panel);
       color: var(--muted);
       font-size: 11px;
       line-height: 1;
+      white-space: nowrap;
       pointer-events: none;
       opacity: 0;
       transform: translateY(2px);
@@ -889,19 +896,19 @@
 
       aside {
         position: fixed;
-        inset: 0 auto 0 0;
-        width: min(86vw, 320px);
+        inset: 0;
+        width: 100vw;
         height: 100vh;
         max-height: 100vh;
         padding: 72px 18px 18px;
-        border-right: 1px solid var(--line);
+        border-right: 0;
         border-bottom: 0;
         gap: 14px;
         overflow: hidden;
         z-index: 210;
         transform: translateX(-100%);
         transition: transform 0.22s ease;
-        box-shadow: 16px 0 40px rgba(20, 30, 20, 0.10);
+        box-shadow: none;
       }
 
       aside.open {
@@ -920,9 +927,15 @@
         display: block;
       }
 
+      body.mobile-sidebar-locked {
+        overflow: hidden !important;
+        height: 100vh;
+        touch-action: none;
+      }
+
       /* Logged-out mobile: sidebar becomes the entire landing screen. */
       aside.logged-out {
-        width: 100%;
+        width: 100vw;
         transform: none;
         padding: 32px 22px;
         border: 0;
@@ -1194,7 +1207,96 @@
       }
     }
 
+
+    #editCollectionTitleBtn {
+      display: none !important;
+    }
+
+    #collectionTitle {
+      cursor: pointer;
+    }
+
+    #collectionTitle:hover {
+      opacity: 0.78;
+    }
+
+
+    /* Keep sidebar word counts centered for 1, 2, or 3 digits. */
+    .count {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 0 !important;
+      line-height: 1 !important;
+      font-variant-numeric: tabular-nums;
+    }
+
+
+    .folder-count {
+      min-width: 25px;
+      width: auto;
+      height: 25px;
+      padding: 0 7px;
+      padding-top: 1px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+
+    #searchInput {
+      width: 100%;
+      max-width: none;
+    }
+
+    @media (min-width: 761px) {
+      main > .toolbar #searchInput {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+
+    html.purchase-pending-boot #newFolderBtn {
+      color: transparent !important;
+      pointer-events: none;
+    }
+
+    html.purchase-pending-boot #newFolderBtn::before,
+    html.purchase-pending-boot #newFolderBtn::after {
+      content: none !important;
+      display: none !important;
+    }
+
+
 </style>
+
+  <script>
+    /*
+      Runs before first paint so a known pending purchase never flashes
+      "Unlock a new collection" during reload.
+    */
+    try {
+      const pendingPurchase =
+        localStorage.getItem(
+          "allofmywords_pending_purchase"
+        );
+
+      if (pendingPurchase) {
+        document.documentElement.classList.add(
+          "purchase-pending-boot"
+        );
+      }
+    } catch (_) {}
+  </script>
+
 </head>
 
 <body>
@@ -1235,9 +1337,8 @@
         class="new-folder"
         id="newFolderBtn"
         disabled
-      >
-        ＋ Add language or title
-      </button>
+        aria-label="Collection action"
+      ></button>
 
       <div class="mobile-auth-intro">
         <div class="mobile-auth-intro-inner">
@@ -1559,6 +1660,63 @@
 
     let purchaseProcessing = false;
 
+    const PURCHASE_PENDING_KEY =
+      "allofmywords_pending_purchase";
+
+    function savePendingPurchase(previousExtraCollections) {
+
+      if (!currentUser) return;
+
+      localStorage.setItem(
+        PURCHASE_PENDING_KEY,
+        JSON.stringify({
+          userId: currentUser.id,
+          previousExtraCollections,
+          createdAt: Date.now()
+        })
+      );
+
+    }
+
+    function getPendingPurchase() {
+
+      try {
+        const raw =
+          localStorage.getItem(
+            PURCHASE_PENDING_KEY
+          );
+
+        if (!raw) return null;
+
+        const pending =
+          JSON.parse(raw);
+
+        if (
+          !pending ||
+          !pending.userId
+        ) {
+          return null;
+        }
+
+        return pending;
+      }
+
+      catch (_) {
+        return null;
+      }
+
+    }
+
+    function clearPendingPurchase() {
+      localStorage.removeItem(
+        PURCHASE_PENDING_KEY
+      );
+
+      document.documentElement.classList.remove(
+        "purchase-pending-boot"
+      );
+    }
+
     let appHydrated = false;
 
 
@@ -1724,6 +1882,17 @@
         String(open)
       );
 
+      if (window.matchMedia("(max-width: 760px)").matches) {
+        document.body.classList.toggle(
+          "mobile-sidebar-locked",
+          open
+        );
+      } else {
+        document.body.classList.remove(
+          "mobile-sidebar-locked"
+        );
+      }
+
       if (sidebarToggle) {
         sidebarToggle.textContent =
           open ? "×" : "☰";
@@ -1761,6 +1930,9 @@
       () => {
         if (window.innerWidth > 760) {
           setSidebarOpen(false);
+          document.body.classList.remove(
+            "mobile-sidebar-locked"
+          );
         }
       }
     );
@@ -1817,20 +1989,52 @@
     }
 
 
-    function setPurchaseProcessing(isProcessing) {
-      purchaseProcessing = isProcessing;
+    function updateNewCollectionButton() {
 
-      if (!currentUser) return;
+      if (!currentUser) {
+        newFolderBtn.disabled = true;
+        return;
+      }
 
-      newFolderBtn.disabled = isProcessing;
-
-      if (isProcessing) {
+      if (purchaseProcessing) {
+        newFolderBtn.disabled = true;
         newFolderBtn.innerHTML =
           '<span class="inline-spinner" aria-hidden="true"></span>Completing purchase...';
-      } else {
-        newFolderBtn.textContent = "＋ Add language or title";
-        newFolderBtn.disabled = false;
+
+        newFolderBtn.setAttribute(
+          "aria-label",
+          "Completing purchase"
+        );
+
+        return;
       }
+
+      const collectionLimit =
+        3 + extraCollections;
+
+      const atLimit =
+        collections.length >=
+        collectionLimit;
+
+      newFolderBtn.disabled = false;
+
+      newFolderBtn.textContent =
+        atLimit
+          ? "＋ Unlock a new collection"
+          : "＋ Add language or title";
+
+      newFolderBtn.setAttribute(
+        "aria-label",
+        atLimit
+          ? "Unlock a new collection"
+          : "Add language or title"
+      );
+    }
+
+
+    function setPurchaseProcessing(isProcessing) {
+      purchaseProcessing = isProcessing;
+      updateNewCollectionButton();
     }
 
 
@@ -2731,12 +2935,7 @@
         );
 
 
-      if (purchaseProcessing) {
-        setPurchaseProcessing(true);
-      } else {
-        newFolderBtn.disabled = false;
-        newFolderBtn.textContent = "＋ Add language or title";
-      }
+      updateNewCollectionButton();
 
     }
 
@@ -2746,6 +2945,8 @@
     ======================================== */
 
     function renderSidebar() {
+
+      updateNewCollectionButton();
 
       if (!currentUser) {
 
@@ -3167,7 +3368,7 @@
           <div class="title-wrap">
 
             <div class="title-heading-row">
-              <h2>
+              <h2 id="collectionTitle">
                 ${escapeHtml(collection.name)}
               </h2>
 
@@ -3663,19 +3864,29 @@
 
       /* Edit Collection Title */
 
+      const openTitleEditor = () => {
+        actionCollectionId = collection.id;
+        editTitleInput.value = collection.name || "";
+        editTitleBackdrop.classList.add("open");
+
+        setTimeout(() => {
+          editTitleInput.focus();
+          editTitleInput.select();
+        }, 30);
+      };
+
       document
         .getElementById("editCollectionTitleBtn")
         ?.addEventListener(
           "click",
-          () => {
-            actionCollectionId = collection.id;
-            editTitleInput.value = collection.name || "";
-            editTitleBackdrop.classList.add("open");
-            setTimeout(() => {
-              editTitleInput.focus();
-              editTitleInput.select();
-            }, 30);
-          }
+          openTitleEditor
+        );
+
+      document
+        .getElementById("collectionTitle")
+        ?.addEventListener(
+          "click",
+          openTitleEditor
         );
 
 
@@ -4554,21 +4765,130 @@
 
 
     async function waitForPurchasedCollection(previousExtraCollections) {
-      const maxAttempts = 20;
-      const delayMs = 750;
+      const delayMs = 900;
 
-      for (let attempt = 0; attempt < maxAttempts; attempt++) {
-        await new Promise(resolve => setTimeout(resolve, delayMs));
+      /*
+        Keep watching Supabase until the purchased entitlement is actually
+        visible in user_entitlements. This avoids requiring a manual refresh
+        when PayPal capture finishes before the database/webhook update does.
+      */
+      while (
+        currentUser &&
+        purchaseProcessing
+      ) {
 
         try {
+
           await loadEntitlements();
 
-          if (extraCollections > previousExtraCollections) {
+          if (
+            extraCollections >
+            previousExtraCollections
+          ) {
             return true;
           }
-        } catch (error) {
-          console.error("Could not refresh collection entitlement:", error);
+
         }
+
+        catch (error) {
+          console.error(
+            "Could not refresh collection entitlement:",
+            error
+          );
+        }
+
+        await new Promise(
+          resolve =>
+            setTimeout(resolve, delayMs)
+        );
+
+      }
+
+      return false;
+    }
+
+
+
+    async function resumePendingPurchaseWatch() {
+
+      if (
+        !currentUser ||
+        sharedView
+      ) {
+        return false;
+      }
+
+      const pending =
+        getPendingPurchase();
+
+      if (
+        !pending ||
+        pending.userId !== currentUser.id
+      ) {
+        return false;
+      }
+
+      const previousExtraCollections =
+        Number(
+          pending.previousExtraCollections
+        ) || 0;
+
+      /*
+        We already know from localStorage that a purchase is pending.
+        Show the real loading state immediately after app initialization,
+        BEFORE waiting on any Supabase request.
+      */
+      setPurchaseProcessing(true);
+
+      document.documentElement.classList.remove(
+        "purchase-pending-boot"
+      );
+
+      /*
+        Now check whether the entitlement arrived during the reload.
+        If it did, switch straight from Completing purchase... to the
+        newly available Add state.
+      */
+      try {
+        await loadEntitlements();
+      }
+      catch (error) {
+        console.warn(
+          "Could not refresh entitlement yet; continuing purchase watch.",
+          error
+        );
+      }
+
+      if (
+        extraCollections >
+        previousExtraCollections
+      ) {
+
+        clearPendingPurchase();
+        setPurchaseProcessing(false);
+
+        renderAccount();
+        renderSidebar();
+
+        return true;
+      }
+
+      const unlocked =
+        await waitForPurchasedCollection(
+          previousExtraCollections
+        );
+
+      if (unlocked) {
+
+        clearPendingPurchase();
+        setPurchaseProcessing(false);
+
+        renderAccount();
+        renderSidebar();
+
+        openCollectionModal();
+
+        return true;
       }
 
       return false;
@@ -4581,6 +4901,8 @@
       const orderId = params.get("token");
 
       if (paymentStatus === "cancelled") {
+        clearPendingPurchase();
+        setPurchaseProcessing(false);
         history.replaceState({}, "", window.location.pathname);
         return;
       }
@@ -4592,47 +4914,106 @@
 
       const previousExtraCollections = extraCollections;
 
+      /*
+        Persist the pending state BEFORE calling the Edge Function.
+        A non-2xx response can still happen while PayPal / the backend is
+        finishing the entitlement update, so never revert the customer
+        back to "Unlock" just because this request returned an error.
+      */
+      savePendingPurchase(
+        previousExtraCollections
+      );
+
       setPurchaseProcessing(true);
       closeUpgradeModal();
 
       try {
-        const { data, error } = await supabaseClient.functions.invoke(
-          "capture-paypal-order",
-          { body: { orderId } }
+
+        const { data, error } =
+          await supabaseClient.functions.invoke(
+            "capture-paypal-order",
+            {
+              body: {
+                orderId
+              }
+            }
+          );
+
+        if (error) {
+          throw error;
+        }
+
+        if (!data?.success) {
+          throw new Error(
+            data?.error ||
+            "Payment capture is still processing."
+          );
+        }
+
+      }
+
+      catch (error) {
+
+        /*
+          Do not expose Edge Function / backend errors to customers and
+          do not clear the pending purchase. The database entitlement is
+          the source of truth, so keep the loading state and watch it.
+        */
+        console.warn(
+          "Purchase capture response unavailable; waiting for entitlement.",
+          error
         );
 
-        if (error) throw error;
-        if (!data?.success) throw new Error(data?.error || "Payment capture failed.");
+      }
 
-        history.replaceState({}, "", window.location.pathname);
+      /*
+        Remove PayPal return params immediately. From here onward the
+        persisted pending marker is enough to resume after any reload.
+      */
+      history.replaceState(
+        {},
+        "",
+        window.location.pathname
+      );
 
-        const unlocked = await waitForPurchasedCollection(
+      const unlocked =
+        await waitForPurchasedCollection(
           previousExtraCollections
         );
 
-        if (unlocked) {
-          setPurchaseProcessing(false);
-          openCollectionModal();
-          return;
-        }
+      if (unlocked) {
+
+        clearPendingPurchase();
 
         setPurchaseProcessing(false);
-        alert(
-          "Payment completed, but PayPal confirmation is still processing. Please try Add language or title again shortly."
-        );
-      } catch (error) {
-        setPurchaseProcessing(false);
-        console.error("PayPal capture failed:", error);
-        alert(error.message || "Could not complete the PayPal payment.");
-        history.replaceState({}, "", window.location.pathname);
+
+        renderAccount();
+        renderSidebar();
+
+        openCollectionModal();
+
       }
     }
 
 
-    initializeApp().then(() => {
-      if (!sharedView) {
-        handlePayPalReturn();
+    initializeApp().then(async () => {
+      if (sharedView) return;
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+      const isPayPalReturn =
+        params.get("payment") === "success" &&
+        params.get("token");
+
+      if (isPayPalReturn) {
+        await handlePayPalReturn();
+        return;
       }
+
+      await resumePendingPurchaseWatch();
     });
 
   </script>
