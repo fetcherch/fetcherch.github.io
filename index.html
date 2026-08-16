@@ -1755,6 +1755,13 @@
       }
     }
 
+
+    /* Never show AI controls on shared collection pages. */
+    body:has(.app.shared-app) #chatLauncher,
+    body:has(.app.shared-app) #chatOverlay {
+      display: none !important;
+    }
+
 </style>
 
   <script>
