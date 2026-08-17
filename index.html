@@ -3591,11 +3591,81 @@
     }
 
 
+    function detachOpenChatBeforeRender() {
+
+      const overlay =
+        document.getElementById(
+          "chatOverlay"
+        );
+
+      if (
+        overlay?.classList.contains(
+          "open"
+        )
+      ) {
+        document.body.appendChild(
+          overlay
+        );
+
+        return true;
+      }
+
+      return false;
+    }
+
+
+    function restoreOpenChatAfterRender(
+      shouldRestore
+    ) {
+
+      if (!shouldRestore) {
+        return;
+      }
+
+      const overlay =
+        document.getElementById(
+          "chatOverlay"
+        );
+
+      const addCard =
+        document.querySelector(
+          ".add-card"
+        );
+
+      if (
+        overlay &&
+        addCard
+      ) {
+        addCard.insertAdjacentElement(
+          "afterend",
+          overlay
+        );
+
+        overlay.classList.add(
+          "open"
+        );
+
+        overlay.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+        document.body.classList.add(
+          "chat-open"
+        );
+      }
+
+    }
+
+
     /* ========================================
        MAIN RENDER
     ======================================== */
 
     function renderMain() {
+
+      const shouldRestoreOpenChat =
+        detachOpenChatBeforeRender();
 
       if (sharedView && sharedCollection) {
 
@@ -4087,6 +4157,11 @@
           activeChatOverlay
         );
       }
+
+
+      restoreOpenChatAfterRender(
+        shouldRestoreOpenChat
+      );
 
 
       /* Live character counters */
