@@ -10,7 +10,7 @@
 <style>
   :root{
     --ink:#111318; --muted:#667085; --line:#e7e9ee; --bg:#f7f8fa;
-    --card:#fff; --accent:#ff5a36; --accent2:#ff7a45; --green:#18a566;
+    --card:#fff; --accent:#fe5a36; --accent2:rgba(254,90,54,.78); --green:#18a566;
     --shadow:0 18px 50px rgba(17,19,24,.08);
     --radius:22px;
   }
@@ -70,7 +70,7 @@
     text-align:left;
     cursor:pointer;
   }
-  .mobile-menu .mobile-nav-item:hover{background:#f7f8fa;color:#ff5a36}
+  .mobile-menu .mobile-nav-item:hover{background:#f7f8fa;color:#fe5a36}
   .mobile-menu .mobile-cta{
     width:100%;
     margin-top:6px;
@@ -87,12 +87,12 @@
   }
   .mobile-menu .mobile-cta.is-profile:hover{
     background:#f7f8fa!important;
-    color:#ff5a36!important;
+    color:#fe5a36!important;
   }
   .mobile-menu.open{display:block}
   .hero{padding:88px 0 72px;background:linear-gradient(180deg,#fff 0%,#f7f8fa 100%)}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
-  .eyebrow{display:inline-flex;padding:7px 11px;background:#fff0eb;color:#d83e1d;border-radius:999px;font-weight:800;font-size:12px;margin-bottom:18px}
+  .eyebrow{display:inline-flex;padding:7px 11px;background:rgba(254,90,54,.10);color:#fe5a36;border-radius:999px;font-weight:800;font-size:12px;margin-bottom:18px}
   h1{font-size:clamp(46px,6vw,76px);line-height:.98;letter-spacing:-4px;margin:0 0 22px;max-width:720px}
   h1 span{color:var(--accent)}
   .lead{font-size:19px;color:#596170;max-width:600px;margin-bottom:30px}
@@ -100,7 +100,7 @@
   .btn.light{background:white;color:var(--ink);border:1px solid var(--line)}
   .trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:30px;color:#717886;font-size:13px}
   .car-card{background:#111318;border-radius:28px;padding:28px;box-shadow:var(--shadow);color:white;min-height:380px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
-  .car-card:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;background:rgba(255,90,54,.18);right:-100px;top:-100px}
+  .car-card:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;background:rgba(254,90,54,.18);right:-100px;top:-100px}
   .ad-preview{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);border-radius:18px;padding:22px;position:relative;z-index:1}
   .ad-preview small{color:#aeb4bf;font-weight:700}.ad-preview h2{font-size:38px;line-height:1;margin:12px 0}.ad-preview .pill{display:inline-block;background:var(--accent);padding:8px 12px;border-radius:9px;font-weight:800}
   .car-meta{display:flex;justify-content:space-between;position:relative;z-index:1;color:#aeb4bf;font-size:13px}
@@ -108,14 +108,14 @@
   .section-head{text-align:center;max-width:720px;margin:0 auto 42px}.section-head h2{font-size:42px;letter-spacing:-2px;margin:0 0 10px}.section-head p{color:var(--muted);font-size:17px}
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .step,.brand,.form-card,.earning,.faq{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 8px 30px rgba(17,19,24,.035)}
-  .num{width:40px;height:40px;border-radius:12px;background:#fff0eb;color:var(--accent);display:grid;place-items:center;font-weight:900;margin-bottom:20px}.step h3{margin:0 0 8px}.step p{margin:0;color:var(--muted)}
+  .num{width:40px;height:40px;border-radius:12px;background:rgba(254,90,54,.10);color:var(--accent);display:grid;place-items:center;font-weight:900;margin-bottom:20px}.step h3{margin:0 0 8px}.step p{margin:0;color:var(--muted)}
   .brands{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .brand{padding:22px}.brand-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand-logo{font-weight:900;font-size:18px}.status{font-size:11px;padding:5px 8px;border-radius:999px;background:#eaf8f1;color:#11794c;font-weight:800}
   .brand p{color:var(--muted);font-size:14px;margin:12px 0 10px}.duration{font-size:12px;color:#8a909c;margin-bottom:8px;font-weight:700}.campaign-meta{display:flex;flex-direction:column;align-items:flex-start;gap:5px;font-size:12px;color:#6f7682;margin-bottom:18px}.slots{font-weight:800;color:#11794c}.pay{display:flex;align-items:end;justify-content:space-between}.pay strong{font-size:25px}.pay small{color:var(--muted)}
   .calculator{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}.earning{background:#111318;color:#fff;display:flex;flex-direction:column;justify-content:center}.earning .label{color:#aeb4bf;font-size:13px}.earning .total{font-size:58px;font-weight:900;letter-spacing:-3px;margin:8px 0}.earning p{color:#aeb4bf}.calc-box{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:30px}.calc-row{display:flex;justify-content:space-between;gap:20px;align-items:center;margin:18px 0}.calc-row label{font-weight:700}.calc-row select,.calc-row input{width:180px;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;font:inherit}
   .form-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px}.form-card h3{font-size:26px;margin-top:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:800}.field input,.field select{padding:13px 14px;border:1px solid var(--line);border-radius:11px;font:inherit;outline:none}.field input:focus,.field select:focus{border-color:var(--accent)}.check{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:13px}.success{display:none;background:#eaf8f1;color:#11794c;padding:12px;border-radius:10px;margin-top:14px;font-weight:700}
   .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.faq h4{margin:0 0 8px}.faq p{margin:0;color:var(--muted);font-size:14px}
-  .cta{background:var(--accent);color:white;border-radius:28px;padding:55px;display:flex;justify-content:space-between;align-items:center;gap:30px}.cta h2{font-size:42px;line-height:1.05;letter-spacing:-2px;margin:0 0 10px}.cta p{margin:0;color:#ffe1d9}.cta .btn{background:white;color:var(--ink)}
+  .cta{background:var(--accent);color:white;border-radius:28px;padding:55px;display:flex;justify-content:space-between;align-items:center;gap:30px}.cta h2{font-size:42px;line-height:1.05;letter-spacing:-2px;margin:0 0 10px}.cta p{margin:0;color:rgba(255,255,255,.82)}.cta .btn{background:white;color:var(--ink)}
   footer{padding:35px 0;color:#7b818d;font-size:13px}.footerin{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:25px}
 
   .driver-shell{display:grid;grid-template-columns:minmax(0,.78fr) minmax(520px,1.22fr);gap:54px;align-items:start}
@@ -130,25 +130,25 @@
   .driver-form .field input,.driver-form .field select{height:48px}
   .driver-form .check{margin:18px 0 16px;line-height:1.45}
   .driver-form .btn{height:50px}
-  .order-login-note{display:flex;align-items:flex-start;gap:10px;background:#fff7f3;border:1px solid #ffd8cc;color:#8f3d27;border-radius:12px;padding:14px 16px;margin:18px 0 0;font-size:13px}
+  .order-login-note{display:flex;align-items:flex-start;gap:10px;background:rgba(254,90,54,.06);border:1px solid rgba(254,90,54,.28);color:#fe5a36;border-radius:12px;padding:14px 16px;margin:18px 0 0;font-size:13px}
   .profile-note{font-size:13px;color:var(--muted);margin:-8px 0 20px}
   @media(max-width:900px){.driver-shell{grid-template-columns:1fr;gap:28px}.driver-copy{padding-top:0}.driver-copy h2{max-width:none}}
 
   .b2b-shell{display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:start}
   .b2b-panel{background:#111318;color:white;border-radius:28px;padding:38px;min-height:0;height:fit-content;align-self:start}
-  .b2b-panel .eyebrow{background:rgba(255,255,255,.1);color:#ffd2c6}
+  .b2b-panel .eyebrow{background:rgba(255,255,255,.1);color:rgba(254,90,54,.38)}
   .b2b-panel h2{font-size:46px;line-height:1.02;letter-spacing:-2.3px;margin:0 0 16px}
   .b2b-panel p{color:#b8bec8;font-size:17px;margin:0 0 24px}
   .b2b-points{display:grid;gap:13px;margin-top:26px}
   .b2b-point{display:flex;gap:11px;align-items:flex-start;color:#e7e9ee;font-size:14px}
-  .b2b-point span:first-child{width:26px;height:26px;border-radius:8px;background:rgba(255,90,54,.16);display:grid;place-items:center;color:#ff8b70;font-weight:900;flex:0 0 auto}
+  .b2b-point span:first-child{width:26px;height:26px;border-radius:8px;background:rgba(254,90,54,.16);display:grid;place-items:center;color:rgba(254,90,54,.72);font-weight:900;flex:0 0 auto}
 
   .b2b-form{padding:34px}
   .b2b-form h3{font-size:28px;letter-spacing:-1px;margin:0 0 8px}
   .b2b-form .intro{color:var(--muted);margin:0 0 24px}
   @media(max-width:900px){.b2b-shell{grid-template-columns:1fr}.b2b-panel h2{font-size:40px}}
 
-  .upload-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}
+  .upload-row{display:grid;grid-template-columns:1fr auto;align-items:end}
   .template-btn{height:48px;white-space:nowrap;background:white;color:var(--ink);border:1px solid var(--line);padding:0 16px;border-radius:11px;font-weight:800;font-size:13px;display:inline-flex;align-items:center;justify-content:center}
   .template-btn:hover{border-color:#c8ccd4;background:#fafafa}
   .file-help{font-size:12px;color:var(--muted);margin-top:6px}
@@ -318,7 +318,7 @@ footer{background:#111318;color:#fff;padding:58px 0 28px;margin-top:0}
   cursor:pointer;
 }
 .b2b-region-trigger:hover{border-color:#c8ced8}
-.b2b-region-trigger:focus{outline:none;border-color:#ff5a36;box-shadow:0 0 0 3px rgba(255,90,54,.12)}
+.b2b-region-trigger:focus{outline:none;border-color:#fe5a36;box-shadow:0 0 0 3px rgba(254,90,54,.12)}
 .b2b-region-trigger-label{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .b2b-region-chevron{
   position:relative;
@@ -374,7 +374,7 @@ footer{background:#111318;color:#fff;padding:58px 0 28px;margin-top:0}
   font-size:14px;
 }
 .b2b-region-option:hover{background:#f7f8fb}
-.b2b-region-option input{width:16px;height:16px;accent-color:#ff5a36;flex:0 0 auto}
+.b2b-region-option input{width:16px;height:16px;accent-color:#fe5a36;flex:0 0 auto}
 .b2b-region-option span{min-width:0}
 .b2b-overlay{position:fixed;inset:0;background:rgba(17,19,24,.72);z-index:10020;display:none;align-items:flex-start;justify-content:center;padding:32px 18px;overflow:auto}
 .b2b-overlay.open{display:flex}
@@ -469,7 +469,7 @@ body{overscroll-behavior-y:none}
 
 .audience-nav-card-driver{background:var(--accent);color:#111318;border-color:var(--accent)}
 .audience-nav-card-driver .audience-kicker{color:#111318}
-.audience-nav-card-driver>span:nth-of-type(2){color:#4a241c}
+.audience-nav-card-driver>span:nth-of-type(2){color:rgba(17,19,24,.72)}
 .audience-nav-card-business{background:#fff;color:#111318;border-color:var(--line)}
 .audience-nav-card-business .audience-kicker{color:var(--accent)}
 .audience-nav-card-business>span:nth-of-type(2){color:var(--muted)}
@@ -575,8 +575,8 @@ body{overscroll-behavior-y:none}
 
 #browseCampaigns.is-change-campaign{
   background:#fff !important;
-  color:#ff5a36 !important;
-  border:2px solid #ff5a36 !important;
+  color:#fe5a36 !important;
+  border:2px solid #fe5a36 !important;
   box-shadow:none !important;
 }
 
@@ -708,8 +708,8 @@ body{overscroll-behavior-y:none}
 
 .license-camera-open.is-uploaded{
   background:#fff !important;
-  color:#ff5a36 !important;
-  border:2px solid #ff5a36 !important;
+  color:#fe5a36 !important;
+  border:2px solid #fe5a36 !important;
   box-shadow:none !important;
 }
 .license-upload-status{
@@ -930,7 +930,7 @@ body{overscroll-behavior-y:none}
   border-color:#0B1F3A;
 }
 .signup-complete-close:focus-visible{
-  outline:2px solid #ff5a36;
+  outline:2px solid #fe5a36;
   outline-offset:2px;
 }
 
@@ -1012,8 +1012,8 @@ body{overscroll-behavior-y:none}
   outline:none;
 }
 #b2bComment:focus{
-  border-color:#ff5a36 !important;
-  box-shadow:0 0 0 1px #ff5a36 !important;
+  border-color:#fe5a36 !important;
+  box-shadow:0 0 0 1px #fe5a36 !important;
 }
 
 
@@ -1135,7 +1135,7 @@ body{overscroll-behavior-y:none}
 }
 .profile-shipping-menu-button.profile-shipping-details-link:hover{
   background:transparent;
-  color:#ff5a36;
+  color:#fe5a36;
 }
 
 
@@ -1195,8 +1195,8 @@ body{overscroll-behavior-y:none}
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  background:#ff5a36!important;
-  border:1px solid #ff5a36!important;
+  background:#fe5a36!important;
+  border:1px solid #fe5a36!important;
   border-radius:10px;
   box-shadow:none!important;
   padding:10px 16px!important;
@@ -1221,7 +1221,7 @@ body{overscroll-behavior-y:none}
 .auth-text-link.is-profile:hover{
   background:none!important;
   border-color:transparent!important;
-  color:#ff5a36!important;
+  color:#fe5a36!important;
 }
 
 .profile-overlay{
@@ -1367,7 +1367,7 @@ body{overscroll-behavior-y:none}
 .profile-payout-button{
   border:0;
   border-radius:10px;
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
   padding:10px 16px;
   font:inherit;
@@ -1392,7 +1392,7 @@ body{overscroll-behavior-y:none}
 .profile-edit-link:hover{
   border-color:#c9ced8;
   background:#f7f8fb;
-  color:#ff5a36;
+  color:#fe5a36;
 }
 .profile-edit-input{
   width:100%;
@@ -1426,7 +1426,7 @@ body{overscroll-behavior-y:none}
   cursor:pointer;
 }
 .profile-save-button{
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
 }
 .profile-save-button:hover{background:#e94d2c}
@@ -1459,6 +1459,214 @@ body{overscroll-behavior-y:none}
   .profile-card-head{flex-direction:column}
 }
 </style>
+
+<style>
+/* AdCars.ch logo: single brand orange everywhere */
+.logo, .logo .car, .logo .rest,
+.footer-brand .logo, .footer-brand .logo .car, .footer-brand .logo .rest {
+  color: #fe5a36 !important;
+}
+</style>
+
+<style>
+/* Hard mobile containment for Ad film design / artwork preview. */
+#b2bArtworkField,
+#b2bArtworkField .b2b-artwork-picker-ui,
+#b2bArtworkPreview.b2b-artwork-preview {
+  min-width:0 !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+#b2bArtworkField {
+  overflow:hidden !important;
+}
+#b2bArtworkPreview.b2b-artwork-preview {
+  height:auto !important;
+  max-height:none !important;
+  aspect-ratio:3 / 1 !important;
+  padding:10px !important;
+  overflow:hidden !important;
+}
+#b2bArtworkPreview.b2b-artwork-preview img {
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:100% !important;
+  max-height:100% !important;
+  min-width:0 !important;
+  object-fit:contain !important;
+  box-sizing:border-box !important;
+}
+#b2bArtworkPickerUi .b2b-artwork-picker-name {
+  min-width:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+@media(max-width:700px){
+  #b2bOverlay .b2b-form,
+  #b2bOverlay .form-grid,
+  #b2bOverlay .field {
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+  #b2bArtworkPreview.b2b-artwork-preview {
+    height:auto !important;
+    max-height:none !important;
+  }
+}
+</style>
+
+<style>
+/* STRICT FIX: keep the Ad film design controls and preview inside the B2B card.
+   Grid children use minmax(0,1fr) so a long filename/image can never define
+   a wider min-content size than the card. */
+#b2bOverlay .b2b-form,
+#b2bOverlay #b2bForm,
+#b2bOverlay #b2bForm .form-grid,
+#b2bOverlay #b2bForm .field,
+#b2bOverlay #b2bForm .field.full,
+#b2bOverlay #b2bArtworkField,
+#b2bOverlay #b2bArtworkField .upload-row,
+#b2bOverlay #b2bArtworkField .upload-row > div,
+#b2bOverlay #b2bArtworkPickerUi,
+#b2bOverlay #b2bArtworkPreview {
+  min-width:0 !important;
+  max-width:100% !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+#b2bOverlay #b2bArtworkField .upload-row{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  overflow:hidden !important;
+}
+#b2bOverlay #b2bArtworkField .upload-row > div {
+  overflow:hidden !important;
+}
+#b2bOverlay #b2bArtworkPickerUi {
+  overflow:hidden !important;
+}
+#b2bOverlay #b2bArtworkPickerName {
+  flex:1 1 0 !important;
+  width:0 !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+  white-space:nowrap !important;
+  text-overflow:ellipsis !important;
+}
+#b2bOverlay #b2bArtworkPreview {
+  overflow:hidden !important;
+  aspect-ratio:63 / 23 !important;
+  height:auto !important;
+  padding:0 !important;
+}
+#b2bOverlay #b2bArtworkPreviewImage {
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+}
+#b2bOverlay .file-help {
+  max-width:100% !important;
+  overflow-wrap:anywhere !important;
+}
+@media (max-width:700px) {
+  #b2bOverlay .b2b-overlay-panel {
+    width:calc(100vw - 28px) !important;
+    max-width:calc(100vw - 28px) !important;
+    overflow:hidden !important;
+  }
+  #b2bOverlay .b2b-shell {
+    grid-template-columns:minmax(0,1fr) !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+  #b2bOverlay .b2b-form {
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+  }
+  #b2bOverlay #b2bForm .form-grid {
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+}
+</style>
+
+<style>
+/* CAMPAIGN REQUEST SENT: center the dialog and keep scrolling at the viewport edge, not inside the card. */
+#b2bConfirmationOverlay{
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+#b2bConfirmationOverlay.open{
+  display:flex !important;
+}
+#b2bConfirmationOverlay .b2b-confirmation-panel{
+  max-height:none !important;
+  overflow:visible !important;
+  margin:auto 0 !important;
+}
+#b2bConfirmationOverlay .b2b-confirmation-scroll{
+  height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+}
+</style>
+
+<style>
+/* Keep the centered campaign confirmation card rounded while the viewport handles scrolling. */
+#b2bConfirmationOverlay .b2b-confirmation-panel{
+  border-radius:22px !important;
+  overflow:hidden !important;
+}
+</style>
+
+<style>
+/* Profile information actions use the same three-dot menu styling as Earnings. */
+#profileInfoCard .profile-info-menu .profile-earnings-menu-item{
+  color:#0B1F3A !important;
+}
+#profileInfoCard .profile-info-menu .profile-earnings-menu-item:hover{
+  color:#0B1F3A !important;
+  background:#f3f5f8 !important;
+}
+</style>
+
+<style id="b2b-white-information-panel">
+/* Launch a campaign: make the B2B information box white. */
+#b2bOverlay .b2b-panel{
+  background:#fff !important;
+  color:#111318 !important;
+  border:1px solid var(--line) !important;
+}
+#b2bOverlay .b2b-panel .eyebrow{
+  background:rgba(254,90,54,.10) !important;
+  color:#fe5a36 !important;
+}
+#b2bOverlay .b2b-panel h2{
+  color:#111318 !important;
+}
+#b2bOverlay .b2b-panel > p{
+  color:var(--muted) !important;
+}
+#b2bOverlay .b2b-point{
+  color:#111318 !important;
+}
+#b2bOverlay .b2b-point span:first-child{
+  background:rgba(254,90,54,.10) !important;
+  color:#fe5a36 !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -1498,7 +1706,6 @@ body{overscroll-behavior-y:none}
         <button class="btn orange" type="button" data-open-driver data-direct-campaign-browse>Participate as driver</button>
         <button class="btn light" type="button" data-open-b2b>Launch a campaign</button>
       </div>
-      <div class="trust"><span>✓ Real-world reach</span><span>✓ Shared campaign value</span><span>✓ Built for Switzerland</span></div>
     </div>
     </div>
   </div>
@@ -1687,7 +1894,7 @@ TEMPORARILY DISABLED. Order ad film CTA
               <input id="campaignRange" type="text" placeholder="Select start and end date" readonly required aria-describedby="campaignDurationError">
   <div id="campaignDurationMonths" class="campaign-duration-months" hidden></div>
               <div id="campaignDurationError" class="b2b-field-error" role="alert" aria-live="polite" hidden>Please select a campaign duration.</div>
-              <div class="file-help">Campaigns must start at least 7 days in advance to allow time for printing and delivery to drivers.</div>
+              <div class="file-help">Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.</div>
             </div>
 
             <div class="field">
@@ -1912,6 +2119,7 @@ TEMPORARILY DISABLED. Order ad film CTA
       <section class="profile-card" id="profileInfoCard">
         <div class="profile-card-head">
           <div>
+            <div class="eyebrow">PROFILE INFORMATION</div>
             <h3 id="profileFullName"></h3>
             <p id="profileEmail"></p>
             <div class="profile-account-status-line">
@@ -1919,7 +2127,12 @@ TEMPORARILY DISABLED. Order ad film CTA
               <strong id="profileVerificationStatus" class="profile-account-status-value">Pending verification</strong>
             </div>
           </div>
-          <button id="profileEditButton" class="profile-edit-link" type="button">Edit information</button>
+          <div class="profile-campaign-menu-wrap profile-info-menu-wrap">
+            <button id="profileInfoMenuButton" class="profile-campaign-menu-button" type="button" aria-label="Profile information options" aria-expanded="false">•••</button>
+            <div class="profile-campaign-menu profile-info-menu" hidden>
+              <button id="profileEditButton" class="profile-leave-campaign-button profile-earnings-menu-item" type="button">Edit information</button>
+            </div>
+          </div>
         </div>
 
         <div class="profile-info-grid">
@@ -2782,9 +2995,8 @@ TEMPORARILY DISABLED. Order ad film CTA
 
       ctx.textAlign='left';
       ctx.textBaseline='alphabetic';
-      ctx.fillStyle='#ff5a36';
+      ctx.fillStyle='#fe5a36';
       ctx.fillText(adText,logoStartX,logoY);
-      ctx.fillStyle='#0B1F3A';
       ctx.fillText(restText,logoStartX+adWidth,logoY);
 
       const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png',0.95));
@@ -2934,9 +3146,10 @@ TEMPORARILY DISABLED. Order ad film CTA
   }
 
   function prepareAdCarsOverlayOpen(){
-    // Clear stale section anchors (for example #faq) without reloading or
-    // changing the background page's current scroll position.
-    if(window.location.hash){
+    // Keep overlay route hashes so URLs such as /#b2b continue to work.
+    // Only clear ordinary section hashes such as #faq when opening an overlay.
+    const overlayRouteHashes=new Set(['#b2b','#participate','#campaigns','#profile']);
+    if(window.location.hash && !overlayRouteHashes.has(window.location.hash.toLowerCase())){
       history.replaceState(history.state,'',window.location.pathname+window.location.search);
     }
 
@@ -3260,7 +3473,11 @@ TEMPORARILY DISABLED. Order ad film CTA
     flatpickr('#campaignRange', {
       mode: 'range',
       dateFormat: 'd.m.Y',
-      minDate: new Date().fp_incr(7),
+      minDate: (() => {
+        const min = new Date();
+        min.setMonth(min.getMonth() + 1);
+        return min;
+      })(),
       disableMobile: true,
       onChange: function(selectedDates) {
         campaignStartDate = selectedDates[0] || null;
@@ -3292,17 +3509,50 @@ TEMPORARILY DISABLED. Order ad film CTA
 
 
 
+
+  const ADCARS_OVERLAY_ROUTES={
+    b2b:'#b2b',
+    participate:'#participate',
+    campaigns:'#campaigns',
+    profile:'#profile'
+  };
+  let adCarsHandlingRoute=false;
+
+  function setAdCarsOverlayRoute(hash){
+    if(adCarsHandlingRoute) return;
+    if(window.location.hash!==hash){
+      history.pushState(
+        {adcarsOverlay:hash},
+        '',
+        window.location.pathname + window.location.search + hash
+      );
+    }
+  }
+
+  function clearAdCarsOverlayRoute(hash){
+    if(adCarsHandlingRoute) return;
+    if(window.location.hash===hash){
+      history.pushState(
+        {},
+        '',
+        window.location.pathname + window.location.search
+      );
+    }
+  }
+
   const browseCampaigns = document.getElementById('browseCampaigns');
   const campaignOverlay = document.getElementById('campaignOverlay');
   const closeCampaignOverlay = document.getElementById('closeCampaignOverlay');
 
   function openCampaignOverlay(){
+    setAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.campaigns);
     prepareAdCarsOverlayOpen();
     campaignOverlay.classList.add('open');
     campaignOverlay.setAttribute('aria-hidden','false');
   }
   function closeCampaignPicker(){
     campaignOverlay.classList.remove('open');
+    clearAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.campaigns);
     campaignOverlay.setAttribute('aria-hidden','true');
   }
 
@@ -3459,6 +3709,7 @@ TEMPORARILY DISABLED. Order ad film CTA
   function openProfileOverlay(){
     
     if(!profileOverlay) return;
+    setAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.profile);
     prepareAdCarsOverlayOpen();
     profileOverlay.classList.add('open');
     profileOverlay.setAttribute('aria-hidden','false');
@@ -3470,6 +3721,7 @@ TEMPORARILY DISABLED. Order ad film CTA
     
     if(!profileOverlay) return;
     profileOverlay.classList.remove('open');
+    clearAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.profile);
     profileOverlay.setAttribute('aria-hidden','true');
     syncAdCarsOverlayState();
     syncAdCarsOverlayState();
@@ -3609,6 +3861,7 @@ TEMPORARILY DISABLED. Order ad film CTA
 
   function openB2BOverlay(){
     if(!b2bOverlay) return;
+    setAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.b2b);
     prepareAdCarsOverlayOpen();
     b2bOverlay.classList.add('open');
     b2bOverlay.setAttribute('aria-hidden','false');
@@ -3617,6 +3870,7 @@ TEMPORARILY DISABLED. Order ad film CTA
   function closeB2BPicker(){
     if(!b2bOverlay) return;
     b2bOverlay.classList.remove('open');
+    clearAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.b2b);
     b2bOverlay.setAttribute('aria-hidden','true');
     syncAdCarsOverlayState();
   }
@@ -3635,6 +3889,7 @@ const closeDriverOverlay = document.getElementById('closeDriverOverlay');
 
 function openDriverOverlay(){
   if(!driverOverlay) return;
+  setAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.participate);
   prepareAdCarsOverlayOpen();
   driverOverlay.classList.add('open');
   driverOverlay.setAttribute('aria-hidden','false');
@@ -3643,6 +3898,7 @@ function openDriverOverlay(){
 function closeDriverPicker(){
   if(!driverOverlay) return;
   driverOverlay.classList.remove('open');
+  clearAdCarsOverlayRoute(ADCARS_OVERLAY_ROUTES.participate);
   driverOverlay.setAttribute('aria-hidden','true');
   syncAdCarsOverlayState();
 }
@@ -4598,6 +4854,12 @@ setInterval(updateOrderTimeLeft,1000);
     const targets=[...document.querySelectorAll('#profileRunningCampaigns [data-profile-campaign-banner-path]')];
     if(!targets.length || !window.carAdsSupabase) return;
 
+    // Keep one browser-local object URL per campaign artwork for the lifetime of
+    // this page. This prevents the private Supabase image from being requested
+    // again just because the profile DOM/session is refreshed after switching tabs.
+    window.carAdsCampaignArtworkBlobCache=window.carAdsCampaignArtworkBlobCache || new Map();
+    const artworkCache=window.carAdsCampaignArtworkBlobCache;
+
     const paths=[...new Set(
       targets
         .map(target=>target.dataset.profileCampaignBannerPath || '')
@@ -4605,10 +4867,41 @@ setInterval(updateOrderTimeLeft,1000);
     )];
     if(!paths.length) return;
 
+    const applyArtwork=(target,path,src)=>{
+      const existing=target.querySelector('img');
+      if(existing && existing.dataset.campaignArtworkPath===path && existing.src===src) return;
+
+      const img=document.createElement('img');
+      img.src=src;
+      img.alt='Campaign ad foil design';
+      img.dataset.campaignArtworkPath=path;
+      img.decoding='async';
+      img.fetchPriority='high';
+      img.addEventListener('error',()=>{
+        target.textContent='Missing ad foil design';
+      },{once:true});
+      target.replaceChildren(img);
+    };
+
+    // Reuse artwork already downloaded during this page visit with no network hit.
+    const missingPaths=[];
+    targets.forEach(target=>{
+      const path=target.dataset.profileCampaignBannerPath || '';
+      const cached=artworkCache.get(path);
+      if(cached){
+        applyArtwork(target,path,cached);
+      }else if(path){
+        missingPaths.push(path);
+      }
+    });
+
+    const uniqueMissing=[...new Set(missingPaths)];
+    if(!uniqueMissing.length) return;
+
     try{
       const {data,error}=await window.carAdsSupabase.storage
         .from('campaign-banners')
-        .createSignedUrls(paths,300);
+        .createSignedUrls(uniqueMissing,300);
 
       if(error) throw error;
 
@@ -4618,29 +4911,40 @@ setInterval(updateOrderTimeLeft,1000);
           .map(item=>[item.path,item.signedUrl])
       );
 
+      await Promise.all(uniqueMissing.map(async path=>{
+        const signedUrl=signedUrlByPath.get(path) || '';
+        if(!signedUrl) return;
+
+        try{
+          const response=await fetch(signedUrl,{cache:'force-cache',credentials:'omit'});
+          if(!response.ok) throw new Error(`Artwork request failed (${response.status})`);
+          const blob=await response.blob();
+          const objectUrl=URL.createObjectURL(blob);
+          artworkCache.set(path,objectUrl);
+        }catch(fetchErr){
+          // Fallback still works if a browser blocks converting the signed image
+          // into a Blob URL for any reason.
+          console.warn('Could not cache campaign artwork as a Blob URL:',fetchErr);
+          artworkCache.set(path,signedUrl);
+        }
+      }));
+
       targets.forEach(target=>{
         const path=target.dataset.profileCampaignBannerPath || '';
-        const signedUrl=signedUrlByPath.get(path) || '';
-        if(!signedUrl){
+        const src=artworkCache.get(path) || '';
+        if(src){
+          applyArtwork(target,path,src);
+        }else{
           target.textContent='Missing ad foil design';
-          return;
         }
-
-        const img=document.createElement('img');
-        img.src=signedUrl;
-        img.alt='Campaign ad foil design';
-        img.decoding='async';
-        img.fetchPriority='high';
-        img.referrerPolicy='no-referrer';
-        img.addEventListener('error',()=>{
-          target.textContent='Missing ad foil design';
-        },{once:true});
-        target.replaceChildren(img);
       });
     }catch(err){
       console.error('Could not load running campaign artwork:',err);
       targets.forEach(target=>{
-        target.textContent='Missing ad foil design';
+        const path=target.dataset.profileCampaignBannerPath || '';
+        const cached=artworkCache.get(path);
+        if(cached) applyArtwork(target,path,cached);
+        else target.textContent='Missing ad foil design';
       });
     }
   }
@@ -5655,7 +5959,7 @@ setInterval(updateOrderTimeLeft,1000);
     }
 
     const editBtn=document.getElementById('profileEditButton');
-    if(editBtn) editBtn.hidden=editing;
+    if(editBtn) editBtn.hidden=false;
   }
 
   function fillProfileEditFields(profile){
@@ -5678,6 +5982,11 @@ setInterval(updateOrderTimeLeft,1000);
     clearError('profileEditFeedback');
     fillProfileEditFields(currentProfileData);
     setProfileEditMode(true);
+
+    const menu=document.querySelector('#profileInfoCard .profile-info-menu');
+    const menuButton=document.getElementById('profileInfoMenuButton');
+    if(menu) menu.hidden=true;
+    if(menuButton) menuButton.setAttribute('aria-expanded','false');
   });
 
   document.getElementById('profileCancelButton')?.addEventListener('click',()=>{
@@ -5934,7 +6243,20 @@ setInterval(updateOrderTimeLeft,1000);
   });
 
   sb.auth.getSession().then(r=>applySession(r.data.session));
-  sb.auth.onAuthStateChange((_event,session)=>setTimeout(()=>applySession(session),0));
+  sb.auth.onAuthStateChange((event,session)=>{
+    // Supabase may emit TOKEN_REFRESHED or even SIGNED_IN again when a browser tab
+    // becomes active. Neither event should rebuild an already-loaded profile for
+    // the same user, because that needlessly replaces its campaign artwork.
+    const currentUserId=window.carAdsCurrentSession?.user?.id || null;
+    const nextUserId=session?.user?.id || null;
+
+    if(event==='TOKEN_REFRESHED' || (event==='SIGNED_IN' && currentUserId && currentUserId===nextUserId && currentProfileData)){
+      window.carAdsCurrentSession=session||null;
+      updateAuthNav(session);
+      return;
+    }
+    setTimeout(()=>applySession(session),0);
+  });
 })();
 </script>
 
@@ -5960,7 +6282,7 @@ setInterval(updateOrderTimeLeft,1000);
 
 <style>
 #campaignList .endless-campaign{
-  border:1px solid rgba(255,90,54,.28);
+  border:1px solid rgba(254,90,54,.28);
   background:linear-gradient(180deg,#fff 0%,#fff8f5 100%);
 }
 </style>
@@ -6242,7 +6564,7 @@ setInterval(updateOrderTimeLeft,1000);
   font-weight:800;
 }
 .profile-earnings-month-group.current .profile-earnings-month-group-head span{
-  color:#ff5a36;
+  color:#fe5a36;
 }
 </style>
 
@@ -6479,8 +6801,8 @@ setInterval(updateOrderTimeLeft,1000);
   outline:none;
 }
 .payout-form-grid input:focus{
-  border-color:#ff5a36;
-  box-shadow:0 0 0 3px rgba(255,90,54,.10);
+  border-color:#fe5a36;
+  box-shadow:0 0 0 3px rgba(254,90,54,.10);
 }
 .payout-optional{
   color:var(--muted);
@@ -6507,7 +6829,7 @@ setInterval(updateOrderTimeLeft,1000);
   margin-top:16px;
   border:0;
   border-radius:10px;
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
   padding:12px 16px;
   font:inherit;
@@ -6724,7 +7046,7 @@ setInterval(updateOrderTimeLeft,1000);
   min-width:0;
 }
 .profile-history-current-label{
-  color:#ff5a36 !important;
+  color:#fe5a36 !important;
   font-size:10px !important;
   font-weight:900 !important;
   white-space:nowrap;
@@ -6750,7 +7072,7 @@ setInterval(updateOrderTimeLeft,1000);
   font-weight:900;
 }
 .profile-earnings-balance-status.is-pending{
-  color:#ff5a36 !important;
+  color:#fe5a36 !important;
   font-weight:900;
 }
 </style>
@@ -6978,14 +7300,14 @@ setInterval(updateOrderTimeLeft,1000);
   justify-content:center !important;
 }
 .leave-campaign-keep{
-  background:#ff5a36 !important;
-  border:1px solid #ff5a36 !important;
+  background:#fe5a36 !important;
+  border:1px solid #fe5a36 !important;
   color:#fff !important;
 }
 .leave-campaign-confirm{
   background:#fff !important;
-  border:1px solid #ff5a36 !important;
-  color:#ff5a36 !important;
+  border:1px solid #fe5a36 !important;
+  color:#fe5a36 !important;
 }
 .leave-campaign-confirm:hover{
   background:#fff7f4 !important;
@@ -7175,6 +7497,58 @@ setInterval(updateOrderTimeLeft,1000);
 })();
 </script>
 <script>syncAdCarsOverlayState?.();</script>
+
+<script id="adcars-overlay-url-routing">
+(function(){
+  function closePrimaryOverlaysForRoute(){
+    ['campaignOverlay','b2bOverlay','driverOverlay','profileOverlay','authOverlay'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(!el) return;
+      el.classList.remove('open');
+      el.setAttribute('aria-hidden','true');
+    });
+  }
+
+  function applyAdCarsUrlRoute(){
+    if(typeof adCarsHandlingRoute==='undefined') return;
+    adCarsHandlingRoute=true;
+    try{
+      closePrimaryOverlaysForRoute();
+      var path=(window.location.hash || '').toLowerCase();
+
+      if(path==='#b2b' && typeof openB2BOverlay==='function'){
+        openB2BOverlay();
+      }else if(path==='#participate' && typeof openDriverOverlay==='function'){
+        openDriverOverlay();
+      }else if(path==='#campaigns' && typeof openCampaignOverlay==='function'){
+        openCampaignOverlay();
+      }else if(path==='#profile'){
+        if(window.carAdsCurrentSession?.user && typeof openProfileOverlay==='function'){
+          openProfileOverlay();
+        }else if(typeof openAuthOverlay==='function'){
+          openAuthOverlay();
+        }
+      }else if(typeof syncAdCarsOverlayState==='function'){
+        syncAdCarsOverlayState();
+      }
+    }finally{
+      adCarsHandlingRoute=false;
+    }
+  }
+
+  window.addEventListener('popstate',applyAdCarsUrlRoute);
+  window.addEventListener('hashchange',applyAdCarsUrlRoute);
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',applyAdCarsUrlRoute,{once:true});
+  }else{
+    applyAdCarsUrlRoute();
+  }
+  window.addEventListener('load',function(){
+    setTimeout(applyAdCarsUrlRoute,650);
+  });
+})();
+</script>
+
 </body>
 </html>
 <style>.hero-grid{grid-template-columns:minmax(0,920px)!important;justify-content:start}.hero .lead{max-width:900px}</style>
@@ -7245,7 +7619,7 @@ body>section{padding-top:64px!important;padding-bottom:64px!important}
 #orderTimeLeft{color:var(--accent)!important;font-weight:900}
 
 .profile-campaign-starts-in{
-  color:#ff5a36 !important;
+  color:#fe5a36 !important;
   font-style:normal !important;
   font-weight:700 !important;
   white-space:nowrap !important;
@@ -7589,8 +7963,8 @@ body.overlay-open{
 }
 #b2bArtwork.b2b-file-input:focus{
   outline:none;
-  border-color:#ff5a36;
-  box-shadow:0 0 0 3px rgba(255,90,54,.12);
+  border-color:#fe5a36;
+  box-shadow:0 0 0 3px rgba(254,90,54,.12);
 }
 #b2bArtwork.b2b-file-input::file-selector-button{
   min-height:32px;
@@ -7598,7 +7972,7 @@ body.overlay-open{
   padding:7px 12px;
   border:0;
   border-radius:9px;
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
   font:inherit;
   font-size:13px;
@@ -7614,7 +7988,7 @@ body.overlay-open{
   padding:7px 12px;
   border:0;
   border-radius:9px;
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
   font:inherit;
   font-size:13px;
@@ -7647,7 +8021,7 @@ body.overlay-open{
   vertical-align:middle !important;
   border:0 !important;
   border-radius:9px !important;
-  background:#ff5a36 !important;
+  background:#fe5a36 !important;
   color:#fff !important;
   font:inherit !important;
   font-size:13px !important;
@@ -7663,7 +8037,7 @@ body.overlay-open{
   vertical-align:middle !important;
   border:0 !important;
   border-radius:9px !important;
-  background:#ff5a36 !important;
+  background:#fe5a36 !important;
   color:#fff !important;
   font:inherit !important;
   font-size:13px !important;
@@ -7701,8 +8075,8 @@ body.overlay-open{
   background:#fbfcfd;
 }
 .b2b-artwork-picker-ui:focus-within{
-  border-color:#ff5a36;
-  box-shadow:0 0 0 3px rgba(255,90,54,.12);
+  border-color:#fe5a36;
+  box-shadow:0 0 0 3px rgba(254,90,54,.12);
 }
 .b2b-artwork-picker-button{
   flex:0 0 auto;
@@ -7715,7 +8089,7 @@ body.overlay-open{
   padding:0 14px;
   border:0;
   border-radius:9px;
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
   font:inherit;
   font-size:13px;
@@ -7787,7 +8161,7 @@ body.overlay-open{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
   font-size:14px;
   font-weight:850;
@@ -7884,7 +8258,7 @@ body.overlay-open{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#ff5a36;
+  background:#fe5a36;
   color:#fff;
   font-size:14px;
   font-weight:850;
@@ -8046,5 +8420,66 @@ body.overlay-open{
 }
 #b2bCampaignInfoToggle[aria-expanded="true"] .b2b-region-chevron{
   transform:rotate(180deg);
+}
+</style>
+<style>
+/* Final artwork-preview containment fix: keep processed artwork inside its box. */
+#b2bArtworkPreview.b2b-artwork-preview{
+  width:100% !important;
+  max-width:100% !important;
+  height:220px !important;
+  min-height:0 !important;
+  max-height:220px !important;
+  aspect-ratio:auto !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:#f3f4f6 !important;
+}
+#b2bArtworkPreview.b2b-artwork-preview[hidden]{
+  display:none !important;
+}
+#b2bArtworkPreview.b2b-artwork-preview img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  box-sizing:border-box !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+@media(max-width:700px){
+  #b2bArtworkPreview.b2b-artwork-preview{
+    height:160px !important;
+    max-height:160px !important;
+  }
+}
+</style><style>
+/* Artwork preview: width constrained, height follows artwork naturally. */
+#b2bArtworkPreview.b2b-artwork-preview {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  background: #f3f4f6 !important;
+}
+#b2bArtworkPreview.b2b-artwork-preview img,
+#b2bArtworkPreview.b2b-artwork-preview canvas {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
 }
 </style>
