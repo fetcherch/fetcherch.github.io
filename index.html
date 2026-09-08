@@ -83,11 +83,14 @@
     margin-top:4px;
     padding:12px 13px!important;
     border-radius:10px;
-    color:#0B1F3A!important;
+    color:#fe5a36!important;
+    opacity:1;
+    transition:opacity .2s ease;
   }
   .mobile-menu .mobile-cta.is-profile:hover{
-    background:#f7f8fa!important;
+    background:transparent!important;
     color:#fe5a36!important;
+    opacity:.62;
   }
   .mobile-menu.open{display:block}
   .hero{padding:88px 0 72px;background:linear-gradient(180deg,#fff 0%,#f7f8fa 100%)}
@@ -111,7 +114,7 @@
   .num{width:40px;height:40px;border-radius:12px;background:rgba(254,90,54,.10);color:var(--accent);display:grid;place-items:center;font-weight:900;margin-bottom:20px}.step h3{margin:0 0 8px}.step p{margin:0;color:var(--muted)}
   .brands{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .brand{padding:22px}.brand-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand-logo{font-weight:900;font-size:18px}.status{font-size:11px;padding:5px 8px;border-radius:999px;background:#eaf8f1;color:#11794c;font-weight:800}
-  .brand p{color:var(--muted);font-size:14px;margin:12px 0 10px}.duration{font-size:12px;color:#8a909c;margin-bottom:8px;font-weight:700}.campaign-meta{display:flex;flex-direction:column;align-items:flex-start;gap:5px;font-size:12px;color:#6f7682;margin-bottom:18px}.slots{font-weight:800;color:#11794c}.pay{display:flex;align-items:end;justify-content:space-between}.pay strong{font-size:25px}.pay small{color:var(--muted)}
+  .brand p{color:var(--muted);font-size:14px;margin:12px 0 10px}.duration{font-size:12px;color:#8a909c;margin:0 0 5px;font-weight:400}.duration strong{font-weight:700}.campaign-start-status{font-size:12px;color:#fe5a36;font-weight:800;margin:0 0 5px}.campaign-meta{display:flex;flex-direction:column;align-items:flex-start;gap:5px;font-size:12px;color:#6f7682;margin:0 0 18px}.slots{font-weight:800;color:#11794c}.pay{display:flex;align-items:end;justify-content:space-between}.pay strong{font-size:25px}.pay small{color:var(--muted)}
   .calculator{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}.earning{background:#111318;color:#fff;display:flex;flex-direction:column;justify-content:center}.earning .label{color:#aeb4bf;font-size:13px}.earning .total{font-size:58px;font-weight:900;letter-spacing:-3px;margin:8px 0}.earning p{color:#aeb4bf}.calc-box{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:30px}.calc-row{display:flex;justify-content:space-between;gap:20px;align-items:center;margin:18px 0}.calc-row label{font-weight:700}.calc-row select,.calc-row input{width:180px;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;font:inherit}
   .form-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px}.form-card h3{font-size:26px;margin-top:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:800}.field input,.field select{padding:13px 14px;border:1px solid var(--line);border-radius:11px;font:inherit;outline:none}.field input:focus,.field select:focus{border-color:var(--accent)}.check{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:13px}.success{display:none;background:#eaf8f1;color:#11794c;padding:12px;border-radius:10px;margin-top:14px;font-weight:700}
   .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.faq h4{margin:0 0 8px}.faq p{margin:0;color:var(--muted);font-size:14px}
@@ -167,6 +170,8 @@
 .campaign-overlay-top h2{margin:0;font-size:30px}
 .campaign-close{border:1px solid var(--line);background:#fff;border-radius:10px;min-width:44px;height:44px;font-size:24px;cursor:pointer}
 .campaign-select-btn{margin-top:14px;width:100%}
+.campaign-select-btn:disabled{background:rgba(254,90,54,.16);color:#b83d22;border:none;opacity:1;cursor:not-allowed;box-shadow:none}
+.campaign-select-btn.campaign-cooldown-blocked:disabled{background:rgba(217,45,32,.12);color:#d92d20;border:none}
 @media(max-width:700px){.campaign-overlay{padding:14px}.campaign-overlay-panel{min-height:calc(100dvh - 28px);padding:18px}.campaign-overlay-top h2{font-size:24px}}
 
 
@@ -958,8 +963,8 @@ body{overscroll-behavior-y:none}
 }
 
 
-#b2bCommentField{display:block!important;width:100%!important;grid-column:1 / -1!important}
-#b2bComment{display:block!important;width:100%!important;min-height:110px;box-sizing:border-box;resize:vertical}
+#b2bCommentField{grid-column:1 / -1!important}
+#b2bComment{width:100%;box-sizing:border-box}
 
 
 /* Keep CHF visually inside the Driver payout per month input. */
@@ -987,33 +992,17 @@ body{overscroll-behavior-y:none}
 
 
 #b2bCommentField{
-  display:block !important;
   width:100% !important;
   margin-bottom:16px !important;
   box-sizing:border-box !important;
 }
-#b2bCommentField label{
-  display:block !important;
-  margin-bottom:8px !important;
-}
 #b2bComment{
-  display:block !important;
   width:100% !important;
-  min-height:110px !important;
-  padding:13px 14px !important;
-  border:1px solid #d9dee7 !important;
-  border-radius:12px !important;
-  background:#fff !important;
-  color:#0B1F3A !important;
-  font:inherit !important;
-  line-height:1.45 !important;
   box-sizing:border-box !important;
-  resize:vertical !important;
-  outline:none;
 }
-#b2bComment:focus{
-  border-color:#fe5a36 !important;
-  box-shadow:0 0 0 1px #fe5a36 !important;
+#b2bCommentField .b2b-comment-label{
+  pointer-events:none !important;
+  cursor:default !important;
 }
 
 
@@ -1171,12 +1160,6 @@ body{overscroll-behavior-y:none}
   top:24px;
   right:0;
 }
-
-
-.profile-campaign-detail strong .profile-campaign-starts-in{
-}
-
-
 /* Keep campaign payout and selection CTA anchored to the bottom of each card. */
 #campaignList .brand{
   display:flex;
@@ -1188,6 +1171,7 @@ body{overscroll-behavior-y:none}
 </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/heic-to@1.5.2/dist/iife/heic-to.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 
 <style>
@@ -1216,12 +1200,15 @@ body{overscroll-behavior-y:none}
   border-color:transparent!important;
   border-radius:0;
   padding:0!important;
-  color:#0B1F3A!important;
+  color:#fe5a36!important;
+  opacity:1;
+  transition:opacity .2s ease;
 }
 .auth-text-link.is-profile:hover{
   background:none!important;
   border-color:transparent!important;
   color:#fe5a36!important;
+  opacity:.62;
 }
 
 .profile-overlay{
@@ -1234,6 +1221,9 @@ body{overscroll-behavior-y:none}
   padding:32px 20px;
   background:rgba(11,31,58,.56);
   overflow:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
 }
 .profile-overlay.open{display:flex}
 .profile-overlay-panel{
@@ -1667,6 +1657,10 @@ body{overscroll-behavior-y:none}
 }
 </style>
 
+
+<style>
+#b2bAllowLateJoinField[hidden]{display:none!important}
+</style>
 </head>
 <body>
 
@@ -1897,6 +1891,13 @@ TEMPORARILY DISABLED. Order ad film CTA
               <div class="file-help">Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.</div>
             </div>
 
+            <div class="field full" id="b2bAllowLateJoinField" hidden>
+              <div class="check" style="margin-top:0">
+                <input id="b2bAllowLateJoin" type="checkbox">
+                <label for="b2bAllowLateJoin"><strong>Allow late campaign joining</strong><br><span style="font-weight:500;color:var(--muted)">Drivers may still join after the standard “Join until” deadline, up to 2 months before the campaign end date.</span></label>
+              </div>
+            </div>
+
             <div class="field">
               <label>Driver payout per month</label>
               <div class="currency-input-wrap">
@@ -1908,7 +1909,7 @@ TEMPORARILY DISABLED. Order ad film CTA
             
             <div class="field">
               <label>Number of ad films to print</label>
-              <input id="filmCount" required type="number" min="1" placeholder="e.g. 50">
+              <input id="filmCount" required type="number" placeholder="e.g. 50">
             </div>
 
             
@@ -1924,7 +1925,7 @@ TEMPORARILY DISABLED. Order ad film CTA
           </div>
 
           <div class="field full" id="b2bCommentField">
-            <label for="b2bComment">Campaign description</label>
+            <label class="b2b-comment-label">Campaign description</label>
             <input id="b2bComment" type="text" maxlength="50" required placeholder="Describe your campaign (max. 50 characters)">
           </div>
 
@@ -2278,10 +2279,6 @@ TEMPORARILY DISABLED. Order ad film CTA
                 <input id="orderTerms" type="checkbox" required>
                 <label for="orderTerms">I agree to Terms of Service</label>
               </div>
-              <div class="check" style="margin-top:2px">
-                <input id="orderNda" type="checkbox" required>
-                <label for="orderNda">I agree to the NDA.</label>
-              </div>
             </div>
           </div>
 
@@ -2450,7 +2447,7 @@ TEMPORARILY DISABLED. Order ad film CTA
         <h4>Account</h4>
         <div class="footer-links">
           <a href="#" data-open-auth><span class="auth-nav-label">Login / Signup</span></a>
-          <button type="button" class="footer-modal-link" data-open-driver>Order ad film</button>
+          
           <button id="profileLogoutButton" type="button" class="footer-modal-link footer-profile-logout" hidden>Log out</button>
         </div>
       </div>
@@ -2461,6 +2458,7 @@ TEMPORARILY DISABLED. Order ad film CTA
       <div class="footer-legal">
         <a href="#terms">Terms of Service</a>
         <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
         <span></span>
       </div>
     </div>
@@ -2611,7 +2609,10 @@ TEMPORARILY DISABLED. Order ad film CTA
     return new Intl.DateTimeFormat('de-CH',{
       day:'2-digit',
       month:'2-digit',
-      year:'numeric'
+      year:'numeric',
+      hour:'2-digit',
+      minute:'2-digit',
+      hour12:false
     }).format(d);
   }
 
@@ -2638,6 +2639,7 @@ TEMPORARILY DISABLED. Order ad film CTA
         <div class="b2b-confirmation-row"><span>Phone</span><strong>${escapeB2BSummaryHtml(phone)}</strong></div>
         <div class="b2b-confirmation-row"><span>Campaign region</span><strong>${escapeB2BSummaryHtml(regions)}</strong></div>
         <div class="b2b-confirmation-row"><span>Campaign duration</span><strong>${escapeB2BSummaryHtml(formatB2BRequestDate(requestData.campaign_start))} – ${escapeB2BSummaryHtml(formatB2BRequestDate(requestData.campaign_end))}</strong></div>
+        ${requestData.allow_late_join ? '<div class="b2b-confirmation-row"><span>Late joining</span><strong>Enabled</strong></div>' : ''}
         <div class="b2b-confirmation-row"><span>Driver payout</span><strong>CHF ${Number(requestData.driver_payout_monthly || 0).toLocaleString('en-CH',{minimumFractionDigits:2,maximumFractionDigits:2})} / month</strong></div>
         <div class="b2b-confirmation-row"><span>Ad films</span><strong>${escapeB2BSummaryHtml(requestData.ad_films_count)}</strong></div>
         <div class="b2b-confirmation-row"><span>Campaign cost</span><strong>CHF ${Number(requestData.campaign_cost_chf || 0).toLocaleString('en-CH',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>
@@ -2730,6 +2732,53 @@ TEMPORARILY DISABLED. Order ad film CTA
     };
   }
 
+  let b2bCampaignPricingSettings=null;
+  let b2bCampaignPricingPromise=null;
+
+  async function loadB2BCampaignPricingSettings(){
+    if(b2bCampaignPricingSettings) return b2bCampaignPricingSettings;
+    if(b2bCampaignPricingPromise) return b2bCampaignPricingPromise;
+
+    b2bCampaignPricingPromise=(async()=>{
+      const supabaseClient=window.carAdsSupabase;
+      if(!supabaseClient) throw new Error('Campaign pricing is still loading. Please try again.');
+
+      const {data,error}=await supabaseClient
+        .from('campaign_settings')
+        .select('foil_cost_chf,minimum_foils_per_campaign')
+        .eq('id',1)
+        .single();
+
+      if(error) throw error;
+
+      const foilCost=Number(data?.foil_cost_chf);
+      const minimumFoils=Number(data?.minimum_foils_per_campaign);
+      if(!Number.isFinite(foilCost) || foilCost < 0 || !Number.isInteger(minimumFoils) || minimumFoils < 1){
+        throw new Error('Campaign pricing settings in the database are invalid.');
+      }
+
+      b2bCampaignPricingSettings={
+        foilCostChf:foilCost,
+        minimumFoilsPerCampaign:minimumFoils
+      };
+
+      const filmCountInput=document.getElementById('filmCount');
+      if(filmCountInput){
+        filmCountInput.min=String(minimumFoils);
+      }
+
+      return b2bCampaignPricingSettings;
+    })();
+
+    try{
+      return await b2bCampaignPricingPromise;
+    }finally{
+      b2bCampaignPricingPromise=null;
+    }
+  }
+
+  window.loadB2BCampaignPricingSettings=loadB2BCampaignPricingSettings;
+
   function setCampaignDurationError(message=''){
     const input=document.getElementById('campaignRange');
     const error=document.getElementById('campaignDurationError');
@@ -2764,14 +2813,32 @@ TEMPORARILY DISABLED. Order ad film CTA
     }
     setCampaignDurationError();
 
-    if(!form.checkValidity()){
-      form.reportValidity();
-      return;
-    }
-
     const supabaseClient=window.carAdsSupabase;
     if(!supabaseClient){
       alert('Supabase is still loading. Please try again.');
+      return;
+    }
+
+    let campaignPricingSettings;
+    try{
+      campaignPricingSettings=await loadB2BCampaignPricingSettings();
+    }catch(err){
+      alert(err?.message || 'Could not load campaign pricing settings. Please try again.');
+      return;
+    }
+
+    const filmCountForValidation=document.getElementById('filmCount');
+    if(filmCountForValidation){
+      const foilCount=Number(filmCountForValidation.value || 0);
+      filmCountForValidation.setCustomValidity(
+        filmCountForValidation.value && foilCount < campaignPricingSettings.minimumFoilsPerCampaign
+          ? `A minimum of ${campaignPricingSettings.minimumFoilsPerCampaign} ad foils is required per campaign.`
+          : ''
+      );
+    }
+
+    if(!form.checkValidity()){
+      form.reportValidity();
       return;
     }
 
@@ -2836,6 +2903,7 @@ TEMPORARILY DISABLED. Order ad film CTA
       campaign_regions:selectedRegions,
       campaign_start:requestCampaignStart,
       campaign_end:requestCampaignEnd,
+      allow_late_join:!!document.getElementById('b2bAllowLateJoin')?.checked,
       driver_payout_monthly:Number(document.getElementById('monthlyPayout')?.value || 0),
       ad_films_count:Number(document.getElementById('filmCount')?.value || 0),
       campaign_cost_chf:(()=>{
@@ -2845,7 +2913,7 @@ TEMPORARILY DISABLED. Order ad film CTA
         const end=new Date(`${requestCampaignEnd}T00:00:00`);
         const days=Math.floor((end-start)/86400000)+1;
         const months=Math.max(1,Math.ceil(days/30));
-        return (films*4)+(films*payout*months);
+        return (films*campaignPricingSettings.foilCostChf)+(films*payout*months);
       })(),
       campaign_description:document.getElementById('b2bComment')?.value?.trim() || '',
       artwork_filename:artworkFile?.name || null,
@@ -2859,7 +2927,28 @@ TEMPORARILY DISABLED. Order ad film CTA
       payout_monthly:requestData.driver_payout_monthly,
       start_date:requestData.campaign_start,
       end_date:requestData.campaign_end,
-      join_deadline:requestData.campaign_start,
+      join_deadline:(()=>{
+        const parseDateParts=(value)=>{
+          const match=String(value || '').slice(0,10).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+          return match ? {year:Number(match[1]),month:Number(match[2])-1,day:Number(match[3])} : null;
+        };
+        const parts=parseDateParts(requestData.allow_late_join ? requestData.campaign_end : requestData.campaign_start);
+        if(!parts) return null;
+
+        let cutoff;
+        if(requestData.allow_late_join){
+          const targetMonthIndex=parts.month-2;
+          const targetYear=parts.year+Math.floor(targetMonthIndex/12);
+          const normalizedMonth=((targetMonthIndex%12)+12)%12;
+          const lastDay=new Date(targetYear,normalizedMonth+1,0).getDate();
+          cutoff=new Date(targetYear,normalizedMonth,Math.min(parts.day,lastDay),23,59,59,999);
+        }else{
+          cutoff=new Date(parts.year,parts.month,parts.day,23,59,59,999);
+          cutoff.setDate(cutoff.getDate()-7);
+        }
+        return cutoff.toISOString();
+      })(),
+      allow_late_join:requestData.allow_late_join,
       max_driver_slots:requestData.ad_films_count,
       taken_driver_slots:0,
       campaign_cost_chf:requestData.campaign_cost_chf,
@@ -3145,6 +3234,35 @@ TEMPORARILY DISABLED. Order ad film CTA
     return true;
   }
 
+  let adCarsLockedPageScrollY=0;
+
+  function lockAdCarsPageScroll(){
+    if(document.body.dataset.adcarsScrollLocked==='1') return;
+    adCarsLockedPageScrollY=window.scrollY || window.pageYOffset || 0;
+    document.body.dataset.adcarsScrollLocked='1';
+    document.body.style.position='fixed';
+    document.body.style.top=`-${adCarsLockedPageScrollY}px`;
+    document.body.style.left='0';
+    document.body.style.right='0';
+    document.body.style.width='100%';
+    document.body.style.overflow='hidden';
+    document.documentElement.style.overflow='hidden';
+  }
+
+  function unlockAdCarsPageScroll(){
+    if(document.body.dataset.adcarsScrollLocked!=='1') return;
+    const restoreY=adCarsLockedPageScrollY;
+    delete document.body.dataset.adcarsScrollLocked;
+    document.body.style.position='';
+    document.body.style.top='';
+    document.body.style.left='';
+    document.body.style.right='';
+    document.body.style.width='';
+    document.body.style.overflow='';
+    document.documentElement.style.overflow='';
+    window.scrollTo(0,restoreY);
+  }
+
   function prepareAdCarsOverlayOpen(){
     // Keep overlay route hashes so URLs such as /#b2b continue to work.
     // Only clear ordinary section hashes such as #faq when opening an overlay.
@@ -3169,7 +3287,7 @@ TEMPORARILY DISABLED. Order ad film CTA
 
     document.documentElement.classList.add('overlay-open');
     document.body.classList.add('overlay-open');
-    document.body.style.overflow='hidden';
+    lockAdCarsPageScroll();
   }
 
   function syncAdCarsOverlayState(){
@@ -3180,7 +3298,11 @@ TEMPORARILY DISABLED. Order ad film CTA
 
     document.body.classList.toggle('overlay-open',anyOpen);
     document.documentElement.classList.toggle('overlay-open',anyOpen);
-    document.body.style.overflow=anyOpen ? 'hidden' : '';
+    if(anyOpen){
+      lockAdCarsPageScroll();
+    }else{
+      unlockAdCarsPageScroll();
+    }
   }
 
   // Overlay state can change from several independent features. Watching the
@@ -3343,13 +3465,40 @@ TEMPORARILY DISABLED. Order ad film CTA
         throw new Error('Supabase is still loading. Please try again.');
       }
 
-      const {data,error}=await supabaseClient.rpc('claim_campaign',{
+      const currentUserId=window.carAdsCurrentSession?.user?.id || null;
+      if(!currentUserId){
+        throw new Error('Please log in again before joining a campaign.');
+      }
+
+      // Prevent re-joining the campaign the driver is already participating in.
+      const {data:existingAssignments,error:existingAssignmentError}=await supabaseClient
+        .from('campaign_assignments')
+        .select('id,campaign_id,left_at,ended_at')
+        .eq('user_id',currentUserId)
+        .eq('campaign_id',selectedCampaignId)
+        .is('left_at',null)
+        .is('ended_at',null)
+        .limit(1);
+
+      if(existingAssignmentError) throw existingAssignmentError;
+
+      if(Array.isArray(existingAssignments) && existingAssignments.length>0){
+        throw new Error('You are already in this campaign.');
+      }
+
+      // Join through the SECURITY DEFINER RPC so the browser does not need
+      // direct INSERT/UPDATE permission on campaign_assignments.
+      const {data:claimResult,error:claimError}=await supabaseClient.rpc('claim_campaign',{
         p_campaign_id:selectedCampaignId
       });
 
-      if(error) throw error;
+      if(claimError) throw claimError;
+      if(claimResult && claimResult.success===false){
+        throw new Error(claimResult.message || 'Could not assign this campaign to your profile.');
+      }
 
-      await window.saveCampaignShippingAddressToDatabase(selectedCampaignId);
+      // Save the shipping address through the status-free SECURITY DEFINER RPC.
+      await window.saveCampaignShippingAddressToDatabase?.(selectedCampaignId);
 
       await window.carAdsLoadCampaigns?.();
       await window.carAdsLoadProfileCampaigns?.();
@@ -3398,10 +3547,28 @@ TEMPORARILY DISABLED. Order ad film CTA
   const campaignCost = document.getElementById('campaignCost');
   const campaignCostBreakdown = document.getElementById('campaignCostBreakdown');
 
-  function updateCampaignCost(){
+  async function updateCampaignCost(){
     const payout = Math.max(0, parseFloat(monthlyPayout?.value || '0') || 0);
     const films = Math.max(0, parseInt(filmCount?.value || '0', 10) || 0);
-    const printPerFilm = 4;
+
+    let pricingSettings=b2bCampaignPricingSettings;
+    if(!pricingSettings && window.carAdsSupabase){
+      try{
+        pricingSettings=await loadB2BCampaignPricingSettings();
+      }catch(err){
+        if(campaignCost) campaignCost.textContent='Campaign pricing is temporarily unavailable.';
+        if(campaignCostBreakdown) campaignCostBreakdown.textContent='Could not load foil pricing from the database.';
+        return;
+      }
+    }
+
+    if(!pricingSettings){
+      if(campaignCost) campaignCost.textContent='Loading campaign pricing…';
+      if(campaignCostBreakdown) campaignCostBreakdown.textContent='Foil pricing and the minimum order are loaded from the database.';
+      return;
+    }
+
+    const printPerFilm = pricingSettings.foilCostChf;
 
     let start = campaignStartDate;
     let end = campaignEndDate;
@@ -3438,8 +3605,8 @@ TEMPORARILY DISABLED. Order ad film CTA
 
     if(campaignCostBreakdown){
       if(hasPricingData){
-        campaignCostBreakdown.textContent =
-          `Ad foil: ${films} × CHF 4.00 = CHF ${money(printing)} · Driver payout per month: ${films} drivers × CHF ${money(payout)} × ${months} month${months === 1 ? '' : 's'} = CHF ${money(driverPay)}`;
+        campaignCostBreakdown.innerHTML =
+          `Ad foil: ${films} × CHF ${money(printPerFilm)} = CHF ${money(printing)}<br>Driver payout per month: ${films} drivers × CHF ${money(payout)} × ${months} month${months === 1 ? '' : 's'} = CHF ${money(driverPay)}`;
       }else{
         campaignCostBreakdown.textContent = 'Your estimate will appear automatically once the campaign duration, driver payout and number of ad films are entered.';
       }
@@ -3457,6 +3624,26 @@ TEMPORARILY DISABLED. Order ad film CTA
     let value=filmCount.value.replace(/\D/g,'');
     value=value.replace(/^0+/,'');
     filmCount.value=value;
+    const minimumFoils=b2bCampaignPricingSettings?.minimumFoilsPerCampaign;
+    filmCount.setCustomValidity(
+      minimumFoils && value && Number(value) < minimumFoils
+        ? `A minimum of ${minimumFoils} ad foils is required per campaign.`
+        : ''
+    );
+  });
+  filmCount?.addEventListener('blur',async()=>{
+    try{
+      const pricingSettings=await loadB2BCampaignPricingSettings();
+      if(filmCount.value && Number(filmCount.value) < pricingSettings.minimumFoilsPerCampaign){
+        filmCount.setCustomValidity(`A minimum of ${pricingSettings.minimumFoilsPerCampaign} ad foils is required per campaign.`);
+        filmCount.reportValidity();
+      }else{
+        filmCount.setCustomValidity('');
+      }
+    }catch(err){
+      filmCount.setCustomValidity('Could not load the minimum campaign order from the database.');
+      filmCount.reportValidity();
+    }
   });
 
   monthlyPayout?.addEventListener('blur', () => {
@@ -3486,16 +3673,28 @@ TEMPORARILY DISABLED. Order ad film CTA
           setCampaignDurationError();
         }
         const durationMonthsEl = document.getElementById('campaignDurationMonths');
+        const lateJoinField = document.getElementById('b2bAllowLateJoinField');
+        const lateJoinCheckbox = document.getElementById('b2bAllowLateJoin');
+        let campaignIsAtLeastTwoMonths = false;
         if(durationMonthsEl){
           if(campaignStartDate && campaignEndDate){
             const daysExact = Math.floor((campaignEndDate - campaignStartDate) / 86400000) + 1;
             const monthsExact = daysExact / 30;
+            const twoMonthsAfterStart = new Date(campaignStartDate);
+            twoMonthsAfterStart.setMonth(twoMonthsAfterStart.getMonth() + 2);
+            campaignIsAtLeastTwoMonths = campaignEndDate >= twoMonthsAfterStart;
             durationMonthsEl.textContent = `(${monthsExact.toFixed(1)} months)`;
             durationMonthsEl.hidden = false;
           } else {
             durationMonthsEl.textContent = '';
             durationMonthsEl.hidden = true;
           }
+        }
+        if(lateJoinField){
+          lateJoinField.hidden = !campaignIsAtLeastTwoMonths;
+        }
+        if(!campaignIsAtLeastTwoMonths && lateJoinCheckbox){
+          lateJoinCheckbox.checked = false;
         }
         updateCampaignCost();
       }
@@ -3561,7 +3760,7 @@ TEMPORARILY DISABLED. Order ad film CTA
 
   document.getElementById('campaignList')?.addEventListener('click', e=>{
     const btn=e.target.closest('.campaign-select-btn');
-    if(!btn) return;
+    if(!btn || btn.disabled || btn.getAttribute('aria-disabled')==='true') return;
 
     const card = btn.closest('.brand');
     const name = card.querySelector('.brand-logo')?.textContent.trim() || 'Campaign';
@@ -4159,6 +4358,12 @@ setInterval(updateOrderTimeLeft,1000);
     auth: { persistSession:true, autoRefreshToken:true, detectSessionInUrl:true }
   });
   window.carAdsSupabase = sb;
+  window.loadB2BCampaignPricingSettings?.()
+    .then(()=>{
+      document.getElementById('filmCount')?.dispatchEvent(new Event('input',{bubbles:true}));
+      document.getElementById('campaignRange')?.dispatchEvent(new Event('change',{bubbles:true}));
+    })
+    .catch(err=>console.error('Could not load campaign pricing settings:',err));
 
   function escapeCampaignHtml(value){
     return String(value ?? '').replace(/[&<>"']/g, ch=>({
@@ -4198,7 +4403,64 @@ setInterval(updateOrderTimeLeft,1000);
     return `${date}, ${time}`;
   }
 
-  function renderDatabaseCampaign(row){
+  function parseCampaignDate(value){
+    const match=String(value || '').slice(0,10).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return match ? {year:Number(match[1]),month:Number(match[2])-1,day:Number(match[3])} : null;
+  }
+
+  function getCampaignJoinCutoff(row){
+    if(!row || row.endless) return null;
+
+    // Late-join campaigns close exactly 2 calendar months before campaign end.
+    if(row.allow_late_join && row.end_date){
+      const parts=parseCampaignDate(row.end_date);
+      if(parts){
+        const targetMonthIndex=parts.month-2;
+        const targetYear=parts.year+Math.floor(targetMonthIndex/12);
+        const normalizedMonth=((targetMonthIndex%12)+12)%12;
+        const lastDay=new Date(targetYear,normalizedMonth+1,0).getDate();
+        return new Date(targetYear,normalizedMonth,Math.min(parts.day,lastDay),23,59,59,999);
+      }
+    }
+
+    // Normal campaigns close one week before the campaign starts.
+    if(row.start_date){
+      const parts=parseCampaignDate(row.start_date);
+      if(parts){
+        const cutoff=new Date(parts.year,parts.month,parts.day,23,59,59,999);
+        cutoff.setDate(cutoff.getDate()-7);
+        return cutoff;
+      }
+    }
+
+    // Fallback for legacy rows that do not have a start date.
+    if(row.join_deadline){
+      const storedDeadline=new Date(row.join_deadline);
+      return Number.isNaN(storedDeadline.getTime()) ? null : storedDeadline;
+    }
+
+    return null;
+  }
+
+  function getCampaignStartStatus(row){
+    if(row?.endless) return 'Campaign is running';
+    if(!row?.start_date) return '';
+    const parts=parseCampaignDate(row.start_date);
+    if(!parts) return '';
+
+    const today=new Date();
+    const todayMidnight=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    const startMidnight=new Date(parts.year,parts.month,parts.day);
+
+    if(todayMidnight>=startMidnight){
+      return 'Campaign is running';
+    }
+
+    const daysUntil=Math.ceil((startMidnight-todayMidnight)/86400000);
+    return `Starts in ${daysUntil} ${daysUntil===1 ? 'day' : 'days'}`;
+  }
+
+  function renderDatabaseCampaign(row,userAlreadyInCampaign=false,campaignJoinBlockedMessage=""){
     const endless=!!row.endless;
     const name=escapeCampaignHtml(row.name);
     const description=escapeCampaignHtml(row.campaign_description || 'Rear-window advertising campaign');
@@ -4210,12 +4472,15 @@ setInterval(updateOrderTimeLeft,1000);
     const payout=Number(row.payout_monthly || 0);
 
     const duration=endless
-      ? 'Endless · no expiry'
+      ? 'Endless'
       : `${formatCampaignDate(row.start_date)} – ${formatCampaignDate(row.end_date)}`;
+    const startStatus=getCampaignStartStatus(row);
 
+    const effectiveJoinCutoff=getCampaignJoinCutoff(row);
     const deadline=endless
       ? 'Always open'
-      : formatCampaignDeadline(row.join_deadline);
+      : (effectiveJoinCutoff ? formatCampaignDeadline(effectiveJoinCutoff) : '');
+    const lateJoinLabel='';
 
     const maxSlots=Number.isFinite(Number(row.max_driver_slots)) && row.max_driver_slots !== null
       ? Number(row.max_driver_slots)
@@ -4225,9 +4490,6 @@ setInterval(updateOrderTimeLeft,1000);
     const slotsLabel=maxSlots===null
       ? 'Unlimited driver slots'
       : `${taken} of ${maxSlots} driver slots taken (${Math.max(0,maxSlots-taken)} left)`;
-    const countdown=endless
-      ? '<span>· never expires</span>'
-      : `<span class="campaign-countdown" data-deadline="${escapeCampaignHtml(deadline)}">· calculating…</span>`;
 
     return `
       <div class="brand${endless ? ' endless-campaign' : ''}" data-campaign-id="${escapeCampaignHtml(row.id)}">
@@ -4236,10 +4498,12 @@ setInterval(updateOrderTimeLeft,1000);
           <div class="brand-logo">${name}</div>
         </div>
         <p>${description}</p>
-        <div class="duration">Campaign duration: ${escapeCampaignHtml(duration)}</div>
+        <div class="duration"><strong>Campaign duration:</strong> ${escapeCampaignHtml(duration)}</div>
+        ${startStatus ? `<div class="campaign-start-status">${escapeCampaignHtml(startStatus)}</div>` : ''}
         <div class="campaign-meta">
-          <span>Region: ${region}</span>
-          <span><strong>Join until:</strong> ${escapeCampaignHtml(deadline)} ${countdown}</span>
+          <span><strong>Region:</strong> ${region}</span>
+          <span><strong>Join until:</strong> ${escapeCampaignHtml(deadline)}</span>
+          ${lateJoinLabel}
           <span class="slots">${escapeCampaignHtml(slotsLabel)}</span>
         </div>
         <div class="pay">
@@ -4248,13 +4512,14 @@ setInterval(updateOrderTimeLeft,1000);
         </div>
         <button
           type="button"
-          class="btn orange campaign-select-btn"
+          class="btn orange campaign-select-btn${campaignJoinBlockedMessage ? ' campaign-cooldown-blocked' : ''}"
           data-payout="${payout}"
           data-deadline="${escapeCampaignHtml(deadline)}"
           data-slots="${escapeCampaignHtml(slotsLeft)}"
           data-max-slots="${maxSlots===null ? 'Unlimited' : maxSlots}"
           data-endless="${endless ? 'true' : 'false'}"
-        >Select campaign</button>
+          ${(userAlreadyInCampaign || campaignJoinBlockedMessage) ? 'disabled aria-disabled="true"' : ''}
+        >${campaignJoinBlockedMessage || (userAlreadyInCampaign ? "You're already in a campaign" : 'Select campaign')}</button>
       </div>`;
   }
 
@@ -4328,9 +4593,80 @@ setInterval(updateOrderTimeLeft,1000);
       return;
     }
 
-    if(!Array.isArray(data) || data.length===0) return;
+    let userAlreadyInCampaign=false;
+    let campaignJoinBlockedMessage='';
+    const currentUserId=window.carAdsCurrentSession?.user?.id || null;
+    if(currentUserId){
+      const {data:assignmentRows,error:assignmentError}=await sb
+        .from('campaign_assignments')
+        .select('campaign_id,left_at,ended_at,campaigns!inner(active,endless,end_date)')
+        .eq('user_id',currentUserId)
+        .is('left_at',null)
+        .is('ended_at',null)
+        .eq('campaigns.active',true);
 
-    list.innerHTML=data.map(renderDatabaseCampaign).join('');
+      if(assignmentError){
+        console.error('Could not check current campaign assignment:',assignmentError);
+      }else{
+        const assignmentNow=new Date();
+        userAlreadyInCampaign=(assignmentRows||[]).some(row=>{
+          const assignedCampaign=Array.isArray(row.campaigns) ? row.campaigns[0] : row.campaigns;
+          if(!assignedCampaign?.active) return false;
+          if(assignedCampaign.endless || !assignedCampaign.end_date) return true;
+          const endDateText=String(assignedCampaign.end_date).slice(0,10);
+          const endOfCampaignDay=new Date(`${endDateText}T23:59:59.999`);
+          return Number.isNaN(endOfCampaignDay.getTime()) || assignmentNow<=endOfCampaignDay;
+        });
+      }
+
+      if(!userAlreadyInCampaign){
+        const {data:leaveRows,error:leaveError}=await sb
+          .from('campaign_assignments')
+          .select('left_at')
+          .eq('user_id',currentUserId)
+          .not('left_at','is',null)
+          .order('left_at',{ascending:false})
+          .limit(1);
+
+        if(leaveError){
+          console.error('Could not check campaign leave cooldown:',leaveError);
+        }else{
+          const latestLeftAt=leaveRows?.[0]?.left_at || null;
+          if(latestLeftAt){
+            const canJoinAgain=new Date(latestLeftAt);
+            canJoinAgain.setMonth(canJoinAgain.getMonth()+1);
+            if(new Date()<canJoinAgain){
+              const formattedCanJoinDate=canJoinAgain.toLocaleDateString('de-CH',{
+                day:'2-digit',month:'2-digit',year:'numeric'
+              });
+              campaignJoinBlockedMessage=`You cannot join a campaign until ${formattedCanJoinDate}`;
+            }
+          }
+        }
+      }
+    }
+
+    const now=new Date();
+    const browseableCampaigns=(Array.isArray(data) ? data : []).filter(row=>{
+      if(!row?.active) return false;
+      if(row.endless) return true;
+
+      // Campaign browse closes at the effective join cutoff:
+      // normal campaigns = 7 days before start; late-join campaigns =
+      // exactly 2 calendar months before the campaign end date.
+      const joinCutoff=getCampaignJoinCutoff(row);
+      if(joinCutoff && now>joinCutoff) return false;
+
+      if(row.end_date){
+        const endDateText=String(row.end_date).slice(0,10);
+        const endOfCampaignDay=new Date(`${endDateText}T23:59:59.999`);
+        if(!Number.isNaN(endOfCampaignDay.getTime()) && now>endOfCampaignDay) return false;
+      }
+
+      return true;
+    });
+
+    list.innerHTML=browseableCampaigns.map(row=>renderDatabaseCampaign(row,userAlreadyInCampaign,campaignJoinBlockedMessage)).join('');
     window.carAdsRefreshCampaignCountdowns?.();
     filterCampaignCards?.();
     hydratePrivateCampaignBanners?.();
@@ -4401,7 +4737,9 @@ setInterval(updateOrderTimeLeft,1000);
 
   function formatProfileCampaignDate(value){
     if(!value) return '';
-    const d=new Date(value+'T12:00:00');
+    const raw=String(value);
+    const dateOnly=/^\d{4}-\d{2}-\d{2}$/.test(raw);
+    const d=new Date(dateOnly ? `${raw}T12:00:00` : raw);
     if(Number.isNaN(d.getTime())) return '';
     return new Intl.DateTimeFormat('de-CH',{
       day:'2-digit',
@@ -4437,6 +4775,20 @@ setInterval(updateOrderTimeLeft,1000);
     }).format(d);
   }
 
+  function formatProfileCampaignUploadDateTime(value){
+    if(!value) return '';
+    const d=new Date(value);
+    if(Number.isNaN(d.getTime())) return '';
+    return new Intl.DateTimeFormat('de-CH',{
+      day:'2-digit',
+      month:'2-digit',
+      year:'numeric',
+      hour:'2-digit',
+      minute:'2-digit',
+      hour12:false
+    }).format(d);
+  }
+
   window.saveCampaignShippingAddressToDatabase=async function(campaignId){
     if(!campaignId || !window.carAdsSupabase) return;
 
@@ -4448,7 +4800,7 @@ setInterval(updateOrderTimeLeft,1000);
     const city=document.getElementById('orderCity')?.value?.trim()||'';
     const country=document.getElementById('orderCountry')?.value?.trim()||'Switzerland';
 
-    const {error}=await window.carAdsSupabase.rpc('save_campaign_shipping_address',{
+    const {error}=await window.carAdsSupabase.rpc('save_campaign_shipping_address_v2',{
       p_campaign_id:campaignId,
       p_shipping_first_name:firstName,
       p_shipping_last_name:lastName,
@@ -4607,7 +4959,9 @@ setInterval(updateOrderTimeLeft,1000);
             ? 'pending'
             : getEffectiveProofValidation(row.validationStatus,row.uploadedAt,row.validatedAt),
           validatedAt:row.validatedAt||null,
-          adminNote:row.adminNote||''
+          adminNote:row.adminNote||'',
+          balanceAddDate:row.balanceAddDate||row.balance_add_date||null,
+          addedToBalanceAt:row.addedToBalanceAt||row.added_to_balance_at||null
         });
         return;
       }
@@ -4650,7 +5004,9 @@ setInterval(updateOrderTimeLeft,1000);
 
           if(entry.validationStatus==='approved'){
             proofStatus=`Proof photo approved${entry.validatedAt ? ` ${escapeCampaignHtml(formatProfileCampaignDateTime(entry.validatedAt))}` : ''}`;
-            payoutStatus=`Will be added to balance ${escapeCampaignHtml(getMonthEndLabel())}`;
+            payoutStatus=entry.addedToBalanceAt
+              ? `Amount has been added to balance on ${escapeCampaignHtml(formatProfileCampaignDate(entry.addedToBalanceAt))}`
+              : `Amount will be added to balance on ${escapeCampaignHtml(entry.balanceAddDate ? formatProfileCampaignDate(entry.balanceAddDate) : getMonthEndLabel())}`;
           }else if(entry.validationStatus==='rejected'){
             proofStatus='Proof photo failed validation, please retake photo';
             payoutStatus='Not added to balance';
@@ -4695,7 +5051,11 @@ setInterval(updateOrderTimeLeft,1000);
 
       if(entry.validationStatus==='approved'){
         proofStatus=`Proof photo approved${entry.validatedAt ? ` ${escapeCampaignHtml(formatProfileCampaignDateTime(entry.validatedAt))}` : ''}`;
-        payoutStatus=isCurrent ? `Will be added to balance ${escapeCampaignHtml(getMonthEndLabel())}` : `Added to balance ${escapeCampaignHtml(formatProfileCampaignDate(getHistoryBalanceDate(entry.proofMonth)))}`;
+        payoutStatus=entry.addedToBalanceAt
+          ? `Amount has been added to balance on ${escapeCampaignHtml(formatProfileCampaignDate(entry.addedToBalanceAt))}`
+          : (isCurrent
+              ? `Amount will be added to balance on ${escapeCampaignHtml(entry.balanceAddDate ? formatProfileCampaignDate(entry.balanceAddDate) : getMonthEndLabel())}`
+              : `Amount will be added to balance on ${escapeCampaignHtml(formatProfileCampaignDate(entry.balanceAddDate || getHistoryBalanceDate(entry.proofMonth)))}`);
       }else if(entry.validationStatus==='rejected'){
         proofStatus=isCurrent
           ? 'Proof photo failed validation, please retake photo'
@@ -4758,6 +5118,8 @@ setInterval(updateOrderTimeLeft,1000);
         campaign_name,
         campaign_region,
         payout_monthly,
+        balance_add_date,
+        added_to_balance_at,
         proof_month,
         photo_path,
         uploaded_at,
@@ -4775,6 +5137,8 @@ setInterval(updateOrderTimeLeft,1000);
         campaignName:entry.campaign_name||'Campaign',
         campaignRegion:entry.campaign_region||'',
         amount:Number(entry.payout_monthly||0),
+        balanceAddDate:entry.balance_add_date||null,
+        addedToBalanceAt:entry.added_to_balance_at||null,
         proofMonth:entry.proof_month,
         uploadedAt:entry.uploaded_at||null,
         validationStatus:hasProofPendingOverride(entry.assignment_id,entry.proof_month)
@@ -4997,8 +5361,9 @@ setInterval(updateOrderTimeLeft,1000);
       .select(`
         id,
         campaign_id,
-        status,
         joined_at,
+        left_at,
+        ended_at,
         shipping_first_name,
         shipping_last_name,
         shipping_street,
@@ -5009,6 +5374,7 @@ setInterval(updateOrderTimeLeft,1000);
         campaigns (
           id,
           name,
+          b2b_company,
           campaign_description,
           campaign_image_path,
           region,
@@ -5029,7 +5395,6 @@ setInterval(updateOrderTimeLeft,1000);
         )
       `)
       .eq('user_id',userId)
-      .eq('status','active')
       .order('joined_at',{ascending:false});
 
     if(error){
@@ -5040,9 +5405,75 @@ setInterval(updateOrderTimeLeft,1000);
     }
 
     const rows=(data||[]).filter(row=>row.campaigns);
-    const activeRows=rows.filter(row=>row.status==='active');
+    const campaignDurationHasEnded=(campaign)=>{
+      if(!campaign || campaign.endless || !campaign.end_date) return false;
+      const endDateValue=String(campaign.end_date).slice(0,10);
+      const endDate=new Date(`${endDateValue}T23:59:59`);
+      return !Number.isNaN(endDate.getTime()) && new Date()>endDate;
+    };
+    const activeRows=rows.filter(row=>{
+      const campaign=Array.isArray(row.campaigns) ? row.campaigns[0] : row.campaigns;
+      return campaign?.active===true && !campaignDurationHasEnded(campaign) && !row.left_at && !row.ended_at;
+    });
 
     if(activeRows.length===0){
+      const profileCampaignHeading=document.getElementById('profileCampaignHeading');
+      if(profileCampaignHeading){
+        profileCampaignHeading.textContent='No campaign running';
+      }
+      const campaignHeaderMenuSlot=document.getElementById('profileCampaignHeaderMenuSlot');
+      if(campaignHeaderMenuSlot){
+        campaignHeaderMenuSlot.innerHTML='';
+      }
+
+      const latestManualLeave=rows
+        .filter(row=>row.left_at)
+        .map(row=>new Date(row.left_at))
+        .filter(date=>!Number.isNaN(date.getTime()))
+        .sort((a,b)=>b-a)[0] || null;
+
+      if(latestManualLeave){
+        const canJoinAgain=new Date(latestManualLeave);
+        canJoinAgain.setMonth(canJoinAgain.getMonth()+1);
+
+        if(new Date()<canJoinAgain){
+          const formattedCanJoinDate=canJoinAgain.toLocaleDateString('de-CH',{
+            day:'2-digit',
+            month:'2-digit',
+            year:'numeric'
+          });
+
+          container.innerHTML=`<div id="profileCampaignStatus" class="profile-empty-state">
+  <div style="color:#d92d20;font-weight:700;">You left a campaign before it ended, therefore cannot join another campaign until ${formattedCanJoinDate}.</div>
+</div>`;
+          return;
+        }
+      }
+
+      const naturallyEndedCampaign=rows.find(row=>{
+        const campaign=Array.isArray(row.campaigns) ? row.campaigns[0] : row.campaigns;
+        return !row.left_at && !row.ended_at && campaignDurationHasEnded(campaign);
+      });
+
+      if(naturallyEndedCampaign){
+        if(profileCampaignHeading){
+          profileCampaignHeading.textContent='Campaign has ended';
+        }
+        container.innerHTML=`<div id="profileCampaignStatus" class="profile-empty-state">
+  <div>Campaign has ended.</div>
+  <div class="campaign-proof-box" style="width:100%;margin-top:14px;text-align:left;">
+    <div class="campaign-proof-copy">
+      <strong>Task: Remove ad foil</strong>
+      <span>Please remove the campaign ad foil from your vehicle.</span>
+    </div>
+  </div>
+  <div class="profile-order-ad-film-row">
+    <button class="btn orange profile-order-ad-film-button" type="button">Join a campaign</button>
+  </div>
+</div>`;
+        return;
+      }
+
       container.innerHTML=`<div id="profileCampaignStatus" class="profile-empty-state">
   <div>No campaign is currently running on your profile.</div>
   <div class="profile-order-ad-film-row">
@@ -5165,9 +5596,9 @@ setInterval(updateOrderTimeLeft,1000);
                   : proofApproved
                     ? `Approved ${escapeCampaignHtml(formatProfileCampaignDateTime(currentProof.validated_at||currentProof.uploaded_at))}. A new photo will be required at the start of next month.`
                     : proofRejected
-                      ? `${currentProof.admin_note ? escapeCampaignHtml(currentProof.admin_note)+' ' : ''}Please upload a new clear photo showing both the applied ad film and visible license plate.`
+                      ? `${currentProof.admin_note ? `Reason: ${escapeCampaignHtml(currentProof.admin_note)}<br>` : ''}Please upload a new clear photo showing both the applied ad film and visible license plate.`
                       : proofUploaded
-                        ? `Uploaded ${escapeCampaignHtml(formatProfileCampaignDateTime(currentProof.uploaded_at))}. AdCars.ch is reviewing it.`
+                        ? `Uploaded ${escapeCampaignHtml(formatProfileCampaignUploadDateTime(currentProof.uploaded_at))}. AdCars.ch is reviewing it.`
                         : 'At the start of every month, upload a clear photo of the rear of your car. The applied ad film and your license plate must both be visible.'
               }</span>
             </div>
@@ -5175,8 +5606,11 @@ setInterval(updateOrderTimeLeft,1000);
               <input
                 class="campaign-proof-input"
                 type="file"
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/*"
+                capture="environment"
                 data-assignment-id="${escapeCampaignHtml(row.id)}"
+                data-campaign-storage-name="${escapeCampaignHtml(c.b2b_company || c.name || 'campaign')}"
+                data-campaign-id="${escapeCampaignHtml(c.id || row.campaign_id || '')}"
                 hidden
               >
               ${proofApproved ? '' : `
@@ -5184,7 +5618,8 @@ setInterval(updateOrderTimeLeft,1000);
                   class="btn orange campaign-proof-button"
                   type="button"
                   data-assignment-id="${escapeCampaignHtml(row.id)}"
-                >${proofRejected ? 'Upload new photo' : proofUploaded ? 'Replace photo' : 'Upload photo'}</button>
+                data-camera-label="${proofUploaded || proofRejected ? 'Retake photo' : 'Take photo'}"
+                >${proofUploaded || proofRejected ? 'Retake photo' : 'Take photo'}</button>
               `}
             `}
             <div class="campaign-proof-feedback" aria-live="polite"></div>
@@ -5269,6 +5704,105 @@ setInterval(updateOrderTimeLeft,1000);
     document.querySelectorAll('.profile-shipping-menu-button').forEach(el=>el.setAttribute('aria-expanded','false'));
   });
 
+  let campaignProofCameraStream=null;
+
+  const closeCampaignProofCamera=()=>{
+    if(campaignProofCameraStream){
+      campaignProofCameraStream.getTracks().forEach(track=>track.stop());
+      campaignProofCameraStream=null;
+    }
+    document.getElementById('campaignProofCameraOverlay')?.remove();
+  };
+
+  const openCampaignProofCamera=async(input,button)=>{
+    const card=input.closest('.profile-running-campaign');
+    const feedback=card?.querySelector('.campaign-proof-feedback');
+
+    if(!window.isSecureContext){
+      if(feedback){
+        feedback.textContent='Live camera access requires HTTPS when the website is online. Please open the secure https:// version of this website.';
+        feedback.className='campaign-proof-feedback error';
+      }
+      return;
+    }
+
+    if(!navigator.mediaDevices?.getUserMedia){
+      if(feedback){
+        feedback.textContent='Live camera access is not supported by this browser.';
+        feedback.className='campaign-proof-feedback error';
+      }
+      return;
+    }
+
+    closeCampaignProofCamera();
+
+    const overlay=document.createElement('div');
+    overlay.id='campaignProofCameraOverlay';
+    overlay.style.cssText='position:fixed;inset:0;z-index:99999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;';
+    overlay.innerHTML=`
+      <div style="width:min(720px,100%);display:flex;flex-direction:column;gap:14px;align-items:stretch;">
+        <video id="campaignProofCameraVideo" autoplay playsinline muted style="width:100%;max-height:72vh;object-fit:contain;background:#000;border-radius:16px;"></video>
+        <div style="display:flex;gap:10px;justify-content:center;">
+          <button type="button" id="campaignProofCameraCancel" class="btn" style="background:#fff;color:#111;">Cancel</button>
+          <button type="button" id="campaignProofCameraCapture" class="btn orange">${button?.dataset.cameraLabel || 'Take photo'}</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    const video=overlay.querySelector('#campaignProofCameraVideo');
+    const captureButton=overlay.querySelector('#campaignProofCameraCapture');
+    const cancelButton=overlay.querySelector('#campaignProofCameraCancel');
+
+    cancelButton.addEventListener('click',closeCampaignProofCamera);
+
+    try{
+      campaignProofCameraStream=await navigator.mediaDevices.getUserMedia({
+        video:{facingMode:{ideal:'environment'}},
+        audio:false
+      });
+      video.srcObject=campaignProofCameraStream;
+      await video.play();
+    }catch(err){
+      closeCampaignProofCamera();
+      if(feedback){
+        feedback.textContent='Camera access was denied or unavailable. Please allow camera access and try again.';
+        feedback.className='campaign-proof-feedback error';
+      }
+      return;
+    }
+
+    captureButton.addEventListener('click',async()=>{
+      if(!video.videoWidth || !video.videoHeight) return;
+      captureButton.disabled=true;
+      captureButton.textContent='Taking photo…';
+
+      const canvas=document.createElement('canvas');
+      canvas.width=video.videoWidth;
+      canvas.height=video.videoHeight;
+      const ctx=canvas.getContext('2d');
+      if(!ctx){
+        captureButton.disabled=false;
+        captureButton.textContent='Take photo';
+        return;
+      }
+      ctx.drawImage(video,0,0,canvas.width,canvas.height);
+
+      const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',0.92));
+      if(!blob){
+        captureButton.disabled=false;
+        captureButton.textContent='Take photo';
+        return;
+      }
+
+      const cameraFile=new File([blob],`camera-proof-${Date.now()}.jpg`,{type:'image/jpeg'});
+      const transfer=new DataTransfer();
+      transfer.items.add(cameraFile);
+      input.files=transfer.files;
+      closeCampaignProofCamera();
+      input.dispatchEvent(new Event('change',{bubbles:true}));
+    });
+  };
+
   profileRunningCampaigns?.addEventListener('click',e=>{
     const button=e.target.closest('.campaign-proof-button');
     if(!button || button.disabled || button.getAttribute('aria-disabled')==='true') return;
@@ -5277,7 +5811,7 @@ setInterval(updateOrderTimeLeft,1000);
     const input=profileRunningCampaigns.querySelector(
       `.campaign-proof-input[data-assignment-id="${CSS.escape(assignmentId)}"]`
     );
-    input?.click();
+    if(input) openCampaignProofCamera(input,button);
   });
 
 
@@ -5401,16 +5935,25 @@ setInterval(updateOrderTimeLeft,1000);
     confirmButton.disabled=true;
     if(feedback) feedback.textContent='';
 
-    const {error}=await supabaseClient.rpc('leave_campaign',{
+    // Leave through the SECURITY DEFINER RPC so the browser does not need
+    // direct UPDATE permission on campaign_assignments.
+    const {data:leaveResult,error:leaveError}=await supabaseClient.rpc('leave_campaign',{
       p_assignment_id:pendingLeaveAssignmentId
     });
 
-    confirmButton.disabled=false;
-
-    if(error){
-      if(feedback) feedback.textContent=error.message||'Could not leave campaign.';
+    if(leaveError){
+      confirmButton.disabled=false;
+      if(feedback) feedback.textContent=leaveError.message||'Could not leave campaign.';
       return;
     }
+
+    if(leaveResult && leaveResult.success===false){
+      confirmButton.disabled=false;
+      if(feedback) feedback.textContent=leaveResult.message||'Could not leave campaign.';
+      return;
+    }
+
+    confirmButton.disabled=false;
 
     closeLeaveCampaignOverlay();
 
@@ -5443,31 +5986,110 @@ setInterval(updateOrderTimeLeft,1000);
       return;
     }
 
-    if(!['image/jpeg','image/png','image/webp'].includes(file.type)){
+    const proofFileExt=(file.name.split('.').pop()||'').toLowerCase();
+    const allowedProofTypes=['image/jpeg','image/png','image/webp','image/heic','image/heif'];
+    const allowedProofExtensions=['jpg','jpeg','png','webp','heic','heif'];
+    if(!allowedProofTypes.includes(file.type) && !allowedProofExtensions.includes(proofFileExt)){
       if(feedback){
-        feedback.textContent='Please upload a JPG, PNG or WebP image.';
+        feedback.textContent='Please upload a JPG, PNG, WebP, HEIC or HEIF image.';
         feedback.className='campaign-proof-feedback error';
       }
       input.value='';
       return;
     }
 
-    if(file.size>10*1024*1024){
+    if(file.size>50*1024*1024){
       if(feedback){
-        feedback.textContent='The image must be smaller than 10 MB.';
+        feedback.textContent='The source image is too large to process. Please choose an image smaller than 50 MB.';
         feedback.className='campaign-proof-feedback error';
       }
       input.value='';
       return;
     }
 
-    const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+    const convertProofImageToPng=async sourceFile=>{
+      let sourceBlob=sourceFile;
+      const sourceExt=(sourceFile.name.split('.').pop()||'').toLowerCase();
+      const isHeic=['heic','heif'].includes(sourceExt) || ['image/heic','image/heif'].includes(sourceFile.type);
+
+      if(isHeic){
+        const converter=window.HeicTo;
+        if(typeof converter!=='function') throw new Error('HEIC image conversion is unavailable. Please reload the page and try again.');
+        sourceBlob=await converter({blob:sourceFile,type:'image/jpeg',quality:.9});
+        if(!(sourceBlob instanceof Blob)) throw new Error('Could not convert the HEIC image.');
+      }
+
+      const bitmap=await createImageBitmap(sourceBlob);
+      try{
+        const targetBytes=8*1024*1024;
+        const maxInitialDimension=1800;
+        const minDimension=720;
+        const longestSide=Math.max(bitmap.width,bitmap.height);
+        let scale=Math.min(1,maxInitialDimension/longestSide);
+
+        const makePng=async currentScale=>{
+          const width=Math.max(1,Math.round(bitmap.width*currentScale));
+          const height=Math.max(1,Math.round(bitmap.height*currentScale));
+          const canvas=document.createElement('canvas');
+          canvas.width=width;
+          canvas.height=height;
+          const context=canvas.getContext('2d');
+          if(!context) throw new Error('Could not prepare the image for upload.');
+          context.imageSmoothingEnabled=true;
+          context.imageSmoothingQuality='high';
+          context.drawImage(bitmap,0,0,width,height);
+          return await new Promise((resolve,reject)=>{
+            canvas.toBlob(blob=>blob ? resolve(blob) : reject(new Error('Could not convert the image to PNG.')),'image/png');
+          });
+        };
+
+        let pngBlob=await makePng(scale);
+        let attempts=0;
+
+        while(pngBlob.size>targetBytes && attempts<8){
+          const currentLongest=Math.max(
+            Math.round(bitmap.width*scale),
+            Math.round(bitmap.height*scale)
+          );
+          if(currentLongest<=minDimension) break;
+
+          scale*=0.82;
+          if(longestSide*scale<minDimension){
+            scale=minDimension/longestSide;
+          }
+          pngBlob=await makePng(scale);
+          attempts++;
+        }
+
+        if(pngBlob.size>targetBytes){
+          throw new Error('The image is still too large after compression. Please choose a smaller photo.');
+        }
+
+        return pngBlob;
+      }finally{
+        bitmap.close?.();
+      }
+    };
+
     const proofMonth=getCurrentProofMonth().slice(0,7);
-    const path=`${userId}/${assignmentId}/${proofMonth}/${Date.now()}.${ext}`;
+    const campaignStorageName=String(input.dataset.campaignStorageName || 'campaign')
+      .trim()
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'')
+      .slice(0,48) || 'campaign';
+    const campaignShortCode=String(input.dataset.campaignId || assignmentId || '')
+      .replace(/[^a-z0-9]/gi,'')
+      .slice(0,6)
+      .toUpperCase() || '000000';
+    const campaignFolder=`${campaignStorageName}-campaign-${campaignShortCode}`;
+    const path=`${userId}/${campaignFolder}/${proofMonth}/${Date.now()}.png`;
 
     if(button){
       button.disabled=true;
-      button.textContent='Uploading…';
+      button.textContent='Converting…';
     }
     if(feedback){
       feedback.textContent='';
@@ -5475,41 +6097,41 @@ setInterval(updateOrderTimeLeft,1000);
     }
 
     try{
+      const pngFile=await convertProofImageToPng(file);
+      if(button) button.textContent='Uploading…';
+
       const {error:uploadError}=await sb.storage
         .from('campaign-proof-photos')
-        .upload(path,file,{
+        .upload(path,pngFile,{
           cacheControl:'3600',
           upsert:false,
-          contentType:file.type
+          contentType:'image/png'
         });
 
       if(uploadError) throw uploadError;
 
-      const {error:saveError}=await sb.rpc('save_campaign_monthly_proof',{
-        p_assignment_id:assignmentId,
-        p_photo_path:path
-      });
+      const proofMonthDate=getCurrentProofMonth();
+      const {error:saveError}=await sb
+        .from('campaign_monthly_proofs')
+        .upsert({
+          user_id:userId,
+          assignment_id:assignmentId,
+          proof_month:proofMonthDate,
+          photo_path:path,
+          uploaded_at:new Date().toISOString(),
+          validation_status:'pending',
+          validated_at:null,
+          admin_note:null
+        },{
+          onConflict:'assignment_id,proof_month'
+        });
 
       if(saveError){
         await sb.storage.from('campaign-proof-photos').remove([path]);
         throw saveError;
       }
 
-      markProofPendingOverride(assignmentId,getCurrentProofMonth());
-
-      const {error:pendingError}=await sb
-        .from('campaign_monthly_proofs')
-        .update({
-          validation_status:'pending',
-          validated_at:null,
-          admin_note:null
-        })
-        .eq('assignment_id',assignmentId)
-        .eq('proof_month',getCurrentProofMonth());
-
-      if(pendingError){
-        console.warn('Could not reset proof validation state to pending:',pendingError);
-      }
+      markProofPendingOverride(assignmentId,proofMonthDate);
 
       await loadProfileRunningCampaigns(currentProfileData);
     }catch(err){
@@ -5519,7 +6141,7 @@ setInterval(updateOrderTimeLeft,1000);
       }
       if(button){
         button.disabled=false;
-        button.textContent='Upload photo';
+        button.textContent=button.dataset.cameraLabel || 'Take photo';
       }
       input.value='';
     }
@@ -7890,16 +8512,8 @@ body>section{padding-top:64px!important;padding-bottom:64px!important}
 }
 
 #b2bComment{
-  display:block !important;
   width:100% !important;
-  height:46px !important;
-  min-height:46px !important;
-  max-height:46px !important;
   box-sizing:border-box !important;
-  padding:12px 14px !important;
-  line-height:20px !important;
-  resize:none !important;
-  overflow:hidden !important;
 }
 
 #b2bConfirmationOverlay .b2b-confirmation-panel{
