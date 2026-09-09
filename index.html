@@ -2014,6 +2014,129 @@ body{overscroll-behavior-y:none}
 }
 </style>
 
+<style>
+
+/* ==========================================================
+   Unified overlay close buttons
+   Same X graphics as the open burger menu.
+   Prevents mobile browsers from rendering the X blue and
+   keeps both bars exactly centered inside the button.
+   ========================================================== */
+.campaign-close,
+.auth-close,
+.b2b-close,
+.driver-close,
+.delete-account-close,
+.payout-close,
+.earnings-history-close,
+.payout-history-close,
+.leave-campaign-close{
+  position:relative;
+  width:44px !important;
+  min-width:44px !important;
+  height:44px !important;
+  min-height:44px !important;
+  padding:0 !important;
+  border:1px solid var(--line) !important;
+  border-radius:11px !important;
+  background:#fff !important;
+  color:transparent !important;
+  -webkit-text-fill-color:transparent !important;
+  font-size:0 !important;
+  line-height:0 !important;
+  display:grid !important;
+  place-items:center !important;
+  flex:0 0 44px !important;
+  cursor:pointer !important;
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  -webkit-tap-highlight-color:transparent !important;
+  text-decoration:none !important;
+  box-shadow:none !important;
+  overflow:hidden !important;
+}
+
+.campaign-close::before,
+.campaign-close::after,
+.auth-close::before,
+.auth-close::after,
+.b2b-close::before,
+.b2b-close::after,
+.driver-close::before,
+.driver-close::after,
+.delete-account-close::before,
+.delete-account-close::after,
+.payout-close::before,
+.payout-close::after,
+.earnings-history-close::before,
+.earnings-history-close::after,
+.payout-history-close::before,
+.payout-history-close::after,
+.leave-campaign-close::before,
+.leave-campaign-close::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:22px;
+  height:2px;
+  border-radius:99px;
+  background:#0B1F3A;
+  transform-origin:center;
+  pointer-events:none;
+}
+
+.campaign-close::before,
+.auth-close::before,
+.b2b-close::before,
+.driver-close::before,
+.delete-account-close::before,
+.payout-close::before,
+.earnings-history-close::before,
+.payout-history-close::before,
+.leave-campaign-close::before{
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.campaign-close::after,
+.auth-close::after,
+.b2b-close::after,
+.driver-close::after,
+.delete-account-close::after,
+.payout-close::after,
+.earnings-history-close::after,
+.payout-history-close::after,
+.leave-campaign-close::after{
+  transform:translate(-50%,-50%) rotate(-45deg);
+}
+
+.campaign-close:focus,
+.auth-close:focus,
+.b2b-close:focus,
+.driver-close:focus,
+.delete-account-close:focus,
+.payout-close:focus,
+.earnings-history-close:focus,
+.payout-history-close:focus,
+.leave-campaign-close:focus{
+  color:transparent !important;
+  -webkit-text-fill-color:transparent !important;
+}
+
+.campaign-close:active,
+.auth-close:active,
+.b2b-close:active,
+.driver-close:active,
+.delete-account-close:active,
+.payout-close:active,
+.earnings-history-close:active,
+.payout-history-close:active,
+.leave-campaign-close:active{
+  color:transparent !important;
+  -webkit-text-fill-color:transparent !important;
+}
+
+</style>
 </head>
 <body>
 
@@ -3847,7 +3970,9 @@ TEMPORARILY DISABLED. Order ad film CTA
 });
   mobileMenu?.querySelectorAll('a,button').forEach(link => link.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
+    burger?.classList.remove('open');
     burger?.setAttribute('aria-expanded', 'false');
+    burger?.setAttribute('aria-label', 'Open menu');
   }));
 
   const monthlyPayout = document.getElementById('monthlyPayout');
