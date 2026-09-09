@@ -2286,6 +2286,69 @@ body.overlay-open{
 }
 </style>
 
+
+<style id="adcars-signup-complete-layout-fix">
+/* Sign-up complete: X in the card's top-right corner, all message text centered. */
+.signup-complete-panel{
+  position:relative !important;
+  text-align:center !important;
+}
+
+.signup-complete-panel .signup-complete-close{
+  position:absolute !important;
+  top:18px !important;
+  right:18px !important;
+  margin:0 !important;
+  z-index:5 !important;
+}
+
+.signup-complete-panel #signupCompleteTitle,
+.signup-complete-panel p{
+  width:100% !important;
+  text-align:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+</style>
+
+
+<style id="adcars-profile-three-dot-position-unified">
+/* Profile cards: keep all three-dot menus consistently at the top-right,
+   including on mobile. */
+#profileOverlay .profile-card{
+  position:relative !important;
+}
+
+#profileOverlay .profile-campaign-menu-wrap,
+#profileOverlay .profile-earnings-menu-wrap,
+#profileOverlay .profile-information-menu-wrap,
+#profileOverlay .profile-info-menu-wrap{
+  position:absolute !important;
+  top:18px !important;
+  right:18px !important;
+  margin:0 !important;
+  z-index:6 !important;
+}
+
+/* Known menu buttons stay anchored inside the pinned wrapper. */
+#profileOverlay .profile-campaign-menu-button,
+#profileOverlay .profile-earnings-menu-button,
+#profileOverlay .profile-information-menu-button,
+#profileOverlay .profile-info-menu-button{
+  margin:0 !important;
+}
+
+@media (max-width: 700px){
+  #profileOverlay .profile-campaign-menu-wrap,
+  #profileOverlay .profile-earnings-menu-wrap,
+  #profileOverlay .profile-information-menu-wrap,
+  #profileOverlay .profile-info-menu-wrap{
+    top:18px !important;
+    right:18px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -3162,6 +3225,7 @@ TEMPORARILY DISABLED. Order ad film CTA
       <div class="footer-legal">
         <a href="#terms">Terms of Service</a>
         <a href="#privacy">Privacy</a>
+          <a href="#impressum">Impressum</a>
         <a href="#support">Support</a>
         <span></span>
       </div>
