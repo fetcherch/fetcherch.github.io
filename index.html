@@ -2349,6 +2349,136 @@ body.overlay-open{
 }
 </style>
 
+
+<style id="adcars-checkbox-size-and-color-fix">
+/* Keep native checkboxes compact on every screen size and use AdCars orange. */
+input[type="checkbox"]{
+  width:18px !important;
+  height:18px !important;
+  min-width:18px !important;
+  min-height:18px !important;
+  max-width:18px !important;
+  max-height:18px !important;
+  flex:0 0 18px !important;
+  padding:0 !important;
+  margin-top:1px;
+  accent-color:var(--accent) !important;
+}
+
+@media (max-width:700px){
+  input[type="checkbox"]{
+    width:18px !important;
+    height:18px !important;
+    min-width:18px !important;
+    min-height:18px !important;
+    max-width:18px !important;
+    max-height:18px !important;
+    flex-basis:18px !important;
+  }
+}
+</style>
+
+
+<style id="adcars-checkbox-text-size">
+/* Match checkbox dimensions to the Terms of Service text size. */
+#signupForm .check input[type="checkbox"]{
+  width:1em !important;
+  height:1em !important;
+  min-width:1em !important;
+  min-height:1em !important;
+  max-width:1em !important;
+  max-height:1em !important;
+  flex:0 0 1em !important;
+  margin:0 !important;
+  align-self:center !important;
+  accent-color:var(--accent) !important;
+}
+</style>
+
+
+<style id="adcars-checkbox-labels-nonselectable">
+/* Checkbox text in Driver signup and B2B cannot be selected/copied. */
+#signupForm label.check,
+#signupForm label.check span,
+#b2bOverlay label.check,
+#b2bOverlay label.check span,
+#b2bOverlay .check,
+#b2bOverlay .check span{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+  -webkit-touch-callout:none !important;
+}
+</style>
+
+
+<style id="adcars-checkbox-smaller-final">
+/* Keep signup + B2B checkboxes visibly smaller than the adjacent label text. */
+#signupForm input[type="checkbox"],
+#b2bOverlay input[type="checkbox"]{
+  width:14px !important;
+  height:14px !important;
+  min-width:14px !important;
+  min-height:14px !important;
+  max-width:14px !important;
+  max-height:14px !important;
+  flex:0 0 14px !important;
+  padding:0 !important;
+  margin:1px 0 0 0 !important;
+  accent-color:var(--accent) !important;
+}
+</style>
+
+
+<style id="adcars-checkbox-alignment-final">
+/* Vertically center signup + B2B checkboxes with their label text. */
+#signupForm label.check,
+#b2bOverlay label.check,
+#b2bOverlay .check{
+  align-items:center !important;
+}
+
+#signupForm input[type="checkbox"],
+#b2bOverlay input[type="checkbox"]{
+  margin:0 !important;
+  align-self:center !important;
+  vertical-align:middle !important;
+}
+</style>
+
+
+<style id="adcars-signup-tos-spacing-normal">
+/* Signup Terms row: normal compact spacing and regular-weight text. */
+#signupForm .field.full:has(label.check){
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+  padding-top:0 !important;
+  padding-bottom:0 !important;
+}
+
+#signupForm label.check{
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  margin:0 !important;
+  padding:0 !important;
+  min-height:0 !important;
+  font-weight:400 !important;
+  line-height:1.4 !important;
+}
+
+#signupForm label.check span{
+  margin:0 !important;
+  padding:0 !important;
+  font-weight:400 !important;
+}
+
+#signupForm label.check input[type="checkbox"]{
+  margin:0 !important;
+  padding:0 !important;
+  align-self:center !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -2493,13 +2623,13 @@ body.overlay-open{
         <span class="audience-kicker">FOR DRIVERS</span>
         <strong>Participate as driver</strong>
         <span>Browse campaigns, choose a brand and earn while you drive.</span>
-        <span class="audience-arrow">Open driver campaigns →</span>
+        <span class="audience-arrow">Open driver campaigns </span>
       </button>
       <button class="audience-nav-card audience-nav-card-business" type="button" data-open-b2b>
         <span class="audience-kicker">FOR BUSINESSES</span>
         <strong>Launch a campaign</strong>
         <span>Put your brand on real cars and reach people across Switzerland.</span>
-        <span class="audience-arrow">Open B2B campaign setup →</span>
+        <span class="audience-arrow">Open B2B campaign setup </span>
       </button>
     </div>
   </div>
@@ -2517,7 +2647,7 @@ TEMPORARILY DISABLED. Order ad film CTA
   <div class="container">
     <div class="cta">
       <div><h2>Selected a brand?<br>Order your ad film.</h2><p>Get the printed perforated film prepared for your car.</p></div>
-      <a class="btn" href="#" data-open-driver>Log In to order ad film →</a>
+      <a class="btn" href="#" data-open-driver>Log In to order ad film </a>
     </div>
   </div>
 </section>
@@ -2697,7 +2827,7 @@ TEMPORARILY DISABLED. Order ad film CTA
             <label for="b2bContactConsent">I agree to be contacted by AdCars.ch regarding this B2B advertising request.</label>
           </div>
 
-          <button id="b2bRequestCampaignButton" class="btn orange" style="width:100%" type="submit">Request Campaign →</button>
+          <button id="b2bRequestCampaignButton" class="btn orange" style="width:100%" type="submit">Request Campaign </button>
           <div class="success" id="b2bSuccess" hidden></div>
         </form>
       </div>
@@ -2756,7 +2886,7 @@ TEMPORARILY DISABLED. Order ad film CTA
               <div class="field"><label>Password</label><input id="loginPassword" required type="password" placeholder="Your password"></div>
             </div>
             <div id="loginAuthFeedback" class="auth-feedback" role="alert"></div>
-          <button class="btn orange" style="margin-top:18px;width:100%" type="submit">Log in →</button>
+          <button class="btn orange" style="margin-top:18px;width:100%" type="submit">Log in </button>
             <div style="text-align:center;margin-top:14px"><a href="#" style="font-size:13px;font-weight:800;color:var(--muted)">Forgot password?</a></div>
             <div class="success" id="loginSuccess">Login submitted in this demo.</div>
           </form>
@@ -2800,7 +2930,7 @@ TEMPORARILY DISABLED. Order ad film CTA
             </div>
           </div>
           <div id="signupAuthFeedback" class="auth-feedback" role="alert"></div>
-          <button class="btn orange" style="margin-top:18px;width:100%" type="submit">Sign up →</button>
+          <button class="btn orange" style="margin-top:18px;width:100%" type="submit">Sign up </button>
         </form>
       </div>
     </div>
@@ -3771,7 +3901,7 @@ TEMPORARILY DISABLED. Order ad film CTA
     }finally{
       if(submitButton){
         submitButton.disabled=false;
-        submitButton.textContent=oldButtonText || 'Request Campaign →';
+        submitButton.textContent=oldButtonText || 'Request Campaign ';
       }
     }
   });
@@ -7725,7 +7855,7 @@ setInterval(updateOrderTimeLeft,1000);
       }else{
         showError(
           'signupAuthFeedback',
-          'Account created, but the driver’s license cannot be uploaded until an authenticated session exists. Disable Confirm email in Supabase Authentication → Providers → Email for immediate signup and upload.'
+          'Account created, but the driver’s license cannot be uploaded until an authenticated session exists. Disable Confirm email in Supabase Authentication  Providers  Email for immediate signup and upload.'
         );
       }
     }catch(err){
@@ -7738,7 +7868,7 @@ setInterval(updateOrderTimeLeft,1000);
     }finally{
       if(btn){
         btn.disabled=false;
-        btn.textContent=old||'Sign up →';
+        btn.textContent=old||'Sign up ';
       }
     }
   },true);
