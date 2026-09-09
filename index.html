@@ -829,6 +829,50 @@ body{overscroll-behavior-y:none}
   color:#dc2626;
 }
 #signupPasswordError[hidden]{display:none!important}
+.license-upload-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:8px;
+  width:100%;
+}
+.license-upload-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:42px !important;
+  min-height:42px !important;
+  max-height:42px !important;
+  padding:0 18px !important;
+  border-radius:10px;
+  font-size:14px;
+  line-height:1 !important;
+  cursor:pointer;
+  font-weight:800;
+  box-sizing:border-box;
+}
+.license-upload-name{
+  display:block;
+  width:100%;
+  font-size:14px;
+  opacity:.75;
+  word-break:break-word;
+}
+.license-upload-help{
+  margin-top:7px;
+  font-size:13px;
+  opacity:.68;
+}
+#signupDriverLicenseFile{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  clip-path:inset(50%);
+}
 #signupForm input.input-invalid{
   border-color:#dc2626 !important;
   box-shadow:0 0 0 1px #dc2626 !important;
@@ -1141,6 +1185,168 @@ body{overscroll-behavior-y:none}
 #campaignList .brand .pay{
   margin-top:auto;
 }
+
+/* Prevent horizontal overflow in Driver Signup overlay/card */
+#authSignupView,
+#authSignupView .driver-shell,
+#authSignupView .auth-card,
+#signupForm,
+#signupForm .form-grid,
+#signupForm .field,
+#signupForm .license-upload-wrap {
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+#authSignupView {
+  overflow-x:hidden !important;
+}
+
+#signupForm {
+  overflow-x:hidden;
+}
+
+#signupForm .license-upload-button {
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+#signupForm input,
+#signupForm select,
+#signupForm textarea,
+#signupForm button,
+#signupForm label.btn {
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+
+  .profile-license-edit{
+    display:grid;
+    gap:8px;
+    width:100%;
+  }
+  .profile-license-upload-button{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .profile-license-selected-name{
+    font-size:13px;
+    opacity:.72;
+    word-break:break-word;
+  }
+
+  /* Driver license replacement controls must only appear in Profile Edit mode */
+  .profile-license-edit[hidden]{
+    display:none !important;
+  }
+
+  .profile-rejection-reason{
+    margin-top:8px;
+    font-size:13px;
+    line-height:1.45;
+    color:#b42318;
+    font-weight:600;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+  .profile-rejection-reason[hidden]{display:none !important;}
+
+.footer-delete-account{
+  color:#fff !important;
+  text-decoration:none !important;
+}
+.footer-delete-account:hover{
+  color:#fff !important;
+  text-decoration:none !important;
+}
+
+.delete-account-overlay{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  background:rgba(11,31,58,.48);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.delete-account-overlay[hidden]{display:none !important}
+.delete-account-card{
+  width:min(460px,100%);
+  position:relative;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:26px;
+  box-shadow:0 24px 70px rgba(0,0,0,.22);
+}
+.delete-account-card h3{
+  margin:0 34px 10px 0;
+  color:#0B1F3A;
+  font-size:24px;
+}
+.delete-account-card p{
+  margin:0 0 10px;
+  color:#5f6672;
+  line-height:1.55;
+  font-size:14px;
+}
+.delete-account-warning{
+  color:#b91c1c !important;
+  font-weight:800;
+}
+.delete-account-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:50%;
+  background:#f3f4f6;
+  color:#0B1F3A;
+  font-size:22px;
+  cursor:pointer;
+}
+.delete-account-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+.delete-account-cancel,
+.delete-account-confirm{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  font:inherit;
+  font-weight:800;
+  cursor:pointer;
+}
+.delete-account-cancel{
+  background:#f1f3f6;
+  color:#0B1F3A;
+}
+.delete-account-confirm{
+  background:#dc2626;
+  color:#fff;
+}
+.delete-account-confirm:hover{background:#b91c1c}
+.delete-account-confirm:disabled,
+.delete-account-cancel:disabled{opacity:.6;cursor:not-allowed}
+.delete-account-feedback{
+  margin-top:12px;
+  border-radius:10px;
+  padding:10px 12px;
+  background:#fee2e2;
+  color:#991b1b;
+  font-size:13px;
+  font-weight:700;
+}
+.delete-account-feedback[hidden]{display:none !important}
 </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1635,6 +1841,179 @@ body{overscroll-behavior-y:none}
 <style>
 #b2bAllowLateJoinField[hidden]{display:none!important}
 </style>
+<style>
+
+/* Definitive Driver Signup horizontal-overflow fix */
+.auth-overlay,
+.auth-overlay-panel,
+#authSignupView,
+#authSignupView .driver-shell,
+#authSignupView .driver-form,
+#signupForm,
+#signupForm .form-grid,
+#signupForm .field,
+#signupForm .license-upload-wrap,
+#signupForm .license-upload-button {
+  box-sizing:border-box !important;
+}
+
+.auth-overlay {
+  width:100% !important;
+  max-width:100vw !important;
+  overflow-x:hidden !important;
+}
+
+.auth-overlay-panel {
+  width:min(1040px, 100%) !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+}
+
+#authSignupView,
+#authSignupView .driver-shell,
+#authSignupView .driver-form,
+#signupForm,
+#signupForm .form-grid,
+#signupForm .field {
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+}
+
+#authSignupView .driver-shell {
+  overflow-x:hidden !important;
+}
+
+#signupForm input:not([type="checkbox"]):not([type="file"]),
+#signupForm select,
+#signupForm textarea,
+#signupForm .license-upload-wrap,
+#signupForm .license-upload-button {
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+}
+
+/* Keep the hidden file input from contributing any layout width. */
+#signupDriverLicenseFile {
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  overflow:hidden !important;
+  clip:rect(0 0 0 0) !important;
+  clip-path:inset(50%) !important;
+}
+
+</style>
+
+<style>
+/* Footer: preserve original typography; make only the text itself clickable */
+.footer-links{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+}
+
+.footer-links > a,
+.footer-links > button,
+.footer-modal-link,
+.footer-profile-logout,
+.footer-delete-account{
+  display:inline-block !important;
+  width:auto !important;
+  max-width:max-content !important;
+  min-width:0 !important;
+  height:auto !important;
+  min-height:0 !important;
+  padding:0 !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  text-align:left !important;
+  align-self:flex-start !important;
+  flex:0 0 auto !important;
+  cursor:pointer !important;
+}
+
+/* Keep the previous delete-account appearance */
+.footer-delete-account,
+.footer-delete-account:hover{
+  text-decoration:none !important;
+}
+
+/* Hidden account actions must stay hidden */
+.footer-links > [hidden]{
+  display:none !important;
+}
+</style>
+
+
+<style>
+/* Match footer button hover animation to footer anchor links */
+.footer-links > button,
+.footer-modal-link,
+.footer-profile-logout,
+.footer-delete-account{
+  transition:opacity .2s ease, transform .2s ease !important;
+}
+
+.footer-links > button:hover,
+.footer-modal-link:hover,
+.footer-profile-logout:hover,
+.footer-delete-account:hover{
+  opacity:.72 !important;
+  transform:translateX(2px) !important;
+}
+</style>
+
+
+<style>
+.footer-links .footer-delete-account,
+.footer-links .footer-delete-account:hover,
+.footer-links .footer-delete-account:focus,
+.footer-links .footer-delete-account:active{
+  color:inherit !important;
+}
+</style>
+
+
+<style>
+/* Exact footer account action color match */
+.footer-links .footer-profile-logout,
+.footer-links .footer-delete-account{
+  color:#7b818d !important;
+}
+
+.footer-links .footer-profile-logout:hover,
+.footer-links .footer-delete-account:hover{
+  color:#7b818d !important;
+}
+</style>
+
+
+<style>
+/* Final exact match: Log out + Delete account */
+.footer-links .footer-profile-logout,
+.footer-links .footer-delete-account,
+.footer-links .footer-profile-logout:hover,
+.footer-links .footer-delete-account:hover,
+.footer-links .footer-profile-logout:focus,
+.footer-links .footer-delete-account:focus,
+.footer-links .footer-profile-logout:active,
+.footer-links .footer-delete-account:active{
+  color:#e8ebef !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -1990,12 +2369,20 @@ TEMPORARILY DISABLED. Order ad film CTA
             <div class="field"><label>First name</label><input id="signupFirstName" required placeholder="Alex"></div>
             <div class="field"><label>Last name</label><input id="signupLastName" required placeholder="Müller"></div>
             <div class="field"><label>Email</label><input id="signupEmail" required type="email" placeholder="alex@example.com"></div>
-            <div class="field"><label>Phone</label><input id="signupPhone" required placeholder="+41 ..."></div>
             <div class="field"><label>Car model</label><input id="signupCarModel" required placeholder="BMW 3 Series"></div>
             <div class="field"><label>Car plate number</label><input id="signupCarPlate" required placeholder="e.g. ZH 123456"></div>
             <div class="field"><label>How many times per week do you drive?</label><input id="signupDrivesPerWeek" required type="number" min="0" max="50" placeholder="e.g. 10"></div>
             <div class="field"><label>Where is your car parked most of the time?</label><input id="signupParkingLocation" required placeholder="e.g. Zürich HB, Oerlikon, workplace"></div>
-                        <div class="field"><label>Set password</label><input id="signupPassword" required type="password" autocomplete="new-password" placeholder="Set password"></div>
+            <div class="field full">
+              <label>Driver’s license</label>
+              <div class="license-upload-wrap">
+                <label id="signupDriverLicenseButton" for="signupDriverLicenseFile" class="btn orange license-upload-button">Upload front of driver’s license</label>
+                <span id="signupDriverLicenseName" class="license-upload-name">No file selected</span>
+              </div>
+              <input id="signupDriverLicenseFile" type="file" accept="image/jpeg,image/png,application/pdf,.jpg,.jpeg,.png,.pdf">
+              <div class="license-upload-help">Required. Upload the front of your driver’s license as a JPG, PNG or PDF (max 10 MB).</div>
+            </div>
+            <div class="field"><label>Set password</label><input id="signupPassword" required type="password" autocomplete="new-password" placeholder="Set password"></div>
             <div class="field"><label>Repeat password</label><input id="signupPasswordRepeat" required type="password" autocomplete="new-password" placeholder="Repeat password"><div id="signupPasswordError" class="field-error" role="alert" hidden>Passwords do not match.</div></div>
             
             <div class="field full">
@@ -2080,6 +2467,7 @@ TEMPORARILY DISABLED. Order ad film CTA
               <span>Account Status:</span>
               <strong id="profileVerificationStatus" class="profile-account-status-value">Pending verification</strong>
             </div>
+            <div id="profileVerificationRejectionReason" class="profile-rejection-reason" hidden></div>
           </div>
           <div class="profile-campaign-menu-wrap profile-info-menu-wrap">
             <button id="profileInfoMenuButton" class="profile-campaign-menu-button" type="button" aria-label="Profile information options" aria-expanded="false">•••</button>
@@ -2103,17 +2491,7 @@ TEMPORARILY DISABLED. Order ad film CTA
           <div class="profile-info-item">
             <span>Email</span>
             <strong id="profileEmailInfo"></strong>
-            <input id="profileEditEmail" class="profile-edit-input" type="email" hidden>
-          </div>
-          <div class="profile-info-item">
-            <span>Phone</span>
-            <strong id="profilePhone"></strong>
-            <input id="profileEditPhone" class="profile-edit-input" type="text" hidden>
-          </div>
-          <div class="profile-info-item">
-            <span>City</span>
-            <strong id="profileCity"></strong>
-            <input id="profileEditCity" class="profile-edit-input" type="text" hidden>
+            <div class="profile-readonly-note" hidden>Email cannot be changed.</div>
           </div>
           <div class="profile-info-item">
             <span>Car model</span>
@@ -2123,7 +2501,7 @@ TEMPORARILY DISABLED. Order ad film CTA
           <div class="profile-info-item">
             <span>Car plate</span>
             <strong id="profileCarPlate"></strong>
-            <div class="profile-readonly-note" hidden>Car plate cannot be changed.</div>
+            <input id="profileEditCarPlate" class="profile-edit-input" type="text" hidden>
           </div>
           <div class="profile-info-item">
             <span>Drives per week</span>
@@ -2134,6 +2512,16 @@ TEMPORARILY DISABLED. Order ad film CTA
             <span>Usually parked at</span>
             <strong id="profileParkingLocation"></strong>
             <input id="profileEditParkingLocation" class="profile-edit-input" type="text" hidden>
+          </div>
+          <div class="profile-info-item profile-license-item">
+            <span>Driver’s license</span>
+            <strong id="profileDriverLicenseName">No file uploaded</strong>
+            <div id="profileDriverLicenseEdit" class="profile-license-edit" hidden>
+              <button id="profileDriverLicenseUploadButton" class="btn orange profile-license-upload-button" type="button">Upload new driver’s license</button>
+              <input id="profileDriverLicenseFile" type="file" hidden accept="image/jpeg,image/png,application/pdf,.jpg,.jpeg,.png,.pdf">
+              <div id="profileDriverLicenseSelectedName" class="profile-license-selected-name">No new file selected</div>
+            </div>
+            <div id="profileDriverLicenseReadonlyNote" class="profile-readonly-note" hidden>Driver’s license can only be changed after account verification has been rejected.</div>
           </div>
         </div>
 
@@ -2378,6 +2766,21 @@ TEMPORARILY DISABLED. Order ad film CTA
   </div>
 </section>
 
+
+<div id="deleteAccountOverlay" class="delete-account-overlay" hidden aria-hidden="true">
+  <div class="delete-account-card" role="dialog" aria-modal="true" aria-labelledby="deleteAccountTitle">
+    <button id="deleteAccountClose" class="delete-account-close" type="button" aria-label="Close">×</button>
+    <h3 id="deleteAccountTitle">Delete account?</h3>
+    <p>Are you sure you want to delete your account? Your driver profile, campaign data, earnings history, payout requests, car plate registration and uploaded files will be permanently deleted.</p>
+    <p class="delete-account-warning">This cannot be undone.</p>
+    <div id="deleteAccountFeedback" class="delete-account-feedback" hidden></div>
+    <div class="delete-account-actions">
+      <button id="deleteAccountCancel" class="delete-account-cancel" type="button">Cancel</button>
+      <button id="deleteAccountConfirm" class="delete-account-confirm" type="button">Delete account</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="container">
     <div class="footer-shell">
@@ -2402,6 +2805,7 @@ TEMPORARILY DISABLED. Order ad film CTA
           <a href="#" data-open-auth><span class="auth-nav-label">Login / Signup</span></a>
           
           <button id="profileLogoutButton" type="button" class="footer-modal-link footer-profile-logout" hidden>Log out</button>
+          <button id="deleteAccountButton" type="button" class="footer-modal-link footer-delete-account" hidden>Delete account</button>
         </div>
       </div>
     </div>
@@ -3269,39 +3673,6 @@ TEMPORARILY DISABLED. Order ad film CTA
         attributes:true,
         attributeFilter:['class','hidden','aria-hidden']
       });
-    }
-  });
-
-
-  document.getElementById('signupForm')?.addEventListener('submit', e=>{
-    e.preventDefault();
-
-    const signupPassword = document.getElementById('signupPassword');
-    const signupPasswordRepeat = document.getElementById('signupPasswordRepeat');
-    const signupPasswordError = document.getElementById('signupPasswordError');
-
-    if(signupPassword?.value !== signupPasswordRepeat?.value){
-      if(signupPasswordError) signupPasswordError.hidden = false;
-      signupPasswordRepeat?.classList.add('input-invalid');
-      signupPasswordRepeat?.focus();
-      return;
-    }
-    if(signupPasswordError) signupPasswordError.hidden = true;
-    signupPasswordRepeat?.classList.remove('input-invalid');
-
-  
-
-
-  const authOverlay = document.getElementById('authOverlay');
-    const completeOverlay = document.getElementById('signupCompleteOverlay');
-    if(authOverlay){
-      authOverlay.classList.remove('open');
-      authOverlay.setAttribute('aria-hidden','true');
-    }
-    if(completeOverlay){
-      completeOverlay.classList.add('open');
-      completeOverlay.setAttribute('aria-hidden','false');
-      syncAdCarsOverlayState();
     }
   });
 
@@ -4352,7 +4723,8 @@ setInterval(updateOrderTimeLeft,1000);
     const maxSlots=Number.isFinite(Number(row.max_driver_slots)) && row.max_driver_slots !== null
       ? Number(row.max_driver_slots)
       : null;
-    const taken=Math.max(0,Number(row.taken_driver_slots || 0));
+    // Slot usage is derived from campaign_assignments, not campaigns.taken_driver_slots.
+    const taken=Math.max(0,Number(row.assignment_count || 0));
     const slotsLeft=maxSlots===null ? 'Unlimited' : String(Math.max(0,maxSlots-taken));
     const slotsLabel=maxSlots===null
       ? 'Unlimited driver slots'
@@ -4459,6 +4831,26 @@ setInterval(updateOrderTimeLeft,1000);
       console.error('Could not load campaigns from Supabase:',error);
       return;
     }
+
+    // Read real slot usage from campaign_assignments through a safe DB function.
+    // This deliberately ignores campaigns.taken_driver_slots.
+    const {data:assignmentCountRows,error:assignmentCountError}=await sb
+      .rpc('get_campaign_assignment_counts');
+
+    if(assignmentCountError){
+      console.error('Could not load campaign assignment counts:',assignmentCountError);
+    }
+
+    const assignmentCountByCampaign=new Map(
+      (assignmentCountRows || []).map(row=>[
+        String(row.campaign_id),
+        Math.max(0,Number(row.assignment_count || 0))
+      ])
+    );
+
+    (data || []).forEach(row=>{
+      row.assignment_count=assignmentCountByCampaign.get(String(row.id)) || 0;
+    });
 
     let userAlreadyInCampaign=false;
     let campaignJoinBlockedMessage='';
@@ -4590,6 +4982,8 @@ setInterval(updateOrderTimeLeft,1000);
     form?.reset();
     const passwordError=document.getElementById('signupPasswordError');
     if(passwordError) passwordError.hidden=true;
+    const licenseName=document.getElementById('signupDriverLicenseName');
+    if(licenseName) licenseName.textContent='No file selected';
     clearError('signupAuthFeedback');
   }
 
@@ -5271,6 +5665,13 @@ setInterval(updateOrderTimeLeft,1000);
         verification==='verified'?'Verified':
         verification==='rejected'?'Verification rejected':
         'Pending verification';
+    }
+
+    const verificationRejectionReason=document.getElementById('profileVerificationRejectionReason');
+    if(verificationRejectionReason){
+      const reason=String(profile?.verification_rejection_reason||'').trim();
+      verificationRejectionReason.textContent=reason ? `Reason: ${reason}` : '';
+      verificationRejectionReason.hidden=verification!=='rejected' || !reason;
     }
 
     const {data,error}=await sb
@@ -6427,13 +6828,14 @@ setInterval(updateOrderTimeLeft,1000);
       first_name:p?.first_name||meta.first_name||'',
       last_name:p?.last_name||meta.last_name||'',
       email:p?.email||user.email||'',
-      phone:p?.phone||meta.phone||'',
-      city:p?.city||meta.city||'',
       car_model:p?.car_model||meta.car_model||'',
       car_plate_number:p?.car_plate_number||meta.car_plate_number||'',
       drives_per_week:p?.drives_per_week||meta.drives_per_week||'',
       parking_location:p?.parking_location||meta.parking_location||'',
-      verification_status:p?.verification_status||'pending'
+      verification_status:p?.verification_status||'pending',
+      driver_license_photo_path:p?.driver_license_photo_path||'',
+      driver_license_file_name:p?.driver_license_file_name||'',
+      verification_rejection_reason:p?.verification_rejection_reason||''
     };
 
     currentProfileData={...profile};
@@ -6454,12 +6856,17 @@ setInterval(updateOrderTimeLeft,1000);
     setProfileField('profileFirstName',profile.first_name);
     setProfileField('profileLastName',profile.last_name);
     setProfileField('profileEmailInfo',profile.email);
-    setProfileField('profilePhone',profile.phone);
-    setProfileField('profileCity',profile.city);
     setProfileField('profileCarModel',profile.car_model);
     setProfileField('profileCarPlate',profile.car_plate_number);
     setProfileField('profileDrivesPerWeek',profile.drives_per_week);
     setProfileField('profileParkingLocation',profile.parking_location);
+    setProfileField(
+      'profileDriverLicenseName',
+      profile.driver_license_file_name
+        || (profile.driver_license_photo_path
+          ? String(profile.driver_license_photo_path).split('/').pop()
+          : 'No file uploaded')
+    );
 
     driverVerified=(profile.verification_status||'pending').toLowerCase()==='verified';
 
@@ -6515,6 +6922,33 @@ setInterval(updateOrderTimeLeft,1000);
       if(note) note.hidden=!editing;
     });
 
+    const licenseEdit=document.getElementById('profileDriverLicenseEdit');
+    const licenseReadonlyNote=document.getElementById('profileDriverLicenseReadonlyNote');
+    const licenseStrong=document.getElementById('profileDriverLicenseName');
+    const verification=String(currentProfileData?.verification_status||'pending').toLowerCase();
+    const licenseCanChange=editing && verification==='rejected';
+
+    if(licenseEdit) licenseEdit.hidden=!licenseCanChange;
+    if(licenseReadonlyNote){
+      if(editing && verification==='verified'){
+        licenseReadonlyNote.textContent='Driver’s license cannot be changed.';
+        licenseReadonlyNote.hidden=false;
+      }else if(editing && verification!=='rejected'){
+        licenseReadonlyNote.textContent='Driver’s license can only be changed after account verification has been rejected.';
+        licenseReadonlyNote.hidden=false;
+      }else{
+        licenseReadonlyNote.hidden=true;
+      }
+    }
+    if(licenseStrong) licenseStrong.hidden=false;
+
+    if(!editing){
+      const licenseInput=document.getElementById('profileDriverLicenseFile');
+      const selectedName=document.getElementById('profileDriverLicenseSelectedName');
+      if(licenseInput) licenseInput.value='';
+      if(selectedName) selectedName.textContent='No new file selected';
+    }
+
     const actions=document.getElementById('profileEditActions');
     if(actions){
       actions.hidden=!editing;
@@ -6527,10 +6961,8 @@ setInterval(updateOrderTimeLeft,1000);
 
   function fillProfileEditFields(profile){
     const values={
-      profileEditEmail:profile.email||'',
-      profileEditPhone:profile.phone||'',
-      profileEditCity:profile.city||'',
       profileEditCarModel:profile.car_model||'',
+      profileEditCarPlate:profile.car_plate_number||'',
       profileEditDrivesPerWeek:profile.drives_per_week||'',
       profileEditParkingLocation:profile.parking_location||''
     };
@@ -6539,6 +6971,17 @@ setInterval(updateOrderTimeLeft,1000);
       if(el) el.value=val;
     });
   }
+
+  document.getElementById('profileDriverLicenseUploadButton')?.addEventListener('click',()=>{
+    if(String(currentProfileData?.verification_status||'pending').toLowerCase()!=='rejected') return;
+    document.getElementById('profileDriverLicenseFile')?.click();
+  });
+
+  document.getElementById('profileDriverLicenseFile')?.addEventListener('change',e=>{
+    const file=e.currentTarget.files?.[0]||null;
+    const selectedName=document.getElementById('profileDriverLicenseSelectedName');
+    if(selectedName) selectedName.textContent=file ? file.name : 'No new file selected';
+  });
 
   document.getElementById('profileEditButton')?.addEventListener('click',()=>{
     if(!currentProfileData) return;
@@ -6566,17 +7009,26 @@ setInterval(updateOrderTimeLeft,1000);
     clearError('profileEditFeedback');
 
     const updates={
-      email:document.getElementById('profileEditEmail')?.value.trim()||'',
-      phone:document.getElementById('profileEditPhone')?.value.trim()||'',
-      city:document.getElementById('profileEditCity')?.value.trim()||'',
       car_model:document.getElementById('profileEditCarModel')?.value.trim()||'',
+      car_plate_number:(document.getElementById('profileEditCarPlate')?.value.trim()||'').toUpperCase(),
       drives_per_week:document.getElementById('profileEditDrivesPerWeek')?.value||'',
       parking_location:document.getElementById('profileEditParkingLocation')?.value.trim()||''
     };
 
-    if(!updates.email){
-      showError('profileEditFeedback','Email is required.');
+    const replacementLicenseFile=document.getElementById('profileDriverLicenseFile')?.files?.[0]||null;
+    const canReplaceLicense=String(currentProfileData?.verification_status||'pending').toLowerCase()==='rejected';
+
+    if(replacementLicenseFile && !canReplaceLicense){
+      showError('profileEditFeedback','Driver’s license can only be changed after account verification has been rejected.');
       return;
+    }
+
+    if(replacementLicenseFile){
+      const licenseError=validateDriverLicenseFile(replacementLicenseFile);
+      if(licenseError){
+        showError('profileEditFeedback',licenseError);
+        return;
+      }
     }
 
     if(btn){btn.disabled=true;btn.textContent='Saving…';}
@@ -6584,48 +7036,137 @@ setInterval(updateOrderTimeLeft,1000);
     try{
       const userId=window.carAdsCurrentSession.user.id;
 
-      // Keep Auth email synchronized if the email was changed.
-      if(updates.email !== window.carAdsCurrentSession.user.email){
-        const authUpdate=await sb.auth.updateUser({email:updates.email});
-        if(authUpdate.error) throw authUpdate.error;
+
+      let newLicensePath='';
+      const oldLicensePath=currentProfileData?.driver_license_photo_path||'';
+
+      if(replacementLicenseFile){
+        const ext=(replacementLicenseFile.name.split('.').pop()||'bin')
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g,'')||'bin';
+        const unique=(globalThis.crypto?.randomUUID?.()||`${Date.now()}-${Math.random().toString(16).slice(2)}`);
+        newLicensePath=`${userId}/${unique}.${ext}`;
+
+        const upload=await sb.storage
+          .from(DRIVER_LICENSE_BUCKET)
+          .upload(newLicensePath,replacementLicenseFile,{
+            cacheControl:'3600',
+            upsert:false,
+            contentType:replacementLicenseFile.type
+          });
+
+        if(upload.error) throw upload.error;
+      }
+
+      const profileUpdatePayload={
+        car_model:updates.car_model,
+        car_plate_number:updates.car_plate_number,
+        drives_per_week:updates.drives_per_week,
+        parking_location:updates.parking_location
+      };
+
+      if(newLicensePath){
+        profileUpdatePayload.driver_license_photo_path=newLicensePath;
+        profileUpdatePayload.driver_license_file_name=replacementLicenseFile.name;
+        profileUpdatePayload.verification_status='pending';
+        profileUpdatePayload.verification_rejection_reason=null;
       }
 
       const dbUpdate=await sb
         .from('driver_profiles')
-        .update({
-          email:updates.email,
-          phone:updates.phone,
-          city:updates.city,
-          car_model:updates.car_model,
-          drives_per_week:updates.drives_per_week,
-          parking_location:updates.parking_location
-        })
+        .update(profileUpdatePayload)
         .eq('user_id',userId)
-        .select()
-        .maybeSingle();
+        .select('user_id,car_model,car_plate_number,drives_per_week,parking_location,verification_status,driver_license_photo_path,driver_license_file_name,verification_rejection_reason')
+        .single();
 
-      if(dbUpdate.error) throw dbUpdate.error;
+      if(dbUpdate.error){
+        if(newLicensePath){
+          await sb.storage.from(DRIVER_LICENSE_BUCKET).remove([newLicensePath]);
+        }
+        throw dbUpdate.error;
+      }
+
+      if(newLicensePath && oldLicensePath && oldLicensePath!==newLicensePath){
+        const cleanup=await sb.storage
+          .from(DRIVER_LICENSE_BUCKET)
+          .remove([oldLicensePath]);
+
+        if(cleanup.error){
+          console.warn('Could not remove previous driver license file:',cleanup.error);
+          showError('profileEditFeedback','New driver’s license was saved, but the previous file could not be deleted from Storage.');
+        }
+      }
+
+      // Keep the driver's registered plate record in sync with their profile.
+      // registered_car_plates stores both a display value and a normalized lookup value.
+      const normalizedPlate=(updates.car_plate_number||'')
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g,'');
+
+      const plateRegistryUpdate=await sb
+        .from('registered_car_plates')
+        .update({
+          display_plate:updates.car_plate_number,
+          normalized_plate:normalizedPlate
+        })
+        .eq('first_user_id',userId);
+
+      if(plateRegistryUpdate.error) throw plateRegistryUpdate.error;
 
       currentProfileData={
         ...(currentProfileData||{}),
-        ...updates
+        ...updates,
+        ...(dbUpdate.data||{}),
+        ...(newLicensePath ? {
+          driver_license_photo_path:newLicensePath,
+          driver_license_file_name:replacementLicenseFile.name,
+          verification_status:'pending',
+          verification_rejection_reason:''
+        } : {})
       };
 
       setProfileField('profileFullName',[currentProfileData.first_name,currentProfileData.last_name].filter(Boolean).join(' '));
-      setProfileField('profileEmail',updates.email);
+      setProfileField('profileEmail',currentProfileData.email||window.carAdsCurrentSession.user.email||'');
       setProfileField('profileFirstName',currentProfileData.first_name);
       setProfileField('profileLastName',currentProfileData.last_name);
-      setProfileField('profileEmailInfo',updates.email);
-      setProfileField('profilePhone',updates.phone);
-      setProfileField('profileCity',updates.city);
+      setProfileField('profileEmailInfo',currentProfileData.email||window.carAdsCurrentSession.user.email||'');
       setProfileField('profileCarModel',updates.car_model);
+      setProfileField('profileCarPlate',updates.car_plate_number);
       setProfileField('profileDrivesPerWeek',updates.drives_per_week);
       setProfileField('profileParkingLocation',updates.parking_location);
+      const activeLicensePath=newLicensePath || currentProfileData.driver_license_photo_path || '';
+      setProfileField(
+        'profileDriverLicenseName',
+        currentProfileData.driver_license_file_name
+          || (activeLicensePath
+            ? String(activeLicensePath).split('/').pop()
+            : 'No file uploaded')
+      );
+
+      if(newLicensePath){
+        const licenseInput=document.getElementById('profileDriverLicenseFile');
+        const selectedName=document.getElementById('profileDriverLicenseSelectedName');
+        if(licenseInput) licenseInput.value='';
+        if(selectedName) selectedName.textContent='No new file selected';
+        const verificationStatus=document.getElementById('profileVerificationStatus');
+        if(verificationStatus){
+          verificationStatus.className='profile-status';
+          verificationStatus.textContent='Pending verification';
+        }
+        driverVerified=false;
+        const rejectionReason=document.getElementById('profileVerificationRejectionReason');
+        if(rejectionReason){
+          rejectionReason.textContent='';
+          rejectionReason.hidden=true;
+        }
+      }
 
       const orderFirstName=document.getElementById('orderFirstName');
       const orderLastName=document.getElementById('orderLastName');
       if(orderFirstName) orderFirstName.value=currentProfileData.first_name||'';
       if(orderLastName) orderLastName.value=currentProfileData.last_name||'';
+      const orderCarPlate=document.getElementById('orderCarPlate');
+      if(orderCarPlate) orderCarPlate.value=updates.car_plate_number||'';
 
       setProfileEditMode(false);
     }catch(err){
@@ -6635,6 +7176,68 @@ setInterval(updateOrderTimeLeft,1000);
     }
   });
 
+
+  const DRIVER_LICENSE_BUCKET='driver-license-photos';
+  const MAX_DRIVER_LICENSE_BYTES=10*1024*1024;
+
+  const signupDriverLicenseButton=document.getElementById('signupDriverLicenseButton');
+  const signupDriverLicenseFile=document.getElementById('signupDriverLicenseFile');
+
+  signupDriverLicenseButton?.addEventListener('click',e=>{
+    e.preventDefault();
+    const scrollX=window.scrollX;
+    const scrollY=window.scrollY;
+
+    signupDriverLicenseFile?.click();
+
+    requestAnimationFrame(()=>{
+      window.scrollTo(scrollX,scrollY);
+    });
+    setTimeout(()=>{
+      window.scrollTo(scrollX,scrollY);
+    },0);
+  });
+
+  document.getElementById('signupDriverLicenseFile')?.addEventListener('change',e=>{
+    const file=e.currentTarget.files?.[0]||null;
+    const name=document.getElementById('signupDriverLicenseName');
+    if(name) name.textContent=file ? file.name : 'No file selected';
+  });
+
+  function validateDriverLicenseFile(file){
+    if(!file) return 'Please upload your driver’s license before signing up.';
+    const allowed=new Set(['image/jpeg','image/png','application/pdf']);
+    if(!allowed.has(file.type)) return 'Driver’s license must be a JPG, PNG or PDF file.';
+    if(file.size>MAX_DRIVER_LICENSE_BYTES) return 'Driver’s license file must be 10 MB or smaller.';
+    return '';
+  }
+
+  async function uploadDriverLicenseForSignup(userId,file){
+    const ext=(file.name.split('.').pop()||'bin').toLowerCase().replace(/[^a-z0-9]/g,'')||'bin';
+    const unique=(globalThis.crypto?.randomUUID?.()||`${Date.now()}-${Math.random().toString(16).slice(2)}`);
+    const storagePath=`${userId}/${unique}.${ext}`;
+
+    const upload=await sb.storage
+      .from(DRIVER_LICENSE_BUCKET)
+      .upload(storagePath,file,{
+        cacheControl:'3600',
+        upsert:false,
+        contentType:file.type
+      });
+    if(upload.error) throw upload.error;
+
+    const profileUpdate=await sb
+      .from('driver_profiles')
+      .update({driver_license_photo_path:storagePath})
+      .eq('user_id',userId);
+
+    if(profileUpdate.error){
+      await sb.storage.from(DRIVER_LICENSE_BUCKET).remove([storagePath]);
+      throw profileUpdate.error;
+    }
+
+    return storagePath;
+  }
 
   function normalizePlate(value){
     return (value || '').toUpperCase().replace(/[\s\-.]+/g,'').trim();
@@ -6676,6 +7279,13 @@ setInterval(updateOrderTimeLeft,1000);
         return;
       }
 
+      const licenseFile=document.getElementById('signupDriverLicenseFile')?.files?.[0]||null;
+      const licenseError=validateDriverLicenseFile(licenseFile);
+      if(licenseError){
+        showError('signupAuthFeedback',licenseError);
+        return;
+      }
+
       const email=document.getElementById('signupEmail')?.value.trim()||'';
       const rawPlate=document.getElementById('signupCarPlate')?.value.trim()||'';
       const normalizedPlate=normalizePlate(rawPlate);
@@ -6700,7 +7310,6 @@ setInterval(updateOrderTimeLeft,1000);
       const data={
         first_name:document.getElementById('signupFirstName')?.value.trim()||'',
         last_name:document.getElementById('signupLastName')?.value.trim()||'',
-        phone:document.getElementById('signupPhone')?.value.trim()||'',
         car_model:document.getElementById('signupCarModel')?.value.trim()||'',
         car_plate_number:rawPlate.toUpperCase(),
         drives_per_week:document.getElementById('signupDrivesPerWeek')?.value||'',
@@ -6717,14 +7326,16 @@ setInterval(updateOrderTimeLeft,1000);
 
       if(r.error) throw r.error;
 
-      if(r.data.session){
+      if(r.data.session && r.data.user){
+        if(btn) btn.textContent='Uploading driver’s license…';
+        await uploadDriverLicenseForSignup(r.data.user.id,licenseFile);
         await applySession(r.data.session);
         clearSignupForm();
         completeSignup();
       }else{
         showError(
           'signupAuthFeedback',
-          'Account created, but Supabase email confirmation is still enabled. Disable Confirm email in Supabase Authentication → Providers → Email for immediate login.'
+          'Account created, but the driver’s license cannot be uploaded until an authenticated session exists. Disable Confirm email in Supabase Authentication → Providers → Email for immediate signup and upload.'
         );
       }
     }catch(err){
@@ -6791,6 +7402,139 @@ setInterval(updateOrderTimeLeft,1000);
       updateAuthNav(null);
     }finally{
       if(btn){btn.disabled=false;btn.textContent=old||'Log out';}
+    }
+  });
+
+
+  const deleteAccountButton=document.getElementById('deleteAccountButton');
+  const deleteAccountOverlay=document.getElementById('deleteAccountOverlay');
+  const deleteAccountClose=document.getElementById('deleteAccountClose');
+  const deleteAccountCancel=document.getElementById('deleteAccountCancel');
+  const deleteAccountConfirm=document.getElementById('deleteAccountConfirm');
+  const deleteAccountFeedback=document.getElementById('deleteAccountFeedback');
+
+  function openDeleteAccountOverlay(){
+    if(!deleteAccountOverlay) return;
+    deleteAccountOverlay.hidden=false;
+    deleteAccountOverlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(deleteAccountFeedback){
+      deleteAccountFeedback.hidden=true;
+      deleteAccountFeedback.textContent='';
+    }
+  }
+
+  function closeDeleteAccountOverlay(){
+    if(!deleteAccountOverlay) return;
+    deleteAccountOverlay.hidden=true;
+    deleteAccountOverlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(deleteAccountFeedback){
+      deleteAccountFeedback.hidden=true;
+      deleteAccountFeedback.textContent='';
+    }
+  }
+
+  async function removeStorageTree(bucket,path){
+    const storage=sb.storage.from(bucket);
+    const filePaths=[];
+
+    async function walk(folder){
+      let offset=0;
+      const limit=100;
+
+      while(true){
+        const {data,error}=await storage.list(folder,{
+          limit,
+          offset,
+          sortBy:{column:'name',order:'asc'}
+        });
+
+        if(error){
+          // A missing folder means there is nothing left to remove.
+          if(/not found|does not exist/i.test(error.message||'')) return;
+          throw error;
+        }
+
+        const entries=data||[];
+        for(const entry of entries){
+          const entryPath=folder ? `${folder}/${entry.name}` : entry.name;
+
+          // Supabase folder entries have no object id / metadata.
+          if(entry.id==null && !entry.metadata){
+            await walk(entryPath);
+          }else{
+            filePaths.push(entryPath);
+          }
+        }
+
+        if(entries.length<limit) break;
+        offset+=limit;
+      }
+    }
+
+    await walk(path);
+
+    // Storage remove supports arrays; batch to keep requests manageable.
+    for(let i=0;i<filePaths.length;i+=100){
+      const batch=filePaths.slice(i,i+100);
+      const {error}=await storage.remove(batch);
+      if(error) throw error;
+    }
+  }
+
+  deleteAccountButton?.addEventListener('click',openDeleteAccountOverlay);
+  deleteAccountClose?.addEventListener('click',closeDeleteAccountOverlay);
+  deleteAccountCancel?.addEventListener('click',closeDeleteAccountOverlay);
+
+  deleteAccountOverlay?.addEventListener('click',e=>{
+    if(e.target===deleteAccountOverlay) closeDeleteAccountOverlay();
+  });
+
+  deleteAccountConfirm?.addEventListener('click',async()=>{
+    const userId=window.carAdsCurrentSession?.user?.id;
+    if(!userId){
+      if(deleteAccountFeedback){
+        deleteAccountFeedback.textContent='You are not logged in.';
+        deleteAccountFeedback.hidden=false;
+      }
+      return;
+    }
+
+    const oldText=deleteAccountConfirm.textContent;
+    deleteAccountConfirm.disabled=true;
+    if(deleteAccountCancel) deleteAccountCancel.disabled=true;
+    deleteAccountConfirm.textContent='Deleting…';
+
+    try{
+      // Delete all uploaded files belonging to this user's folders before
+      // deleting the Auth user. Existing own-folder Storage RLS still applies.
+      await removeStorageTree('driver-license-photos',userId);
+      await removeStorageTree('campaign-proof-photos',userId);
+
+      // SECURITY DEFINER RPC deletes only auth.uid(), never an arbitrary user.
+      const {error}=await sb.rpc('delete_own_account');
+      if(error) throw error;
+
+      // Clear the local browser session after the Auth row is removed.
+      try{
+        await sb.auth.signOut({scope:'local'});
+      }catch(_e){
+        try{ await sb.auth.signOut(); }catch(_ignored){}
+      }
+
+      window.carAdsCurrentSession=null;
+      currentProfileData=null;
+      closeDeleteAccountOverlay();
+      window.location.reload();
+    }catch(err){
+      if(deleteAccountFeedback){
+        deleteAccountFeedback.textContent=err?.message||'Could not delete the account.';
+        deleteAccountFeedback.hidden=false;
+      }
+      deleteAccountConfirm.disabled=false;
+      if(deleteAccountCancel) deleteAccountCancel.disabled=false;
+      deleteAccountConfirm.textContent=oldText||'Delete account';
     }
   });
 
@@ -8035,20 +8779,27 @@ setInterval(updateOrderTimeLeft,1000);
 <script>
 (function(){
   const logout=document.getElementById('profileLogoutButton');
-  if(!logout || !window.carAdsSupabase) return;
+  const deleteAccount=document.getElementById('deleteAccountButton');
+  if(!window.carAdsSupabase) return;
 
-  async function syncFooterLogout(){
+  function setFooterAccountActions(session){
+    const hidden=!session;
+    if(logout) logout.hidden=hidden;
+    if(deleteAccount) deleteAccount.hidden=hidden;
+  }
+
+  async function syncFooterAccountActions(){
     try{
       const {data}=await window.carAdsSupabase.auth.getSession();
-      logout.hidden=!data?.session;
+      setFooterAccountActions(data?.session||null);
     }catch(_e){
-      logout.hidden=true;
+      setFooterAccountActions(null);
     }
   }
 
-  syncFooterLogout();
+  syncFooterAccountActions();
   window.carAdsSupabase.auth.onAuthStateChange((_event,session)=>{
-    logout.hidden=!session;
+    setFooterAccountActions(session);
   });
 })();
 </script>
