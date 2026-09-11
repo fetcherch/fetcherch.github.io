@@ -5017,6 +5017,249 @@ body.overlay-open{
 }
 </style>
 
+
+<style id="adcars-i18n-language-switcher">
+/* Language selector lives inside the existing burger menu. */
+/* Keep the opened burger menu usable when Language expands. */
+#mobileMenu{
+  max-height:calc(100dvh - 86px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.adcars-burger-language{width:100%}
+.adcars-burger-language-label{
+  width:100%;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  text-align:left;
+}
+.adcars-burger-language-options{
+  padding:2px 0 8px 16px;
+}
+.adcars-burger-language-options[hidden]{display:none!important}
+.adcars-burger-language-options button{
+  display:block;
+  width:100%;
+  padding:8px 0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  text-align:left;
+  font:inherit;
+  font-size:14px;
+  cursor:pointer;
+}
+.adcars-burger-language-options button.is-active{
+  color:var(--accent);
+  font-weight:800;
+}
+
+/* Desktop Language item uses the same language state as the burger menu. */
+.adcars-desktop-language{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+.adcars-desktop-language-label{
+  white-space:nowrap;
+}
+.adcars-desktop-language-options{
+  position:absolute;
+  top:calc(100% + 14px);
+  right:0;
+  z-index:12000;
+  width:150px;
+  padding:6px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#fff;
+  box-shadow:0 14px 38px rgba(11,31,58,.14);
+}
+.adcars-desktop-language-options[hidden]{
+  display:none!important;
+}
+.adcars-desktop-language-options button{
+  display:block;
+  width:100%;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#0B1F3A;
+  padding:9px 10px;
+  text-align:left;
+  font:inherit;
+  font-size:13px;
+  font-weight:750;
+  cursor:pointer;
+}
+.adcars-desktop-language-options button:hover,
+.adcars-desktop-language-options button.is-active{
+  background:#f7f8fa;
+  color:var(--accent);
+}
+</style>
+
+
+<style id="adcars-i18n-profile-spacing-fix">
+.profile-campaign-detail > span + strong{
+  margin-top:4px;
+}
+</style>
+
+
+<style id="adcars-region-checkbox-size-fix">
+/* Keep the B2B region-filter checkboxes compact. */
+#b2bOverlay input[type="checkbox"]{
+  width:15px !important;
+  height:15px !important;
+  min-width:15px !important;
+  min-height:15px !important;
+  flex:0 0 15px !important;
+  padding:0 !important;
+}
+</style>
+
+
+<style id="adcars-campaign-region-filter-match-b2b">
+/* Available Campaigns region filter: match the B2B Campaign Region control. */
+#campaignOverlay [data-campaign-region-multi] .b2b-region-option input[type="checkbox"]{
+  width:15px !important;
+  height:15px !important;
+  min-width:15px !important;
+  min-height:15px !important;
+  flex:0 0 15px !important;
+  padding:0 !important;
+  margin:0 !important;
+  accent-color:#fe5a36;
+}
+</style>
+
+
+<style id="adcars-profile-nav-weight-fix">
+/* Profile should use the same normal nav weight in desktop and burger menus. */
+.navlinks [data-open-profile],
+.mobile-menu [data-open-profile],
+.navlinks .profile-link,
+.mobile-menu .profile-link{
+  font-weight:400 !important;
+}
+</style>
+
+
+<style id="adcars-profile-nav-final-style">
+/* Profile: same typography as the other nav links, orange only. */
+.navlinks [data-open-profile],
+.navlinks .profile-link,
+.mobile-menu [data-open-profile],
+.mobile-menu .profile-link{
+  color:var(--accent) !important;
+  font-weight:inherit !important;
+  font-family:inherit !important;
+  font-style:normal !important;
+}
+.navlinks strong[data-open-profile],
+.mobile-menu strong[data-open-profile],
+.navlinks [data-open-profile] strong,
+.mobile-menu [data-open-profile] strong{
+  font-weight:inherit !important;
+}
+</style>
+
+
+<style id="adcars-header-nav-all-bold">
+/* Desktop header nav: match the bold typography used in the burger menu. */
+.navlinks a,
+.navlinks button,
+.navlinks .nav-modal-link,
+.navlinks [data-open-profile],
+.navlinks .profile-link,
+.adcars-desktop-language-label{
+  font-weight:800 !important;
+}
+</style>
+
+
+<style id="adcars-burger-profile-size-fix">
+/* Profile in burger menu: same text size/line-height as every other burger nav item. */
+.mobile-menu [data-open-profile],
+.mobile-menu .profile-link{
+  font-size:inherit !important;
+  line-height:inherit !important;
+}
+.mobile-menu [data-open-profile] strong,
+.mobile-menu .profile-link strong{
+  font-size:inherit !important;
+  line-height:inherit !important;
+}
+</style>
+
+
+<style id="adcars-profile-nav-match-final">
+/* Profile behaves visually like every other nav item. */
+.navlinks [data-open-profile],
+.navlinks .profile-link,
+.mobile-menu [data-open-profile],
+.mobile-menu .profile-link,
+.navlinks [data-open-profile] strong,
+.navlinks .profile-link strong,
+.mobile-menu [data-open-profile] strong,
+.mobile-menu .profile-link strong{
+  color:var(--ink) !important;
+  font-family:inherit !important;
+  font-size:inherit !important;
+  font-weight:800 !important;
+  line-height:inherit !important;
+  font-style:normal !important;
+  text-decoration:none !important;
+}
+</style>
+
+
+<style id="adcars-nav-size-match-profile">
+/* Use Profile as the typography reference for every header/burger nav item. */
+.navlinks > a,
+.navlinks > button,
+.navlinks .nav-modal-link,
+.adcars-desktop-language-label,
+.mobile-menu > a,
+.mobile-menu > button,
+.mobile-menu .mobile-nav-item,
+.adcars-burger-language-label{
+  font-size:16px !important;
+  line-height:1.25 !important;
+  font-weight:800 !important;
+}
+</style>
+
+
+<style id="adcars-choose-path-compact">
+/* Compact the Choose your path cards after removing the small audience labels. */
+.audience-card{
+  min-height:0 !important;
+}
+</style>
+
+
+<style id="adcars-choose-path-fit-content-final">
+/* Choose your path cards: compact height based on remaining content. */
+.audience-nav-card{
+  min-height:0 !important;
+  height:auto !important;
+  justify-content:flex-start !important;
+}
+.audience-nav-card strong{
+  margin-top:0 !important;
+}
+@media(max-width:800px){
+  .audience-nav-card{
+    min-height:0 !important;
+    height:auto !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -5053,11 +5296,12 @@ body.overlay-open{
       behavior:'smooth'
     });
 
-    // Keep the hash without causing another native anchor jump.
+    // Keep section navigation clean: scroll to the section without leaving
+    // #how / #faq stuck in the browser URL.
     history.replaceState(
       history.state,
       '',
-      window.location.pathname + window.location.search + hash
+      window.location.pathname + window.location.search
     );
 
     // Remove smooth behavior after the navigation finishes so overlay
@@ -5100,6 +5344,17 @@ body.overlay-open{
     <a class="logo" href="#"><span class="car">Ad</span><span class="rest">Cars.ch</span></a>
     <div class="navlinks">
       <a href="#how" class="nav-section-link" data-scroll-section="#how">How it works</a><button type="button" class="nav-modal-link" data-open-driver data-direct-campaign-browse>Driver campaigns</button><button type="button" class="nav-modal-link" data-open-b2b>B2B</button><a href="#faq" class="nav-section-link" data-scroll-section="#faq">FAQ</a>
+      <div class="adcars-desktop-language">
+        <button type="button" class="nav-modal-link adcars-desktop-language-label" aria-expanded="false">
+          <span class="adcars-language-nav-text">Language</span>
+        </button>
+        <div class="adcars-desktop-language-options" hidden>
+          <button type="button" data-adcars-lang="en">English</button>
+          <button type="button" data-adcars-lang="de">Deutsch</button>
+          <button type="button" data-adcars-lang="fr">Français</button>
+          <button type="button" data-adcars-lang="it">Italiano</button>
+        </div>
+      </div>
     </div>
     <a class="navcta auth-text-link" href="#" data-open-auth><span class="auth-nav-label">Login / Signup</span></a>
 
@@ -5114,6 +5369,17 @@ body.overlay-open{
           <button type="button" class="nav-modal-link mobile-nav-item" data-open-driver data-direct-campaign-browse>Driver campaigns</button>
           <button type="button" class="nav-modal-link mobile-nav-item" data-open-b2b>B2B</button>
           <a class="mobile-nav-item nav-section-link" href="#faq" data-scroll-section="#faq">FAQ</a>
+          <div class="adcars-burger-language">
+            <button type="button" class="mobile-nav-item adcars-burger-language-label" aria-expanded="false">
+              <span class="adcars-language-nav-text">Language</span>
+            </button>
+            <div class="adcars-burger-language-options" hidden>
+              <button type="button" data-adcars-lang="en">English</button>
+              <button type="button" data-adcars-lang="de">Deutsch</button>
+              <button type="button" data-adcars-lang="fr">Français</button>
+              <button type="button" data-adcars-lang="it">Italiano</button>
+            </div>
+          </div>
           <a class="mobile-cta auth-text-link" href="#" data-open-auth><span class="auth-nav-label">Login / Signup</span></a>
         </div>
       </div>
@@ -5158,13 +5424,13 @@ body.overlay-open{
     </div>
     <div class="audience-nav-grid">
       <button class="audience-nav-card audience-nav-card-driver" type="button" data-open-driver data-direct-campaign-browse>
-        <span class="audience-kicker">FOR DRIVERS</span>
+        
         <strong>Participate as driver</strong>
         <span>Browse campaigns, choose a brand and earn while you drive.</span>
         <span class="audience-arrow">Open driver campaigns </span>
       </button>
       <button class="audience-nav-card audience-nav-card-business" type="button" data-open-b2b>
-        <span class="audience-kicker">FOR BUSINESSES</span>
+        
         <strong>Launch a campaign</strong>
         <span>Put your brand on real cars and reach people across Switzerland.</span>
         <span class="audience-arrow">Open B2B campaign setup </span>
@@ -7780,18 +8046,27 @@ function filterCampaignCards(){
   };
 
   document.querySelectorAll('#campaignList .brand').forEach(card=>{
-    const text = card.textContent.toLowerCase();
+    /* Filter against the original campaign region value, never translated
+       visible text. This keeps the filter correct in EN / DE / FR / IT. */
+    const campaignRegion=String(card.dataset.campaignRegion || '').toLowerCase().trim();
+
     let matchesRegion = regions.length===0 || regions.some(region=>{
       if(region === 'switzerland'){
-        return text.includes('region: whole switzerland');
+        return campaignRegion === 'whole switzerland'
+          || campaignRegion === 'switzerland';
       }
-      const aliases = regionAliases[region] || [region];
-      return aliases.some(term => text.includes(term));
-    });
-    const show = matchesRegion;
 
-    card.style.display = show ? '' : 'none';
-    if(show) visible++;
+      if(region === 'german-speaking switzerland'){
+        return campaignRegion === 'german-speaking switzerland'
+          || campaignRegion === 'deutschschweiz';
+      }
+
+      const aliases = regionAliases[region] || [region];
+      return aliases.some(term => campaignRegion.includes(term));
+    });
+
+    card.style.display = matchesRegion ? '' : 'none';
+    if(matchesRegion) visible++;
   });
 
   if(campaignFilterEmpty) campaignFilterEmpty.hidden = visible !== 0;
@@ -8001,7 +8276,7 @@ setInterval(updateOrderTimeLeft,1000);
       : `${taken} of ${maxSlots} driver slots taken (${Math.max(0,maxSlots-taken)} left)`;
 
     return `
-      <div class="brand${endless ? ' endless-campaign' : ''}" data-campaign-id="${escapeCampaignHtml(row.id)}">
+      <div class="brand${endless ? ' endless-campaign' : ''}" data-campaign-id="${escapeCampaignHtml(row.id)}" data-campaign-region="${escapeCampaignHtml(String(row.region || 'Whole Switzerland').toLowerCase())}">
         ${campaignBanner}
         <div class="brand-top">
           <div class="brand-logo">${name}</div>
@@ -9194,7 +9469,11 @@ setInterval(updateOrderTimeLeft,1000);
             <div class="profile-campaign-detail profile-shipping-detail">
               <span>Ad film shipping status</span>
               <div class="profile-shipping-row profile-shipping-row-inline">
-                <strong>${row.ad_film_shipped_at ? `Shipped ${escapeCampaignHtml(formatProfileCampaignDate(row.ad_film_shipped_at))}` : (lateJoin ? `Scheduled ${escapeCampaignHtml(formatProfileCampaignDate(assignmentStartDate))}` : (campaignNotStarted ? 'Scheduled' : 'Awaiting shipping update'))}</strong>
+                <strong>${lateJoin
+                  ? `Scheduled ${escapeCampaignHtml(formatProfileCampaignDate(assignmentStartDate))}`
+                  : (row.ad_film_shipped_at
+                      ? `Shipped ${escapeCampaignHtml(formatProfileCampaignDate(row.ad_film_shipped_at))}`
+                      : (campaignNotStarted ? 'Scheduled' : 'Awaiting shipping update'))}</strong>
                 <div class="profile-shipping-menu-wrap profile-shipping-menu-inline">
                   <button
                     class="profile-shipping-menu-button profile-shipping-details-link"
@@ -11455,26 +11734,424 @@ setInterval(updateOrderTimeLeft,1000);
 })();
 </script>
 
+
+<script id="adcars-i18n-engine">
+(() => {
+  const translations={"de":{"How it works":"So funktionierts","Driver campaigns":"Fahrerkampagnen","Login / Signup":"Anmelden / Registrieren","Turn everyday traffic into shared value":"Alltäglichen Verkehr in gemeinsamen Mehrwert verwandeln","Make every drive":"Mach jede Fahrt","worth more.":"wertvoller.","AdCars.ch turns everyday driving into a marketplace for attention: brands gain visibility on real cars, drivers share in the value they create, and every campaign moves through the places people actually live, work and travel.":"AdCars.ch macht alltägliche Fahrten zu einem Marktplatz für Aufmerksamkeit: Marken werden auf echten Autos sichtbar, Fahrerinnen und Fahrer werden am geschaffenen Wert beteiligt und jede Kampagne bewegt sich dort, wo Menschen tatsächlich leben, arbeiten und unterwegs sind.","Participate as driver":"Als Fahrer teilnehmen","Launch a campaign":"Kampagne starten","Simple for drivers. Valuable for brands.":"Einfach für Fahrer. Wertvoll für Marken.","AdCars.ch turns unused space on everyday cars into advertising space for brands. creating value for both drivers and businesses.":"AdCars.ch verwandelt ungenutzte Flächen auf Alltagsautos in Werbeflächen für Marken und schafft so Mehrwert für Fahrer und Unternehmen.","Drivers choose a brand":"Fahrer wählen eine Marke","Drivers browse available campaigns and choose the brand they want to advertise.":"Fahrer durchsuchen verfügbare Kampagnen und wählen die Marke, für die sie werben möchten.","Drivers order the ad film":"Fahrer bestellen die Werbefolie","AdCars.ch produces the printed, vehicle-suitable ad film and ships it directly to the driver with installation instructions.":"AdCars.ch produziert die bedruckte, fahrzeuggeeignete Werbefolie und sendet sie mit Montageanleitung direkt an den Fahrer.","Drivers create brand presence":"Fahrer schaffen Markenpräsenz","Drivers earn their agreed monthly payout while the brand gains real-world presence wherever they drive, park and commute.":"Fahrer erhalten ihre vereinbarte monatliche Vergütung, während die Marke überall dort reale Präsenz gewinnt, wo sie fahren, parken und pendeln.","Choose your path":"Wähle deinen Weg","One platform. Two ways to make every drive worth more.":"Eine Plattform. Zwei Wege, jede Fahrt wertvoller zu machen.","Browse campaigns, choose a brand and earn while you drive.":"Kampagnen durchsuchen, Marke wählen und beim Fahren verdienen.","Open driver campaigns":"Fahrerkampagnen öffnen","Put your brand on real cars and reach people across Switzerland.":"Bringe deine Marke auf echte Autos und erreiche Menschen in der ganzen Schweiz.","Open B2B campaign setup":"B2B-Kampagne einrichten","Put your brand in motion with real drivers across Switzerland.":"Bringe deine Marke mit echten Fahrern in der ganzen Schweiz in Bewegung.","B2B ADVERTISING":"B2B-WERBUNG","Put your brand on cars across Switzerland.":"Bringe deine Marke auf Autos in der ganzen Schweiz.","Reach people where they live, commute and park. AdCars.ch connects your campaign with real drivers and real vehicles.":"Erreiche Menschen dort, wo sie leben, pendeln und parken. AdCars.ch verbindet deine Kampagne mit echten Fahrern und echten Fahrzeugen.","Target the places that matter":"Die relevanten Orte gezielt erreichen","Choose cities, cantons and commuter areas instead of buying one fixed advertising location.":"Wähle Städte, Kantone und Pendlerregionen statt nur einen festen Werbestandort zu buchen.","Control campaign scale and spend":"Kampagnenumfang und Budget steuern","Set the duration, number of cars and monthly driver payout to build a campaign around your budget.":"Lege Dauer, Anzahl der Autos und monatliche Fahrer-Vergütung fest, um eine Kampagne passend zu deinem Budget zu erstellen.","Use verified participating drivers":"Verifizierte teilnehmende Fahrer nutzen","Campaign participation is restricted to verified AdCars.ch driver accounts.":"Die Teilnahme an Kampagnen ist auf verifizierte AdCars.ch-Fahrerkonten beschränkt.","Turn everyday mobility into media":"Alltagsmobilität in Werbemedium verwandeln","Your brand gains physical presence while participating cars drive, commute and park in the selected market.":"Deine Marke gewinnt physische Präsenz, während teilnehmende Autos im ausgewählten Markt fahren, pendeln und parken.","Contact AdCars.ch B2B":"AdCars.ch B2B kontaktieren","Define your campaign dates, monthly driver payout and ad-film quantity, then upload your ready-to-print artwork.":"Lege Kampagnendaten, monatliche Fahrer-Vergütung und Anzahl der Werbefolien fest und lade anschließend dein druckfertiges Design hoch.","Company":"Unternehmen","Contact person":"Kontaktperson","Business email":"Geschäftliche E-Mail","Phone":"Telefon","Ad film design":"Design der Werbefolie","Choose file":"Datei auswählen","No file selected":"Keine Datei ausgewählt","Upload your finished 3:1 artwork as PNG, JPG, JPEG or WEBP. The uploaded source image must be exactly 3:1. After validation, AdCars.ch adds an equally thick white frame around all sides and places the AdCars.ch logo at the top center.":"Lade dein fertiges 3:1-Design als PNG, JPG, JPEG oder WEBP hoch. Das hochgeladene Ausgangsbild muss exakt das Seitenverhältnis 3:1 haben. Nach der Prüfung fügt AdCars.ch rundum einen gleich breiten weißen Rahmen hinzu und platziert das AdCars.ch-Logo oben mittig.","Campaign region":"Regione der Kampagne","Select campaign regions":"Kampagnenregionen auswählen","Switzerland":"Schweiz","Whole Switzerland":"Ganze Schweiz","German-speaking Switzerland":"Deutschschweiz","Cantons":"Kantone","Major cities":"Größere Städte","Campaign duration":"Kampagnendauer","Please select a campaign duration.":"Bitte wähle eine Kampagnendauer aus.","Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.":"Kampagnen müssen mindestens 1 Monat im Voraus starten, damit genügend Zeit für Druck und Lieferung an die Fahrer bleibt.","Allow late campaign joining":"Späten Kampagnenbeitritt erlauben","Drivers may still join after the standard “Join until” deadline, up to 2 months before the campaign end date.":"Fahrer können auch nach der üblichen Frist „Beitritt bis“ noch teilnehmen, bis 2 Monate vor Kampagnenende.","Driver payout per month":"Fahrer-Vergütung pro Monat","Number of ad films to print":"Anzahl zu druckender Werbefolien","Approximate cost of AdCars.ch campaign":"Ungefähre Kosten der AdCars.ch-Kampagne","Complete the required campaign details to see your estimated price.":"Fülle die erforderlichen Kampagnendetails aus, um den geschätzten Preis zu sehen.","Your estimate will appear automatically once the campaign duration, driver payout and number of ad films are entered.":"Deine Schätzung erscheint automatisch, sobald Kampagnendauer, Fahrer-Vergütung und Anzahl der Werbefolien eingegeben wurden.","Campaign description":"Kampagnenbeschreibung","Request Campaign":"Kampagne anfragen","CAMPAIGN REQUEST SENT":"KAMPAGNENANFRAGE GESENDET","Thanks, your B2B request has been sent. We will contact you shortly.":"Danke, deine B2B-Anfrage wurde gesendet. Wir melden uns in Kürze bei dir.","Campaign info":"Kampagneninfo","Aargau":"Aargau","Appenzell Ausserrhoden":"Appenzell Ausserrhoden","Appenzell Innerrhoden":"Appenzell Innerrhoden","Basel-Landschaft":"Basel-Landschaft","Basel-Stadt":"Basel-Stadt","Bern":"Bern","Fribourg":"Freiburg","Geneva":"Genf","Glarus":"Glarus","Graubünden":"Graubünden","Jura":"Jura","Lucerne":"Luzern","Neuchâtel":"Neuenburg","Nidwalden":"Nidwalden","Obwalden":"Obwalden","Schaffhausen":"Schaffhausen","Schwyz":"Schwyz","Solothurn":"Solothurn","St. Gallen":"St. Gallen","Thurgau":"Thurgau","Ticino":"Tessin","Uri":"Uri","Valais":"Wallis","Vaud":"Waadt","Zug":"Zug","Zürich":"Zürich","Zürich City":"Stadt Zürich","Geneva City":"Stadt Genf","Basel City":"Stadt Basel","Lausanne City":"Stadt Lausanne","Bern City":"Stadt Bern","Winterthur City":"Stadt Winterthur","Lucerne City":"Stadt Luzern","St. Gallen City":"Stadt St. Gallen","Lugano City":"Stadt Lugano","Biel / Bienne City":"Stadt Biel / Bienne","Thun City":"Stadt Thun","Köniz City":"Stadt Köniz","La Chaux-de-Fonds City":"Stadt La Chaux-de-Fonds","Fribourg City":"Stadt Freiburg","Schaffhausen City":"Stadt Schaffhausen","Chur City":"Stadt Chur","Neuchâtel City":"Stadt Neuenburg","Vernier City":"Stadt Vernier","Uster City":"Stadt Uster","Sion City":"Stadt Sitten","Driver Login":"Fahrer-Login","Driver Signup":"Fahrer-Registrierung","DRIVER LOGIN":"FAHRER-LOGIN","Welcome back.":"Willkommen zurück.","Log in to manage your profile, select campaigns and order your advertising film.":"Melde dich an, um dein Profil zu verwalten, Kampagnen auszuwählen und deine Werbefolie zu bestellen.","Log in to AdCars.ch":"Bei AdCars.ch anmelden","Email":"E-Mail","Password":"Passwort","Log in":"Anmelden","Forgot password?":"Passwort vergessen?","Login submitted in this demo.":"Login in dieser Demo gesendet.","DRIVER PROGRAM":"FAHRERPROGRAMM","Ready to turn your car into an ad space?":"Bereit, dein Auto in eine Werbefläche zu verwandeln?","Join the driver list. We'll contact you when suitable campaigns are available in your area.":"Trage dich in die Fahrerliste ein. Wir kontaktieren dich, sobald passende Kampagnen in deiner Region verfügbar sind.","Join AdCars.ch":"AdCars.ch beitreten","First name":"Vorname","Last name":"Nachname","Car model":"Automodell","Car plate number":"Autokennzeichen","How many times per week do you drive?":"Wie oft fährst du pro Woche?","Where is your car parked most of the time?":"Wo ist dein Auto die meiste Zeit geparkt?","Driver’s license":"Führerausweis","Upload front of driver’s license":"Vorderseite des Führerausweises hochladen","Required. Upload the front of your driver’s license as a JPG, PNG or PDF (max 10 MB).":"Erforderlich. Lade die Vorderseite deines Führerausweises als JPG, PNG oder PDF hoch (max. 10 MB).","Set password":"Passwort festlegen","Repeat password":"Passwort wiederholen","Passwords do not match.":"Die Passwörter stimmen nicht überein.","I accept the":"Ich akzeptiere die","Terms of Service":"Nutzungsbedingungen","Sign up":"Registrieren","Sign up complete.":"Registrierung abgeschlossen.","You can participate in campaigns once your profile’s identity is verified It can take up to 3 days.":"Du kannst an Kampagnen teilnehmen, sobald die Identität deines Profils verifiziert wurde. Dies kann bis zu 3 Tage dauern.","DRIVER PROFILE":"FAHRERPROFIL","Your profile":"Dein Profil","CAMPAIGN":"KAMPAGNE","Running campaign":"Laufende Kampagne","Loading your campaign…":"Kampagne wird geladen…","Earnings history":"Verdienstverlauf","Payout history":"Auszahlungsverlauf","EARNINGS":"VERDIENST","Your earnings":"Dein Verdienst","Available balance":"Verfügbares Guthaben","Payout":"Auszahlung","PROFILE INFORMATION":"PROFILINFORMATIONEN","Account Status:":"Kontostatus:","Pending verification":"Verifizierung ausstehend","Edit information":"Informationen bearbeiten","First name cannot be changed.":"Der Vorname kann nicht geändert werden.","Last name cannot be changed.":"Der Nachname kann nicht geändert werden.","Email cannot be changed.":"Die E-Mail-Adresse kann nicht geändert werden.","Car plate":"Autokennzeichen","Drives per week":"Fahrten pro Woche","Usually parked at":"Meist geparkt in","No file uploaded":"Keine Datei hochgeladen","Upload new driver’s license":"Neuen Führerausweis hochladen","No new file selected":"Keine neue Datei ausgewählt","Driver’s license can only be changed after account verification has been rejected.":"Der Führerausweis kann nur geändert werden, nachdem die Kontoverifizierung abgelehnt wurde.","Save":"Speichern","Cancel":"Abbrechen","Select a campaign, see what you could earn, and request the matching ad film for your car.":"Wähle eine Kampagne, sieh dir deinen möglichen Verdienst an und bestelle die passende Werbefolie für dein Auto.","Step 1 of 2 · Select campaign":"Schritt 1 von 2 · Kampagne auswählen","Campaign":"Kampagne","None selected":"Keine ausgewählt","Browse campaigns":"Kampagnen durchsuchen","ESTIMATED MONTHLY PAYOUT":"GESCHÄTZTE MONATLICHE VERGÜTUNG","Campaign duration:":"Kampagnendauer:","Total campaign earnings":"Gesamter Kampagnenverdienst","Join until:":"Beitritt bis:","Time left:":"Verbleibende Zeit:","to join the campaign":"zum Beitritt zur Kampagne","Available slots:":"Verfügbare Plätze:","Step 2 of 2 · Order ad film":"Schritt 2 von 2 · Werbefolie bestellen","Shipping address":"Lieferadresse","Street":"Straße","House number":"Hausnummer","Postal code":"Postleitzahl","City":"Ort","Country":"Land","Account required.":"Konto erforderlich.","Please log in before submitting an ad-film order.":"Bitte melde dich an, bevor du eine Werbefolienbestellung absendest.","Your account is pending verification. You cannot order an ad film until your account has been verified by AdCars.ch.":"Dein Konto wartet auf Verifizierung. Du kannst keine Werbefolie bestellen, bis dein Konto von AdCars.ch verifiziert wurde.","Join campaign and order ad film":"Kampagne beitreten und Werbefolie bestellen","Campaign assigned to your profile.":"Kampagne deinem Profil zugewiesen.","Available ad campaigns":"Verfügbare Werbekampagnen","Choose a campaign to use for your film order.":"Wähle eine Kampagne für deine Folienbestellung aus.","Region":"Region","No campaigns match these filters.":"Keine Kampagnen entsprechen diesen Filtern.","Do I get paid every month?":"Werde ich jeden Monat bezahlt?","Campaigns can be structured as monthly payouts. The exact rate and requirements are shown before you accept a campaign.":"Kampagnen können mit monatlichen Vergütungen strukturiert sein. Der genaue Betrag und die Anforderungen werden angezeigt, bevor du eine Kampagne annimmst.","Who pays for the film?":"Wer bezahlt die Folie?","The ad film and shipping are completely free for verified AdCars.ch users. Drivers never pay to participate in campaigns. AdCars.ch drivers are here to earn money, not spend it.":"Werbefolie und Versand sind für verifizierte AdCars.ch-Nutzer vollständig kostenlos. Fahrer bezahlen niemals für die Teilnahme an Kampagnen. AdCars.ch-Fahrer sind hier, um Geld zu verdienen, nicht um es auszugeben.","Can I choose the brand?":"Kann ich die Marke auswählen?","Yes. Drivers can browse eligible campaigns and select brands they are interested in, subject to availability.":"Ja. Fahrer können verfügbare Kampagnen durchsuchen und Marken auswählen, die sie interessieren, sofern Plätze verfügbar sind.","Is the film removable?":"Ist die Folie abnehmbar?","The site is designed around removable perforated window film. Always use vehicle-rated materials and professional installation where appropriate.":"Die Website ist auf abnehmbare perforierte Fensterfolie ausgelegt. Verwende stets für Fahrzeuge geeignete Materialien und, wo sinnvoll, eine professionelle Montage.","Delete account?":"Konto löschen?","Are you sure you want to delete your account? Your driver profile, campaign data, earnings history, payout requests, car plate registration and uploaded files will be permanently deleted.":"Möchtest du dein Konto wirklich löschen? Dein Fahrerprofil, Kampagnendaten, Verdienstverlauf, Auszahlungsanfragen, Kennzeichenregistrierung und hochgeladene Dateien werden dauerhaft gelöscht.","This cannot be undone.":"Dies kann nicht rückgängig gemacht werden.","Delete account":"Konto löschen","Keep account":"Konto behalten","Support":"Support","Tell us what you need help with and the AdCars.ch team will get back to you.":"Sag uns, wobei du Hilfe brauchst, und das AdCars.ch-Team meldet sich bei dir.","Name":"Name","What can we help with?":"Wobei können wir helfen?","General support":"Allgemeiner Support","Login / password":"Login / Passwort","Driver account":"Fahrerkonto","B2B campaign":"B2B-Kampagne","Other":"Sonstiges","Message":"Nachricht","Send support request":"Supportanfrage senden","Your support request has been sent.":"Deine Supportanfrage wurde gesendet.","We will contact you withing 1-3 days.":"Wir kontaktieren dich innerhalb von 1–3 Tagen.","Last updated: September 2026":"Zuletzt aktualisiert: September 2026","1. About AdCars.ch":"1. Über AdCars.ch","AdCars.ch connects drivers with advertising campaigns that may place approved advertising films or materials on participating vehicles. Businesses may also use AdCars.ch to request advertising campaigns.":"AdCars.ch verbindet Fahrer mit Werbekampagnen, bei denen genehmigte Werbefolien oder -materialien auf teilnehmenden Fahrzeugen angebracht werden können. Unternehmen können AdCars.ch außerdem nutzen, um Werbekampagnen anzufragen.","2. Eligibility and accounts":"2. Teilnahmeberechtigung und Konten","You must provide accurate and complete information when creating or using an account. You are responsible for keeping your login details secure and for activity carried out through your account.":"Beim Erstellen oder Nutzen eines Kontos musst du richtige und vollständige Angaben machen. Du bist dafür verantwortlich, deine Zugangsdaten sicher aufzubewahren und für Aktivitäten, die über dein Konto durchgeführt werden.","3. Driver participation":"3. Teilnahme als Fahrer","Driver participation may require identity or driver’s-license verification, an eligible vehicle, an accepted campaign assignment, and compliance with campaign instructions. AdCars.ch may reject, suspend, or end participation if requirements are not met.":"Die Teilnahme als Fahrer kann eine Identitäts- oder Führerausweisprüfung, ein geeignetes Fahrzeug, eine angenommene Kampagnenzuweisung und die Einhaltung der Kampagnenanweisungen erfordern. AdCars.ch kann die Teilnahme ablehnen, aussetzen oder beenden, wenn Anforderungen nicht erfüllt werden.","4. Campaign requirements":"4. Kampagnenanforderungen","Drivers must follow the campaign instructions shown in the app, including any requirements relating to installation, display period, proof photos, vehicle condition, or campaign completion.":"Fahrer müssen die in der App angezeigten Kampagnenanweisungen befolgen, einschließlich Anforderungen zur Montage, Anzeigedauer, Nachweisfotos, zum Fahrzeugzustand oder zum Abschluss der Kampagne.","5. Earnings and payouts":"5. Verdienst und Auszahlungen","Campaign earnings are subject to the applicable campaign conditions and successful completion of required steps. Payout availability, timing, and amounts may depend on verification of campaign participation and submitted proof.":"Kampagnenverdienste unterliegen den jeweiligen Kampagnenbedingungen und der erfolgreichen Erfüllung der erforderlichen Schritte. Verfügbarkeit, Zeitpunkt und Höhe von Auszahlungen können von der Verifizierung der Kampagnenteilnahme und eingereichten Nachweisen abhängen.","6. B2B campaign requests":"6. B2B-Kampagnenanfragen","Submitting a B2B campaign request does not automatically create a binding advertising order. Campaign scope, pricing, artwork suitability, timing, vehicle availability, and other commercial details may require confirmation by AdCars.ch.":"Das Absenden einer B2B-Kampagnenanfrage führt nicht automatisch zu einem verbindlichen Werbeauftrag. Kampagnenumfang, Preisgestaltung, Eignung des Designs, Zeitplan, Fahrzeugverfügbarkeit und weitere kommerzielle Details können eine Bestätigung durch AdCars.ch erfordern.","7. Uploaded content":"7. Hochgeladene Inhalte","You must only upload files, images, artwork, and other content that you are legally entitled to use. You remain responsible for the content you provide and for ensuring that it does not violate third-party rights or applicable law.":"Du darfst nur Dateien, Bilder, Designs und andere Inhalte hochladen, zu deren Nutzung du rechtlich berechtigt bist. Du bleibst für die bereitgestellten Inhalte verantwortlich und musst sicherstellen, dass sie keine Rechte Dritter oder geltendes Recht verletzen.","8. Prohibited use":"8. Verbotene Nutzung","You may not misuse the service, interfere with its operation, attempt unauthorized access, submit fraudulent information, manipulate campaign participation, or use AdCars.ch for unlawful purposes.":"Du darfst den Dienst nicht missbrauchen, seinen Betrieb stören, unbefugten Zugriff versuchen, betrügerische Angaben machen, die Kampagnenteilnahme manipulieren oder AdCars.ch für rechtswidrige Zwecke nutzen.","9. Availability and changes":"9. Verfügbarkeit und Änderungen","AdCars.ch may update, modify, suspend, or discontinue parts of the service when reasonably necessary. Features, campaign availability, and eligibility criteria may change over time.":"AdCars.ch kann Teile des Dienstes aktualisieren, ändern, aussetzen oder einstellen, wenn dies vernünftigerweise erforderlich ist. Funktionen, Kampagnenverfügbarkeit und Teilnahmebedingungen können sich im Laufe der Zeit ändern.","10. Liability":"10. Haftung","To the extent permitted by applicable law, AdCars.ch is not liable for indirect or consequential losses arising from use of the service. Nothing in these terms excludes liability that cannot legally be excluded.":"Soweit nach geltendem Recht zulässig, haftet AdCars.ch nicht für indirekte Schäden oder Folgeschäden aus der Nutzung des Dienstes. Keine Bestimmung dieser Bedingungen schließt eine Haftung aus, die gesetzlich nicht ausgeschlossen werden kann.","11. Termination":"11. Beendigung","You may stop using the service and may request account deletion where available. AdCars.ch may restrict or terminate access where these terms, campaign rules, security requirements, or applicable law are violated.":"Du kannst die Nutzung des Dienstes beenden und, sofern verfügbar, die Löschung deines Kontos beantragen. AdCars.ch kann den Zugriff einschränken oder beenden, wenn diese Bedingungen, Kampagnenregeln, Sicherheitsanforderungen oder geltendes Recht verletzt werden.","12. Contact":"12. Kontakt","Questions about these Terms of Service can be submitted through the Support form on AdCars.ch.":"Fragen zu diesen Nutzungsbedingungen können über das Supportformular auf AdCars.ch eingereicht werden.","Privacy":"Datenschutz","1. Information we collect":"1. Informationen, die wir erheben","Depending on how you use AdCars.ch, we may collect account information such as your name, email address, vehicle details, license plate, campaign activity, uploaded verification documents, support messages, and information connected with payouts or campaign participation.":"Je nach Nutzung von AdCars.ch können wir Kontoinformationen wie Name, E-Mail-Adresse, Fahrzeugdaten, Kennzeichen, Kampagnenaktivität, hochgeladene Verifizierungsdokumente, Supportnachrichten sowie Informationen im Zusammenhang mit Auszahlungen oder Kampagnenteilnahme erheben.","2. Why we use your information":"2. Warum wir deine Informationen verwenden","We use personal information to provide and secure the service, manage accounts, verify drivers, prevent fraud, operate advertising campaigns, process support requests, calculate campaign participation and earnings, and meet legal or regulatory obligations.":"Wir verwenden personenbezogene Informationen, um den Dienst bereitzustellen und abzusichern, Konten zu verwalten, Fahrer zu verifizieren, Betrug zu verhindern, Werbekampagnen zu betreiben, Supportanfragen zu bearbeiten, Kampagnenteilnahme und Verdienst zu berechnen und rechtliche oder regulatorische Pflichten zu erfüllen.","3. Driver’s-license documents":"3. Führerausweisdokumente","Driver’s-license files are used for account verification and are stored in private storage. Access should be limited to authorized users or administrators who require it for verification or support purposes.":"Führerausweisdateien werden zur Kontoverifizierung verwendet und in privatem Speicher abgelegt. Der Zugriff sollte auf autorisierte Nutzer oder Administratoren beschränkt sein, die ihn für Verifizierungs- oder Supportzwecke benötigen.","4. Campaign and proof data":"4. Kampagnen- und Nachweisdaten","We may process campaign assignments, proof photos, participation dates, payout requests, and related records in order to operate and verify advertising campaigns.":"Wir können Kampagnenzuweisungen, Nachweisfotos, Teilnahmedaten, Auszahlungsanfragen und zugehörige Datensätze verarbeiten, um Werbekampagnen zu betreiben und zu verifizieren.","5. B2B information":"5. B2B-Informationen","Businesses may provide company and contact details, campaign preferences, uploaded artwork, and other information needed to review or prepare a campaign request.":"Unternehmen können Firmen- und Kontaktdaten, Kampagnenpräferenzen, hochgeladene Designs und weitere Informationen bereitstellen, die zur Prüfung oder Vorbereitung einer Kampagnenanfrage benötigt werden.","6. Support requests":"6. Supportanfragen","When you contact Support, we may store your email address, name, selected topic, message, account identifier when available, and the status of the support request.":"Wenn du den Support kontaktierst, können wir deine E-Mail-Adresse, deinen Namen, das ausgewählte Thema, deine Nachricht, falls verfügbar deine Konto-ID sowie den Status der Supportanfrage speichern.","7. Service providers":"7. Dienstleister","AdCars.ch may use hosting, authentication, storage, database, analytics, email, or other technical providers to operate the service. These providers may process data on our behalf where necessary to provide their services.":"AdCars.ch kann Hosting-, Authentifizierungs-, Speicher-, Datenbank-, Analyse-, E-Mail- oder andere technische Anbieter nutzen, um den Dienst zu betreiben. Diese Anbieter können Daten in unserem Auftrag verarbeiten, soweit dies zur Erbringung ihrer Dienste erforderlich ist.","8. Data retention":"8. Datenspeicherung","We keep personal information for as long as reasonably necessary for the purposes described above, including account administration, security, campaign records, dispute handling, and legal obligations. Some records may need to be retained after account deletion.":"Wir speichern personenbezogene Informationen so lange, wie dies für die oben beschriebenen Zwecke vernünftigerweise erforderlich ist, einschließlich Kontoverwaltung, Sicherheit, Kampagnendokumentation, Streitbeilegung und rechtlicher Pflichten. Bestimmte Datensätze müssen möglicherweise auch nach der Kontolöschung aufbewahrt werden.","9. Your rights":"9. Deine Rechte","Depending on applicable law, you may have rights to access, correct, delete, restrict, or object to certain processing of your personal information. You may contact Support to submit a privacy-related request.":"Je nach geltendem Recht kannst du Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung oder Widerspruch gegen bestimmte Verarbeitungen deiner personenbezogenen Informationen haben. Du kannst den Support kontaktieren, um eine datenschutzbezogene Anfrage einzureichen.","10. Security":"10. Sicherheit","We use technical and organizational safeguards intended to protect personal information. No online system can guarantee absolute security.":"Wir verwenden technische und organisatorische Schutzmaßnahmen zum Schutz personenbezogener Informationen. Kein Online-System kann absolute Sicherheit garantieren.","11. Contact":"11. Kontakt","Privacy questions or requests can be submitted through the Support form on AdCars.ch.":"Datenschutzfragen oder -anfragen können über das Supportformular auf AdCars.ch eingereicht werden.","Impressum":"Impressum","Operator":"Betreiber","[Legal company / owner name]":"[Rechtlicher Firmen- / Inhabername]","[Street and house number]":"[Straße und Hausnummer]","[Postal code and city]":"[Postleitzahl und Ort]","Contact":"Kontakt","Email: [support email address]":"E-Mail: [Support-E-Mail-Adresse]","Website: AdCars.ch":"Website: AdCars.ch","Commercial register":"Handelsregister","[Commercial register entry, UID / CHE number, if applicable]":"[Handelsregistereintrag, UID- / CHE-Nummer, falls zutreffend]","Authorized representative":"Vertretungsberechtigte Person","[Name of authorized representative, if applicable]":"[Name der vertretungsberechtigten Person, falls zutreffend]","Disclaimer":"Haftungsausschluss","Information on AdCars.ch is provided with reasonable care. However, no guarantee is made that all information is complete, accurate, or continuously available.":"Die Informationen auf AdCars.ch werden mit angemessener Sorgfalt bereitgestellt. Es wird jedoch keine Gewähr dafür übernommen, dass alle Informationen vollständig, richtig oder jederzeit verfügbar sind.","Copyright":"Urheberrecht","Unless otherwise stated, the content, branding, design, and materials on AdCars.ch are protected by applicable intellectual-property laws and may not be reproduced or distributed without permission.":"Sofern nicht anders angegeben, sind Inhalte, Markenauftritt, Design und Materialien auf AdCars.ch durch geltende Gesetze zum geistigen Eigentum geschützt und dürfen ohne Genehmigung nicht vervielfältigt oder verbreitet werden.","Turn everyday driving into high-visibility advertising across Switzerland.":"Verwandle alltägliche Fahrten in aufmerksamkeitsstarke Werbung in der ganzen Schweiz.","Platform":"Plattform","For brands":"Für Marken","Account":"Konto","Log out":"Abmelden","© 2026 AdCars.ch. All rights reserved.":"© 2026 AdCars.ch. Alle Rechte vorbehalten.","PAYOUT":"AUSZAHLUNG","Request payout":"Auszahlung anfordern","Enter the bank account where you want to receive your available AdCars.ch balance.":"Gib das Bankkonto ein, auf das dein verfügbares AdCars.ch-Guthaben ausgezahlt werden soll.","Account holder":"Kontoinhaber","Bank name":"Bankname","Optional":"Optional","Account holder address":"Adresse des Kontoinhabers","HISTORY":"VERLAUF","No earnings history yet.":"Noch kein Verdienstverlauf vorhanden.","No payout history yet.":"Noch kein Auszahlungsverlauf vorhanden.","Open menu":"Menü öffnen","Close menu":"Menü schließen","Profile":"Profil","Open profile":"Profil öffnen","Open login or signup":"Login oder Registrierung öffnen","Change campaign":"Kampagne ändern","Assigning campaign…":"Kampagne wird zugewiesen…","Campaign is running":"Kampagne läuft","Campaign has ended":"Kampagne beendet","Campaign has ended.":"Kampagne beendet.","Join period ended":"Beitrittsfrist beendet","Always open":"Immer offen","Select campaign":"Kampagne auswählen","You're already in a campaign":"Du nimmst bereits an einer Kampagne teil","You are already in this campaign.":"Du nimmst bereits an dieser Kampagne teil.","Unlimited driver slots":"Unbegrenzte Fahrerplätze","Endless Campaign":"Unbefristete Kampagne","To be confirmed":"Noch zu bestätigen","Late joining":"Später Beitritt","Enabled":"Aktiviert","Ad films":"Werbefolien","Campaign cost":"Kampagnenkosten","Artwork":"Design","No artwork uploaded":"Kein Design hochgeladen","Uploaded ad film design":"Hochgeladenes Werbefolien-Design","Processed AdCars.ch campaign artwork":"Verarbeitetes AdCars.ch-Kampagnendesign","Campaign ad foil design":"Design der Kampagnen-Werbefolie","Loading campaign pricing…":"Kampagnenpreise werden geladen…","Campaign pricing is still loading. Please try again.":"Die Kampagnenpreise werden noch geladen. Bitte versuche es erneut.","Campaign pricing is temporarily unavailable.":"Die Kampagnenpreise sind vorübergehend nicht verfügbar.","Foil pricing and the minimum order are loaded from the database.":"Folienpreise und Mindestbestellmenge werden aus der Datenbank geladen.","Checking car plate…":"Kennzeichen wird geprüft…","Checking details…":"Angaben werden geprüft…","Creating account…":"Konto wird erstellt…","Logging in…":"Anmeldung läuft…","Logging out…":"Abmeldung läuft…","Login failed.":"Anmeldung fehlgeschlagen.","Could not create account. Please try again.":"Konto konnte nicht erstellt werden. Bitte versuche es erneut.","Password must be at least 6 characters.":"Das Passwort muss mindestens 6 Zeichen lang sein.","Please upload your driver’s license before signing up.":"Bitte lade deinen Führerausweis hoch, bevor du dich registrierst.","Uploading driver’s license…":"Führerausweis wird hochgeladen…","Driver’s license file must be 10 MB or smaller.":"Die Führerausweisdatei darf höchstens 10 MB groß sein.","Driver’s license must be a JPG, PNG or PDF file.":"Der Führerausweis muss als JPG-, PNG- oder PDF-Datei vorliegen.","Driver’s license cannot be changed.":"Der Führerausweis kann nicht geändert werden.","Verification rejected":"Verifizierung abgelehnt","No campaign running":"Keine laufende Kampagne","No campaign is currently running on your profile.":"Derzeit läuft keine Kampagne in deinem Profil.","Join a campaign":"Einer Kampagne beitreten","Task: Remove ad foil":"Aufgabe: Werbefolie entfernen","Please remove the campaign ad foil from your vehicle.":"Bitte entferne die Kampagnen-Werbefolie von deinem Fahrzeug.","Area":"Gebiet","Joined":"Beigetreten","Starts":"Startet","Started":"Gestartet","Duration":"Dauer","Reward":"Vergütung","Ad film shipping status":"Versandstatus der Werbefolie","Details":"Details","Shipping details":"Versanddetails","Awaiting shipping update":"Warten auf Versandupdate","Scheduled":"Geplant","Shipped":"Versendet","No task yet":"Noch keine Aufgabe","This month’s proof photo approved":"Nachweisfoto dieses Monats genehmigt","This month’s proof photo awaiting validation":"Nachweisfoto dieses Monats wartet auf Prüfung","This month’s proof photo rejected":"Nachweisfoto dieses Monats abgelehnt","Upload this month’s proof photo":"Nachweisfoto für diesen Monat hochladen","No proof photo uploaded":"Kein Nachweisfoto hochgeladen","Awaiting validation":"Warten auf Prüfung","Pending payout":"Auszahlung ausstehend","Not added to balance":"Nicht zum Guthaben hinzugefügt","Retake photo":"Foto erneut aufnehmen","Take photo":"Foto aufnehmen","Taking photo…":"Foto wird aufgenommen…","Live camera access is not supported by this browser.":"Der Live-Kamerazugriff wird von diesem Browser nicht unterstützt.","Camera access was denied or unavailable. Please allow camera access and try again.":"Der Kamerazugriff wurde verweigert oder ist nicht verfügbar. Bitte erlaube den Kamerazugriff und versuche es erneut.","Could not upload the proof photo.":"Das Nachweisfoto konnte nicht hochgeladen werden.","Proof photo failed validation, please retake photo":"Nachweisfoto hat die Prüfung nicht bestanden, bitte erneut aufnehmen","At the start of every month, upload a clear photo of the rear of your car. The applied ad film and your license plate must both be visible.":"Lade zu Beginn jedes Monats ein klares Foto vom Heck deines Autos hoch. Die angebrachte Werbefolie und dein Kennzeichen müssen beide sichtbar sein.","Your campaign starts when your ad film is shipped. Proof will be required after that date.":"Deine Kampagne startet, wenn deine Werbefolie versendet wird. Ab diesem Datum ist ein Nachweis erforderlich.","Monthly campaign earnings:":"Monatlicher Kampagnenverdienst:","View shipping details":"Versanddetails anzeigen","Choose another":"Andere auswählen","Describe your issue...":"Beschreibe dein Problem…","Tell us what is happening when you try to log in or access your account...":"Beschreibe, was passiert, wenn du dich anmelden oder auf dein Konto zugreifen möchtest…","Sending...":"Wird gesendet…","Sending request…":"Anfrage wird gesendet…","Please enter your name.":"Bitte gib deinen Namen ein.","Please enter your email address.":"Bitte gib deine E-Mail-Adresse ein.","Please select a support topic.":"Bitte wähle ein Supportthema aus.","Please describe the issue in at least 10 characters.":"Bitte beschreibe das Problem mit mindestens 10 Zeichen.","Could not send your support request. Please try again.":"Deine Supportanfrage konnte nicht gesendet werden. Bitte versuche es erneut.","Support is still loading. Please try again in a moment.":"Der Support wird noch geladen. Bitte versuche es gleich noch einmal.","Submitting payout…":"Auszahlung wird angefordert…","There is currently no available balance to pay out.":"Derzeit ist kein verfügbares Guthaben zur Auszahlung vorhanden.","Please log in before requesting a payout.":"Bitte melde dich an, bevor du eine Auszahlung anforderst.","Please enter a valid IBAN.":"Bitte gib eine gültige IBAN ein.","Please enter a valid 8 or 11 character BIC / SWIFT code.":"Bitte gib einen gültigen BIC-/SWIFT-Code mit 8 oder 11 Zeichen ein.","Could not submit the payout request.":"Die Auszahlungsanfrage konnte nicht gesendet werden.","Please log in again before joining a campaign.":"Bitte melde dich erneut an, bevor du einer Kampagne beitrittst.","This campaign could not be identified. Please choose the campaign again.":"Diese Kampagne konnte nicht identifiziert werden. Bitte wähle die Kampagne erneut aus.","Could not assign this campaign to your profile.":"Diese Kampagne konnte deinem Profil nicht zugewiesen werden.","Supabase is still loading. Please try again.":"Supabase wird noch geladen. Bitte versuche es erneut.","Not authenticated.":"Nicht authentifiziert.","You are not logged in.":"Du bist nicht angemeldet.","Please log in again before uploading.":"Bitte melde dich erneut an, bevor du etwas hochlädst.","Please fill out this field.":"Bitte fülle dieses Feld aus.","Please enter a valid car plate number.":"Bitte gib ein gültiges Autokennzeichen ein.","This car plate is already registered to another AdCars.ch account.":"Dieses Autokennzeichen ist bereits bei einem anderen AdCars.ch-Konto registriert.","Processing artwork...":"Design wird verarbeitet…","Could not process the selected image. Please choose a PNG, JPG, JPEG or WEBP source image with an exact 3:1 aspect ratio.":"Das ausgewählte Bild konnte nicht verarbeitet werden. Bitte wähle ein PNG-, JPG-, JPEG- oder WEBP-Ausgangsbild mit exakt 3:1 Seitenverhältnis.","The uploaded source artwork must be exactly 3:1 and finish processing before the request is sent.":"Das hochgeladene Ausgangsdesign muss exakt 3:1 sein und vollständig verarbeitet sein, bevor die Anfrage gesendet wird.","Could not send your campaign request. Please try again.":"Deine Kampagnenanfrage konnte nicht gesendet werden. Bitte versuche es erneut."},"fr":{"How it works":"Comment ça marche","Driver campaigns":"Campagnes conducteurs","Login / Signup":"Connexion / Inscription","Turn everyday traffic into shared value":"Transformer le trafic quotidien en valeur partagée","Make every drive":"Valorisez chaque trajet","worth more.":"davantage.","AdCars.ch turns everyday driving into a marketplace for attention: brands gain visibility on real cars, drivers share in the value they create, and every campaign moves through the places people actually live, work and travel.":"AdCars.ch transforme les trajets quotidiens en marché de l’attention : les marques gagnent en visibilité sur de vraies voitures, les conducteurs partagent la valeur qu’ils créent et chaque campagne circule là où les gens vivent, travaillent et se déplacent réellement.","Participate as driver":"Participer comme conducteur","Launch a campaign":"Lancer une campagne","Simple for drivers. Valuable for brands.":"Simple pour les conducteurs. Précieux pour les marques.","AdCars.ch turns unused space on everyday cars into advertising space for brands. creating value for both drivers and businesses.":"AdCars.ch transforme l’espace inutilisé sur les voitures du quotidien en espace publicitaire pour les marques, créant ainsi de la valeur pour les conducteurs et les entreprises.","Drivers choose a brand":"Les conducteurs choisissent une marque","Drivers browse available campaigns and choose the brand they want to advertise.":"Les conducteurs parcourent les campagnes disponibles et choisissent la marque qu’ils souhaitent promouvoir.","Drivers order the ad film":"Les conducteurs commandent le film publicitaire","AdCars.ch produces the printed, vehicle-suitable ad film and ships it directly to the driver with installation instructions.":"AdCars.ch produit le film publicitaire imprimé adapté au véhicule et l’expédie directement au conducteur avec les instructions de pose.","Drivers create brand presence":"Les conducteurs créent une présence de marque","Drivers earn their agreed monthly payout while the brand gains real-world presence wherever they drive, park and commute.":"Les conducteurs perçoivent la rémunération mensuelle convenue tandis que la marque gagne une présence réelle partout où ils roulent, se garent et se déplacent.","Choose your path":"Choisissez votre voie","One platform. Two ways to make every drive worth more.":"Une plateforme. Deux façons de valoriser chaque trajet.","Browse campaigns, choose a brand and earn while you drive.":"Parcourez les campagnes, choisissez une marque et gagnez de l’argent en conduisant.","Open driver campaigns":"Ouvrir les campagnes conducteurs","Put your brand on real cars and reach people across Switzerland.":"Placez votre marque sur de vraies voitures et touchez des personnes dans toute la Suisse.","Open B2B campaign setup":"Configurer une campagne B2B","Put your brand in motion with real drivers across Switzerland.":"Mettez votre marque en mouvement avec de vrais conducteurs dans toute la Suisse.","B2B ADVERTISING":"PUBLICITÉ B2B","Put your brand on cars across Switzerland.":"Placez votre marque sur des voitures dans toute la Suisse.","Reach people where they live, commute and park. AdCars.ch connects your campaign with real drivers and real vehicles.":"Touchez les gens là où ils vivent, se déplacent et se garent. AdCars.ch relie votre campagne à de vrais conducteurs et de vrais véhicules.","Target the places that matter":"Ciblez les lieux qui comptent","Choose cities, cantons and commuter areas instead of buying one fixed advertising location.":"Choisissez des villes, des cantons et des zones de déplacement plutôt qu’un seul emplacement publicitaire fixe.","Control campaign scale and spend":"Maîtrisez l’ampleur et le budget de la campagne","Set the duration, number of cars and monthly driver payout to build a campaign around your budget.":"Définissez la durée, le nombre de voitures et la rémunération mensuelle des conducteurs afin d’adapter la campagne à votre budget.","Use verified participating drivers":"Faites appel à des conducteurs participants vérifiés","Campaign participation is restricted to verified AdCars.ch driver accounts.":"La participation aux campagnes est réservée aux comptes conducteurs AdCars.ch vérifiés.","Turn everyday mobility into media":"Transformez la mobilité quotidienne en média","Your brand gains physical presence while participating cars drive, commute and park in the selected market.":"Votre marque gagne une présence physique lorsque les voitures participantes roulent, se déplacent et se garent dans le marché sélectionné.","Contact AdCars.ch B2B":"Contacter AdCars.ch B2B","Define your campaign dates, monthly driver payout and ad-film quantity, then upload your ready-to-print artwork.":"Définissez les dates de campagne, la rémunération mensuelle des conducteurs et la quantité de films publicitaires, puis importez votre visuel prêt à imprimer.","Company":"Entreprise","Contact person":"Personne de contact","Business email":"E-mail professionnelle","Phone":"Téléphone","Ad film design":"Design du film publicitaire","Choose file":"Choisir un fichier","No file selected":"Aucun fichier sélectionné","Upload your finished 3:1 artwork as PNG, JPG, JPEG or WEBP. The uploaded source image must be exactly 3:1. After validation, AdCars.ch adds an equally thick white frame around all sides and places the AdCars.ch logo at the top center.":"Importez votre visuel final au format 3:1 en PNG, JPG, JPEG ou WEBP. L’image source importée doit avoir exactement un ratio de 3:1. Après validation, AdCars.ch ajoute un cadre blanc de même épaisseur sur tous les côtés et place le logo AdCars.ch en haut au centre.","Campaign region":"Région de campagne","Select campaign regions":"Sélectionner les régions de campagne","Switzerland":"Suisse","Whole Switzerland":"Toute la Suisse","German-speaking Switzerland":"Suisse alémanique","Cantons":"Cantons","Major cities":"Grandes villes","Campaign duration":"Durée de la campagne","Please select a campaign duration.":"Veuillez sélectionner une durée de campagne.","Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.":"Les campagnes doivent être planifiées au moins 1 mois à l’avance afin de laisser le temps nécessaire à l’impression et à la livraison aux conducteurs.","Allow late campaign joining":"Autoriser une participation tardive","Drivers may still join after the standard “Join until” deadline, up to 2 months before the campaign end date.":"Les conducteurs peuvent encore rejoindre la campagne après la date limite standard « Rejoindre jusqu’au », jusqu’à 2 mois avant la fin de la campagne.","Driver payout per month":"Rémunération du conducteur par mois","Number of ad films to print":"Nombre de films publicitaires à imprimer","Approximate cost of AdCars.ch campaign":"Coût approximatif de la campagne AdCars.ch","Complete the required campaign details to see your estimated price.":"Complétez les informations requises sur la campagne pour voir votre estimation de prix.","Your estimate will appear automatically once the campaign duration, driver payout and number of ad films are entered.":"Votre estimation s’affichera automatiquement une fois la durée de la campagne, la rémunération des conducteurs et le nombre de films publicitaires saisis.","Campaign description":"Description de la campagne","Request Campaign":"Demander la campagne","CAMPAIGN REQUEST SENT":"DEMANDE DE CAMPAGNE ENVOYÉE","Thanks, your B2B request has been sent. We will contact you shortly.":"Merci, votre demande B2B a été envoyée. Nous vous contacterons prochainement.","Campaign info":"Infos campagne","Aargau":"Argovie","Appenzell Ausserrhoden":"Appenzell Rhodes-Extérieures","Appenzell Innerrhoden":"Appenzell Rhodes-Intérieures","Basel-Landschaft":"Bâle-Campagne","Basel-Stadt":"Bâle-Ville","Bern":"Berne","Fribourg":"Fribourg","Geneva":"Genève","Glarus":"Glaris","Graubünden":"Grisons","Jura":"Jura","Lucerne":"Lucerne","Neuchâtel":"Neuchâtel","Nidwalden":"Nidwald","Obwalden":"Obwald","Schaffhausen":"Schaffhouse","Schwyz":"Schwytz","Solothurn":"Soleure","St. Gallen":"Saint-Gall","Thurgau":"Thurgovie","Ticino":"Tessin","Uri":"Uri","Valais":"Valais","Vaud":"Vaud","Zug":"Zoug","Zürich":"Zurich","Zürich City":"Ville de Zurich","Geneva City":"Ville de Genève","Basel City":"Ville de Bâle","Lausanne City":"Ville de Lausanne","Bern City":"Ville de Berne","Winterthur City":"Ville de Winterthour","Lucerne City":"Ville de Lucerne","St. Gallen City":"Ville de Saint-Gall","Lugano City":"Ville de Lugano","Biel / Bienne City":"Ville de Bienne / Biel","Thun City":"Ville de Thoune","Köniz City":"Ville de Köniz","La Chaux-de-Fonds City":"Ville de La Chaux-de-Fonds","Fribourg City":"Ville de Fribourg","Schaffhausen City":"Ville de Schaffhouse","Chur City":"Ville de Coire","Neuchâtel City":"Ville de Neuchâtel","Vernier City":"Ville de Vernier","Uster City":"Ville d’Uster","Sion City":"Ville de Sion","Driver Login":"Connexion conducteur","Driver Signup":"Inscription conducteur","DRIVER LOGIN":"CONNEXION CONDUCTEUR","Welcome back.":"Bon retour.","Log in to manage your profile, select campaigns and order your advertising film.":"Connectez-vous pour gérer votre profil, sélectionner des campagnes et commander votre film publicitaire.","Log in to AdCars.ch":"Se connecter à AdCars.ch","Email":"E-mail","Password":"Mot de passe","Log in":"Se connecter","Forgot password?":"Mot de passe oublié ?","Login submitted in this demo.":"Connexion envoyée dans cette démo.","DRIVER PROGRAM":"PROGRAMME CONDUCTEUR","Ready to turn your car into an ad space?":"Prêt à transformer votre voiture en espace publicitaire ?","Join the driver list. We'll contact you when suitable campaigns are available in your area.":"Rejoignez la liste des conducteurs. Nous vous contacterons lorsque des campagnes adaptées seront disponibles dans votre région.","Join AdCars.ch":"Rejoindre AdCars.ch","First name":"Prénom","Last name":"Nom","Car model":"Modèle de voiture","Car plate number":"Numéro de plaque","How many times per week do you drive?":"Combien de fois conduisez-vous par semaine ?","Where is your car parked most of the time?":"Où votre voiture est-elle garée la plupart du temps ?","Driver’s license":"Permis de conduire","Upload front of driver’s license":"Importer le recto du permis de conduire","Required. Upload the front of your driver’s license as a JPG, PNG or PDF (max 10 MB).":"Obligatoire. Importez le recto de votre permis de conduire au format JPG, PNG ou PDF (max. 10 Mo).","Set password":"Définir le mot de passe","Repeat password":"Répéter le mot de passe","Passwords do not match.":"Les mots de passe ne correspondent pas.","I accept the":"J’accepte les","Terms of Service":"Conditions d’utilisation","Sign up":"S’inscrire","Sign up complete.":"Inscription terminée.","You can participate in campaigns once your profile’s identity is verified It can take up to 3 days.":"Vous pouvez participer aux campagnes une fois l’identité de votre profil vérifiée. Cela peut prendre jusqu’à 3 jours.","DRIVER PROFILE":"PROFIL CONDUCTEUR","Your profile":"Votre profil","CAMPAIGN":"CAMPAGNE","Running campaign":"Campagne en cours","Loading your campaign…":"Chargement de votre campagne…","Earnings history":"Historique des gains","Payout history":"Historique des paiements","EARNINGS":"GAINS","Your earnings":"Vos gains","Available balance":"Solde disponible","Payout":"Paiement","PROFILE INFORMATION":"INFORMATIONS DU PROFIL","Account Status:":"Statut du compte :","Pending verification":"Vérification en attente","Edit information":"Modifier les informations","First name cannot be changed.":"Le prénom ne peut pas être modifié.","Last name cannot be changed.":"Le nom ne peut pas être modifié.","Email cannot be changed.":"L’adresse e-mail ne peut pas être modifiée.","Car plate":"Plaque d’immatriculation","Drives per week":"Trajets par semaine","Usually parked at":"Habituellement garée à","No file uploaded":"Aucun fichier importé","Upload new driver’s license":"Importer un nouveau permis de conduire","No new file selected":"Aucun nouveau fichier sélectionné","Driver’s license can only be changed after account verification has been rejected.":"Le permis de conduire ne peut être modifié qu’après le rejet de la vérification du compte.","Save":"Enregistrer","Cancel":"Annuler","Select a campaign, see what you could earn, and request the matching ad film for your car.":"Sélectionnez une campagne, découvrez ce que vous pourriez gagner et demandez le film publicitaire correspondant pour votre voiture.","Step 1 of 2 · Select campaign":"Étape 1 sur 2 · Sélectionner la campagne","Campaign":"Campagne","None selected":"Aucune sélection","Browse campaigns":"Parcourir les campagnes","ESTIMATED MONTHLY PAYOUT":"RÉMUNÉRATION MENSUELLE ESTIMÉE","Campaign duration:":"Durée de la campagne :","Total campaign earnings":"Gains totaux de la campagne","Join until:":"Rejoindre jusqu’au :","Time left:":"Temps restant :","to join the campaign":"pour rejoindre la campagne","Available slots:":"Places disponibles :","Step 2 of 2 · Order ad film":"Étape 2 sur 2 · Commander le film publicitaire","Shipping address":"Adresse de livraison","Street":"Rue","House number":"Numéro","Postal code":"Code postal","City":"Ville","Country":"Pays","Account required.":"Compte requis.","Please log in before submitting an ad-film order.":"Veuillez vous connecter avant d’envoyer une commande de film publicitaire.","Your account is pending verification. You cannot order an ad film until your account has been verified by AdCars.ch.":"Votre compte est en attente de vérification. Vous ne pouvez pas commander de film publicitaire tant que votre compte n’a pas été vérifié par AdCars.ch.","Join campaign and order ad film":"Rejoindre la campagne et commander le film publicitaire","Campaign assigned to your profile.":"Campagne attribuée à votre profil.","Available ad campaigns":"Campagnes publicitaires disponibles","Choose a campaign to use for your film order.":"Choisissez une campagne pour votre commande de film.","Region":"Région","No campaigns match these filters.":"Aucune campagne ne correspond à ces filtres.","Do I get paid every month?":"Suis-je payé chaque mois ?","Campaigns can be structured as monthly payouts. The exact rate and requirements are shown before you accept a campaign.":"Les campagnes peuvent prévoir des paiements mensuels. Le montant exact et les exigences sont affichés avant que vous acceptiez une campagne.","Who pays for the film?":"Qui paie le film ?","The ad film and shipping are completely free for verified AdCars.ch users. Drivers never pay to participate in campaigns. AdCars.ch drivers are here to earn money, not spend it.":"Le film publicitaire et l’expédition sont entièrement gratuits pour les utilisateurs AdCars.ch vérifiés. Les conducteurs ne paient jamais pour participer aux campagnes. Les conducteurs AdCars.ch sont là pour gagner de l’argent, pas pour en dépenser.","Can I choose the brand?":"Puis-je choisir la marque ?","Yes. Drivers can browse eligible campaigns and select brands they are interested in, subject to availability.":"Oui. Les conducteurs peuvent parcourir les campagnes auxquelles ils sont éligibles et choisir les marques qui les intéressent, sous réserve de disponibilité.","Is the film removable?":"Le film est-il amovible ?","The site is designed around removable perforated window film. Always use vehicle-rated materials and professional installation where appropriate.":"Le site est conçu autour d’un film perforé amovible pour vitres. Utilisez toujours des matériaux adaptés aux véhicules et une installation professionnelle lorsque cela est approprié.","Delete account?":"Supprimer le compte ?","Are you sure you want to delete your account? Your driver profile, campaign data, earnings history, payout requests, car plate registration and uploaded files will be permanently deleted.":"Êtes-vous sûr de vouloir supprimer votre compte ? Votre profil conducteur, vos données de campagne, votre historique de gains, vos demandes de paiement, l’enregistrement de votre plaque et vos fichiers importés seront définitivement supprimés.","This cannot be undone.":"Cette action est irréversible.","Delete account":"Supprimer le compte","Keep account":"Conserver le compte","Support":"Assistance","Tell us what you need help with and the AdCars.ch team will get back to you.":"Dites-nous en quoi nous pouvons vous aider et l’équipe AdCars.ch vous répondra.","Name":"Nom","What can we help with?":"Comment pouvons-nous vous aider ?","General support":"Assistance générale","Login / password":"Connexion / mot de passe","Driver account":"Compte conducteur","B2B campaign":"Campagne B2B","Other":"Autre","Message":"Message","Send support request":"Envoyer la demande d’assistance","Your support request has been sent.":"Votre demande d’assistance a été envoyée.","We will contact you withing 1-3 days.":"Nous vous contacterons sous 1 à 3 jours.","Last updated: September 2026":"Dernière mise à jour : septembre 2026","1. About AdCars.ch":"1. À propos d’AdCars.ch","AdCars.ch connects drivers with advertising campaigns that may place approved advertising films or materials on participating vehicles. Businesses may also use AdCars.ch to request advertising campaigns.":"AdCars.ch met en relation des conducteurs avec des campagnes publicitaires pouvant prévoir la pose de films ou supports publicitaires approuvés sur les véhicules participants. Les entreprises peuvent également utiliser AdCars.ch pour demander des campagnes publicitaires.","2. Eligibility and accounts":"2. Éligibilité et comptes","You must provide accurate and complete information when creating or using an account. You are responsible for keeping your login details secure and for activity carried out through your account.":"Vous devez fournir des informations exactes et complètes lors de la création ou de l’utilisation d’un compte. Vous êtes responsable de la sécurité de vos identifiants et des activités effectuées via votre compte.","3. Driver participation":"3. Participation des conducteurs","Driver participation may require identity or driver’s-license verification, an eligible vehicle, an accepted campaign assignment, and compliance with campaign instructions. AdCars.ch may reject, suspend, or end participation if requirements are not met.":"La participation des conducteurs peut nécessiter une vérification de l’identité ou du permis de conduire, un véhicule éligible, une attribution de campagne acceptée et le respect des instructions de campagne. AdCars.ch peut refuser, suspendre ou mettre fin à la participation si les exigences ne sont pas respectées.","4. Campaign requirements":"4. Exigences de campagne","Drivers must follow the campaign instructions shown in the app, including any requirements relating to installation, display period, proof photos, vehicle condition, or campaign completion.":"Les conducteurs doivent suivre les instructions de campagne affichées dans l’application, notamment les exigences relatives à la pose, à la période d’affichage, aux photos de preuve, à l’état du véhicule ou à la fin de la campagne.","5. Earnings and payouts":"5. Gains et paiements","Campaign earnings are subject to the applicable campaign conditions and successful completion of required steps. Payout availability, timing, and amounts may depend on verification of campaign participation and submitted proof.":"Les gains de campagne sont soumis aux conditions applicables à la campagne et à l’accomplissement réussi des étapes requises. La disponibilité, le calendrier et les montants des paiements peuvent dépendre de la vérification de la participation et des preuves soumises.","6. B2B campaign requests":"6. Demandes de campagne B2B","Submitting a B2B campaign request does not automatically create a binding advertising order. Campaign scope, pricing, artwork suitability, timing, vehicle availability, and other commercial details may require confirmation by AdCars.ch.":"L’envoi d’une demande de campagne B2B ne crée pas automatiquement une commande publicitaire contraignante. L’étendue de la campagne, la tarification, l’adéquation du visuel, le calendrier, la disponibilité des véhicules et d’autres détails commerciaux peuvent nécessiter une confirmation d’AdCars.ch.","7. Uploaded content":"7. Contenu importé","You must only upload files, images, artwork, and other content that you are legally entitled to use. You remain responsible for the content you provide and for ensuring that it does not violate third-party rights or applicable law.":"Vous ne devez importer que des fichiers, images, visuels et autres contenus que vous êtes légalement autorisé à utiliser. Vous restez responsable du contenu fourni et devez vous assurer qu’il ne porte pas atteinte aux droits de tiers ni au droit applicable.","8. Prohibited use":"8. Utilisation interdite","You may not misuse the service, interfere with its operation, attempt unauthorized access, submit fraudulent information, manipulate campaign participation, or use AdCars.ch for unlawful purposes.":"Vous ne pouvez pas détourner le service de son usage, perturber son fonctionnement, tenter un accès non autorisé, soumettre des informations frauduleuses, manipuler la participation aux campagnes ou utiliser AdCars.ch à des fins illégales.","9. Availability and changes":"9. Disponibilité et modifications","AdCars.ch may update, modify, suspend, or discontinue parts of the service when reasonably necessary. Features, campaign availability, and eligibility criteria may change over time.":"AdCars.ch peut mettre à jour, modifier, suspendre ou interrompre certaines parties du service lorsque cela est raisonnablement nécessaire. Les fonctionnalités, la disponibilité des campagnes et les critères d’éligibilité peuvent évoluer.","10. Liability":"10. Responsabilité","To the extent permitted by applicable law, AdCars.ch is not liable for indirect or consequential losses arising from use of the service. Nothing in these terms excludes liability that cannot legally be excluded.":"Dans la mesure permise par la loi applicable, AdCars.ch n’est pas responsable des pertes indirectes ou consécutives résultant de l’utilisation du service. Aucune disposition des présentes conditions n’exclut une responsabilité qui ne peut légalement être exclue.","11. Termination":"11. Résiliation","You may stop using the service and may request account deletion where available. AdCars.ch may restrict or terminate access where these terms, campaign rules, security requirements, or applicable law are violated.":"Vous pouvez cesser d’utiliser le service et demander la suppression de votre compte lorsque cette option est disponible. AdCars.ch peut restreindre ou mettre fin à l’accès en cas de violation des présentes conditions, des règles de campagne, des exigences de sécurité ou du droit applicable.","12. Contact":"12. Contact","Questions about these Terms of Service can be submitted through the Support form on AdCars.ch.":"Les questions concernant ces Conditions d’utilisation peuvent être envoyées via le formulaire d’assistance sur AdCars.ch.","Privacy":"Confidentialité","1. Information we collect":"1. Informations que nous collectons","Depending on how you use AdCars.ch, we may collect account information such as your name, email address, vehicle details, license plate, campaign activity, uploaded verification documents, support messages, and information connected with payouts or campaign participation.":"Selon votre utilisation d’AdCars.ch, nous pouvons collecter des informations de compte telles que votre nom, adresse e-mail, informations sur le véhicule, plaque d’immatriculation, activité de campagne, documents de vérification importés, messages d’assistance et informations liées aux paiements ou à la participation aux campagnes.","2. Why we use your information":"2. Pourquoi nous utilisons vos informations","We use personal information to provide and secure the service, manage accounts, verify drivers, prevent fraud, operate advertising campaigns, process support requests, calculate campaign participation and earnings, and meet legal or regulatory obligations.":"Nous utilisons les informations personnelles pour fournir et sécuriser le service, gérer les comptes, vérifier les conducteurs, prévenir la fraude, exploiter les campagnes publicitaires, traiter les demandes d’assistance, calculer la participation et les gains, et respecter les obligations légales ou réglementaires.","3. Driver’s-license documents":"3. Documents de permis de conduire","Driver’s-license files are used for account verification and are stored in private storage. Access should be limited to authorized users or administrators who require it for verification or support purposes.":"Les fichiers de permis de conduire sont utilisés pour la vérification du compte et stockés dans un espace privé. L’accès doit être limité aux utilisateurs ou administrateurs autorisés qui en ont besoin à des fins de vérification ou d’assistance.","4. Campaign and proof data":"4. Données de campagne et de preuve","We may process campaign assignments, proof photos, participation dates, payout requests, and related records in order to operate and verify advertising campaigns.":"Nous pouvons traiter les attributions de campagne, les photos de preuve, les dates de participation, les demandes de paiement et les enregistrements associés afin d’exploiter et de vérifier les campagnes publicitaires.","5. B2B information":"5. Informations B2B","Businesses may provide company and contact details, campaign preferences, uploaded artwork, and other information needed to review or prepare a campaign request.":"Les entreprises peuvent fournir des informations sur l’entreprise et les contacts, des préférences de campagne, des visuels importés et d’autres informations nécessaires pour examiner ou préparer une demande de campagne.","6. Support requests":"6. Demandes d’assistance","When you contact Support, we may store your email address, name, selected topic, message, account identifier when available, and the status of the support request.":"Lorsque vous contactez l’assistance, nous pouvons conserver votre adresse e-mail, votre nom, le sujet sélectionné, votre message, l’identifiant de compte lorsqu’il est disponible et le statut de la demande d’assistance.","7. Service providers":"7. Prestataires de services","AdCars.ch may use hosting, authentication, storage, database, analytics, email, or other technical providers to operate the service. These providers may process data on our behalf where necessary to provide their services.":"AdCars.ch peut utiliser des prestataires d’hébergement, d’authentification, de stockage, de base de données, d’analyse, d’e-mail ou d’autres services techniques pour exploiter le service. Ces prestataires peuvent traiter des données pour notre compte lorsque cela est nécessaire à la fourniture de leurs services.","8. Data retention":"8. Conservation des données","We keep personal information for as long as reasonably necessary for the purposes described above, including account administration, security, campaign records, dispute handling, and legal obligations. Some records may need to be retained after account deletion.":"Nous conservons les informations personnelles aussi longtemps que raisonnablement nécessaire aux finalités décrites ci-dessus, notamment la gestion des comptes, la sécurité, les dossiers de campagne, le traitement des litiges et les obligations légales. Certains enregistrements peuvent devoir être conservés après la suppression du compte.","9. Your rights":"9. Vos droits","Depending on applicable law, you may have rights to access, correct, delete, restrict, or object to certain processing of your personal information. You may contact Support to submit a privacy-related request.":"Selon le droit applicable, vous pouvez disposer de droits d’accès, de rectification, de suppression, de limitation ou d’opposition à certains traitements de vos informations personnelles. Vous pouvez contacter l’assistance pour soumettre une demande liée à la confidentialité.","10. Security":"10. Sécurité","We use technical and organizational safeguards intended to protect personal information. No online system can guarantee absolute security.":"Nous utilisons des mesures de protection techniques et organisationnelles destinées à protéger les informations personnelles. Aucun système en ligne ne peut garantir une sécurité absolue.","11. Contact":"11. Contact","Privacy questions or requests can be submitted through the Support form on AdCars.ch.":"Les questions ou demandes relatives à la confidentialité peuvent être envoyées via le formulaire d’assistance sur AdCars.ch.","Impressum":"Mentions légales","Operator":"Exploitant","[Legal company / owner name]":"[Nom légal de l’entreprise / du propriétaire]","[Street and house number]":"[Rue et numéro]","[Postal code and city]":"[Code postal et ville]","Contact":"Contact","Email: [support email address]":"E-mail : [adresse e-mail d’assistance]","Website: AdCars.ch":"Site web : AdCars.ch","Commercial register":"Registre du commerce","[Commercial register entry, UID / CHE number, if applicable]":"[Inscription au registre du commerce, numéro IDE / CHE, le cas échéant]","Authorized representative":"Représentant autorisé","[Name of authorized representative, if applicable]":"[Nom du représentant autorisé, le cas échéant]","Disclaimer":"Clause de non-responsabilité","Information on AdCars.ch is provided with reasonable care. However, no guarantee is made that all information is complete, accurate, or continuously available.":"Les informations sur AdCars.ch sont fournies avec un soin raisonnable. Toutefois, aucune garantie n’est donnée quant à leur exhaustivité, leur exactitude ou leur disponibilité permanente.","Copyright":"Droit d’auteur","Unless otherwise stated, the content, branding, design, and materials on AdCars.ch are protected by applicable intellectual-property laws and may not be reproduced or distributed without permission.":"Sauf indication contraire, le contenu, l’identité visuelle, le design et les éléments d’AdCars.ch sont protégés par les lois applicables en matière de propriété intellectuelle et ne peuvent être reproduits ou distribués sans autorisation.","Turn everyday driving into high-visibility advertising across Switzerland.":"Transformez les trajets quotidiens en publicité à forte visibilité dans toute la Suisse.","Platform":"Plateforme","For brands":"Pour les marques","Account":"Compte","Log out":"Se déconnecter","© 2026 AdCars.ch. All rights reserved.":"© 2026 AdCars.ch. Tous droits réservés.","PAYOUT":"PAIEMENT","Request payout":"Demander un paiement","Enter the bank account where you want to receive your available AdCars.ch balance.":"Saisissez le compte bancaire sur lequel vous souhaitez recevoir votre solde AdCars.ch disponible.","Account holder":"Titulaire du compte","Bank name":"Nom de la banque","Optional":"Facultatif","Account holder address":"Adresse du titulaire du compte","HISTORY":"HISTORIQUE","No earnings history yet.":"Aucun historique de gains pour le moment.","No payout history yet.":"Aucun historique de paiements pour le moment.","Open menu":"Ouvrir le menu","Close menu":"Fermer le menu","Profile":"Profil","Open profile":"Ouvrir le profil","Open login or signup":"Ouvrir la connexion ou l’inscription","Change campaign":"Changer de campagne","Assigning campaign…":"Attribution de la campagne…","Campaign is running":"La campagne est en cours","Campaign has ended":"La campagne est terminée","Campaign has ended.":"La campagne est terminée.","Join period ended":"Période d’adhésion terminée","Always open":"Toujours ouvert","Select campaign":"Sélectionner la campagne","You're already in a campaign":"Vous participez déjà à une campagne","You are already in this campaign.":"Vous participez déjà à cette campagne.","Unlimited driver slots":"Places conducteurs illimitées","Endless Campaign":"Campagne sans fin","To be confirmed":"À confirmer","Late joining":"Participation tardive","Enabled":"Activé","Ad films":"Films publicitaires","Campaign cost":"Coût de la campagne","Artwork":"Visuel","No artwork uploaded":"Aucun visuel importé","Uploaded ad film design":"Design du film publicitaire importé","Processed AdCars.ch campaign artwork":"Visuel de campagne AdCars.ch traité","Campaign ad foil design":"Design du film publicitaire de campagne","Loading campaign pricing…":"Chargement des tarifs de campagne…","Campaign pricing is still loading. Please try again.":"Les tarifs de campagne sont encore en cours de chargement. Veuillez réessayer.","Campaign pricing is temporarily unavailable.":"Les tarifs de campagne sont temporairement indisponibles.","Foil pricing and the minimum order are loaded from the database.":"Les tarifs des films et la commande minimale sont chargés depuis la base de données.","Checking car plate…":"Vérification de la plaque…","Checking details…":"Vérification des informations…","Creating account…":"Création du compte…","Logging in…":"Connexion…","Logging out…":"Déconnexion…","Login failed.":"Échec de la connexion.","Could not create account. Please try again.":"Impossible de créer le compte. Veuillez réessayer.","Password must be at least 6 characters.":"Le mot de passe doit contenir au moins 6 caractères.","Please upload your driver’s license before signing up.":"Veuillez importer votre permis de conduire avant de vous inscrire.","Uploading driver’s license…":"Importation du permis de conduire…","Driver’s license file must be 10 MB or smaller.":"Le fichier du permis de conduire doit faire 10 Mo ou moins.","Driver’s license must be a JPG, PNG or PDF file.":"Le permis de conduire doit être un fichier JPG, PNG ou PDF.","Driver’s license cannot be changed.":"Le permis de conduire ne peut pas être modifié.","Verification rejected":"Vérification refusée","No campaign running":"Aucune campagne en cours","No campaign is currently running on your profile.":"Aucune campagne n’est actuellement en cours sur votre profil.","Join a campaign":"Rejoindre une campagne","Task: Remove ad foil":"Tâche : retirer le film publicitaire","Please remove the campaign ad foil from your vehicle.":"Veuillez retirer le film publicitaire de la campagne de votre véhicule.","Area":"Zone","Joined":"Rejoint","Starts":"Commence","Started":"Commencé","Duration":"Durée","Reward":"Rémunération","Ad film shipping status":"Statut d’expédition du film publicitaire","Details":"Détails","Shipping details":"Détails de livraison","Awaiting shipping update":"En attente d’une mise à jour d’expédition","Scheduled":"Prévu","Shipped":"Expédié","No task yet":"Aucune tâche pour le moment","This month’s proof photo approved":"Photo de preuve de ce mois approuvée","This month’s proof photo awaiting validation":"Photo de preuve de ce mois en attente de validation","This month’s proof photo rejected":"Photo de preuve de ce mois refusée","Upload this month’s proof photo":"Importer la photo de preuve de ce mois","No proof photo uploaded":"Aucune photo de preuve importée","Awaiting validation":"En attente de validation","Pending payout":"Paiement en attente","Not added to balance":"Non ajouté au solde","Retake photo":"Reprendre la photo","Take photo":"Prendre une photo","Taking photo…":"Prise de photo…","Live camera access is not supported by this browser.":"L’accès direct à la caméra n’est pas pris en charge par ce navigateur.","Camera access was denied or unavailable. Please allow camera access and try again.":"L’accès à la caméra a été refusé ou n’est pas disponible. Veuillez autoriser l’accès à la caméra et réessayer.","Could not upload the proof photo.":"Impossible d’importer la photo de preuve.","Proof photo failed validation, please retake photo":"La photo de preuve n’a pas été validée, veuillez la reprendre","At the start of every month, upload a clear photo of the rear of your car. The applied ad film and your license plate must both be visible.":"Au début de chaque mois, importez une photo nette de l’arrière de votre voiture. Le film publicitaire posé et votre plaque d’immatriculation doivent être visibles.","Your campaign starts when your ad film is shipped. Proof will be required after that date.":"Votre campagne commence lorsque votre film publicitaire est expédié. Une preuve sera requise après cette date.","Monthly campaign earnings:":"Gains mensuels de la campagne :","View shipping details":"Voir les détails de livraison","Choose another":"Choisir un autre","Describe your issue...":"Décrivez votre problème…","Tell us what is happening when you try to log in or access your account...":"Expliquez ce qui se passe lorsque vous essayez de vous connecter ou d’accéder à votre compte…","Sending...":"Envoi…","Sending request…":"Envoi de la demande…","Please enter your name.":"Veuillez saisir votre nom.","Please enter your email address.":"Veuillez saisir votre adresse e-mail.","Please select a support topic.":"Veuillez sélectionner un sujet d’assistance.","Please describe the issue in at least 10 characters.":"Veuillez décrire le problème en au moins 10 caractères.","Could not send your support request. Please try again.":"Impossible d’envoyer votre demande d’assistance. Veuillez réessayer.","Support is still loading. Please try again in a moment.":"L’assistance est encore en cours de chargement. Veuillez réessayer dans un instant.","Submitting payout…":"Envoi de la demande de paiement…","There is currently no available balance to pay out.":"Il n’y a actuellement aucun solde disponible à payer.","Please log in before requesting a payout.":"Veuillez vous connecter avant de demander un paiement.","Please enter a valid IBAN.":"Veuillez saisir un IBAN valide.","Please enter a valid 8 or 11 character BIC / SWIFT code.":"Veuillez saisir un code BIC / SWIFT valide de 8 ou 11 caractères.","Could not submit the payout request.":"Impossible d’envoyer la demande de paiement.","Please log in again before joining a campaign.":"Veuillez vous reconnecter avant de rejoindre une campagne.","This campaign could not be identified. Please choose the campaign again.":"Cette campagne n’a pas pu être identifiée. Veuillez la sélectionner à nouveau.","Could not assign this campaign to your profile.":"Impossible d’attribuer cette campagne à votre profil.","Supabase is still loading. Please try again.":"Supabase est encore en cours de chargement. Veuillez réessayer.","Not authenticated.":"Non authentifié.","You are not logged in.":"Vous n’êtes pas connecté.","Please log in again before uploading.":"Veuillez vous reconnecter avant l’importation.","Please fill out this field.":"Veuillez remplir ce champ.","Please enter a valid car plate number.":"Veuillez saisir un numéro de plaque valide.","This car plate is already registered to another AdCars.ch account.":"Cette plaque est déjà enregistrée sur un autre compte AdCars.ch.","Processing artwork...":"Traitement du visuel…","Could not process the selected image. Please choose a PNG, JPG, JPEG or WEBP source image with an exact 3:1 aspect ratio.":"Impossible de traiter l’image sélectionnée. Veuillez choisir une image source PNG, JPG, JPEG ou WEBP avec un ratio exact de 3:1.","The uploaded source artwork must be exactly 3:1 and finish processing before the request is sent.":"Le visuel source importé doit avoir exactement un ratio de 3:1 et terminer son traitement avant l’envoi de la demande.","Could not send your campaign request. Please try again.":"Impossible d’envoyer votre demande de campagne. Veuillez réessayer."},"it":{"How it works":"Come funziona","Driver campaigns":"Campagne per conducenti","Login / Signup":"Accedi / Registrati","Turn everyday traffic into shared value":"Trasformare il traffico quotidiano in valore condiviso","Make every drive":"Dai più valore a ogni viaggio","worth more.":"di più.","AdCars.ch turns everyday driving into a marketplace for attention: brands gain visibility on real cars, drivers share in the value they create, and every campaign moves through the places people actually live, work and travel.":"AdCars.ch trasforma gli spostamenti quotidiani in un mercato dell’attenzione: i brand ottengono visibilità su auto reali, i conducenti condividono il valore che creano e ogni campagna si muove nei luoghi in cui le persone vivono, lavorano e viaggiano davvero.","Participate as driver":"Partecipa come conducente","Launch a campaign":"Lancia una campagna","Simple for drivers. Valuable for brands.":"Semplice per i conducenti. Prezioso per i brand.","AdCars.ch turns unused space on everyday cars into advertising space for brands. creating value for both drivers and businesses.":"AdCars.ch trasforma lo spazio inutilizzato sulle auto di tutti i giorni in spazio pubblicitario per i brand, creando valore sia per i conducenti sia per le aziende.","Drivers choose a brand":"I conducenti scelgono un brand","Drivers browse available campaigns and choose the brand they want to advertise.":"I conducenti sfogliano le campagne disponibili e scelgono il brand che desiderano pubblicizzare.","Drivers order the ad film":"I conducenti ordinano la pellicola pubblicitaria","AdCars.ch produces the printed, vehicle-suitable ad film and ships it directly to the driver with installation instructions.":"AdCars.ch produce la pellicola pubblicitaria stampata adatta al veicolo e la spedisce direttamente al conducente con le istruzioni di applicazione.","Drivers create brand presence":"I conducenti creano presenza per il brand","Drivers earn their agreed monthly payout while the brand gains real-world presence wherever they drive, park and commute.":"I conducenti ricevono il compenso mensile concordato mentre il brand ottiene presenza nel mondo reale ovunque guidino, parcheggino e si spostino.","Choose your path":"Scegli il tuo percorso","One platform. Two ways to make every drive worth more.":"Una piattaforma. Due modi per dare più valore a ogni viaggio.","Browse campaigns, choose a brand and earn while you drive.":"Sfoglia le campagne, scegli un brand e guadagna mentre guidi.","Open driver campaigns":"Apri le campagne per conducenti","Put your brand on real cars and reach people across Switzerland.":"Porta il tuo brand su auto reali e raggiungi persone in tutta la Svizzera.","Open B2B campaign setup":"Configura una campagna B2B","Put your brand in motion with real drivers across Switzerland.":"Metti in movimento il tuo brand con conducenti reali in tutta la Svizzera.","B2B ADVERTISING":"PUBBLICITÀ B2B","Put your brand on cars across Switzerland.":"Porta il tuo brand sulle auto in tutta la Svizzera.","Reach people where they live, commute and park. AdCars.ch connects your campaign with real drivers and real vehicles.":"Raggiungi le persone dove vivono, si spostano e parcheggiano. AdCars.ch collega la tua campagna a conducenti e veicoli reali.","Target the places that matter":"Raggiungi i luoghi che contano","Choose cities, cantons and commuter areas instead of buying one fixed advertising location.":"Scegli città, cantoni e aree di pendolarismo invece di acquistare un’unica posizione pubblicitaria fissa.","Control campaign scale and spend":"Controlla dimensioni e budget della campagna","Set the duration, number of cars and monthly driver payout to build a campaign around your budget.":"Imposta durata, numero di auto e compenso mensile ai conducenti per creare una campagna adatta al tuo budget.","Use verified participating drivers":"Utilizza conducenti partecipanti verificati","Campaign participation is restricted to verified AdCars.ch driver accounts.":"La partecipazione alle campagne è riservata agli account conducente AdCars.ch verificati.","Turn everyday mobility into media":"Trasforma la mobilità quotidiana in un mezzo pubblicitario","Your brand gains physical presence while participating cars drive, commute and park in the selected market.":"Il tuo brand ottiene presenza fisica mentre le auto partecipanti guidano, si spostano e parcheggiano nel mercato selezionato.","Contact AdCars.ch B2B":"Contatta AdCars.ch B2B","Define your campaign dates, monthly driver payout and ad-film quantity, then upload your ready-to-print artwork.":"Definisci date della campagna, compenso mensile ai conducenti e quantità di pellicole pubblicitarie, quindi carica la grafica pronta per la stampa.","Company":"Azienda","Contact person":"Persona di contatto","Business email":"Email aziendale","Phone":"Telefono","Ad film design":"Design della pellicola pubblicitaria","Choose file":"Scegli file","No file selected":"Nessun file selezionato","Upload your finished 3:1 artwork as PNG, JPG, JPEG or WEBP. The uploaded source image must be exactly 3:1. After validation, AdCars.ch adds an equally thick white frame around all sides and places the AdCars.ch logo at the top center.":"Carica la grafica finale in formato 3:1 come PNG, JPG, JPEG o WEBP. L’immagine sorgente caricata deve avere esattamente un rapporto 3:1. Dopo la convalida, AdCars.ch aggiunge una cornice bianca dello stesso spessore su tutti i lati e posiziona il logo AdCars.ch in alto al centro.","Campaign region":"Regione della campagna","Select campaign regions":"Seleziona le regioni della campagna","Switzerland":"Svizzera","Whole Switzerland":"Tutta la Svizzera","German-speaking Switzerland":"Svizzera tedesca","Cantons":"Cantoni","Major cities":"Città principali","Campaign duration":"Durata della campagna","Please select a campaign duration.":"Seleziona una durata della campagna.","Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.":"Le campagne devono essere pianificate con almeno 1 mese di anticipo per consentire la stampa e la consegna ai conducenti.","Allow late campaign joining":"Consenti adesione tardiva alla campagna","Drivers may still join after the standard “Join until” deadline, up to 2 months before the campaign end date.":"I conducenti possono aderire anche dopo la normale scadenza “Aderisci entro”, fino a 2 mesi prima della data di fine campagna.","Driver payout per month":"Compenso al conducente al mese","Number of ad films to print":"Numero di pellicole pubblicitarie da stampare","Approximate cost of AdCars.ch campaign":"Costo approssimativo della campagna AdCars.ch","Complete the required campaign details to see your estimated price.":"Completa i dettagli richiesti della campagna per visualizzare il prezzo stimato.","Your estimate will appear automatically once the campaign duration, driver payout and number of ad films are entered.":"La stima apparirà automaticamente dopo aver inserito durata della campagna, compenso ai conducenti e numero di pellicole pubblicitarie.","Campaign description":"Descrizione della campagna","Request Campaign":"Richiedi campagna","CAMPAIGN REQUEST SENT":"RICHIESTA CAMPAGNA INVIATA","Thanks, your B2B request has been sent. We will contact you shortly.":"Grazie, la tua richiesta B2B è stata inviata. Ti contatteremo a breve.","Campaign info":"Info campagna","Aargau":"Argovia","Appenzell Ausserrhoden":"Appenzello Esterno","Appenzell Innerrhoden":"Appenzello Interno","Basel-Landschaft":"Basilea Campagna","Basel-Stadt":"Basilea Città","Bern":"Berna","Fribourg":"Friburgo","Geneva":"Ginevra","Glarus":"Glarona","Graubünden":"Grigioni","Jura":"Giura","Lucerne":"Lucerna","Neuchâtel":"Neuchâtel","Nidwalden":"Nidvaldo","Obwalden":"Obvaldo","Schaffhausen":"Sciaffusa","Schwyz":"Svitto","Solothurn":"Soletta","St. Gallen":"San Gallo","Thurgau":"Turgovia","Ticino":"Ticino","Uri":"Uri","Valais":"Vallese","Vaud":"Vaud","Zug":"Zugo","Zürich":"Zurigo","Zürich City":"Città di Zurigo","Geneva City":"Città di Ginevra","Basel City":"Città di Basilea","Lausanne City":"Città di Losanna","Bern City":"Città di Berna","Winterthur City":"Città di Winterthur","Lucerne City":"Città di Lucerna","St. Gallen City":"Città di San Gallo","Lugano City":"Città di Lugano","Biel / Bienne City":"Città di Bienne / Biel","Thun City":"Città di Thun","Köniz City":"Città di Köniz","La Chaux-de-Fonds City":"Città di La Chaux-de-Fonds","Fribourg City":"Città di Friburgo","Schaffhausen City":"Città di Sciaffusa","Chur City":"Città di Coira","Neuchâtel City":"Città di Neuchâtel","Vernier City":"Città di Vernier","Uster City":"Città di Uster","Sion City":"Città di Sion","Driver Login":"Accesso conducente","Driver Signup":"Registrazione conducente","DRIVER LOGIN":"ACCESSO CONDUCENTE","Welcome back.":"Bentornato.","Log in to manage your profile, select campaigns and order your advertising film.":"Accedi per gestire il tuo profilo, selezionare le campagne e ordinare la pellicola pubblicitaria.","Log in to AdCars.ch":"Accedi ad AdCars.ch","Email":"Email","Password":"Password","Log in":"Accedi","Forgot password?":"Password dimenticata?","Login submitted in this demo.":"Accesso inviato in questa demo.","DRIVER PROGRAM":"PROGRAMMA CONDUCENTI","Ready to turn your car into an ad space?":"Pronto a trasformare la tua auto in uno spazio pubblicitario?","Join the driver list. We'll contact you when suitable campaigns are available in your area.":"Entra nella lista dei conducenti. Ti contatteremo quando saranno disponibili campagne adatte nella tua zona.","Join AdCars.ch":"Unisciti ad AdCars.ch","First name":"Nome","Last name":"Cognome","Car model":"Modello auto","Car plate number":"Numero di targa","How many times per week do you drive?":"Quante volte guidi a settimana?","Where is your car parked most of the time?":"Dove è parcheggiata la tua auto per la maggior parte del tempo?","Driver’s license":"Patente di guida","Upload front of driver’s license":"Carica il fronte della patente","Required. Upload the front of your driver’s license as a JPG, PNG or PDF (max 10 MB).":"Obbligatorio. Carica il fronte della patente come JPG, PNG o PDF (max 10 MB).","Set password":"Imposta password","Repeat password":"Ripeti password","Passwords do not match.":"Le password non corrispondono.","I accept the":"Accetto i","Terms of Service":"Termini di servizio","Sign up":"Registrati","Sign up complete.":"Registrazione completata.","You can participate in campaigns once your profile’s identity is verified It can take up to 3 days.":"Puoi partecipare alle campagne una volta verificata l’identità del tuo profilo. La verifica può richiedere fino a 3 giorni.","DRIVER PROFILE":"PROFILO CONDUCENTE","Your profile":"Il tuo profilo","CAMPAIGN":"CAMPAGNA","Running campaign":"Campagna in corso","Loading your campaign…":"Caricamento della campagna…","Earnings history":"Storico guadagni","Payout history":"Storico pagamenti","EARNINGS":"GUADAGNI","Your earnings":"I tuoi guadagni","Available balance":"Saldo disponibile","Payout":"Pagamento","PROFILE INFORMATION":"INFORMAZIONI PROFILO","Account Status:":"Stato account:","Pending verification":"Verifica in attesa","Edit information":"Modifica informazioni","First name cannot be changed.":"Il nome non può essere modificato.","Last name cannot be changed.":"Il cognome non può essere modificato.","Email cannot be changed.":"L’email non può essere modificata.","Car plate":"Targa","Drives per week":"Guide a settimana","Usually parked at":"Di solito parcheggiata a","No file uploaded":"Nessun file caricato","Upload new driver’s license":"Carica una nuova patente","No new file selected":"Nessun nuovo file selezionato","Driver’s license can only be changed after account verification has been rejected.":"La patente può essere modificata solo dopo che la verifica dell’account è stata rifiutata.","Save":"Salva","Cancel":"Annulla","Select a campaign, see what you could earn, and request the matching ad film for your car.":"Seleziona una campagna, scopri quanto potresti guadagnare e richiedi la pellicola pubblicitaria adatta alla tua auto.","Step 1 of 2 · Select campaign":"Passaggio 1 di 2 · Seleziona campagna","Campaign":"Campagna","None selected":"Nessuna selezionata","Browse campaigns":"Sfoglia campagne","ESTIMATED MONTHLY PAYOUT":"COMPENSO MENSILE STIMATO","Campaign duration:":"Durata della campagna:","Total campaign earnings":"Guadagni totali della campagna","Join until:":"Aderisci entro:","Time left:":"Tempo rimanente:","to join the campaign":"per aderire alla campagna","Available slots:":"Posti disponibili:","Step 2 of 2 · Order ad film":"Passaggio 2 di 2 · Ordina pellicola pubblicitaria","Shipping address":"Indirizzo di spedizione","Street":"Via","House number":"Numero civico","Postal code":"CAP","City":"Città","Country":"Paese","Account required.":"Account richiesto.","Please log in before submitting an ad-film order.":"Accedi prima di inviare un ordine di pellicola pubblicitaria.","Your account is pending verification. You cannot order an ad film until your account has been verified by AdCars.ch.":"Il tuo account è in attesa di verifica. Non puoi ordinare una pellicola pubblicitaria finché l’account non è stato verificato da AdCars.ch.","Join campaign and order ad film":"Aderisci alla campagna e ordina la pellicola pubblicitaria","Campaign assigned to your profile.":"Campagna assegnata al tuo profilo.","Available ad campaigns":"Campagne pubblicitarie disponibili","Choose a campaign to use for your film order.":"Scegli una campagna per il tuo ordine di pellicola.","Region":"Regione","No campaigns match these filters.":"Nessuna campagna corrisponde a questi filtri.","Do I get paid every month?":"Vengo pagato ogni mese?","Campaigns can be structured as monthly payouts. The exact rate and requirements are shown before you accept a campaign.":"Le campagne possono prevedere pagamenti mensili. L’importo esatto e i requisiti vengono mostrati prima che tu accetti una campagna.","Who pays for the film?":"Chi paga la pellicola?","The ad film and shipping are completely free for verified AdCars.ch users. Drivers never pay to participate in campaigns. AdCars.ch drivers are here to earn money, not spend it.":"La pellicola pubblicitaria e la spedizione sono completamente gratuite per gli utenti AdCars.ch verificati. I conducenti non pagano mai per partecipare alle campagne. I conducenti AdCars.ch sono qui per guadagnare, non per spendere.","Can I choose the brand?":"Posso scegliere il brand?","Yes. Drivers can browse eligible campaigns and select brands they are interested in, subject to availability.":"Sì. I conducenti possono sfogliare le campagne idonee e scegliere i brand di loro interesse, in base alla disponibilità.","Is the film removable?":"La pellicola è rimovibile?","The site is designed around removable perforated window film. Always use vehicle-rated materials and professional installation where appropriate.":"Il sito è progettato per pellicole perforate rimovibili per vetri. Utilizza sempre materiali adatti ai veicoli e, quando opportuno, un’installazione professionale.","Delete account?":"Eliminare l’account?","Are you sure you want to delete your account? Your driver profile, campaign data, earnings history, payout requests, car plate registration and uploaded files will be permanently deleted.":"Sei sicuro di voler eliminare il tuo account? Il profilo conducente, i dati delle campagne, lo storico guadagni, le richieste di pagamento, la registrazione della targa e i file caricati verranno eliminati definitivamente.","This cannot be undone.":"Questa azione non può essere annullata.","Delete account":"Elimina account","Keep account":"Mantieni account","Support":"Supporto","Tell us what you need help with and the AdCars.ch team will get back to you.":"Dicci in cosa ti serve aiuto e il team AdCars.ch ti ricontatterà.","Name":"Nome","What can we help with?":"Come possiamo aiutarti?","General support":"Supporto generale","Login / password":"Accesso / password","Driver account":"Account conducente","B2B campaign":"Campagna B2B","Other":"Altro","Message":"Messaggio","Send support request":"Invia richiesta di supporto","Your support request has been sent.":"La tua richiesta di supporto è stata inviata.","We will contact you withing 1-3 days.":"Ti contatteremo entro 1–3 giorni.","Last updated: September 2026":"Ultimo aggiornamento: settembre 2026","1. About AdCars.ch":"1. Informazioni su AdCars.ch","AdCars.ch connects drivers with advertising campaigns that may place approved advertising films or materials on participating vehicles. Businesses may also use AdCars.ch to request advertising campaigns.":"AdCars.ch mette in contatto i conducenti con campagne pubblicitarie che possono prevedere l’applicazione di pellicole o materiali pubblicitari approvati sui veicoli partecipanti. Le aziende possono inoltre utilizzare AdCars.ch per richiedere campagne pubblicitarie.","2. Eligibility and accounts":"2. Idoneità e account","You must provide accurate and complete information when creating or using an account. You are responsible for keeping your login details secure and for activity carried out through your account.":"Devi fornire informazioni accurate e complete durante la creazione o l’utilizzo di un account. Sei responsabile della sicurezza delle credenziali di accesso e delle attività svolte tramite il tuo account.","3. Driver participation":"3. Partecipazione dei conducenti","Driver participation may require identity or driver’s-license verification, an eligible vehicle, an accepted campaign assignment, and compliance with campaign instructions. AdCars.ch may reject, suspend, or end participation if requirements are not met.":"La partecipazione dei conducenti può richiedere la verifica dell’identità o della patente, un veicolo idoneo, un’assegnazione di campagna accettata e il rispetto delle istruzioni della campagna. AdCars.ch può rifiutare, sospendere o terminare la partecipazione se i requisiti non sono soddisfatti.","4. Campaign requirements":"4. Requisiti della campagna","Drivers must follow the campaign instructions shown in the app, including any requirements relating to installation, display period, proof photos, vehicle condition, or campaign completion.":"I conducenti devono seguire le istruzioni della campagna mostrate nell’app, inclusi eventuali requisiti relativi ad applicazione, periodo di esposizione, foto di prova, condizioni del veicolo o completamento della campagna.","5. Earnings and payouts":"5. Guadagni e pagamenti","Campaign earnings are subject to the applicable campaign conditions and successful completion of required steps. Payout availability, timing, and amounts may depend on verification of campaign participation and submitted proof.":"I guadagni della campagna sono soggetti alle condizioni applicabili e al completamento corretto dei passaggi richiesti. Disponibilità, tempistiche e importi dei pagamenti possono dipendere dalla verifica della partecipazione e delle prove inviate.","6. B2B campaign requests":"6. Richieste di campagne B2B","Submitting a B2B campaign request does not automatically create a binding advertising order. Campaign scope, pricing, artwork suitability, timing, vehicle availability, and other commercial details may require confirmation by AdCars.ch.":"L’invio di una richiesta di campagna B2B non crea automaticamente un ordine pubblicitario vincolante. Ambito della campagna, prezzi, idoneità della grafica, tempistiche, disponibilità dei veicoli e altri dettagli commerciali possono richiedere conferma da parte di AdCars.ch.","7. Uploaded content":"7. Contenuti caricati","You must only upload files, images, artwork, and other content that you are legally entitled to use. You remain responsible for the content you provide and for ensuring that it does not violate third-party rights or applicable law.":"Devi caricare solo file, immagini, grafiche e altri contenuti che hai legalmente il diritto di utilizzare. Rimani responsabile dei contenuti forniti e devi assicurarti che non violino diritti di terzi o leggi applicabili.","8. Prohibited use":"8. Uso vietato","You may not misuse the service, interfere with its operation, attempt unauthorized access, submit fraudulent information, manipulate campaign participation, or use AdCars.ch for unlawful purposes.":"Non puoi utilizzare impropriamente il servizio, interferire con il suo funzionamento, tentare accessi non autorizzati, inviare informazioni fraudolente, manipolare la partecipazione alle campagne o usare AdCars.ch per scopi illegali.","9. Availability and changes":"9. Disponibilità e modifiche","AdCars.ch may update, modify, suspend, or discontinue parts of the service when reasonably necessary. Features, campaign availability, and eligibility criteria may change over time.":"AdCars.ch può aggiornare, modificare, sospendere o interrompere parti del servizio quando ragionevolmente necessario. Funzionalità, disponibilità delle campagne e criteri di idoneità possono cambiare nel tempo.","10. Liability":"10. Responsabilità","To the extent permitted by applicable law, AdCars.ch is not liable for indirect or consequential losses arising from use of the service. Nothing in these terms excludes liability that cannot legally be excluded.":"Nella misura consentita dalla legge applicabile, AdCars.ch non è responsabile per perdite indirette o consequenziali derivanti dall’uso del servizio. Nulla in questi termini esclude responsabilità che non possono essere legalmente escluse.","11. Termination":"11. Cessazione","You may stop using the service and may request account deletion where available. AdCars.ch may restrict or terminate access where these terms, campaign rules, security requirements, or applicable law are violated.":"Puoi smettere di utilizzare il servizio e richiedere l’eliminazione dell’account, ove disponibile. AdCars.ch può limitare o terminare l’accesso in caso di violazione di questi termini, delle regole della campagna, dei requisiti di sicurezza o della legge applicabile.","12. Contact":"12. Contatto","Questions about these Terms of Service can be submitted through the Support form on AdCars.ch.":"Le domande relative a questi Termini di servizio possono essere inviate tramite il modulo di supporto su AdCars.ch.","Privacy":"Privacy","1. Information we collect":"1. Informazioni che raccogliamo","Depending on how you use AdCars.ch, we may collect account information such as your name, email address, vehicle details, license plate, campaign activity, uploaded verification documents, support messages, and information connected with payouts or campaign participation.":"A seconda di come utilizzi AdCars.ch, possiamo raccogliere informazioni sull’account come nome, indirizzo email, dati del veicolo, targa, attività delle campagne, documenti di verifica caricati, messaggi di supporto e informazioni relative ai pagamenti o alla partecipazione alle campagne.","2. Why we use your information":"2. Perché utilizziamo le tue informazioni","We use personal information to provide and secure the service, manage accounts, verify drivers, prevent fraud, operate advertising campaigns, process support requests, calculate campaign participation and earnings, and meet legal or regulatory obligations.":"Utilizziamo le informazioni personali per fornire e proteggere il servizio, gestire gli account, verificare i conducenti, prevenire frodi, gestire campagne pubblicitarie, elaborare richieste di supporto, calcolare partecipazione e guadagni e rispettare obblighi legali o normativi.","3. Driver’s-license documents":"3. Documenti della patente","Driver’s-license files are used for account verification and are stored in private storage. Access should be limited to authorized users or administrators who require it for verification or support purposes.":"I file della patente vengono utilizzati per la verifica dell’account e conservati in uno spazio privato. L’accesso deve essere limitato a utenti o amministratori autorizzati che ne hanno bisogno per la verifica o il supporto.","4. Campaign and proof data":"4. Dati di campagna e prova","We may process campaign assignments, proof photos, participation dates, payout requests, and related records in order to operate and verify advertising campaigns.":"Possiamo elaborare assegnazioni di campagne, foto di prova, date di partecipazione, richieste di pagamento e relativi record per gestire e verificare le campagne pubblicitarie.","5. B2B information":"5. Informazioni B2B","Businesses may provide company and contact details, campaign preferences, uploaded artwork, and other information needed to review or prepare a campaign request.":"Le aziende possono fornire dati aziendali e di contatto, preferenze della campagna, grafiche caricate e altre informazioni necessarie per esaminare o preparare una richiesta di campagna.","6. Support requests":"6. Richieste di supporto","When you contact Support, we may store your email address, name, selected topic, message, account identifier when available, and the status of the support request.":"Quando contatti il supporto, possiamo conservare il tuo indirizzo email, nome, argomento selezionato, messaggio, identificativo dell’account se disponibile e stato della richiesta di supporto.","7. Service providers":"7. Fornitori di servizi","AdCars.ch may use hosting, authentication, storage, database, analytics, email, or other technical providers to operate the service. These providers may process data on our behalf where necessary to provide their services.":"AdCars.ch può utilizzare fornitori di hosting, autenticazione, archiviazione, database, analisi, email o altri servizi tecnici per gestire il servizio. Tali fornitori possono elaborare dati per nostro conto quando necessario per fornire i loro servizi.","8. Data retention":"8. Conservazione dei dati","We keep personal information for as long as reasonably necessary for the purposes described above, including account administration, security, campaign records, dispute handling, and legal obligations. Some records may need to be retained after account deletion.":"Conserviamo le informazioni personali per il tempo ragionevolmente necessario agli scopi descritti sopra, inclusi gestione account, sicurezza, registri delle campagne, gestione delle controversie e obblighi legali. Alcuni record potrebbero dover essere conservati dopo l’eliminazione dell’account.","9. Your rights":"9. I tuoi diritti","Depending on applicable law, you may have rights to access, correct, delete, restrict, or object to certain processing of your personal information. You may contact Support to submit a privacy-related request.":"A seconda della legge applicabile, potresti avere diritti di accesso, rettifica, cancellazione, limitazione o opposizione a determinati trattamenti dei tuoi dati personali. Puoi contattare il supporto per inviare una richiesta relativa alla privacy.","10. Security":"10. Sicurezza","We use technical and organizational safeguards intended to protect personal information. No online system can guarantee absolute security.":"Utilizziamo misure tecniche e organizzative volte a proteggere le informazioni personali. Nessun sistema online può garantire sicurezza assoluta.","11. Contact":"11. Contatto","Privacy questions or requests can be submitted through the Support form on AdCars.ch.":"Domande o richieste sulla privacy possono essere inviate tramite il modulo di supporto su AdCars.ch.","Impressum":"Note legali","Operator":"Gestore","[Legal company / owner name]":"[Nome legale dell’azienda / proprietario]","[Street and house number]":"[Via e numero civico]","[Postal code and city]":"[CAP e città]","Contact":"Contatto","Email: [support email address]":"Email: [indirizzo email supporto]","Website: AdCars.ch":"Sito web: AdCars.ch","Commercial register":"Registro di commercio","[Commercial register entry, UID / CHE number, if applicable]":"[Iscrizione al registro di commercio, numero UID / CHE, se applicabile]","Authorized representative":"Rappresentante autorizzato","[Name of authorized representative, if applicable]":"[Nome del rappresentante autorizzato, se applicabile]","Disclaimer":"Esclusione di responsabilità","Information on AdCars.ch is provided with reasonable care. However, no guarantee is made that all information is complete, accurate, or continuously available.":"Le informazioni su AdCars.ch sono fornite con ragionevole cura. Tuttavia, non viene garantito che tutte le informazioni siano complete, accurate o continuamente disponibili.","Copyright":"Copyright","Unless otherwise stated, the content, branding, design, and materials on AdCars.ch are protected by applicable intellectual-property laws and may not be reproduced or distributed without permission.":"Salvo diversa indicazione, contenuti, branding, design e materiali su AdCars.ch sono protetti dalle leggi applicabili sulla proprietà intellettuale e non possono essere riprodotti o distribuiti senza autorizzazione.","Turn everyday driving into high-visibility advertising across Switzerland.":"Trasforma gli spostamenti quotidiani in pubblicità ad alta visibilità in tutta la Svizzera.","Platform":"Piattaforma","For brands":"Per i brand","Account":"Account","Log out":"Esci","© 2026 AdCars.ch. All rights reserved.":"© 2026 AdCars.ch. Tutti i diritti riservati.","PAYOUT":"PAGAMENTO","Request payout":"Richiedi pagamento","Enter the bank account where you want to receive your available AdCars.ch balance.":"Inserisci il conto bancario sul quale desideri ricevere il saldo AdCars.ch disponibile.","Account holder":"Intestatario del conto","Bank name":"Nome della banca","Optional":"Facoltativo","Account holder address":"Indirizzo dell’intestatario","HISTORY":"STORICO","No earnings history yet.":"Nessuno storico guadagni disponibile.","No payout history yet.":"Nessuno storico pagamenti disponibile.","Open menu":"Apri menu","Close menu":"Chiudi menu","Profile":"Profilo","Open profile":"Apri profilo","Open login or signup":"Apri accesso o registrazione","Change campaign":"Cambia campagna","Assigning campaign…":"Assegnazione campagna…","Campaign is running":"La campagna è in corso","Campaign has ended":"La campagna è terminata","Campaign has ended.":"La campagna è terminata.","Join period ended":"Periodo di adesione terminato","Always open":"Sempre aperto","Select campaign":"Seleziona campagna","You're already in a campaign":"Stai già partecipando a una campagna","You are already in this campaign.":"Stai già partecipando a questa campagna.","Unlimited driver slots":"Posti conducenti illimitati","Endless Campaign":"Campagna senza scadenza","To be confirmed":"Da confermare","Late joining":"Adesione tardiva","Enabled":"Attivato","Ad films":"Pellicole pubblicitarie","Campaign cost":"Costo campagna","Artwork":"Grafica","No artwork uploaded":"Nessuna grafica caricata","Uploaded ad film design":"Design della pellicola caricato","Processed AdCars.ch campaign artwork":"Grafica campagna AdCars.ch elaborata","Campaign ad foil design":"Design della pellicola pubblicitaria della campagna","Loading campaign pricing…":"Caricamento prezzi campagna…","Campaign pricing is still loading. Please try again.":"I prezzi della campagna sono ancora in caricamento. Riprova.","Campaign pricing is temporarily unavailable.":"I prezzi della campagna sono temporaneamente non disponibili.","Foil pricing and the minimum order are loaded from the database.":"I prezzi delle pellicole e l’ordine minimo vengono caricati dal database.","Checking car plate…":"Verifica targa…","Checking details…":"Verifica dati…","Creating account…":"Creazione account…","Logging in…":"Accesso in corso…","Logging out…":"Disconnessione…","Login failed.":"Accesso non riuscito.","Could not create account. Please try again.":"Impossibile creare l’account. Riprova.","Password must be at least 6 characters.":"La password deve contenere almeno 6 caratteri.","Please upload your driver’s license before signing up.":"Carica la patente prima di registrarti.","Uploading driver’s license…":"Caricamento patente…","Driver’s license file must be 10 MB or smaller.":"Il file della patente deve essere di 10 MB o meno.","Driver’s license must be a JPG, PNG or PDF file.":"La patente deve essere un file JPG, PNG o PDF.","Driver’s license cannot be changed.":"La patente non può essere modificata.","Verification rejected":"Verifica rifiutata","No campaign running":"Nessuna campagna in corso","No campaign is currently running on your profile.":"Al momento non è attiva alcuna campagna sul tuo profilo.","Join a campaign":"Aderisci a una campagna","Task: Remove ad foil":"Attività: rimuovere la pellicola pubblicitaria","Please remove the campaign ad foil from your vehicle.":"Rimuovi la pellicola pubblicitaria della campagna dal tuo veicolo.","Area":"Area","Joined":"Adesione","Starts":"Inizia","Started":"Iniziata","Duration":"Durata","Reward":"Compenso","Ad film shipping status":"Stato spedizione pellicola pubblicitaria","Details":"Dettagli","Shipping details":"Dettagli spedizione","Awaiting shipping update":"In attesa di aggiornamento spedizione","Scheduled":"Programmato","Shipped":"Spedito","No task yet":"Nessuna attività al momento","This month’s proof photo approved":"Foto di prova di questo mese approvata","This month’s proof photo awaiting validation":"Foto di prova di questo mese in attesa di convalida","This month’s proof photo rejected":"Foto di prova di questo mese rifiutata","Upload this month’s proof photo":"Carica la foto di prova di questo mese","No proof photo uploaded":"Nessuna foto di prova caricata","Awaiting validation":"In attesa di convalida","Pending payout":"Pagamento in attesa","Not added to balance":"Non aggiunto al saldo","Retake photo":"Scatta di nuovo la foto","Take photo":"Scatta foto","Taking photo…":"Scatto foto…","Live camera access is not supported by this browser.":"L’accesso alla fotocamera in tempo reale non è supportato da questo browser.","Camera access was denied or unavailable. Please allow camera access and try again.":"L’accesso alla fotocamera è stato negato o non è disponibile. Consenti l’accesso e riprova.","Could not upload the proof photo.":"Impossibile caricare la foto di prova.","Proof photo failed validation, please retake photo":"La foto di prova non ha superato la convalida, scattala di nuovo","At the start of every month, upload a clear photo of the rear of your car. The applied ad film and your license plate must both be visible.":"All’inizio di ogni mese carica una foto nitida del retro della tua auto. Devono essere visibili sia la pellicola pubblicitaria applicata sia la targa.","Your campaign starts when your ad film is shipped. Proof will be required after that date.":"La tua campagna inizia quando viene spedita la pellicola pubblicitaria. Dopo tale data sarà richiesta una prova.","Monthly campaign earnings:":"Guadagni mensili della campagna:","View shipping details":"Visualizza dettagli spedizione","Choose another":"Scegline un altro","Describe your issue...":"Descrivi il problema…","Tell us what is happening when you try to log in or access your account...":"Descrivi cosa succede quando provi ad accedere o ad aprire il tuo account…","Sending...":"Invio…","Sending request…":"Invio richiesta…","Please enter your name.":"Inserisci il tuo nome.","Please enter your email address.":"Inserisci il tuo indirizzo email.","Please select a support topic.":"Seleziona un argomento di supporto.","Please describe the issue in at least 10 characters.":"Descrivi il problema con almeno 10 caratteri.","Could not send your support request. Please try again.":"Impossibile inviare la richiesta di supporto. Riprova.","Support is still loading. Please try again in a moment.":"Il supporto è ancora in caricamento. Riprova tra un momento.","Submitting payout…":"Invio richiesta pagamento…","There is currently no available balance to pay out.":"Al momento non c’è saldo disponibile da pagare.","Please log in before requesting a payout.":"Accedi prima di richiedere un pagamento.","Please enter a valid IBAN.":"Inserisci un IBAN valido.","Please enter a valid 8 or 11 character BIC / SWIFT code.":"Inserisci un codice BIC / SWIFT valido di 8 o 11 caratteri.","Could not submit the payout request.":"Impossibile inviare la richiesta di pagamento.","Please log in again before joining a campaign.":"Accedi di nuovo prima di aderire a una campagna.","This campaign could not be identified. Please choose the campaign again.":"Impossibile identificare questa campagna. Selezionala di nuovo.","Could not assign this campaign to your profile.":"Impossibile assegnare questa campagna al tuo profilo.","Supabase is still loading. Please try again.":"Supabase è ancora in caricamento. Riprova.","Not authenticated.":"Non autenticato.","You are not logged in.":"Non hai effettuato l’accesso.","Please log in again before uploading.":"Accedi di nuovo prima di caricare.","Please fill out this field.":"Compila questo campo.","Please enter a valid car plate number.":"Inserisci un numero di targa valido.","This car plate is already registered to another AdCars.ch account.":"Questa targa è già registrata su un altro account AdCars.ch.","Processing artwork...":"Elaborazione grafica…","Could not process the selected image. Please choose a PNG, JPG, JPEG or WEBP source image with an exact 3:1 aspect ratio.":"Impossibile elaborare l’immagine selezionata. Scegli un’immagine sorgente PNG, JPG, JPEG o WEBP con rapporto esatto 3:1.","The uploaded source artwork must be exactly 3:1 and finish processing before the request is sent.":"La grafica sorgente caricata deve avere esattamente rapporto 3:1 e completare l’elaborazione prima dell’invio della richiesta.","Could not send your campaign request. Please try again.":"Impossibile inviare la richiesta di campagna. Riprova."}};
+  const supported=['en','de','fr','it'];
+  const sourceText=new WeakMap();
+  const sourceAttrs=new WeakMap();
+  let currentLanguage='en';
+  let applying=false;
+
+  const monthNames={
+    de:{January:'Januar',February:'Februar',March:'März',April:'April',May:'Mai',June:'Juni',July:'Juli',August:'August',September:'September',October:'Oktober',November:'November',December:'Dezember'},
+    fr:{January:'janvier',February:'février',March:'mars',April:'avril',May:'mai',June:'juin',July:'juillet',August:'août',September:'septembre',October:'octobre',November:'novembre',December:'décembre'},
+    it:{January:'gennaio',February:'febbraio',March:'marzo',April:'aprile',May:'maggio',June:'giugno',July:'luglio',August:'agosto',September:'settembre',October:'ottobre',November:'novembre',December:'dicembre'}
+  };
+
+  function translateMonths(value,lang){
+    if(lang==='en') return value;
+    let out=value;
+    const map=monthNames[lang]||{};
+    Object.entries(map).forEach(([en,translated])=>{
+      out=out.replace(new RegExp(`\\b${en}\\b`,'g'),translated);
+    });
+    return out;
+  }
+
+  function dynamicTranslation(source,lang){
+    if(lang==='en') return source;
+    const direct=translations[lang]?.[source];
+    if(direct!==undefined) return direct;
+
+    const supplemental={
+      de:{
+        'Pending':'Ausstehend',
+        'Approved':'Genehmigt',
+        'Rejected':'Abgelehnt',
+        'Active':'Aktiv',
+        'Inactive':'Inaktiv',
+        'Completed':'Abgeschlossen',
+        'Cancelled':'Storniert',
+        'Canceled':'Storniert',
+        'Scheduled':'Geplant',
+        'Shipped':'Versendet',
+        'Delivered':'Zugestellt',
+        'Awaiting shipping update':'Versandaktualisierung ausstehend',
+        'Under review':'In Prüfung',
+        'In review':'In Prüfung',
+        'Reviewing':'In Prüfung',
+        'Unverified':'Nicht verifiziert',
+        'Not verified':'Nicht verifiziert',
+        'Verification pending':'Verifizierung ausstehend',
+        'Identity verification pending':'Identitätsprüfung ausstehend',
+        'Paused':'Pausiert',
+        'Open':'Offen',
+        'Closed':'Geschlossen',
+        'Joined':'Beigetreten',
+        'Accepted':'Akzeptiert',
+        'Declined':'Abgelehnt',
+        'Processing':'In Bearbeitung',
+        'Paid':'Bezahlt',
+        'Failed':'Fehlgeschlagen',
+        'Verified':'Verifiziert',
+        'Expected shipping':'Voraussichtlicher Versand',
+        'e.g. 50':'z.B. 50',
+        'Describe your campaign (max. 50 characters)':'Beschreiben Sie Ihre Kampagne (max. 50 Zeichen)',
+        'Select start and end date':'Start- und Enddatum auswählen',
+        'Select campaign regions':'Kampagnenregionen auswählen',
+        'Company AG':'Unternehmen AG',
+        'Anna Meier':'Anna Meier',
+        'anna@company.ch':'anna@unternehmen.ch',
+        '+41 ...':'+41 ...',
+        'Address not available for this existing order.':'Für diese bestehende Bestellung ist keine Adresse verfügbar.',
+        'Loading ad foil design...':'Werbefolien-Design wird geladen…',
+        'Missing ad foil design':'Werbefolien-Design fehlt'
+      },
+      fr:{
+        'Pending':'En attente',
+        'Approved':'Approuvé',
+        'Rejected':'Rejeté',
+        'Active':'Actif',
+        'Inactive':'Inactif',
+        'Completed':'Terminé',
+        'Cancelled':'Annulé',
+        'Canceled':'Annulé',
+        'Scheduled':'Planifié',
+        'Shipped':'Expédié',
+        'Delivered':'Livré',
+        'Awaiting shipping update':'En attente d’une mise à jour de l’expédition',
+        'Under review':'En cours d’examen',
+        'In review':'En cours d’examen',
+        'Reviewing':'En cours d’examen',
+        'Unverified':'Non vérifié',
+        'Not verified':'Non vérifié',
+        'Verification pending':'Vérification en attente',
+        'Identity verification pending':'Vérification d’identité en attente',
+        'Paused':'En pause',
+        'Open':'Ouvert',
+        'Closed':'Fermé',
+        'Joined':'Inscrit',
+        'Accepted':'Accepté',
+        'Declined':'Refusé',
+        'Processing':'En cours de traitement',
+        'Paid':'Payé',
+        'Failed':'Échoué',
+        'Verified':'Vérifié',
+        'Expected shipping':'Expédition prévue',
+        'e.g. 50':'p. ex. 50',
+        'Describe your campaign (max. 50 characters)':'Décrivez votre campagne (50 caractères max.)',
+        'Select start and end date':'Sélectionner les dates de début et de fin',
+        'Select campaign regions':'Sélectionner les régions de campagne',
+        'Company AG':'Entreprise SA',
+        'Anna Meier':'Anna Meier',
+        'anna@company.ch':'anna@entreprise.ch',
+        '+41 ...':'+41 ...',
+        'Address not available for this existing order.':'Aucune adresse n’est disponible pour cette commande existante.',
+        'Loading ad foil design...':'Chargement du design du film publicitaire…',
+        'Missing ad foil design':'Design du film publicitaire manquant'
+      },
+      it:{
+        'Pending':'In attesa',
+        'Approved':'Approvato',
+        'Rejected':'Rifiutato',
+        'Active':'Attivo',
+        'Inactive':'Inattivo',
+        'Completed':'Completato',
+        'Cancelled':'Annullato',
+        'Canceled':'Annullato',
+        'Scheduled':'Pianificato',
+        'Shipped':'Spedito',
+        'Delivered':'Consegnato',
+        'Awaiting shipping update':'In attesa di aggiornamenti sulla spedizione',
+        'Under review':'In revisione',
+        'In review':'In revisione',
+        'Reviewing':'In revisione',
+        'Unverified':'Non verificato',
+        'Not verified':'Non verificato',
+        'Verification pending':'Verifica in attesa',
+        'Identity verification pending':'Verifica dell’identità in attesa',
+        'Paused':'In pausa',
+        'Open':'Aperto',
+        'Closed':'Chiuso',
+        'Joined':'Iscritto',
+        'Accepted':'Accettato',
+        'Declined':'Rifiutato',
+        'Processing':'In elaborazione',
+        'Paid':'Pagato',
+        'Failed':'Non riuscito',
+        'Verified':'Verificato',
+        'Expected shipping':'Spedizione prevista',
+        'e.g. 50':'ad es. 50',
+        'Describe your campaign (max. 50 characters)':'Descrivi la tua campagna (max. 50 caratteri)',
+        'Select start and end date':'Seleziona la data di inizio e di fine',
+        'Select campaign regions':'Seleziona le regioni della campagna',
+        'Company AG':'Azienda SA',
+        'Anna Meier':'Anna Meier',
+        'anna@company.ch':'anna@azienda.ch',
+        '+41 ...':'+41 ...',
+        'Address not available for this existing order.':'Nessun indirizzo disponibile per questo ordine esistente.',
+        'Loading ad foil design...':'Caricamento del design della pellicola pubblicitaria…',
+        'Missing ad foil design':'Design della pellicola pubblicitaria mancante'
+      }
+    };
+    if(supplemental[lang]?.[source]!==undefined) return supplemental[lang][source];
+
+    let m;
+    if((m=source.match(/^[Ss]tarts in (\d+) (day|days)$/))){
+      const n=m[1];
+      const lower=source.startsWith('starts');
+      if(lang==='de'){
+        const text=`Startet in ${n} ${m[2]==='day'?'Tag':'Tagen'}`;
+        return lower ? text.charAt(0).toLowerCase()+text.slice(1) : text;
+      }
+      if(lang==='fr'){
+        const text=`Commence dans ${n} ${m[2]==='day'?'jour':'jours'}`;
+        return lower ? text.charAt(0).toLowerCase()+text.slice(1) : text;
+      }
+      const text=`Inizia tra ${n} ${m[2]==='day'?'giorno':'giorni'}`;
+      return lower ? text.charAt(0).toLowerCase()+text.slice(1) : text;
+    }
+    if((m=source.match(/^(\d+) of (\d+) driver slots taken \((\d+) left\)$/))){
+      const [,taken,total,left]=m;
+      return lang==='de' ? `${taken} von ${total} Fahrerplätzen belegt (${left} frei)`
+        : lang==='fr' ? `${taken} places conducteur sur ${total} occupées (${left} restantes)`
+        : `${taken} posti conducente su ${total} occupati (${left} rimasti)`;
+    }
+    if((m=source.match(/^Approximately (.+)$/))){
+      return (lang==='de'?'Ungefähr ':lang==='fr'?'Environ ':'Circa ')+translateMonths(m[1],lang);
+    }
+    if((m=source.match(/^Scheduled (.+)$/))){
+      return (lang==='de'?'Geplant ':lang==='fr'?'Prévu ':'Programmato ')+translateMonths(m[1],lang);
+    }
+    if((m=source.match(/^Shipped (.+)$/))){
+      return (lang==='de'?'Versendet ':lang==='fr'?'Expédié ':'Spedito ')+translateMonths(m[1],lang);
+    }
+    if((m=source.match(/^CHF ([\d'.,]+) \/ month$/))){
+      return `CHF ${m[1]} / ${lang==='de'?'Monat':lang==='fr'?'mois':'mese'}`;
+    }
+    if((m=source.match(/^CHF ([\d'.,]+)\/mo$/))){
+      return `CHF ${m[1]}/${lang==='de'?'Monat':lang==='fr'?'mois':'mese'}`;
+    }
+    if((m=source.match(/^Total campaign earnings \((\d+) (month|months)\):$/))){
+      const n=m[1];
+      return lang==='de' ? `Gesamter Kampagnenverdienst (${n} ${m[2]==='month'?'Monat':'Monate'}):`
+        : lang==='fr' ? `Gains totaux de la campagne (${n} ${m[2]==='month'?'mois':'mois'}) :`
+        : `Guadagni totali della campagna (${n} ${m[2]==='month'?'mese':'mesi'}):`;
+    }
+    if((m=source.match(/^Approved (.+)\. A new photo will be required at the start of next month\.$/))){
+      const date=translateMonths(m[1],lang);
+      return lang==='de' ? `Genehmigt ${date}. Zu Beginn des nächsten Monats ist ein neues Foto erforderlich.`
+        : lang==='fr' ? `Approuvée ${date}. Une nouvelle photo sera requise au début du mois prochain.`
+        : `Approvata ${date}. All’inizio del mese prossimo sarà richiesta una nuova foto.`;
+    }
+    if((m=source.match(/^Uploaded (.+)\. AdCars\.ch is reviewing it\.$/))){
+      const date=translateMonths(m[1],lang);
+      return lang==='de' ? `Hochgeladen ${date}. AdCars.ch prüft das Foto.`
+        : lang==='fr' ? `Importée ${date}. AdCars.ch est en train de la vérifier.`
+        : `Caricata ${date}. AdCars.ch la sta verificando.`;
+    }
+    if((m=source.match(/^Proof of how you installed the ad film is required after (.+) for the month of (.+)\.$/))){
+      const date=translateMonths(m[1],lang), month=translateMonths(m[2],lang);
+      return lang==='de' ? `Nach dem ${date} ist für den Monat ${month} ein Nachweis über die Montage der Werbefolie erforderlich.`
+        : lang==='fr' ? `Une preuve de la pose du film publicitaire est requise après le ${date} pour le mois de ${month}.`
+        : `Dopo il ${date} è richiesta una prova di come hai applicato la pellicola pubblicitaria per il mese di ${month}.`;
+    }
+    if((m=source.match(/^Reason: (.+)$/))){
+      return (lang==='de'?'Grund: ':lang==='fr'?'Motif : ':'Motivo: ')+m[1];
+    }
+
+    return translateMonths(source,lang);
+  }
+
+  function splitWhitespace(raw){
+    const lead=(raw.match(/^\s*/)||[''])[0];
+    const trail=(raw.match(/\s*$/)||[''])[0];
+    return {lead,trail,core:raw.slice(lead.length,raw.length-trail.length)};
+  }
+
+  function translateTextNode(node,forceSource){
+    if(!node || node.nodeType!==Node.TEXT_NODE) return;
+    const raw=node.nodeValue||'';
+    if(!raw.trim()) return;
+
+    if(forceSource || !sourceText.has(node)) sourceText.set(node,raw);
+    const original=sourceText.get(node) ?? raw;
+    const parts=splitWhitespace(original);
+    const translated=dynamicTranslation(parts.core,currentLanguage);
+    const next=parts.lead+translated+parts.trail;
+    if(node.nodeValue!==next) node.nodeValue=next;
+  }
+
+  const translatableAttrs=['placeholder','title','aria-label'];
+  function translateElementAttrs(el,forceSource){
+    if(!(el instanceof Element)) return;
+    let saved=sourceAttrs.get(el);
+    if(!saved){ saved={}; sourceAttrs.set(el,saved); }
+
+    translatableAttrs.forEach(attr=>{
+      if(!el.hasAttribute(attr)) return;
+      if(forceSource || saved[attr]===undefined) saved[attr]=el.getAttribute(attr);
+      const original=saved[attr];
+      const next=dynamicTranslation(original,currentLanguage);
+      if(el.getAttribute(attr)!==next) el.setAttribute(attr,next);
+    });
+  }
+
+  function walk(root,forceSource=false){
+    if(!root) return;
+    applying=true;
+    try{
+      if(root.nodeType===Node.TEXT_NODE){
+        translateTextNode(root,forceSource);
+        return;
+      }
+      if(root instanceof Element) translateElementAttrs(root,forceSource);
+
+      const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+      let node;
+      while((node=walker.nextNode())){
+        const parent=node.parentElement;
+        if(!parent || ['SCRIPT','STYLE','NOSCRIPT'].includes(parent.tagName)) continue;
+        translateTextNode(node,forceSource);
+      }
+      if(root.querySelectorAll){
+        root.querySelectorAll('[placeholder],[title],[aria-label]').forEach(el=>translateElementAttrs(el,forceSource));
+      }
+    } finally {
+      applying=false;
+    }
+  }
+
+  function updateButtons(){
+    document.querySelectorAll('.adcars-language-nav-text').forEach(el=>{
+      el.textContent=currentLanguage==='de'?'Sprache'
+        :currentLanguage==='fr'?'Langue'
+        :currentLanguage==='it'?'Lingua'
+        :'Language';
+    });
+    document.querySelectorAll('[data-adcars-lang]').forEach(btn=>{
+      btn.classList.toggle('is-active',btn.dataset.adcarsLang===currentLanguage);
+    });
+  }
+
+  function startLanguageObserver(){
+    observer.observe(document.documentElement,{
+      subtree:true,
+      childList:true,
+      characterData:true,
+      attributes:true,
+      attributeFilter:translatableAttrs
+    });
+  }
+
+  function setLanguage(lang,save=true){
+    if(!supported.includes(lang)) lang='en';
+    currentLanguage=lang;
+    document.documentElement.lang=lang;
+
+    /* Prevent our own live translation changes from being mistaken for new
+       English source text. This keeps instant switching working repeatedly. */
+    observer.disconnect();
+    walk(document.documentElement,false);
+    updateButtons();
+    startLanguageObserver();
+
+    document.querySelectorAll('.adcars-burger-language-options, .adcars-desktop-language-options').forEach(el=>el.setAttribute('hidden',''));
+    document.querySelectorAll('.adcars-burger-language-label, .adcars-desktop-language-label').forEach(el=>el.setAttribute('aria-expanded','false'));
+    if(save){
+      try{ localStorage.setItem('adcars-language',lang); }catch(_e){}
+    }
+    window.dispatchEvent(new CustomEvent('adcars:languagechange',{detail:{language:lang}}));
+  }
+
+  document.addEventListener('click',e=>{
+    const choice=e.target.closest('[data-adcars-lang]');
+    if(choice){
+      e.preventDefault();
+      e.stopPropagation();
+      setLanguage(choice.dataset.adcarsLang);
+      return;
+    }
+
+    const desktopLangButton=e.target.closest('.adcars-desktop-language-label');
+    if(desktopLangButton){
+      e.preventDefault();
+      e.stopPropagation();
+      const options=desktopLangButton.closest('.adcars-desktop-language')?.querySelector('.adcars-desktop-language-options');
+      if(options){
+        const opening=options.hasAttribute('hidden');
+        document.querySelectorAll('.adcars-desktop-language-options').forEach(el=>el.setAttribute('hidden',''));
+        document.querySelectorAll('.adcars-desktop-language-label').forEach(el=>el.setAttribute('aria-expanded','false'));
+        if(opening){
+          options.removeAttribute('hidden');
+          desktopLangButton.setAttribute('aria-expanded','true');
+        }
+      }
+      return;
+    }
+
+    const langButton=e.target.closest('.adcars-burger-language-label');
+    if(langButton){
+      e.preventDefault();
+      e.stopPropagation();
+      const options=langButton.closest('.adcars-burger-language')?.querySelector('.adcars-burger-language-options');
+      if(options){
+        const opening=options.hasAttribute('hidden');
+        if(opening) options.removeAttribute('hidden');
+        else options.setAttribute('hidden','');
+        langButton.setAttribute('aria-expanded',opening?'true':'false');
+      }
+      return;
+    }
+
+    document.querySelectorAll('.adcars-desktop-language-options').forEach(el=>el.setAttribute('hidden',''));
+    document.querySelectorAll('.adcars-desktop-language-label').forEach(el=>el.setAttribute('aria-expanded','false'));
+  },true);
+
+  const observer=new MutationObserver(mutations=>{
+    if(applying) return;
+
+    /* Disconnect while translating DOM changes so translated output never
+       overwrites the stored English source text. */
+    observer.disconnect();
+    try{
+      for(const mutation of mutations){
+        if(mutation.type==='characterData'){
+          sourceText.set(mutation.target,mutation.target.nodeValue||'');
+          translateTextNode(mutation.target,false);
+        } else if(mutation.type==='childList'){
+          mutation.addedNodes.forEach(node=>walk(node,true));
+        } else if(mutation.type==='attributes' && mutation.target instanceof Element){
+          const attr=mutation.attributeName;
+          if(translatableAttrs.includes(attr)){
+            let saved=sourceAttrs.get(mutation.target);
+            if(!saved){saved={};sourceAttrs.set(mutation.target,saved);}
+            saved[attr]=mutation.target.getAttribute(attr);
+            translateElementAttrs(mutation.target,false);
+          }
+        }
+      }
+    } finally {
+      startLanguageObserver();
+    }
+  });
+
+  function init(){
+    walk(document.documentElement,true);
+    let saved='en';
+    try{ saved=localStorage.getItem('adcars-language')||'en'; }catch(_e){}
+    setLanguage(saved,false);
+    window.adcarsSetLanguage=setLanguage;
+    window.adcarsGetLanguage=()=>currentLanguage;
+    window.adcarsTranslate=(text)=>dynamicTranslation(String(text??''),currentLanguage);
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
