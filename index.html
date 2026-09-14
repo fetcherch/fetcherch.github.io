@@ -5290,6 +5290,118 @@ body.overlay-open{
 }
 </style>
 
+
+<style id="adcars-region-trigger-label-centered">
+.b2b-region-trigger{
+  position:relative;
+  height:48px !important;
+  min-height:48px !important;
+  display:flex !important;
+  align-items:center !important;
+}
+.b2b-region-trigger-label{
+  display:block !important;
+  align-self:auto !important;
+  width:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  line-height:1.25 !important;
+  text-align:left !important;
+}
+.b2b-region-multi > input[type="hidden"]{
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+}
+</style>
+
+
+<style id="adcars-region-single-visible-field">
+/* The wrapper is layout-only. Only the actual dropdown trigger is visible. */
+.b2b-region-multi{
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  min-height:0 !important;
+}
+.b2b-region-multi > .b2b-region-trigger{
+  margin:0 !important;
+}
+</style>
+
+
+
+
+
+<style id="adcars-signup-driving-dropdown-checkbox-height-fix">
+/* Keep Signup and Profile Edit driving-area dropdowns visually identical. */
+#signupDrivingRegions .b2b-region-option,
+#profileEditDrivingRegions .b2b-region-option{
+  min-height:0 !important;
+  padding:8px !important;
+  gap:9px !important;
+  color:#0B1F3A !important;
+  font-size:14px !important;
+  font-weight:400 !important;
+  line-height:normal !important;
+}
+#signupDrivingRegions .b2b-region-option span,
+#profileEditDrivingRegions .b2b-region-option span{
+  color:#0B1F3A !important;
+  font-size:14px !important;
+  font-weight:400 !important;
+  line-height:normal !important;
+}
+#signupDrivingRegions .b2b-region-option input[type="checkbox"],
+#profileEditDrivingRegions .b2b-region-option input[type="checkbox"]{
+  width:16px !important;
+  height:16px !important;
+  min-width:16px !important;
+  min-height:16px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  accent-color:#fe5a36 !important;
+  flex:0 0 auto !important;
+}
+#signupDrivingRegions .b2b-region-group-label,
+#profileEditDrivingRegions .b2b-region-group-label{
+  color:var(--muted) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  line-height:normal !important;
+}
+#signupDrivingRegions .b2b-region-trigger,
+#profileEditDrivingRegions .b2b-region-trigger{
+  height:48px !important;
+  min-height:48px !important;
+  font-size:14px !important;
+  font-weight:400 !important;
+  line-height:1.25 !important;
+}
+#signupDrivingRegions .b2b-region-trigger-label,
+#profileEditDrivingRegions .b2b-region-trigger-label{
+  font-size:14px !important;
+  font-weight:400 !important;
+  line-height:1.25 !important;
+}
+</style>
+
+
+<style id="adcars-profile-no-driving-area-selected">
+#profileDrivingRegions.no-driving-area-selected{
+  color:var(--accent) !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -5532,7 +5644,7 @@ TEMPORARILY DISABLED. Order ad foil CTA
               <label>Ad foil design</label>
               <div class="upload-row">
                 <div>
-                  <input id="b2bArtwork" type="file" accept=".png,.jpg,.jpeg,.webp" class="b2b-file-input">
+                  <input id="b2bArtwork" type="file" accept=".png,.jpg,.jpeg,.webp" class="b2b-file-input" required>
 <div class="b2b-artwork-picker-ui" id="b2bArtworkPickerUi">
   <label class="b2b-artwork-picker-button" id="b2bArtworkPickerButton" for="b2bArtwork">Choose file</label>
   <span class="b2b-artwork-picker-name" id="b2bArtworkPickerName">No file selected</span>
@@ -5555,8 +5667,10 @@ TEMPORARILY DISABLED. Order ad foil CTA
     <div class="b2b-region-group"><div class="b2b-region-group-label">Switzerland</div>
       <label class="b2b-region-option"><input type="checkbox" value="switzerland" data-label="Whole Switzerland"><span>Whole Switzerland</span></label>
       <label class="b2b-region-option"><input type="checkbox" value="german-speaking switzerland" data-label="German-speaking Switzerland"><span>German-speaking Switzerland</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="french-speaking switzerland" data-label="French / Western Switzerland"><span>French / Western Switzerland</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="italian-speaking switzerland" data-label="Italian / Southern Switzerland"><span>Italian / Southern Switzerland</span></label>
     </div>
-    <div class="b2b-region-group"><div class="b2b-region-group-label">Cantons</div>
+        <div class="b2b-region-group"><div class="b2b-region-group-label">Cantons</div>
       <label class="b2b-region-option"><input type="checkbox" value="aargau" data-label="Aargau"><span>Aargau</span></label>
       <label class="b2b-region-option"><input type="checkbox" value="appenzell ausserrhoden" data-label="Appenzell Ausserrhoden"><span>Appenzell Ausserrhoden</span></label>
       <label class="b2b-region-option"><input type="checkbox" value="appenzell innerrhoden" data-label="Appenzell Innerrhoden"><span>Appenzell Innerrhoden</span></label>
@@ -5615,7 +5729,7 @@ TEMPORARILY DISABLED. Order ad foil CTA
               <input id="campaignRange" type="text" placeholder="Select start and end date" readonly required aria-describedby="campaignDurationError">
   <div id="campaignDurationMonths" class="campaign-duration-months" hidden></div>
               <div id="campaignDurationError" class="b2b-field-error" role="alert" aria-live="polite" hidden>Please select a campaign duration.</div>
-              <div class="file-help">Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.</div>
+              <div class="file-help">Minimum campaign duration: 2 days. Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.</div>
             </div>
 
             <div class="field full" id="b2bAllowLateJoinField" hidden>
@@ -5740,7 +5854,67 @@ TEMPORARILY DISABLED. Order ad foil CTA
             <div class="field"><label>Email</label><input id="signupEmail" required type="email" placeholder="alex@example.com"></div>
             <div class="field"><label>Car model</label><input id="signupCarModel" required placeholder="BMW 3 Series"></div>
             <div class="field"><label>Car plate number</label><input id="signupCarPlate" required placeholder="e.g. ZH 123456"></div>
-            <div class="field"><label>How many times per week do you drive?</label><input id="signupDrivesPerWeek" required type="number" min="0" max="50" placeholder="e.g. 10"></div>
+            <div class="field full">
+              <label>Where do you drive most often?</label>
+              <div class="b2b-region-multi" id="signupDrivingRegions" data-driving-region-multi>
+  <button class="b2b-region-trigger" type="button" aria-expanded="false" aria-haspopup="listbox">
+    <span class="b2b-region-trigger-label">Select driving areas</span>
+    <span class="b2b-region-chevron" aria-hidden="true"></span>
+  </button>
+  <div class="b2b-region-menu" role="listbox" aria-multiselectable="true" hidden>
+        <div class="b2b-region-group"><div class="b2b-region-group-label">Cantons</div>
+      <label class="b2b-region-option"><input type="checkbox" value="aargau" data-label="Aargau"><span>Aargau</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="appenzell ausserrhoden" data-label="Appenzell Ausserrhoden"><span>Appenzell Ausserrhoden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="appenzell innerrhoden" data-label="Appenzell Innerrhoden"><span>Appenzell Innerrhoden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="basel-landschaft" data-label="Basel-Landschaft"><span>Basel-Landschaft</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="basel-stadt" data-label="Basel-Stadt"><span>Basel-Stadt</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="bern" data-label="Bern"><span>Bern</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="fribourg" data-label="Fribourg"><span>Fribourg</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="geneva" data-label="Geneva"><span>Geneva</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="glarus" data-label="Glarus"><span>Glarus</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="graubünden" data-label="Graubünden"><span>Graubünden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="jura" data-label="Jura"><span>Jura</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lucerne" data-label="Lucerne"><span>Lucerne</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="neuchâtel" data-label="Neuchâtel"><span>Neuchâtel</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="nidwalden" data-label="Nidwalden"><span>Nidwalden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="obwalden" data-label="Obwalden"><span>Obwalden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="schaffhausen" data-label="Schaffhausen"><span>Schaffhausen</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="schwyz" data-label="Schwyz"><span>Schwyz</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="solothurn" data-label="Solothurn"><span>Solothurn</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="st. gallen" data-label="St. Gallen"><span>St. Gallen</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="thurgau" data-label="Thurgau"><span>Thurgau</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="ticino" data-label="Ticino"><span>Ticino</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="uri" data-label="Uri"><span>Uri</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="valais" data-label="Valais"><span>Valais</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="vaud" data-label="Vaud"><span>Vaud</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="zug" data-label="Zug"><span>Zug</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="zürich" data-label="Zürich"><span>Zürich</span></label>
+    </div>
+    <div class="b2b-region-group"><div class="b2b-region-group-label">Major cities</div>
+      <label class="b2b-region-option"><input type="checkbox" value="zürich" data-label="Zürich City"><span>Zürich City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="geneva" data-label="Geneva City"><span>Geneva City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="basel" data-label="Basel City"><span>Basel City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lausanne" data-label="Lausanne City"><span>Lausanne City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="bern" data-label="Bern City"><span>Bern City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="winterthur" data-label="Winterthur City"><span>Winterthur City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lucerne" data-label="Lucerne City"><span>Lucerne City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="st. gallen" data-label="St. Gallen City"><span>St. Gallen City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lugano" data-label="Lugano City"><span>Lugano City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="biel" data-label="Biel / Bienne City"><span>Biel / Bienne City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="thun" data-label="Thun City"><span>Thun City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="köniz" data-label="Köniz City"><span>Köniz City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="la chaux-de-fonds" data-label="La Chaux-de-Fonds City"><span>La Chaux-de-Fonds City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="fribourg" data-label="Fribourg City"><span>Fribourg City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="schaffhausen" data-label="Schaffhausen City"><span>Schaffhausen City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="chur" data-label="Chur City"><span>Chur City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="neuchâtel" data-label="Neuchâtel City"><span>Neuchâtel City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="vernier" data-label="Vernier City"><span>Vernier City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="uster" data-label="Uster City"><span>Uster City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="sion" data-label="Sion City"><span>Sion City</span></label>
+    </div>
+  </div>
+</div>
+            </div>
             <div class="field"><label>Where is your car parked most of the time?</label><input id="signupParkingLocation" required placeholder="e.g. Zürich HB, Oerlikon, workplace"></div>
             <div class="field full">
               <label>Driver’s license</label>
@@ -5873,9 +6047,66 @@ TEMPORARILY DISABLED. Order ad foil CTA
             <input id="profileEditCarPlate" class="profile-edit-input" type="text" hidden>
           </div>
           <div class="profile-info-item">
-            <span>Drives per week</span>
-            <strong id="profileDrivesPerWeek"></strong>
-            <input id="profileEditDrivesPerWeek" class="profile-edit-input" type="number" min="0" max="50" hidden>
+            <span>Driving areas</span>
+            <strong id="profileDrivingRegions"></strong>
+            <div class="b2b-region-multi profile-edit-input" hidden id="profileEditDrivingRegions" data-driving-region-multi>
+  <button class="b2b-region-trigger" type="button" aria-expanded="false" aria-haspopup="listbox">
+    <span class="b2b-region-trigger-label">Select driving areas</span>
+    <span class="b2b-region-chevron" aria-hidden="true"></span>
+  </button>
+  <div class="b2b-region-menu" role="listbox" aria-multiselectable="true" hidden>
+        <div class="b2b-region-group"><div class="b2b-region-group-label">Cantons</div>
+      <label class="b2b-region-option"><input type="checkbox" value="aargau" data-label="Aargau"><span>Aargau</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="appenzell ausserrhoden" data-label="Appenzell Ausserrhoden"><span>Appenzell Ausserrhoden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="appenzell innerrhoden" data-label="Appenzell Innerrhoden"><span>Appenzell Innerrhoden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="basel-landschaft" data-label="Basel-Landschaft"><span>Basel-Landschaft</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="basel-stadt" data-label="Basel-Stadt"><span>Basel-Stadt</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="bern" data-label="Bern"><span>Bern</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="fribourg" data-label="Fribourg"><span>Fribourg</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="geneva" data-label="Geneva"><span>Geneva</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="glarus" data-label="Glarus"><span>Glarus</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="graubünden" data-label="Graubünden"><span>Graubünden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="jura" data-label="Jura"><span>Jura</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lucerne" data-label="Lucerne"><span>Lucerne</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="neuchâtel" data-label="Neuchâtel"><span>Neuchâtel</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="nidwalden" data-label="Nidwalden"><span>Nidwalden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="obwalden" data-label="Obwalden"><span>Obwalden</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="schaffhausen" data-label="Schaffhausen"><span>Schaffhausen</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="schwyz" data-label="Schwyz"><span>Schwyz</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="solothurn" data-label="Solothurn"><span>Solothurn</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="st. gallen" data-label="St. Gallen"><span>St. Gallen</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="thurgau" data-label="Thurgau"><span>Thurgau</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="ticino" data-label="Ticino"><span>Ticino</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="uri" data-label="Uri"><span>Uri</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="valais" data-label="Valais"><span>Valais</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="vaud" data-label="Vaud"><span>Vaud</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="zug" data-label="Zug"><span>Zug</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="zürich" data-label="Zürich"><span>Zürich</span></label>
+    </div>
+    <div class="b2b-region-group"><div class="b2b-region-group-label">Major cities</div>
+      <label class="b2b-region-option"><input type="checkbox" value="zürich" data-label="Zürich City"><span>Zürich City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="geneva" data-label="Geneva City"><span>Geneva City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="basel" data-label="Basel City"><span>Basel City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lausanne" data-label="Lausanne City"><span>Lausanne City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="bern" data-label="Bern City"><span>Bern City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="winterthur" data-label="Winterthur City"><span>Winterthur City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lucerne" data-label="Lucerne City"><span>Lucerne City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="st. gallen" data-label="St. Gallen City"><span>St. Gallen City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="lugano" data-label="Lugano City"><span>Lugano City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="biel" data-label="Biel / Bienne City"><span>Biel / Bienne City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="thun" data-label="Thun City"><span>Thun City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="köniz" data-label="Köniz City"><span>Köniz City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="la chaux-de-fonds" data-label="La Chaux-de-Fonds City"><span>La Chaux-de-Fonds City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="fribourg" data-label="Fribourg City"><span>Fribourg City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="schaffhausen" data-label="Schaffhausen City"><span>Schaffhausen City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="chur" data-label="Chur City"><span>Chur City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="neuchâtel" data-label="Neuchâtel City"><span>Neuchâtel City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="vernier" data-label="Vernier City"><span>Vernier City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="uster" data-label="Uster City"><span>Uster City</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="sion" data-label="Sion City"><span>Sion City</span></label>
+    </div>
+  </div>
+</div>
           </div>
           <div class="profile-info-item">
             <span>Usually parked at</span>
@@ -5940,6 +6171,7 @@ TEMPORARILY DISABLED. Order ad foil CTA
                 <div class="earning-label">ESTIMATED MONTHLY PAYOUT</div>
                 <div id="total" class="earning-amount">CHF 0</div>
                 <p>Campaign duration: <strong id="orderCampaignDuration"></strong></p>
+                <p>Campaign region: <strong id="orderCampaignRegion"></strong></p>
                 <hr>
                 <div class="order-earnings-total">
                   <span id="orderTotalEarningsLabel">Total campaign earnings</span>
@@ -6032,8 +6264,10 @@ TEMPORARILY DISABLED. Order ad foil CTA
     <div class="b2b-region-group"><div class="b2b-region-group-label">Switzerland</div>
       <label class="b2b-region-option"><input type="checkbox" value="switzerland" data-label="Whole Switzerland"><span>Whole Switzerland</span></label>
       <label class="b2b-region-option"><input type="checkbox" value="german-speaking switzerland" data-label="German-speaking Switzerland"><span>German-speaking Switzerland</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="french-speaking switzerland" data-label="French / Western Switzerland"><span>French / Western Switzerland</span></label>
+      <label class="b2b-region-option"><input type="checkbox" value="italian-speaking switzerland" data-label="Italian / Southern Switzerland"><span>Italian / Southern Switzerland</span></label>
     </div>
-    <div class="b2b-region-group"><div class="b2b-region-group-label">Cantons</div>
+        <div class="b2b-region-group"><div class="b2b-region-group-label">Cantons</div>
       <label class="b2b-region-option"><input type="checkbox" value="aargau" data-label="Aargau"><span>Aargau</span></label>
       <label class="b2b-region-option"><input type="checkbox" value="appenzell ausserrhoden" data-label="Appenzell Ausserrhoden"><span>Appenzell Ausserrhoden</span></label>
       <label class="b2b-region-option"><input type="checkbox" value="appenzell innerrhoden" data-label="Appenzell Innerrhoden"><span>Appenzell Innerrhoden</span></label>
@@ -6424,6 +6658,7 @@ TEMPORARILY DISABLED. Order ad foil CTA
       payout:selectedCampaignPayout||0,
       months:selectedCampaignMonths||0,
       duration:document.getElementById('orderCampaignDuration')?.textContent||'',
+      region:document.getElementById('orderCampaignRegion')?.textContent||'',
       deadline:document.getElementById('orderDeadline')?.textContent||'',
       slots:document.getElementById('orderSlotsAvailable')?.textContent||'',
       maxSlots:(document.getElementById('orderSlotsTotal')?.textContent||'/').replace(/^\//,'')
@@ -6462,6 +6697,9 @@ TEMPORARILY DISABLED. Order ad foil CTA
 
     const durationEl=document.getElementById('orderCampaignDuration');
     if(durationEl) durationEl.textContent=pending.duration||'';
+
+    const regionEl=document.getElementById('orderCampaignRegion');
+    if(regionEl) regionEl.textContent=pending.region||'';
 
     const deadlineEl=document.getElementById('orderDeadline');
     if(deadlineEl) deadlineEl.textContent=pending.deadline||'';
@@ -6550,7 +6788,7 @@ TEMPORARILY DISABLED. Order ad foil CTA
       const regions=(requestData.campaign_regions || []).join(', ') || '';
       const phone=requestData.phone || '';
       const campaignDescription=requestData.campaign_description || '';
-      const artwork=requestData.artwork_filename || 'No artwork uploaded';
+      const artwork=requestData.artwork_filename || 'Artwork uploaded';
 
       summary.innerHTML=`
         <div class="b2b-confirmation-row"><span>Company</span><strong>${escapeB2BSummaryHtml(requestData.company)}</strong></div>
@@ -6768,7 +7006,13 @@ TEMPORARILY DISABLED. Order ad foil CTA
     const sourceArtworkFile=document.getElementById('b2bArtwork')?.files?.[0] || null;
     const artworkFile=b2bConvertedArtworkFile;
 
-    if(sourceArtworkFile && (!b2bArtworkDimensionsValid || !artworkFile)){
+    if(!sourceArtworkFile){
+      setB2BArtworkError('Please upload your ad foil design before sending the campaign request.');
+      document.getElementById('b2bArtworkField')?.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+
+    if(!b2bArtworkDimensionsValid || !artworkFile){
       setB2BArtworkError('The uploaded source artwork must be exactly 3:1 and finish processing before the request is sent.');
       b2bArtworkError?.scrollIntoView({behavior:'smooth',block:'center'});
       return;
@@ -6813,6 +7057,16 @@ TEMPORARILY DISABLED. Order ad foil CTA
       campaignRangeInput?.scrollIntoView({behavior:'smooth',block:'center'});
       return;
     }
+
+    const requestStartDate=new Date(`${requestCampaignStart}T00:00:00`);
+    const requestEndDate=new Date(`${requestCampaignEnd}T00:00:00`);
+    const requestDurationDays=Math.floor((requestEndDate-requestStartDate)/86400000)+1;
+    if(!Number.isFinite(requestDurationDays) || requestDurationDays<2){
+      setCampaignDurationError('Campaign duration must be at least 2 days.');
+      campaignRangeInput?.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+
     setCampaignDurationError();
 
     const requestData={
@@ -7312,6 +7566,53 @@ TEMPORARILY DISABLED. Order ad foil CTA
     syncAdCarsOverlayState();
   },true);
 
+  function normalizeEligibilityRegion(value){
+    return normalizeRegionCoverageValue(value);
+  }
+
+  function driverAreaMatchesCampaignArea(driverArea,campaignArea){
+    const driver=normalizeEligibilityRegion(driverArea);
+    const campaign=normalizeEligibilityRegion(campaignArea);
+
+    if(campaign==='whole switzerland' || campaign==='switzerland'){
+      return true;
+    }
+
+    if(languageRegionCoverage[campaign]){
+      return regionValueBelongsToLanguageRegion(driver,campaign);
+    }
+
+    return driver===campaign ||
+      driver.includes(campaign) ||
+      campaign.includes(driver);
+  }
+
+  function driverCanJoinCampaignRegion(drivingRegions,campaignRegion){
+    const campaignAreas=String(campaignRegion||'')
+      .split(',')
+      .map(value=>value.trim())
+      .filter(Boolean);
+
+    if(campaignAreas.some(area=>{
+      const normalized=normalizeEligibilityRegion(area);
+      return normalized==='whole switzerland' || normalized==='switzerland';
+    })){
+      return true;
+    }
+
+    const driverRegions=(Array.isArray(drivingRegions)?drivingRegions:[])
+      .map(value=>String(value||'').trim())
+      .filter(Boolean);
+
+    if(!driverRegions.length || !campaignAreas.length) return false;
+
+    return campaignAreas.some(campaignArea=>
+      driverRegions.some(driverArea=>
+        driverAreaMatchesCampaignArea(driverArea,campaignArea)
+      )
+    );
+  }
+
   document.getElementById('orderForm')?.addEventListener('submit', async e=>{
     e.preventDefault();
 
@@ -7354,6 +7655,32 @@ TEMPORARILY DISABLED. Order ad foil CTA
       const currentUserId=window.carAdsCurrentSession?.user?.id || null;
       if(!currentUserId){
         throw new Error('Please log in again before joining a campaign.');
+      }
+
+      const [
+        {data:regionProfile,error:regionProfileError},
+        {data:regionCampaign,error:regionCampaignError}
+      ]=await Promise.all([
+        supabaseClient
+          .from('driver_profiles')
+          .select('driving_regions')
+          .eq('user_id',currentUserId)
+          .single(),
+        supabaseClient
+          .from('campaigns')
+          .select('region')
+          .eq('id',selectedCampaignId)
+          .single()
+      ]);
+
+      if(regionProfileError) throw regionProfileError;
+      if(regionCampaignError) throw regionCampaignError;
+
+      if(!driverCanJoinCampaignRegion(
+        regionProfile?.driving_regions,
+        regionCampaign?.region
+      )){
+        throw new Error('This campaign is outside your selected driving areas. Update your driving areas in your profile to join this campaign.');
       }
 
       // Prevent re-joining the campaign the driver is already participating in.
@@ -7558,7 +7885,12 @@ TEMPORARILY DISABLED. Order ad foil CTA
         campaignStartDate = selectedDates[0] || null;
         campaignEndDate = selectedDates[1] || null;
         if(campaignStartDate && campaignEndDate){
-          setCampaignDurationError();
+          const selectedDurationDays=Math.floor((campaignEndDate-campaignStartDate)/86400000)+1;
+          if(selectedDurationDays<2){
+            setCampaignDurationError('Campaign duration must be at least 2 days.');
+          }else{
+            setCampaignDurationError();
+          }
         }
         const durationMonthsEl = document.getElementById('campaignDurationMonths');
         const lateJoinField = document.getElementById('b2bAllowLateJoinField');
@@ -7682,8 +8014,10 @@ TEMPORARILY DISABLED. Order ad foil CTA
     const orderDeadline = document.getElementById('orderDeadline');
     const orderSlots = document.getElementById('orderSlots');
     const orderCampaignDuration = document.getElementById('orderCampaignDuration');
+    const orderCampaignRegion = document.getElementById('orderCampaignRegion');
 
     if(orderCampaignDuration) orderCampaignDuration.textContent = campaignDuration;
+    if(orderCampaignRegion) orderCampaignRegion.textContent = card?.dataset.campaignRegionLabel || 'Whole Switzerland';
 
     const earningsLabel = document.getElementById('orderTotalEarningsLabel');
     if(earningsLabel){
@@ -7906,7 +8240,7 @@ TEMPORARILY DISABLED. Order ad foil CTA
       regionTrigger.setAttribute('aria-expanded',willOpen?'true':'false');
     });
 
-    const switzerlandValues=new Set(['switzerland','german-speaking switzerland']);
+    const switzerlandValues=new Set(['switzerland','german-speaking switzerland','french-speaking switzerland','italian-speaking switzerland']);
 
     regionChecks.forEach(check=>check.addEventListener('change',()=>{
       if(check.checked && switzerlandValues.has(check.value)){
@@ -8002,7 +8336,7 @@ const campaignRegionTrigger=campaignRegionMulti?.querySelector('.b2b-region-trig
 const campaignRegionMenu=campaignRegionMulti?.querySelector('.b2b-region-menu');
 const campaignRegionLabel=campaignRegionMulti?.querySelector('.b2b-region-trigger-label');
 const campaignRegionChecks=campaignRegionMulti?[...campaignRegionMulti.querySelectorAll('input[type="checkbox"]')]:[];
-const campaignSwitzerlandValues=new Set(['switzerland','german-speaking switzerland']);
+const campaignSwitzerlandValues=new Set(['switzerland','german-speaking switzerland','french-speaking switzerland','italian-speaking switzerland']);
 
 function getSelectedCampaignRegions(){
   return campaignRegionChecks.filter(check=>check.checked).map(check=>check.value.toLowerCase());
@@ -8055,45 +8389,81 @@ document.addEventListener('click',e=>{
 
 updateCampaignRegionLabel();
 
+function normalizeRegionCoverageValue(value){
+  return String(value||'')
+    .toLowerCase()
+    .trim()
+    .replace(/\bcity\b/g,'')
+    .replace(/\s+/g,' ')
+    .trim()
+    .replace(/zurich/g,'zürich')
+    .replace(/geneva/g,'genève')
+    .replace(/lucerne/g,'luzern')
+    .replace(/freiburg/g,'fribourg')
+    .replace(/wallis/g,'valais')
+    .replace(/tessin/g,'ticino')
+    .replace(/grisons/g,'graubünden')
+    .replace(/bienne/g,'biel')
+    .replace(/st gallen/g,'st. gallen');
+}
+
+const languageRegionCoverage={
+  'german-speaking switzerland':new Set([
+    'aargau','appenzell ausserrhoden','appenzell innerrhoden',
+    'basel-landschaft','basel-stadt','bern','fribourg','glarus',
+    'graubünden','luzern','nidwalden','obwalden','schaffhausen',
+    'schwyz','solothurn','st. gallen','thurgau','uri','valais',
+    'zug','zürich','basel','winterthur','biel','thun','köniz',
+    'chur','uster'
+  ]),
+  'french-speaking switzerland':new Set([
+    'bern','fribourg','genève','jura','neuchâtel','valais','vaud',
+    'lausanne','biel','la chaux-de-fonds','vernier','sion'
+  ]),
+  'italian-speaking switzerland':new Set([
+    'ticino','graubünden','lugano'
+  ])
+};
+
+function regionValueBelongsToLanguageRegion(value,broadRegion){
+  return languageRegionCoverage[broadRegion]?.has(normalizeRegionCoverageValue(value)) || false;
+}
+
+function campaignRegionMatchesFilter(filterValue,campaignRegionValue){
+  const filter=normalizeRegionCoverageValue(filterValue);
+  const campaignParts=String(campaignRegionValue||'')
+    .split(',')
+    .map(normalizeRegionCoverageValue)
+    .filter(Boolean);
+
+  if(filter==='switzerland'){
+    return campaignParts.some(part=>part==='whole switzerland' || part==='switzerland');
+  }
+
+  if(languageRegionCoverage[filter]){
+    return campaignParts.some(part=>
+      part===filter ||
+      regionValueBelongsToLanguageRegion(part,filter)
+    );
+  }
+
+  return campaignParts.some(part=>{
+    if(part==='whole switzerland' || part==='switzerland') return true;
+    if(languageRegionCoverage[part] && regionValueBelongsToLanguageRegion(filter,part)) return true;
+    return part===filter || part.includes(filter) || filter.includes(part);
+  });
+}
+
 function filterCampaignCards(){
   const regions = getSelectedCampaignRegions();
   let visible = 0;
 
-  const regionAliases = {
-    'basel-stadt':['basel'],
-    'basel-landschaft':['basel'],
-    'geneva':['geneva','genève'],
-    'lucerne':['lucerne','luzern'],
-    'fribourg':['fribourg','freiburg'],
-    'valais':['valais','wallis'],
-    'vaud':['vaud'],
-    'ticino':['ticino','tessin'],
-    'graubünden':['graubünden','grisons'],
-    'neuchâtel':['neuchâtel'],
-    'st. gallen':['st. gallen','st gallen'],
-    'biel':['biel','bienne'],
-    'zürich':['zürich','zurich']
-  };
-
   document.querySelectorAll('#campaignList .brand').forEach(card=>{
-    /* Filter against the original campaign region value, never translated
-       visible text. This keeps the filter correct in EN / DE / FR / IT. */
     const campaignRegion=String(card.dataset.campaignRegion || '').toLowerCase().trim();
 
-    let matchesRegion = regions.length===0 || regions.some(region=>{
-      if(region === 'switzerland'){
-        return campaignRegion === 'whole switzerland'
-          || campaignRegion === 'switzerland';
-      }
-
-      if(region === 'german-speaking switzerland'){
-        return campaignRegion === 'german-speaking switzerland'
-          || campaignRegion === 'deutschschweiz';
-      }
-
-      const aliases = regionAliases[region] || [region];
-      return aliases.some(term => campaignRegion.includes(term));
-    });
+    const matchesRegion =
+      regions.length===0 ||
+      regions.some(region=>campaignRegionMatchesFilter(region,campaignRegion));
 
     card.style.display = matchesRegion ? '' : 'none';
     if(matchesRegion) visible++;
@@ -8101,7 +8471,6 @@ function filterCampaignCards(){
 
   if(campaignFilterEmpty) campaignFilterEmpty.hidden = visible !== 0;
 }
-
 
 
 function parseCampaignDeadline(value){
@@ -8306,7 +8675,7 @@ setInterval(updateOrderTimeLeft,1000);
       : `${taken} of ${maxSlots} driver slots taken (${Math.max(0,maxSlots-taken)} left)`;
 
     return `
-      <div class="brand${endless ? ' endless-campaign' : ''}" data-campaign-id="${escapeCampaignHtml(row.id)}" data-campaign-region="${escapeCampaignHtml(String(row.region || 'Whole Switzerland').toLowerCase())}">
+      <div class="brand${endless ? ' endless-campaign' : ''}" data-campaign-id="${escapeCampaignHtml(row.id)}" data-campaign-region="${escapeCampaignHtml(String(row.region || 'Whole Switzerland').toLowerCase())}" data-campaign-region-label="${escapeCampaignHtml(String(row.region || 'Whole Switzerland'))}">
         ${campaignBanner}
         <div class="brand-top">
           <div class="brand-logo">${name}</div>
@@ -8552,6 +8921,116 @@ setInterval(updateOrderTimeLeft,1000);
     if(el) el.textContent=(value ?? '').toString().trim() || '';
   }
 
+  const drivingRegionBroadValues=new Set();
+
+  function getDrivingRegionValues(root){
+    if(!root) return [];
+    return [...root.querySelectorAll('input[type="checkbox"]:checked')]
+      .map(check=>check.dataset.label||check.value);
+  }
+
+  function updateDrivingRegionLabel(root){
+    if(!root) return;
+    const label=root.querySelector('.b2b-region-trigger-label');
+    const selected=[...root.querySelectorAll('input[type="checkbox"]:checked')];
+    if(!label) return;
+
+    if(selected.length===0){
+      label.textContent='Select driving areas';
+    }else if(selected.length===1){
+      label.textContent=selected[0].dataset.label||selected[0].value;
+    }else if(selected.length===2){
+      label.textContent=selected.map(check=>check.dataset.label||check.value).join(', ');
+    }else{
+      label.textContent=selected.length+' regions selected';
+    }
+  }
+
+  function updateProfileDrivingRegionsPreview(root){
+    if(!root || root.id!=='profileEditDrivingRegions') return;
+    const values=getDrivingRegionValues(root);
+    const target=document.getElementById('profileDrivingRegions');
+    if(!target) return;
+    if(!values.length){
+      target.textContent='Kein Fahrgebiet ausgewählt';
+      target.classList.add('no-driving-area-selected');
+    }else{
+      target.textContent=formatDrivingRegionLabels(values);
+      target.classList.remove('no-driving-area-selected');
+    }
+  }
+
+  function setDrivingRegionValues(root,values){
+    if(!root) return;
+    const wanted=new Set((Array.isArray(values)?values:[]).map(value=>String(value).toLowerCase()));
+    root.querySelectorAll('input[type="checkbox"]').forEach(check=>{
+      const label=String(check.dataset.label||check.value).toLowerCase();
+      check.checked=wanted.has(label);
+    });
+    updateDrivingRegionLabel(root);
+    updateProfileDrivingRegionsPreview(root);
+  }
+
+  function formatDrivingRegionLabels(values){
+    const list=Array.isArray(values)?values:[];
+    if(!list.length) return '';
+    const source=document.getElementById('profileEditDrivingRegions') || document.getElementById('signupDrivingRegions');
+    const labels=new Map(
+      source
+        ? [...source.querySelectorAll('input[type="checkbox"]')].map(check=>[
+            String(check.dataset.label||check.value).toLowerCase(),
+            check.dataset.label||check.value
+          ])
+        : []
+    );
+    return list.map(value=>labels.get(String(value).toLowerCase())||value).join(', ');
+  }
+
+  function initDrivingRegionMulti(root){
+    if(!root || root.dataset.drivingRegionReady==='true') return;
+    root.dataset.drivingRegionReady='true';
+
+    const trigger=root.querySelector('.b2b-region-trigger');
+    const menu=root.querySelector('.b2b-region-menu');
+    const checks=[...root.querySelectorAll('input[type="checkbox"]')];
+
+    trigger?.addEventListener('click',()=>{
+      const willOpen=!!menu?.hidden;
+      if(menu) menu.hidden=!willOpen;
+      root.classList.toggle('open',willOpen);
+      trigger.setAttribute('aria-expanded',willOpen?'true':'false');
+    });
+
+    checks.forEach(check=>check.addEventListener('change',()=>{
+      if(check.checked && drivingRegionBroadValues.has(check.value)){
+        checks.forEach(other=>{
+          if(other!==check) other.checked=false;
+        });
+      }else if(check.checked){
+        checks.forEach(other=>{
+          if(drivingRegionBroadValues.has(other.value)) other.checked=false;
+        });
+      }
+      updateDrivingRegionLabel(root);
+      updateProfileDrivingRegionsPreview(root);
+    }));
+
+    updateDrivingRegionLabel(root);
+  }
+
+  document.querySelectorAll('[data-driving-region-multi]').forEach(initDrivingRegionMulti);
+
+  document.addEventListener('click',event=>{
+    document.querySelectorAll('[data-driving-region-multi].open').forEach(root=>{
+      if(root.contains(event.target)) return;
+      const menu=root.querySelector('.b2b-region-menu');
+      const trigger=root.querySelector('.b2b-region-trigger');
+      if(menu) menu.hidden=true;
+      root.classList.remove('open');
+      trigger?.setAttribute('aria-expanded','false');
+    });
+  });
+
   function clearSignupForm(){
     const form=document.getElementById('signupForm');
     form?.reset();
@@ -8559,6 +9038,7 @@ setInterval(updateOrderTimeLeft,1000);
     if(passwordError) passwordError.hidden=true;
     const licenseName=document.getElementById('signupDriverLicenseName');
     if(licenseName) licenseName.textContent='No file selected';
+    setDrivingRegionValues(document.getElementById('signupDrivingRegions'),[]);
     clearError('signupAuthFeedback');
   }
 
@@ -10433,7 +10913,7 @@ setInterval(updateOrderTimeLeft,1000);
       email:p?.email||user.email||'',
       car_model:p?.car_model||meta.car_model||'',
       car_plate_number:String(p?.verification_status||'pending').toLowerCase()==='rejected' ? '' : (p?.car_plate_number ?? ''),
-      drives_per_week:p?.drives_per_week||meta.drives_per_week||'',
+      driving_regions:Array.isArray(p?.driving_regions) ? p.driving_regions : (Array.isArray(meta.driving_regions) ? meta.driving_regions : []),
       parking_location:p?.parking_location||meta.parking_location||'',
       verification_status:p?.verification_status||'pending',
       driver_license_photo_path:p?.driver_license_photo_path||'',
@@ -10464,7 +10944,7 @@ setInterval(updateOrderTimeLeft,1000);
     setProfileField('profileCarPlate',profileRejected && !profile.car_plate_number ? 'Reclaim carplate number' : profile.car_plate_number);
     const profileCarPlateEl=document.getElementById('profileCarPlate');
     if(profileCarPlateEl) profileCarPlateEl.classList.toggle('reclaim-required',profileRejected && !profile.car_plate_number);
-    setProfileField('profileDrivesPerWeek',profile.drives_per_week);
+    setProfileField('profileDrivingRegions',formatDrivingRegionLabels(profile.driving_regions));
     setProfileField('profileParkingLocation',profile.parking_location);
     const profileLicenseMissing=!profile.driver_license_file_name && !profile.driver_license_photo_path;
     setProfileField(
@@ -10574,13 +11054,16 @@ setInterval(updateOrderTimeLeft,1000);
     const values={
       profileEditCarModel:profile.car_model||'',
       profileEditCarPlate:profile.car_plate_number||'',
-      profileEditDrivesPerWeek:profile.drives_per_week||'',
       profileEditParkingLocation:profile.parking_location||''
     };
     Object.entries(values).forEach(([id,val])=>{
       const el=document.getElementById(id);
       if(el) el.value=val;
     });
+    setDrivingRegionValues(
+      document.getElementById('profileEditDrivingRegions'),
+      Array.isArray(profile.driving_regions) ? profile.driving_regions : []
+    );
   }
 
   document.getElementById('profileCarPlate')?.addEventListener('click',e=>{
@@ -10632,9 +11115,14 @@ setInterval(updateOrderTimeLeft,1000);
     const updates={
       car_model:document.getElementById('profileEditCarModel')?.value.trim()||'',
       car_plate_number:(document.getElementById('profileEditCarPlate')?.value.trim()||'').toUpperCase(),
-      drives_per_week:document.getElementById('profileEditDrivesPerWeek')?.value||'',
+      driving_regions:getDrivingRegionValues(document.getElementById('profileEditDrivingRegions')),
       parking_location:document.getElementById('profileEditParkingLocation')?.value.trim()||''
     };
+
+    if(!updates.driving_regions.length){
+      showError('profileEditFeedback','Please select at least one driving area.');
+      return;
+    }
 
     const replacementLicenseFile=document.getElementById('profileDriverLicenseFile')?.files?.[0]||null;
     const canReplaceLicense=String(currentProfileData?.verification_status||'pending').toLowerCase()==='rejected';
@@ -10684,7 +11172,7 @@ setInterval(updateOrderTimeLeft,1000);
       const profileRpc=await sb.rpc('update_own_driver_profile',{
         p_car_model:updates.car_model,
         p_car_plate_number:updates.car_plate_number,
-        p_drives_per_week:updates.drives_per_week,
+        p_driving_regions:updates.driving_regions,
         p_parking_location:updates.parking_location,
         p_driver_license_photo_path:newLicensePath || null,
         p_driver_license_file_name:newLicensePath ? replacementLicenseFile.name : null
@@ -10733,7 +11221,7 @@ setInterval(updateOrderTimeLeft,1000);
       setProfileField('profileCarPlate',currentProfileRejected && !currentPlate ? 'Reclaim carplate number' : currentPlate);
       const currentCarPlateEl=document.getElementById('profileCarPlate');
       if(currentCarPlateEl) currentCarPlateEl.classList.toggle('reclaim-required',currentProfileRejected && !currentPlate);
-      setProfileField('profileDrivesPerWeek',updates.drives_per_week);
+      setProfileField('profileDrivingRegions',formatDrivingRegionLabels(updates.driving_regions));
       setProfileField('profileParkingLocation',updates.parking_location);
       const activeLicensePath=newLicensePath || currentProfileData.driver_license_photo_path || '';
       const currentLicenseMissing=!currentProfileData.driver_license_file_name && !activeLicensePath;
@@ -10921,12 +11409,18 @@ setInterval(updateOrderTimeLeft,1000);
         return;
       }
 
+      const signupDrivingRegions=getDrivingRegionValues(document.getElementById('signupDrivingRegions'));
+      if(!signupDrivingRegions.length){
+        showError('signupAuthFeedback','Please select at least one driving area.');
+        return;
+      }
+
       const data={
         first_name:document.getElementById('signupFirstName')?.value.trim()||'',
         last_name:document.getElementById('signupLastName')?.value.trim()||'',
         car_model:document.getElementById('signupCarModel')?.value.trim()||'',
         car_plate_number:rawPlate.toUpperCase(),
-        drives_per_week:document.getElementById('signupDrivesPerWeek')?.value||'',
+        driving_regions:signupDrivingRegions,
         parking_location:document.getElementById('signupParkingLocation')?.value.trim()||''
       };
 
@@ -11832,6 +12326,21 @@ setInterval(updateOrderTimeLeft,1000);
 
     const supplemental={
       de:{
+        'Please upload your ad foil design before sending the campaign request.':'Bitte lade dein Design der Werbefolie hoch, bevor du die Kampagnenanfrage sendest.',
+        'Campaign duration must be at least 2 days.':'Die Kampagnendauer muss mindestens 2 Tage betragen.',
+        'Minimum campaign duration: 2 days. Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.':'Mindestdauer der Kampagne: 2 Tage. Kampagnen müssen mindestens 1 Monat im Voraus starten, damit genügend Zeit für Druck und Lieferung an die Fahrer bleibt.',
+        'French / Western Switzerland':'Französische / Westschweiz',
+        'Italian / Southern Switzerland':'Italienische / Südschweiz',
+        'German-speaking cantons':'Deutschsprachige Kantone',
+        'French / Western cantons':'Französische / Westschweizer Kantone',
+        'Italian / Southern cantons':'Italienische / Südschweizer Kantone',
+        'Multilingual cantons':'Mehrsprachige Kantone',
+        'Campaign region:':'Kampagnenregion:',
+        'This campaign is outside your selected driving areas. Update your driving areas in your profile to join this campaign.':'Diese Kampagne liegt ausserhalb deiner ausgewählten Fahrgebiete. Aktualisiere deine Fahrgebiete im Profil, um dieser Kampagne beizutreten.',
+        'Driving areas':'Fahrgebiet',
+        'Where do you drive most often?':'In welchen Gebieten fährst du am häufigsten?',
+        'Select driving areas':'Fahrgebiete auswählen',
+        'Please select at least one driving area.':'Bitte wähle mindestens ein Fahrgebiet aus.',
         'It says Paid in Earnings History but no money arrived in my bank account.':'In der Einnahmenübersicht steht Bezahlt, aber auf meinem Bankkonto ist noch kein Geld eingegangen.',
         'Your bank may need additional time to credit the payment to your account. This usually takes around 1–3 business days after AdCars.ch processes the payout.':'Deine Bank benötigt möglicherweise zusätzliche Zeit, um die Zahlung deinem Konto gutzuschreiben. Dies dauert in der Regel etwa 1–3 Werktage, nachdem AdCars.ch die Auszahlung bearbeitet hat.',
         'Payout request':'Auszahlungsanfrage',
@@ -11883,6 +12392,21 @@ setInterval(updateOrderTimeLeft,1000);
         'Missing ad foil design':'Werbefolien-Design fehlt'
       },
       fr:{
+        'Please upload your ad foil design before sending the campaign request.':'Veuillez télécharger le design de votre film publicitaire avant d’envoyer la demande de campagne.',
+        'Campaign duration must be at least 2 days.':'La durée de la campagne doit être d’au moins 2 jours.',
+        'Minimum campaign duration: 2 days. Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.':'Durée minimale de la campagne : 2 jours. Les campagnes doivent commencer au moins 1 mois à l’avance afin de prévoir suffisamment de temps pour l’impression et la livraison aux conducteurs.',
+        'French / Western Switzerland':'Suisse romande / occidentale',
+        'Italian / Southern Switzerland':'Suisse italienne / méridionale',
+        'German-speaking cantons':'Cantons germanophones',
+        'French / Western cantons':'Cantons romands / occidentaux',
+        'Italian / Southern cantons':'Cantons italophones / méridionaux',
+        'Multilingual cantons':'Cantons multilingues',
+        'Campaign region:':'Région de la campagne :',
+        'This campaign is outside your selected driving areas. Update your driving areas in your profile to join this campaign.':'Cette campagne se trouve en dehors de vos zones de conduite sélectionnées. Modifiez vos zones de conduite dans votre profil pour rejoindre cette campagne.',
+        'Driving areas':'Zones de conduite',
+        'Where do you drive most often?':'Dans quelles zones conduisez-vous le plus souvent ?',
+        'Select driving areas':'Sélectionner les zones de conduite',
+        'Please select at least one driving area.':'Veuillez sélectionner au moins une zone de conduite.',
         'It says Paid in Earnings History but no money arrived in my bank account.':'Le statut indique Payé dans l’historique des revenus, mais l’argent n’est pas encore arrivé sur mon compte bancaire.',
         'Your bank may need additional time to credit the payment to your account. This usually takes around 1–3 business days after AdCars.ch processes the payout.':'Votre banque peut avoir besoin de temps supplémentaire pour créditer le paiement sur votre compte. Cela prend généralement environ 1 à 3 jours ouvrables après le traitement du paiement par AdCars.ch.',
         'Payout request':'Demande de paiement',
@@ -11934,6 +12458,21 @@ setInterval(updateOrderTimeLeft,1000);
         'Missing ad foil design':'Design du foil publicitaire manquant'
       },
       it:{
+        'Please upload your ad foil design before sending the campaign request.':'Carica il design della pellicola pubblicitaria prima di inviare la richiesta della campagna.',
+        'Campaign duration must be at least 2 days.':'La durata della campagna deve essere di almeno 2 giorni.',
+        'Minimum campaign duration: 2 days. Campaigns must start at least 1 month in advance to allow time for printing and delivery to drivers.':'Durata minima della campagna: 2 giorni. Le campagne devono iniziare almeno 1 mese in anticipo per consentire il tempo necessario alla stampa e alla consegna ai conducenti.',
+        'French / Western Switzerland':'Svizzera francese / occidentale',
+        'Italian / Southern Switzerland':'Svizzera italiana / meridionale',
+        'German-speaking cantons':'Cantoni germanofoni',
+        'French / Western cantons':'Cantoni francofoni / occidentali',
+        'Italian / Southern cantons':'Cantoni italofoni / meridionali',
+        'Multilingual cantons':'Cantoni multilingue',
+        'Campaign region:':'Regione della campagna:',
+        'This campaign is outside your selected driving areas. Update your driving areas in your profile to join this campaign.':'Questa campagna si trova al di fuori delle zone di guida selezionate. Aggiorna le zone di guida nel tuo profilo per partecipare alla campagna.',
+        'Driving areas':'Zone di guida',
+        'Where do you drive most often?':'In quali zone guidi più spesso?',
+        'Select driving areas':'Seleziona le zone di guida',
+        'Please select at least one driving area.':'Seleziona almeno una zona di guida.',
         'It says Paid in Earnings History but no money arrived in my bank account.':'Nella cronologia dei guadagni risulta Pagato, ma il denaro non è ancora arrivato sul mio conto bancario.',
         'Your bank may need additional time to credit the payment to your account. This usually takes around 1–3 business days after AdCars.ch processes the payout.':'La tua banca potrebbe aver bisogno di ulteriore tempo per accreditare il pagamento sul tuo conto. Di solito sono necessari circa 1–3 giorni lavorativi dopo che AdCars.ch ha elaborato il pagamento.',
         'Payout request':'Richiesta di pagamento',
