@@ -8952,7 +8952,7 @@ setInterval(updateOrderTimeLeft,1000);
     const target=document.getElementById('profileDrivingRegions');
     if(!target) return;
     if(!values.length){
-      target.textContent='Kein Fahrgebiet ausgewählt';
+      target.textContent=window.adcarsTranslate?.('No driving area selected') || 'No driving area selected';
       target.classList.add('no-driving-area-selected');
     }else{
       target.textContent=formatDrivingRegionLabels(values);
@@ -12341,6 +12341,7 @@ setInterval(updateOrderTimeLeft,1000);
         'Where do you drive most often?':'In welchen Gebieten fährst du am häufigsten?',
         'Select driving areas':'Fahrgebiete auswählen',
         'Please select at least one driving area.':'Bitte wähle mindestens ein Fahrgebiet aus.',
+        'No driving area selected':'Kein Fahrgebiet ausgewählt',
         'It says Paid in Earnings History but no money arrived in my bank account.':'In der Einnahmenübersicht steht Bezahlt, aber auf meinem Bankkonto ist noch kein Geld eingegangen.',
         'Your bank may need additional time to credit the payment to your account. This usually takes around 1–3 business days after AdCars.ch processes the payout.':'Deine Bank benötigt möglicherweise zusätzliche Zeit, um die Zahlung deinem Konto gutzuschreiben. Dies dauert in der Regel etwa 1–3 Werktage, nachdem AdCars.ch die Auszahlung bearbeitet hat.',
         'Payout request':'Auszahlungsanfrage',
@@ -12407,6 +12408,7 @@ setInterval(updateOrderTimeLeft,1000);
         'Where do you drive most often?':'Dans quelles zones conduisez-vous le plus souvent ?',
         'Select driving areas':'Sélectionner les zones de conduite',
         'Please select at least one driving area.':'Veuillez sélectionner au moins une zone de conduite.',
+        'No driving area selected':'Aucune zone de conduite sélectionnée',
         'It says Paid in Earnings History but no money arrived in my bank account.':'Le statut indique Payé dans l’historique des revenus, mais l’argent n’est pas encore arrivé sur mon compte bancaire.',
         'Your bank may need additional time to credit the payment to your account. This usually takes around 1–3 business days after AdCars.ch processes the payout.':'Votre banque peut avoir besoin de temps supplémentaire pour créditer le paiement sur votre compte. Cela prend généralement environ 1 à 3 jours ouvrables après le traitement du paiement par AdCars.ch.',
         'Payout request':'Demande de paiement',
@@ -12473,6 +12475,7 @@ setInterval(updateOrderTimeLeft,1000);
         'Where do you drive most often?':'In quali zone guidi più spesso?',
         'Select driving areas':'Seleziona le zone di guida',
         'Please select at least one driving area.':'Seleziona almeno una zona di guida.',
+        'No driving area selected':'Nessuna zona di guida selezionata',
         'It says Paid in Earnings History but no money arrived in my bank account.':'Nella cronologia dei guadagni risulta Pagato, ma il denaro non è ancora arrivato sul mio conto bancario.',
         'Your bank may need additional time to credit the payment to your account. This usually takes around 1–3 business days after AdCars.ch processes the payout.':'La tua banca potrebbe aver bisogno di ulteriore tempo per accreditare il pagamento sul tuo conto. Di solito sono necessari circa 1–3 giorni lavorativi dopo che AdCars.ch ha elaborato il pagamento.',
         'Payout request':'Richiesta di pagamento',
